@@ -1,0 +1,86 @@
+PODS:
+  - AFNetworking (2.4.1):
+    - AFNetworking/NSURLConnection (= 2.4.1)
+    - AFNetworking/NSURLSession (= 2.4.1)
+    - AFNetworking/Reachability (= 2.4.1)
+    - AFNetworking/Security (= 2.4.1)
+    - AFNetworking/Serialization (= 2.4.1)
+    - AFNetworking/UIKit (= 2.4.1)
+  - AFNetworking/NSURLConnection (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.4.1):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.4.1)
+  - AFNetworking/Security (2.4.1)
+  - AFNetworking/Serialization (2.4.1)
+  - AFNetworking/UIKit (2.4.1):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - Bolts (1.1.3)
+  - CERoundProgressView (0.0.1)
+  - CXAlertView (1.0.1)
+  - Facebook-iOS-SDK (3.17.0):
+    - Bolts
+  - Instabug (3.11)
+  - JPSThumbnailAnnotation (1.0.0)
+  - KxMenu (1)
+  - PHFComposeBarView (2.0.1):
+    - PHFDelegateChain (~> 1.0)
+  - PHFDelegateChain (1.0.1)
+  - QTree-objc (0.0.2)
+  - REFormattedNumberField (1.1.5)
+  - RETableViewManager (1.5.13):
+    - REFormattedNumberField (~> 1.1.5)
+    - REValidation (~> 0.1.4)
+  - REValidation (0.1.4)
+  - SCFacebook (3.0):
+    - Facebook-iOS-SDK (~> 3.17.0)
+    - SDWebImage (~> 3.6)
+  - SDWebImage (3.7.1):
+    - SDWebImage/Core (= 3.7.1)
+  - SDWebImage/Core (3.7.1)
+  - SVProgressHUD (HEAD based on 1.1.2)
+  - ViewDeck (2.3.1)
+  - WYPopoverController (0.2.2)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.0)
+  - CERoundProgressView (~> 0.0.1)
+  - CXAlertView
+  - Instabug
+  - JPSThumbnailAnnotation
+  - KxMenu (~> 1)
+  - PHFComposeBarView (~> 2.0.1)
+  - QTree-objc
+  - RETableViewManager (~> 1.5.13)
+  - SCFacebook
+  - SVProgressHUD (HEAD)
+  - ViewDeck (~> 2.3.1)
+  - WYPopoverController (~> 0.2.2)
+
+SPEC CHECKSUMS:
+  AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
+  Bolts: 3db0a875235e0c9042b013af13af0f00f79b102c
+  CERoundProgressView: 36506033625fa0be42683df9ace5c6618760eba6
+  CXAlertView: 29bfa5841d168a016e1a70474ed840d0f4f67c2c
+  Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
+  Instabug: b10088d2d6e129e0a6821dd0d40192e6183d81cb
+  JPSThumbnailAnnotation: 3146c1cc9bdfb5e12888cf6c85d8d35940e66c0d
+  KxMenu: e281f1699a2181287de6eb1ebec2ea60a86559fa
+  PHFComposeBarView: 0fa52137ecb23725d219dc90cf77c4c95aa29d05
+  PHFDelegateChain: f4d5a2847960b3dd16fc2f2196833f3a66704745
+  QTree-objc: 3c2cc51ce558adff7abf94a9507cfa53cd61f06b
+  REFormattedNumberField: 86318c549b60130a6d7a05abebb142f08f671319
+  RETableViewManager: 972b96a4a0d8ea1a0f7c70598c1688e6d0b19988
+  REValidation: a0033a582415848854e875dfcbe69c107de19f81
+  SCFacebook: 2d66ac842bab9a54ab45b00f145fa15cbafb4dad
+  SDWebImage: 116e88633b5b416ea0ca4b334a4ac59cf72dd38d
+  SVProgressHUD: da7a49e789af645d9279ffbca62318945a832438
+  ViewDeck: 654a493fc83928892ce483dea08a5302180aafce
+  WYPopoverController: c233d69fdfd5c7e316b481df1060624d7a9e629d
+
+COCOAPODS: 0.35.0

@@ -1,1 +1,0 @@
-PODS_GLIMP_CXALERTVIEW_OTHER_LDFLAGS = -framework "Accelerate" -framework "CoreGraphics" -framework "QuartzCore"

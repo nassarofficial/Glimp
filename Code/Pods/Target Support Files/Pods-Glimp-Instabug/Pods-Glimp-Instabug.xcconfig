@@ -1,4 +1,0 @@
-PODS_GLIMP_INSTABUG_CLANG_CXX_LANGUAGE_STANDARD = c++11
-PODS_GLIMP_INSTABUG_CLANG_CXX_LIBRARY = libc++
-PODS_GLIMP_INSTABUG_FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/Instabug/"
-PODS_GLIMP_INSTABUG_OTHER_LDFLAGS = -l"c++" -framework "AVFoundation" -framework "AudioToolbox" -framework "CoreFoundation" -framework "CoreGraphics" -framework "CoreLocation" -framework "CoreMotion" -framework "CoreTelephony" -framework "Foundation" -framework "GLKit" -framework "Instabug" -framework "MessageUI" -framework "MobileCoreServices" -framework "OpenGLES" -framework "QuartzCore" -framework "SystemConfiguration" -framework "UIKit"

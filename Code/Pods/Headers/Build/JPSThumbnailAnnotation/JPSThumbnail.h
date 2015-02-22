@@ -1,1 +1,0 @@
-../../../JPSThumbnailAnnotation/JPSThumbnailAnnotation/JPSThumbnail.h

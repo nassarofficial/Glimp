@@ -1,1 +1,0 @@
-PODS_GLIMP_QTREE_OBJC_OTHER_LDFLAGS = -framework "CoreLocation" -framework "MapKit"

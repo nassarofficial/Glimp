@@ -25,7 +25,6 @@
 		7E1E147F19BB27980021AFBF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E147E19BB27980021AFBF /* AppDelegate.m */; };
 		7E1E148219BB27980021AFBF /* Glimp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7E1E148019BB27980021AFBF /* Glimp.xcdatamodeld */; };
 		7E1E148419BB27980021AFBF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E1E148319BB27980021AFBF /* Images.xcassets */; };
-		7E1E148B19BB27980021AFBF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1E148A19BB27980021AFBF /* XCTest.framework */; };
 		7E1E148C19BB27980021AFBF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1E146C19BB27980021AFBF /* Foundation.framework */; };
 		7E1E148D19BB27980021AFBF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1E147019BB27980021AFBF /* UIKit.framework */; };
 		7E1E148E19BB27980021AFBF /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E1E147219BB27980021AFBF /* CoreData.framework */; };
@@ -120,6 +119,17 @@
 
 /* Begin PBXFileReference section */
 		5F4BFFBE2900F87E6AB6BD97 /* Pods-Glimp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glimp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Glimp/Pods-Glimp.debug.xcconfig"; sourceTree = "<group>"; };
+		6E915A3B1A9C9DEB003AB4BE /* libPods-Glimp-AFNetworking.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libPods-Glimp-AFNetworking.a"; path = "Pods/build/Debug-iphoneos/libPods-Glimp-AFNetworking.a"; sourceTree = "<group>"; };
+		6E915A3D1A9CA437003AB4BE /* MyriadPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MyriadPro-Bold.otf"; path = "/Library/Fonts/MyriadPro-Bold.otf"; sourceTree = "<absolute>"; };
+		6E915A3E1A9CA437003AB4BE /* MyriadPro-BoldCond.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MyriadPro-BoldCond.otf"; path = "/Library/Fonts/MyriadPro-BoldCond.otf"; sourceTree = "<absolute>"; };
+		6E915A3F1A9CA437003AB4BE /* MyriadPro-BoldCondIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MyriadPro-BoldCondIt.otf"; path = "/Library/Fonts/MyriadPro-BoldCondIt.otf"; sourceTree = "<absolute>"; };
+		6E915A401A9CA437003AB4BE /* MyriadPro-BoldIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MyriadPro-BoldIt.otf"; path = "/Library/Fonts/MyriadPro-BoldIt.otf"; sourceTree = "<absolute>"; };
+		6E915A411A9CA437003AB4BE /* MyriadPro-Cond.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MyriadPro-Cond.otf"; path = "/Library/Fonts/MyriadPro-Cond.otf"; sourceTree = "<absolute>"; };
+		6E915A421A9CA437003AB4BE /* MyriadPro-CondIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MyriadPro-CondIt.otf"; path = "/Library/Fonts/MyriadPro-CondIt.otf"; sourceTree = "<absolute>"; };
+		6E915A431A9CA437003AB4BE /* MyriadPro-It.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MyriadPro-It.otf"; path = "/Library/Fonts/MyriadPro-It.otf"; sourceTree = "<absolute>"; };
+		6E915A441A9CA437003AB4BE /* MyriadPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MyriadPro-Regular.otf"; path = "/Library/Fonts/MyriadPro-Regular.otf"; sourceTree = "<absolute>"; };
+		6E915A451A9CA437003AB4BE /* MyriadPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MyriadPro-Semibold.otf"; path = "/Library/Fonts/MyriadPro-Semibold.otf"; sourceTree = "<absolute>"; };
+		6E915A461A9CA437003AB4BE /* MyriadPro-SemiboldIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "MyriadPro-SemiboldIt.otf"; path = "/Library/Fonts/MyriadPro-SemiboldIt.otf"; sourceTree = "<absolute>"; };
 		7E0654FD1A8AAF8B00690AA7 /* NotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsViewController.h; sourceTree = "<group>"; };
 		7E0654FE1A8AAF8B00690AA7 /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
 		7E0654FF1A8AAF8B00690AA7 /* NotificationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationsViewController.xib; sourceTree = "<group>"; };
@@ -313,7 +323,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E1E148B19BB27980021AFBF /* XCTest.framework in Frameworks */,
 				7E1E148E19BB27980021AFBF /* CoreData.framework in Frameworks */,
 				7E1E148D19BB27980021AFBF /* UIKit.framework in Frameworks */,
 				7E1E148C19BB27980021AFBF /* Foundation.framework in Frameworks */,
@@ -349,6 +358,7 @@
 		7E1E146B19BB27980021AFBF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6E915A3B1A9C9DEB003AB4BE /* libPods-Glimp-AFNetworking.a */,
 				7EFC08A919DEB61100379DC4 /* CFNetwork.framework */,
 				7EC1BA7719DE4431000BC396 /* libz.dylib */,
 				7EC1BA7519DE4418000BC396 /* SystemConfiguration.framework */,
@@ -469,6 +479,16 @@
 		7EAA17A219C3ACB500C67BA4 /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6E915A3D1A9CA437003AB4BE /* MyriadPro-Bold.otf */,
+				6E915A3E1A9CA437003AB4BE /* MyriadPro-BoldCond.otf */,
+				6E915A3F1A9CA437003AB4BE /* MyriadPro-BoldCondIt.otf */,
+				6E915A401A9CA437003AB4BE /* MyriadPro-BoldIt.otf */,
+				6E915A411A9CA437003AB4BE /* MyriadPro-Cond.otf */,
+				6E915A421A9CA437003AB4BE /* MyriadPro-CondIt.otf */,
+				6E915A431A9CA437003AB4BE /* MyriadPro-It.otf */,
+				6E915A441A9CA437003AB4BE /* MyriadPro-Regular.otf */,
+				6E915A451A9CA437003AB4BE /* MyriadPro-Semibold.otf */,
+				6E915A461A9CA437003AB4BE /* MyriadPro-SemiboldIt.otf */,
 				7E1E14A119BB27CD0021AFBF /* LoginViewController.h */,
 				7E1E14A219BB27CD0021AFBF /* LoginViewController.m */,
 				7E1E14A319BB27CD0021AFBF /* LoginViewController.xib */,
@@ -668,6 +688,7 @@
 						DevelopmentTeam = 5K5Q95GTX4;
 					};
 					7E1E148819BB27980021AFBF = {
+						DevelopmentTeam = 5K5Q95GTX4;
 						TestTargetID = 7E1E146819BB27970021AFBF;
 					};
 				};
@@ -948,6 +969,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flurry",
 					"$(PROJECT_DIR)/FlurryAds",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -972,6 +994,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Flurry",
 					"$(PROJECT_DIR)/FlurryAds",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -984,6 +1007,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Glimp.app/Glimp";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -998,6 +1023,7 @@
 				INFOPLIST_FILE = "GlimpTests/GlimpTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
@@ -1007,6 +1033,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Glimp.app/Glimp";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1017,6 +1045,7 @@
 				INFOPLIST_FILE = "GlimpTests/GlimpTests-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};

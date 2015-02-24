@@ -68,7 +68,6 @@
     
     }
     
-    [[UINavigationBar appearance] setBarTintColor:RGB(71, 71, 71)];
     [[UINavigationBar appearance] setBarTintColor:RGB(0,220,251)];
 
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];

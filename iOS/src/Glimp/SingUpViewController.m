@@ -90,17 +90,25 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     NSString *url = [NSString stringWithFormat:KHostURL,KSaveUser];
     [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        [SVProgressHUD dismiss];
         SBJSON* parser = [[SBJSON alloc] init];
         NSString *response = [parser stringWithObject:responseObject];
         NSDictionary* myDict = [parser objectWithString:response error:nil];
+        if ([[[myDict objectForKey:@"SaveUserResult"] objectForKey:@"ErrorCode"] integerValue]== 0) {
+            dispatch_async(dispatch_get_main_queue(),
+                           ^{
+                               [SVProgressHUD showErrorWithStatus:[[myDict objectForKey:@"SaveUserResult"] objectForKey:@"ErrorMessage"]];
+                           });
+            
+        }else{
+            [SVProgressHUD dismiss];
+
         NSDictionary *userDict = [[myDict objectForKey:@"SaveUserResult"]objectForKey:@"ReturnedObject"];
         UserModel *user   = [[UserModel alloc]initWithData:userDict];
         [self saveUser:user];
         mapViewController *map = [[mapViewController alloc] initWithNibName:@"mapViewController" bundle:nil];
         map.user = user;
         [self.navigationController pushViewController:map animated:YES];
-        
+        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         [SVProgressHUD showErrorWithStatus:@"error while saving your profile "];

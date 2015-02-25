@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6E1331191A9E6F9500DE5352 /* xx.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 6E1331181A9E6F9500DE5352 /* xx.mp4 */; };
 		7E0655001A8AAF8B00690AA7 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E0654FE1A8AAF8B00690AA7 /* NotificationsViewController.m */; };
 		7E0655011A8AAF8B00690AA7 /* NotificationsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7E0654FF1A8AAF8B00690AA7 /* NotificationsViewController.xib */; };
 		7E09D4881A87718600E3D9C9 /* StartingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E09D4861A87718600E3D9C9 /* StartingViewController.m */; };
@@ -120,6 +121,7 @@
 
 /* Begin PBXFileReference section */
 		5F4BFFBE2900F87E6AB6BD97 /* Pods-Glimp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glimp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Glimp/Pods-Glimp.debug.xcconfig"; sourceTree = "<group>"; };
+		6E1331181A9E6F9500DE5352 /* xx.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; name = xx.mp4; path = Glimp/xx.mp4; sourceTree = "<group>"; };
 		6E41E9C81A9DC4EE005C50F4 /* MyriadPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Bold.otf"; sourceTree = "<group>"; };
 		6E41E9C91A9DC4EE005C50F4 /* MyriadPro-BoldCond.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BoldCond.otf"; sourceTree = "<group>"; };
 		6E41E9CA1A9DC4EE005C50F4 /* MyriadPro-BoldCondIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BoldCondIt.otf"; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 		7E1E146019BB27970021AFBF = {
 			isa = PBXGroup;
 			children = (
+				6E1331181A9E6F9500DE5352 /* xx.mp4 */,
 				6E41E9C71A9DC4EE005C50F4 /* Fonts */,
 				7E76F63419D0B21E00A41E93 /* Models */,
 				7EAA17B719C45C8300C67BA4 /* Views */,
@@ -724,6 +727,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E1331191A9E6F9500DE5352 /* xx.mp4 in Resources */,
 				7E0655011A8AAF8B00690AA7 /* NotificationsViewController.xib in Resources */,
 				7ECE83641A253CA30020C964 /* CommentsViewController.xib in Resources */,
 				7EAA17CF19C46FD900C67BA4 /* VerificationCodeViewController.xib in Resources */,

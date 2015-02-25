@@ -24,11 +24,11 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pic" translatesAutoresizingMaskIntoConstraints="NO" id="KyG-wk-swH">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="roundedrectangle3" translatesAutoresizingMaskIntoConstraints="NO" id="aWn-qc-kCn">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rr-button" translatesAutoresizingMaskIntoConstraints="NO" id="aWn-qc-kCn">
                     <rect key="frame" x="40" y="239" width="110" height="37"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="roundedrectangle3" translatesAutoresizingMaskIntoConstraints="NO" id="E1c-8P-zMU">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rr-button" translatesAutoresizingMaskIntoConstraints="NO" id="E1c-8P-zMU">
                     <rect key="frame" x="171" y="239" width="110" height="37"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </imageView>
@@ -76,6 +76,6 @@
         <image name="fb" width="202" height="46"/>
         <image name="glimp-logo" width="728" height="285"/>
         <image name="pic" width="641" height="1136"/>
-        <image name="roundedrectangle3" width="568" height="370"/>
+        <image name="rr-button" width="268" height="91"/>
     </resources>
 </document>

@@ -52,7 +52,7 @@
                         <action selector="signIn:" destination="-1" eventType="touchUpInside" id="Hye-v0-pXP"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="roundedrectangle" translatesAutoresizingMaskIntoConstraints="NO" id="EKM-Xo-LyE">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rr-login" translatesAutoresizingMaskIntoConstraints="NO" id="EKM-Xo-LyE">
                     <rect key="frame" x="20" y="29" width="280" height="145"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJo-xw-9Dv">
@@ -86,7 +86,7 @@
     <resources>
         <image name="bluebar" width="566" height="66"/>
         <image name="picLogin" width="640" height="1136"/>
-        <image name="roundedrectangle" width="568" height="191"/>
+        <image name="rr-login" width="503" height="261"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

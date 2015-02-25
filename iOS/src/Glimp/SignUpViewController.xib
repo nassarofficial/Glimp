@@ -47,7 +47,7 @@
                         <action selector="signUp:" destination="-1" eventType="touchUpInside" id="dgV-eD-UjP"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="roundedrectangle2" translatesAutoresizingMaskIntoConstraints="NO" id="VSY-mW-ab8">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rr-signup" translatesAutoresizingMaskIntoConstraints="NO" id="VSY-mW-ab8">
                     <rect key="frame" x="15" y="20" width="290" height="251"/>
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="drp-jX-fGs">
@@ -106,6 +106,6 @@
     <resources>
         <image name="bluebar" width="566" height="66"/>
         <image name="pic" width="641" height="1136"/>
-        <image name="roundedrectangle2" width="568" height="370"/>
+        <image name="rr-signup" width="518" height="446"/>
     </resources>
 </document>

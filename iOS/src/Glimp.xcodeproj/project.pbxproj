@@ -120,6 +120,16 @@
 
 /* Begin PBXFileReference section */
 		5F4BFFBE2900F87E6AB6BD97 /* Pods-Glimp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glimp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Glimp/Pods-Glimp.debug.xcconfig"; sourceTree = "<group>"; };
+		6E41E9C81A9DC4EE005C50F4 /* MyriadPro-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Bold.otf"; sourceTree = "<group>"; };
+		6E41E9C91A9DC4EE005C50F4 /* MyriadPro-BoldCond.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BoldCond.otf"; sourceTree = "<group>"; };
+		6E41E9CA1A9DC4EE005C50F4 /* MyriadPro-BoldCondIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BoldCondIt.otf"; sourceTree = "<group>"; };
+		6E41E9CB1A9DC4EE005C50F4 /* MyriadPro-BoldIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-BoldIt.otf"; sourceTree = "<group>"; };
+		6E41E9CC1A9DC4EE005C50F4 /* MyriadPro-Cond.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Cond.otf"; sourceTree = "<group>"; };
+		6E41E9CD1A9DC4EE005C50F4 /* MyriadPro-CondIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-CondIt.otf"; sourceTree = "<group>"; };
+		6E41E9CE1A9DC4EE005C50F4 /* MyriadPro-It.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-It.otf"; sourceTree = "<group>"; };
+		6E41E9CF1A9DC4EE005C50F4 /* MyriadPro-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Regular.otf"; sourceTree = "<group>"; };
+		6E41E9D01A9DC4EE005C50F4 /* MyriadPro-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-Semibold.otf"; sourceTree = "<group>"; };
+		6E41E9D11A9DC4EE005C50F4 /* MyriadPro-SemiboldIt.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "MyriadPro-SemiboldIt.otf"; sourceTree = "<group>"; };
 		7E0654FD1A8AAF8B00690AA7 /* NotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationsViewController.h; sourceTree = "<group>"; };
 		7E0654FE1A8AAF8B00690AA7 /* NotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
 		7E0654FF1A8AAF8B00690AA7 /* NotificationsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationsViewController.xib; sourceTree = "<group>"; };
@@ -323,9 +333,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E41E9C71A9DC4EE005C50F4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6E41E9C81A9DC4EE005C50F4 /* MyriadPro-Bold.otf */,
+				6E41E9C91A9DC4EE005C50F4 /* MyriadPro-BoldCond.otf */,
+				6E41E9CA1A9DC4EE005C50F4 /* MyriadPro-BoldCondIt.otf */,
+				6E41E9CB1A9DC4EE005C50F4 /* MyriadPro-BoldIt.otf */,
+				6E41E9CC1A9DC4EE005C50F4 /* MyriadPro-Cond.otf */,
+				6E41E9CD1A9DC4EE005C50F4 /* MyriadPro-CondIt.otf */,
+				6E41E9CE1A9DC4EE005C50F4 /* MyriadPro-It.otf */,
+				6E41E9CF1A9DC4EE005C50F4 /* MyriadPro-Regular.otf */,
+				6E41E9D01A9DC4EE005C50F4 /* MyriadPro-Semibold.otf */,
+				6E41E9D11A9DC4EE005C50F4 /* MyriadPro-SemiboldIt.otf */,
+			);
+			name = Fonts;
+			path = Glimp/Fonts;
+			sourceTree = "<group>";
+		};
 		7E1E146019BB27970021AFBF = {
 			isa = PBXGroup;
 			children = (
+				6E41E9C71A9DC4EE005C50F4 /* Fonts */,
 				7E76F63419D0B21E00A41E93 /* Models */,
 				7EAA17B719C45C8300C67BA4 /* Views */,
 				7EAA17A319C3B92500C67BA4 /* Resources */,

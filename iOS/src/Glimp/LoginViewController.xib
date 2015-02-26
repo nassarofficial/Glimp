@@ -17,6 +17,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
                 <outlet property="loginButton" destination="e0n-s6-ljG" id="MgH-iN-5R4"/>
+                <outlet property="movieView" destination="TsQ-YF-KYc" id="lIm-xd-Zbi"/>
                 <outlet property="passwordTextField" destination="3pp-8f-SUP" id="ePH-Sl-g9Q"/>
                 <outlet property="userNameTextField" destination="ZiJ-ZT-Rgv" id="eBD-A6-coh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -30,6 +31,18 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picLogin" translatesAutoresizingMaskIntoConstraints="NO" id="BkQ-pm-iw0">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TsQ-YF-KYc">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eBk-P7-iwX">
+                    <rect key="frame" x="0.0" y="-44" width="320" height="656"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bF1-cb-HKC">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yV-PM-nEF">
                     <rect key="frame" x="95" y="242" width="130" height="30"/>
                     <state key="normal" title="Forgot Password?">

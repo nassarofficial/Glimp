@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 
 @interface SignUpViewController : UIViewController
+@property (nonatomic, strong) AVPlayer *avplayer;
+@property (strong, nonatomic) IBOutlet UIView *movieView;
+@property (strong, nonatomic) IBOutlet UIView *gradientView;
+@property (strong, nonatomic) IBOutlet UIView *contentView;
+
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (weak, nonatomic) IBOutlet UITextField *emailTextField;

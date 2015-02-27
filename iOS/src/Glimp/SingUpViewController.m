@@ -27,18 +27,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    UITapGestureRecognizer  *tap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideKeyboard:)];
-    self.title= @"SIGN UP";
-    [self.view  addGestureRecognizer:tap];
-    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-    appDelegate.navg.navigationBarHidden = NO;
-    self.navigationController.navigationBar.hidden = NO;
-    self.navigationItem.hidesBackButton = YES;
-    NSError *sessionError = nil;
-    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:&sessionError];
-    [[AVAudioSession sharedInstance] setActive:YES error:&sessionError];
-    
     //Set up player
     NSURL *movieURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"xx" ofType:@"mp4"]];
     AVAsset *avAsset = [AVAsset assetWithURL:movieURL];
@@ -67,6 +55,17 @@
     gradient.colors = [NSArray arrayWithObjects:(id)[UIColorFromRGB(0x030303) CGColor], (id)[[UIColor clearColor] CGColor], (id)[UIColorFromRGB(0x030303) CGColor],nil];
     [self.gradientView.layer insertSublayer:gradient atIndex:0];
 
+    // Do any additional setup after loading the view from its nib.
+    UITapGestureRecognizer  *tap =[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(hideKeyboard:)];
+    self.title= @"SIGN UP";
+    [self.view  addGestureRecognizer:tap];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    appDelegate.navg.navigationBarHidden = NO;
+    self.navigationController.navigationBar.hidden = NO;
+    self.navigationItem.hidesBackButton = YES;
+    NSError *sessionError = nil;
+    [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryAmbient error:&sessionError];
+    [[AVAudioSession sharedInstance] setActive:YES error:&sessionError];
     [self customizeBackButton];
 }
 -(void)hideKeyboard:(UITapGestureRecognizer *)sender{

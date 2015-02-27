@@ -501,9 +501,6 @@
 		7EAA17A219C3ACB500C67BA4 /* viewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				7E1E14A119BB27CD0021AFBF /* LoginViewController.h */,
-				7E1E14A219BB27CD0021AFBF /* LoginViewController.m */,
-				7E1E14A319BB27CD0021AFBF /* LoginViewController.xib */,
 				7EAA17C119C46C1000C67BA4 /* mapViewController.h */,
 				7EAA17C219C46C1000C67BA4 /* mapViewController.m */,
 				7EAA17C319C46C1000C67BA4 /* mapViewController.xib */,
@@ -537,6 +534,9 @@
 				7E09D4851A87718600E3D9C9 /* StartingViewController.h */,
 				7E09D4861A87718600E3D9C9 /* StartingViewController.m */,
 				7E09D4871A87718600E3D9C9 /* StartingViewController.xib */,
+				7E1E14A119BB27CD0021AFBF /* LoginViewController.h */,
+				7E1E14A219BB27CD0021AFBF /* LoginViewController.m */,
+				7E1E14A319BB27CD0021AFBF /* LoginViewController.xib */,
 				7E09D48A1A88D7BD00E3D9C9 /* SignUpViewController.h */,
 				7E09D48B1A88D7BD00E3D9C9 /* SingUpViewController.m */,
 				7E09D48C1A88D7BD00E3D9C9 /* SignUpViewController.xib */,

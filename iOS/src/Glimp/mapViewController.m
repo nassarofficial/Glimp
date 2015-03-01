@@ -86,7 +86,7 @@
     
     [self.cameraTap setImage:[[UIImage imageNamed:@"3"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ]];
     [self.tabBar setTintColor:[UIColor whiteColor]];
-    [self.tabBar setBarTintColor:RGB(65, 65, 65)];
+    [self.tabBar setBarTintColor:RGB(89, 89, 89)];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.tabBar.translucent = NO;
         self.tabBar.translucent = YES;
@@ -139,12 +139,21 @@
                                                object:nil];
     
     
+//    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+//                                                                     RGB(255, 255, 255),
+//                                                                     NSForegroundColorAttributeName,
+//                                                                     [UIFont fontWithName:@"Arial-Bold" size:20.0],
+//                                                                     NSFontAttributeName,
+//                                                                     nil]];
+    
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                     RGB(65, 246, 255),
+                                                                     RGB(255, 255, 255),
                                                                      NSForegroundColorAttributeName,
                                                                      [UIFont fontWithName:@"Arial-Bold" size:20.0],
                                                                      NSFontAttributeName,
                                                                      nil]];
+   
+    [self.navigationController.navigationBar setBarTintColor: [UIColor colorWithRed:89.0f/255.0f green:89.0f/255.0f blue:89.0f/255.0f alpha:1.0f]];
 
     self.title = @"GLIMP";
     geocoder = [[CLGeocoder alloc] init];

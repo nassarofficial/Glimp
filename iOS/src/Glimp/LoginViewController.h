@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (nonatomic, strong) AVPlayer *avplayer;
-@property (strong, nonatomic) IBOutlet UIView *movieView;
+@property (nonatomic, weak) IBOutlet UIView *movieView;
 @property (strong, nonatomic) IBOutlet UIView *gradientView;
 @property (strong, nonatomic) IBOutlet UIView *contentView;
 

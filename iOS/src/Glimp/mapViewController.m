@@ -569,15 +569,20 @@
             return [((NSObject<JPSThumbnailAnnotationProtocol> *)annotation) annotationViewInMap:mapView];
         }
     return  nil;
-        
+
 }
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
     [mapView deselectAnnotation:view.annotation animated:YES];
     id<MKAnnotation> annotation = view.annotation;
+    static NSString *AnnotationViewID = @"annotationViewID";
+    MKAnnotationView *annotationView = (MKAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:AnnotationViewID];
+
     if( [annotation isKindOfClass:[QCluster class]] ) {
         QCluster* cluster = (QCluster*)annotation;
         [mapView setRegion:MKCoordinateRegionMake(cluster.coordinate, MKCoordinateSpanMake(2.5 * cluster.radius, 2.5 * cluster.radius))
                   animated:YES];
+        
+        
     } else if ([annotation conformsToProtocol:@protocol(JPSThumbnailAnnotationProtocol)]) {
         JPSThumbnailAnnotation *videoAnn        = (JPSThumbnailAnnotation*)annotation;
         videoUrl                                = videoAnn.videoUrl?videoAnn.videoUrl:@"";
@@ -1118,6 +1123,7 @@
     [self gotoSearch];
     return YES;
 }
+
 @end
 
 

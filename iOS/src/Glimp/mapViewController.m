@@ -1048,7 +1048,7 @@
 
     }];
 }
-- (void)showPlaces{\
+- (void)showPlaces{
     if (venuesName.count != 0) {
         LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:@"Select your Place " options:venuesName];
         lplv.delegate = self;

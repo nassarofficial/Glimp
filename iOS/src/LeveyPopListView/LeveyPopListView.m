@@ -11,7 +11,7 @@
 
 #define POPLISTVIEW_SCREENINSET 40.
 #define POPLISTVIEW_HEADER_HEIGHT 50.
-#define RADIUS 5.
+#define RADIUS 0.
 
 @interface LeveyPopListView (private)
 - (void)fadeIn;
@@ -39,8 +39,8 @@
                                                                    POPLISTVIEW_SCREENINSET + POPLISTVIEW_HEADER_HEIGHT, 
                                                                    rect.size.width - 2 * POPLISTVIEW_SCREENINSET,
                                                                    rect.size.height - 2 * POPLISTVIEW_SCREENINSET - POPLISTVIEW_HEADER_HEIGHT - RADIUS)];
-        _tableView.separatorColor = [UIColor colorWithWhite:0 alpha:.2];
-        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.separatorColor = [UIColor colorWithRed:70.0f/255.0f green:240.0f/255.0f blue:255.0f/255.0f alpha:1.0f];
+        _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.dataSource = self;
         _tableView.delegate = self;
         [self addSubview:_tableView];
@@ -141,6 +141,7 @@
 #pragma mark - TouchTouchTouch
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     // tell the delegate the cancellation
+    
     if ([_delegate respondsToSelector:@selector(leveyPopListViewDidCancel)])
         [_delegate leveyPopListViewDidCancel];
     
@@ -159,8 +160,8 @@
     CGContextRef ctx = UIGraphicsGetCurrentContext();
     
     // Draw the background with shadow
-    CGContextSetShadowWithColor(ctx, CGSizeZero, 6., [UIColor colorWithWhite:0 alpha:.75].CGColor);
-    [[UIColor colorWithWhite:0 alpha:.75] setFill];
+    CGContextSetShadowWithColor(ctx, CGSizeZero, 6., [UIColor whiteColor].CGColor);
+    [[UIColor whiteColor] setFill];
     
     
     float x = POPLISTVIEW_SCREENINSET;
@@ -177,12 +178,12 @@
 	CGContextAddPath(ctx, path);
     CGContextFillPath(ctx);
     CGPathRelease(path);
-    
     // Draw the title and the separator with shadow
-    CGContextSetShadowWithColor(ctx, CGSizeMake(0, 1), 0.5f, [UIColor blackColor].CGColor);
-    [[UIColor colorWithRed:0.020 green:0.549 blue:0.961 alpha:1.] setFill];
+    CGContextSetShadowWithColor(ctx, CGSizeMake(0, 1), 0.5f, [UIColor whiteColor].CGColor);
+    [[UIColor colorWithRed:70.0f/255.0f green:240.0f/255.0f blue:255.0f/255.0f alpha:1.0f] setFill];
     [_title drawInRect:titleRect withFont:[UIFont systemFontOfSize:16.]];
     CGContextFillRect(ctx, separatorRect);
+
 }
 
 @end

@@ -46,7 +46,6 @@
         </view>
     </objects>
     <resources>
-        <image name="blurry" width="21" height="21"/>
         <image name="blurry" width="640" height="1136"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

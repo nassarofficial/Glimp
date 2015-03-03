@@ -52,7 +52,6 @@
 
    
     LoginViewController *login = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];
-    
     SignUpViewController *sign = [[SignUpViewController alloc]initWithNibName:@"SignUpViewController" bundle:nil];
 
     self.navg = [[UINavigationController alloc]initWithRootViewController:login];

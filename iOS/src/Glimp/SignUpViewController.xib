@@ -18,7 +18,6 @@
         </mutableArray>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SingUpViewController">
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignUpViewController">
             <connections>
                 <outlet property="emailTextField" destination="3P1-Cg-rd0" id="PNi-OX-ygI"/>
@@ -34,10 +33,8 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pic" translatesAutoresizingMaskIntoConstraints="NO" id="fdI-e6-mHu">
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="drw-mm-2jz">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                </imageView>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8zi-Gg-bmE">
@@ -60,12 +57,10 @@
                         <action selector="signUp:" destination="-1" eventType="touchUpInside" id="dgV-eD-UjP"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="roundedrectangle2" translatesAutoresizingMaskIntoConstraints="NO" id="VSY-mW-ab8">
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rr-signup" translatesAutoresizingMaskIntoConstraints="NO" id="VSY-mW-ab8">
                     <rect key="frame" x="15" y="20" width="290" height="251"/>
                 </imageView>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="drp-jX-fGs">
-                    <rect key="frame" x="115" y="106" width="173" height="30"/>
                     <rect key="frame" x="115" y="105" width="173" height="30"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="MyriadPro-Semibold" family="Myriad Pro" pointSize="15"/>
@@ -102,14 +97,12 @@
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Pb-3Y-84z">
-                    <rect key="frame" x="138" y="222" width="150" height="30"/>
                     <rect key="frame" x="138" y="224" width="150" height="30"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="MyriadPro-Semibold" family="Myriad Pro" pointSize="15"/>
                     <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3P1-Cg-rd0">
-                    <rect key="frame" x="115" y="162" width="173" height="30"/>
                     <rect key="frame" x="115" y="164" width="173" height="30"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" name="MyriadPro-Semibold" family="Myriad Pro" pointSize="15"/>
@@ -122,8 +115,6 @@
     </objects>
     <resources>
         <image name="bluebar" width="566" height="66"/>
-        <image name="pic" width="641" height="1136"/>
-        <image name="roundedrectangle2" width="568" height="370"/>
         <image name="rr-signup" width="518" height="446"/>
     </resources>
 </document>

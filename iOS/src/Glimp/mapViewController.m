@@ -86,7 +86,6 @@
     
     [self.cameraTap setImage:[[UIImage imageNamed:@"3"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal ]];
     [self.tabBar setTintColor:[UIColor whiteColor]];
-    [self.tabBar setBarTintColor:RGB(65, 65, 65)];
     [self.tabBar setBarTintColor:RGB(89, 89, 89)];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.tabBar.translucent = NO;
@@ -151,14 +150,6 @@
     self.navigationItem.titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"glimplogonav.png"]];
 
     
-    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                                     RGB(65, 246, 255),
-                                                                     NSForegroundColorAttributeName,
-                                                                     [UIFont fontWithName:@"Arial-Bold" size:20.0],
-                                                                     NSFontAttributeName,
-                                                                     nil]];
-
-    self.title = @"GLIMP";
     //self.title = @"GLIMP";
     geocoder = [[CLGeocoder alloc] init];
     [self.mapView setDelegate:self];
@@ -578,7 +569,6 @@
             return [((NSObject<JPSThumbnailAnnotationProtocol> *)annotation) annotationViewInMap:mapView];
         }
     return  nil;
-        
 
 }
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
@@ -1058,7 +1048,6 @@
 
     }];
 }
-- (void)showPlaces{\
 - (void)showPlaces{
     if (venuesName.count != 0) {
         LeveyPopListView *lplv = [[LeveyPopListView alloc] initWithTitle:@"Select your Place " options:venuesName];

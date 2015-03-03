@@ -65,6 +65,8 @@ static CGFloat const kJPSThumbnailAnnotationViewAnimationDuration = 0.25f;
 - (void)setupImageView {
     _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(12.5f, 12.5f, 50.0f, 47.0f)];
     _imageView.layer.cornerRadius = 4.0f;
+    _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(12.5f, 12.5f, 2 * 25, 2 * 25)];
+    _imageView.layer.cornerRadius = 25;
     _imageView.layer.masksToBounds = YES;
     _imageView.layer.borderColor = [[UIColor lightGrayColor] CGColor];
     _imageView.layer.borderWidth = 0.5f;
@@ -110,10 +112,15 @@ static CGFloat const kJPSThumbnailAnnotationViewAnimationDuration = 0.25f;
     CFRelease(path);
     _bgLayer.fillColor = [UIColor whiteColor].CGColor;
     
+    _bgLayer.fillColor = [UIColor colorWithRed:70.0f/255.0f green:240.0f/255.0f blue:255.0f/255.0f alpha:1.0f].CGColor;
+    _bgLayer.borderColor = [[UIColor lightGrayColor] CGColor];
+    _bgLayer.borderWidth = 0.5f;
+
     _bgLayer.shadowColor = [UIColor blackColor].CGColor;
     _bgLayer.shadowOffset = CGSizeMake(0.0f, 3.0f);
     _bgLayer.shadowRadius = 2.0f;
     _bgLayer.shadowOpacity = 0.5f;
+    _bgLayer.shadowOpacity = 0.01f;
     
     _bgLayer.masksToBounds = NO;
     
@@ -155,12 +162,16 @@ static CGFloat const kJPSThumbnailAnnotationViewAnimationDuration = 0.25f;
 	rect.size.height -= stroke + 29.0f;
 	rect.origin.x += stroke / 2.0f + 7.0f;
 	rect.origin.y += stroke / 2.0f + 7.0f;
+	rect.size.height -= stroke + 28.0f;
+	rect.origin.x += stroke / 1.0f + 5.0f;
+	rect.origin.y += stroke / 1.0f + 5.0f;
     
 	// Create Callout Bubble Path
 	CGPathMoveToPoint(path, NULL, rect.origin.x, rect.origin.y + radius);
 	CGPathAddLineToPoint(path, NULL, rect.origin.x, rect.origin.y + rect.size.height - radius);
 	CGPathAddArc(path, NULL, rect.origin.x + radius, rect.origin.y + rect.size.height - radius, radius, M_PI, M_PI_2, 1);
 	CGPathAddLineToPoint(path, NULL, parentX - 14.0f, rect.origin.y + rect.size.height);
+	CGPathMoveToPoint(path, NULL, parentX - 14.0f, rect.origin.y + rect.size.height);
 	CGPathAddLineToPoint(path, NULL, parentX, rect.origin.y + rect.size.height + 14.0f);
 	CGPathAddLineToPoint(path, NULL, parentX + 14.0f, rect.origin.y + rect.size.height);
 	CGPathAddLineToPoint(path, NULL, rect.origin.x + rect.size.width - radius, rect.origin.y + rect.size.height);

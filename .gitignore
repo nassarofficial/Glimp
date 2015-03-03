@@ -1,6 +1,10 @@
 
 *.xcuserstate
 
+<<<<<<< HEAD
 *.xcbkptlist
 
 *.xcuserstate
+=======
+iOS/src/Glimp.xcworkspace/xcuserdata/nassar.xcuserdatad/UserInterfaceState.xcuserstate
+>>>>>>> origin/master

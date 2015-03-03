@@ -17,6 +17,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
                 <outlet property="loginButton" destination="e0n-s6-ljG" id="MgH-iN-5R4"/>
+                <outlet property="movieView" destination="TsQ-YF-KYc" id="Kvr-Rg-6WY"/>
                 <outlet property="passwordTextField" destination="3pp-8f-SUP" id="ePH-Sl-g9Q"/>
                 <outlet property="userNameTextField" destination="ZiJ-ZT-Rgv" id="eBD-A6-coh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -28,8 +29,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="picLogin" translatesAutoresizingMaskIntoConstraints="NO" id="BkQ-pm-iw0">
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TsQ-YF-KYc">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                 </imageView>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eBk-P7-iwX">
+                    <rect key="frame" x="0.0" y="-44" width="320" height="656"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
+                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bF1-cb-HKC">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                </view>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3yV-PM-nEF">
                     <rect key="frame" x="95" y="242" width="130" height="30"/>
                     <state key="normal" title="Forgot Password?">
@@ -53,6 +65,7 @@
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="roundedrectangle" translatesAutoresizingMaskIntoConstraints="NO" id="EKM-Xo-LyE">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="rr-login" translatesAutoresizingMaskIntoConstraints="NO" id="EKM-Xo-LyE">
                     <rect key="frame" x="20" y="29" width="280" height="145"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJo-xw-9Dv">
@@ -69,12 +82,14 @@
                 </label>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZiJ-ZT-Rgv">
                     <rect key="frame" x="118" y="53" width="159" height="30"/>
+                    <rect key="frame" x="118" y="55" width="159" height="30"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="MyriadPro-Semibold" family="Myriad Pro" pointSize="15"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3pp-8f-SUP">
                     <rect key="frame" x="118" y="118" width="167" height="30"/>
+                    <rect key="frame" x="118" y="120" width="167" height="30"/>
                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="MyriadPro-Semibold" family="Myriad Pro" pointSize="15"/>
                     <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -87,6 +102,7 @@
         <image name="bluebar" width="566" height="66"/>
         <image name="picLogin" width="640" height="1136"/>
         <image name="roundedrectangle" width="568" height="191"/>
+        <image name="rr-login" width="503" height="261"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

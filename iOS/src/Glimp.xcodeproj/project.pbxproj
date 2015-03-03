@@ -323,9 +323,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E41E9C71A9DC4EE005C50F4 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6E41E9C81A9DC4EE005C50F4 /* MyriadPro-Bold.otf */,
+				6E41E9C91A9DC4EE005C50F4 /* MyriadPro-BoldCond.otf */,
+				6E41E9CA1A9DC4EE005C50F4 /* MyriadPro-BoldCondIt.otf */,
+				6E41E9CB1A9DC4EE005C50F4 /* MyriadPro-BoldIt.otf */,
+				6E41E9CC1A9DC4EE005C50F4 /* MyriadPro-Cond.otf */,
+				6E41E9CD1A9DC4EE005C50F4 /* MyriadPro-CondIt.otf */,
+				6E41E9CE1A9DC4EE005C50F4 /* MyriadPro-It.otf */,
+				6E41E9CF1A9DC4EE005C50F4 /* MyriadPro-Regular.otf */,
+				6E41E9D01A9DC4EE005C50F4 /* MyriadPro-Semibold.otf */,
+				6E41E9D11A9DC4EE005C50F4 /* MyriadPro-SemiboldIt.otf */,
+			);
+			name = Fonts;
+			path = Glimp/Fonts;
+			sourceTree = "<group>";
+		};
 		7E1E146019BB27970021AFBF = {
 			isa = PBXGroup;
 			children = (
+				6E1331181A9E6F9500DE5352 /* xx.mp4 */,
+				6E41E9C71A9DC4EE005C50F4 /* Fonts */,
 				7E76F63419D0B21E00A41E93 /* Models */,
 				7EAA17B719C45C8300C67BA4 /* Views */,
 				7EAA17A319C3B92500C67BA4 /* Resources */,
@@ -505,6 +525,9 @@
 				7E09D4851A87718600E3D9C9 /* StartingViewController.h */,
 				7E09D4861A87718600E3D9C9 /* StartingViewController.m */,
 				7E09D4871A87718600E3D9C9 /* StartingViewController.xib */,
+				7E1E14A119BB27CD0021AFBF /* LoginViewController.h */,
+				7E1E14A219BB27CD0021AFBF /* LoginViewController.m */,
+				7E1E14A319BB27CD0021AFBF /* LoginViewController.xib */,
 				7E09D48A1A88D7BD00E3D9C9 /* SignUpViewController.h */,
 				7E09D48B1A88D7BD00E3D9C9 /* SingUpViewController.m */,
 				7E09D48C1A88D7BD00E3D9C9 /* SignUpViewController.xib */,
@@ -695,6 +718,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E1331191A9E6F9500DE5352 /* xx.mp4 in Resources */,
 				7E0655011A8AAF8B00690AA7 /* NotificationsViewController.xib in Resources */,
 				7ECE83641A253CA30020C964 /* CommentsViewController.xib in Resources */,
 				7EAA17CF19C46FD900C67BA4 /* VerificationCodeViewController.xib in Resources */,

@@ -12,6 +12,7 @@
 #import "LoginViewController.h"
 #import "ProfileViewController.h"
 #import "NotificationsViewController.h"
+#import "SignUpViewController.h"
 #import "mapViewController.h"
 #import <Instabug.h>
 #import "StartingViewController.h"
@@ -52,6 +53,8 @@
    
     LoginViewController *login = [[LoginViewController alloc]initWithNibName:@"LoginViewController" bundle:nil];
     
+    SignUpViewController *sign = [[SignUpViewController alloc]initWithNibName:@"SignUpViewController" bundle:nil];
+
     self.navg = [[UINavigationController alloc]initWithRootViewController:login];
        UserModel *user = [NSKeyedUnarchiver unarchiveObjectWithData:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
     if (user == nil)

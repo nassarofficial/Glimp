@@ -8,3 +8,7 @@
 =======
 iOS/src/Glimp.xcworkspace/xcuserdata/nassar.xcuserdatad/UserInterfaceState.xcuserstate
 >>>>>>> origin/master
+
+*.xcuserstate
+
+*.xcbkptlist

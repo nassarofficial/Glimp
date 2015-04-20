@@ -29,6 +29,7 @@
         self.noOfVideos                 = [[data objectForKey:@"NoOfVideos"] stringValue];
 
         self.isFollowed                 = [[data objectForKey:@"IsFollowedByCurrentUser"]boolValue];
+          self.isFacebookUser                 = [[data objectForKey:@"isFacebookUser"]boolValue];
     }
     
     return self;
@@ -52,6 +53,8 @@
     [aCoder encodeObject:self.noOfFollowers               forKey:@"noOfFollowers"];
     [aCoder encodeObject:self.noOfVideos                  forKey:@"NoOfVideos"];
     [aCoder encodeBool:self.isFollowed                    forKey:@"isFollowed"];
+    [aCoder encodeBool:self.isFacebookUser                forKey:@"isFacebookUser"];
+
 }
 - (id)initWithCoder:(NSCoder *)aDecoder{
     if (self = [super init]) {
@@ -71,6 +74,7 @@
         self.noOfFollowing                              =	[aDecoder decodeObjectForKey:@"noOfFollowing"];
         self.noOfVideos                                 =	[aDecoder decodeObjectForKey:@"NoOfVideos"];
         self.isFollowed                                 =	[aDecoder decodeBoolForKey:@"isFollowed"];
+        self.isFacebookUser                             =	[aDecoder decodeBoolForKey:@"isFacebookUser"];
 
     }
     return self;

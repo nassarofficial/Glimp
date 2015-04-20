@@ -115,6 +115,7 @@
             
             NSMutableDictionary *parameters =  [NSMutableDictionary new];
             NSString *deviceToken = [[NSUserDefaults standardUserDefaults]objectForKey:@"deviceToken"];
+
             [parameters setObject:@"" forKey:@"image"];
             [parameters setObject:[dic objectForKey:@"first_name" ] forKey:@"firstName"];
             [parameters setObject:[dic objectForKey:@"last_name" ] forKey:@"lastName"];
@@ -126,6 +127,8 @@
             [parameters setObject:@"1" forKey:@"gender"];
             [parameters setObject:[dic objectForKey:@"accessToken"] forKey:@"password"];
             [parameters setObject:@""forKey:@"birthDate"];
+
+            [parameters setObject:[NSNumber numberWithBool:YES]forKey:@"isFacebookUser"];
             [parameters setObject:deviceToken?deviceToken:@"" forKey:@"deviceToken"];
             
             [NSURLSessionConfiguration defaultSessionConfiguration];
@@ -152,6 +155,7 @@
     }];
 
 }
+
 -(void)saveUser:(UserModel *)user{
     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:user] forKey:@"user"];
     [[NSUserDefaults standardUserDefaults] synchronize];

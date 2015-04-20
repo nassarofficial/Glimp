@@ -33,13 +33,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Glimp/SingUpViewController.m"
-            timestampString = "446547353.474674"
+            filePath = "Glimp/StartingViewController.m"
+            timestampString = "450367240.157022"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
-            landmarkName = "-playerStartPlaying"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "-loginFacebook:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Glimp/StartingViewController.m"
+            timestampString = "450368181.138464"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
+            landmarkName = "-loginFacebook:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -50,12 +66,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Glimp/SingUpViewController.m"
-            timestampString = "446547400.442014"
+            timestampString = "450376844.762121"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "-playerItemDidReachEnd:"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "-textFieldDidBeginEditing:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -66,43 +82,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Glimp/SingUpViewController.m"
-            timestampString = "446552433.090788"
+            timestampString = "450377008.487623"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "92"
-            endingLineNumber = "92"
-            landmarkName = "-playerItemDidReachEnd:"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "-textFieldShouldEndEditing:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[SignUpViewController signUp:]"
-                  moduleName = "Glimp"
-                  urlString = "file:///Users/ahmedsalah/Desktop/Glimp/iOS/src/Glimp/SingUpViewController.m"
-                  timestampString = "446552433.095575"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "1599">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__31-[SignUpViewController signUp:]_block_invoke"
-                  moduleName = "Glimp"
-                  urlString = "file:///Users/ahmedsalah/Desktop/Glimp/iOS/src/Glimp/SingUpViewController.m"
-                  timestampString = "446552433.095966"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "86">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

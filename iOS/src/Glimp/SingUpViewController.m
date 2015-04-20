@@ -133,7 +133,7 @@
     [parameters setObject:self.passwordTextField.text forKey:@"password"];
     [parameters setObject:@""forKey:@"birthDate"];
     [parameters setObject:deviceToken?deviceToken:@"" forKey:@"deviceToken"];
-    
+    [parameters setObject:[NSNumber numberWithBool:NO]forKey:@"isFacebookUser"];
     [NSURLSessionConfiguration defaultSessionConfiguration];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -174,7 +174,21 @@
 
     }
 }
-
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    if ([self.emailTextField isFirstResponder]|| [self.phoneNoTextField isFirstResponder]) {
+        CGRect rect = self.view.frame;
+        rect.origin.y = self.view.frame.origin.y-100;
+        self.view.frame = rect;
+    }
+}
+-(BOOL)textFieldShouldEndEditing:(UITextField *)textField{
+    if ([self.emailTextField isFirstResponder]|| [self.phoneNoTextField isFirstResponder]) {
+        CGRect rect = self.view.frame;
+        rect.origin.y = self.view.frame.origin.y+100;
+        self.view.frame = rect;
+    }
+    return YES;
+}
 -(void)saveUser:(UserModel *)user{
     [[NSUserDefaults standardUserDefaults] setObject:[NSKeyedArchiver archivedDataWithRootObject:user] forKey:@"user"];
     [[NSUserDefaults standardUserDefaults] synchronize];

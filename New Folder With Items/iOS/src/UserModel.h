@@ -25,6 +25,6 @@
 @property(nonatomic, strong)NSString *noOfFollowing;
 @property(nonatomic, strong)NSString *noOfVideos;
 @property(nonatomic, assign)BOOL isFollowed;
-
+@property(nonatomic, assign)BOOL isFacebookUser;
 - (id)initWithData:(NSDictionary *)data;
 @end

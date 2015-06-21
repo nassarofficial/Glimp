@@ -1,0 +1,45 @@
+PODS:
+  - AFNetworking (2.5.4):
+    - AFNetworking/NSURLConnection (= 2.5.4)
+    - AFNetworking/NSURLSession (= 2.5.4)
+    - AFNetworking/Reachability (= 2.5.4)
+    - AFNetworking/Security (= 2.5.4)
+    - AFNetworking/Serialization (= 2.5.4)
+    - AFNetworking/UIKit (= 2.5.4)
+  - AFNetworking/NSURLConnection (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/NSURLSession (2.5.4):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (2.5.4)
+  - AFNetworking/Security (2.5.4)
+  - AFNetworking/Serialization (2.5.4)
+  - AFNetworking/UIKit (2.5.4):
+    - AFNetworking/NSURLConnection
+    - AFNetworking/NSURLSession
+  - Alamofire (1.2.2)
+  - FLKAutoLayout (0.2.1)
+  - HanekeSwift (0.9.1)
+  - ORStackView (2.0.0):
+    - FLKAutoLayout (~> 0.1)
+  - SwiftyJSON (2.2.0)
+
+DEPENDENCIES:
+  - AFNetworking (~> 2.5)
+  - Alamofire (~> 1.2)
+  - HanekeSwift
+  - ORStackView (~> 2.0)
+  - SwiftyJSON (~> 2.1)
+
+SPEC CHECKSUMS:
+  AFNetworking: 05edc0ac4c4c8cf57bcf4b84be5b0744b6d8e71e
+  Alamofire: 11a6022f5089887d92ffb5a3014c97a0a915ab98
+  FLKAutoLayout: 9db6b30c2008d230da608e62c607b11c23b942e6
+  HanekeSwift: 50d37bfbc4432edc649167e538c259feccb4a2bb
+  ORStackView: 5df6b1b990b0648d8ef6f69f89361ea8648e8f64
+  SwiftyJSON: 0b3e6c07af17ff745e77e8e9984097b55c956e5c
+
+COCOAPODS: 0.37.2

@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         application.registerUserNotificationSettings( settings )
         application.registerForRemoteNotifications()
         Instabug.startWithToken("8bf991235ff10a1897e63146cccca07b", captureSource:IBGCaptureSourceUIKit, invocationEvent:IBGInvocationEventShake)
-
+        
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
 
         

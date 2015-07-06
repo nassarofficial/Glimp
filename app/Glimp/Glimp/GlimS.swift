@@ -14,11 +14,12 @@ class GlimS: UIViewController {
     @IBAction func backFromModal(segue: UIStoryboardSegue) {
         println("and we are back")
         // Switch to the second tab (tabs are numbered 0, 1, 2)
-        self.tabBarController?.selectedIndex = 1
+        self.tabBarController?.selectedIndex = 0
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.sharedApplication().statusBarHidden=false;
 
         // Do any additional setup after loading the view.
     }
@@ -29,6 +30,8 @@ class GlimS: UIViewController {
     }
     
     override func viewWillAppear(animated: Bool) {
+        UIApplication.sharedApplication().statusBarHidden=false;
+
         let prefs = NSUserDefaults.standardUserDefaults()
         let booler = prefs.integerForKey("glimper")
         println(booler)

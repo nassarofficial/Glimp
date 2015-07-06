@@ -631,7 +631,7 @@
                                     <constraint firstAttribute="width" secondItem="xeJ-EE-Y7l" secondAttribute="height" multiplier="316:129" id="PJ8-UC-sH0"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.74999999999999978" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="password" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dI3-IJ-KQi">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.74999999999999978" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="password" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dI3-IJ-KQi">
                                 <rect key="frame" x="172" y="236" width="72" height="15"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" hint="password" label="password"/>
@@ -642,7 +642,7 @@
                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BW1-yr-CpV">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BW1-yr-CpV">
                                 <rect key="frame" x="71" y="236" width="62" height="15"/>
                                 <fontDescription key="fontDescription" name="MyriadPro-Semibold" family="Myriad Pro" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -662,7 +662,7 @@
                                     <segue destination="GDn-ee-6pW" kind="modal" id="29G-CJ-vcu"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3w-aH-NH7">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3w-aH-NH7">
                                 <rect key="frame" x="71" y="197" width="66" height="27"/>
                                 <accessibility key="accessibilityConfiguration" hint="username" label="username"/>
                                 <constraints>
@@ -698,7 +698,7 @@
                                     <segue destination="XBW-2n-Y5M" kind="modal" id="i8W-Uv-b3F"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.74999999999999978" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="username" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Im2-UG-8cE">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.74999999999999978" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="username" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Im2-UG-8cE">
                                 <rect key="frame" x="176" y="203" width="72" height="15"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <accessibility key="accessibilityConfiguration" hint="username"/>
@@ -782,7 +782,7 @@
                                     <constraint firstAttribute="width" secondItem="gSO-XE-il1" secondAttribute="height" multiplier="348:253" id="bOf-79-62t"/>
                                 </constraints>
                             </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="username" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dGi-Rk-Yai">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.75" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="username" placeholder="username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dGi-Rk-Yai">
                                 <rect key="frame" x="166" y="59" width="99" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="dGi-Rk-Yai" secondAttribute="height" multiplier="148:21" id="ObF-wd-NpB"/>
@@ -791,7 +791,7 @@
                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="001555555555" placeholder="phone number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fNW-ds-gra">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.75" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="001555555555" placeholder="phone number" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fNW-ds-gra">
                                 <rect key="frame" x="192" y="264" width="92" height="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
@@ -824,13 +824,13 @@
                                     <segue destination="mHk-lY-OJj" kind="modal" identifier="goto_login" id="1Oh-oo-ujf"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HdX-aH-r1w">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Phone Number" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HdX-aH-r1w">
                                 <rect key="frame" x="55" y="263" width="99" height="15"/>
                                 <fontDescription key="fontDescription" name="MyriadPro-Semibold" family="Myriad Pro" pointSize="15"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMc-42-6JJ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMc-42-6JJ">
                                 <rect key="frame" x="55" y="223" width="73" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DMc-42-6JJ" secondAttribute="height" multiplier="34:7" id="XN1-Au-4UO"/>
@@ -839,7 +839,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVW-Hc-bPy">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Password" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TVW-Hc-bPy">
                                 <rect key="frame" x="55" y="101" width="73" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="TVW-Hc-bPy" secondAttribute="height" multiplier="34:7" id="hCm-g6-tRK"/>
@@ -848,7 +848,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQg-l6-8A8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bQg-l6-8A8">
                                 <rect key="frame" x="55" y="59" width="73" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bQg-l6-8A8" secondAttribute="height" multiplier="34:7" id="lIi-pJ-anS"/>
@@ -857,7 +857,7 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="password" placeholder="confirm password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LZO-vb-a89">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.75" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="password" placeholder="confirm password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LZO-vb-a89">
                                 <rect key="frame" x="165" y="129" width="113" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="LZO-vb-a89" secondAttribute="height" multiplier="170:21" id="5uP-K7-9Vk"/>
@@ -866,7 +866,7 @@
                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="password" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EcI-fF-dRA">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.75" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="password" placeholder="password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EcI-fF-dRA">
                                 <rect key="frame" x="166" y="99" width="113" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="EcI-fF-dRA" secondAttribute="height" multiplier="170:21" id="CS1-LO-hIO"/>
@@ -875,7 +875,7 @@
                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0f-Ip-xsi">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0f-Ip-xsi">
                                 <rect key="frame" x="55" y="131" width="72" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="K0f-Ip-xsi" secondAttribute="height" multiplier="34:7" id="E7V-W5-x9J"/>
@@ -884,7 +884,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" alpha="0.75" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="user@example.com" placeholder="email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lob-1Y-rbC">
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.75" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="user@example.com" placeholder="email" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Lob-1Y-rbC">
                                 <rect key="frame" x="132" y="222" width="118" height="14"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="MyriadPro-Regular" family="Myriad Pro" pointSize="14"/>
@@ -2377,7 +2377,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="Nmn-nU-uxF" kind="unwind" unwindAction="backFromModal:" id="2sh-rm-cQI"/>
+                                            <segue destination="Nmn-nU-uxF" kind="unwind" identifier="backer" unwindAction="backFromModal:" id="2sh-rm-cQI"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zsc-ot-ARt">
@@ -2389,7 +2389,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="s:" destination="Kxc-Tf-HD5" eventType="touchUpInside" id="5V6-9A-LFg"/>
+                                            <action selector="s:" destination="Kxc-Tf-HD5" eventType="touchUpInside" id="kia-bV-GTY"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -2438,7 +2438,7 @@
                         <outlet property="counterbg" destination="k8W-Yw-SgY" id="suz-1W-vKx"/>
                         <outlet property="previewView" destination="0tC-KS-HZX" id="udR-D8-fLr"/>
                         <outlet property="recordButton" destination="9fg-h0-69m" id="aAe-kz-dkj"/>
-                        <outlet property="setflash" destination="Zsc-ot-ARt" id="3LJ-u7-W3k"/>
+                        <outlet property="setflash" destination="Zsc-ot-ARt" id="8NT-qG-bOY"/>
                         <segue destination="114-vx-l52" kind="modal" identifier="gotovideoeditor" modalTransitionStyle="flipHorizontal" id="aK0-db-Ftm"/>
                     </connections>
                 </viewController>

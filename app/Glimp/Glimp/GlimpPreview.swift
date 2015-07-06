@@ -7,6 +7,10 @@ import Alamofire
 class ImageCell: UITableViewCell {
     @IBOutlet weak var labelCaption: UILabel!
 }
+protocol ModalViewControllerDelegate
+{
+    func sendValue(var value : NSString)
+}
 
 class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,PlayerDelegate {
     var ViewControllerVideoPath = ""
@@ -27,10 +31,12 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         // Initial reachability check
         if reachability.isReachable() {
             self.uploading.hidden = false
-            
+
             let prefs = NSUserDefaults.standardUserDefaults()
+
             let name = prefs.stringForKey("USERNAME")
             var usernamep = String(name!)
+
             // now lets get the directory contents (including folders)
             var progress: NSProgress?
             
@@ -58,7 +64,9 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
                 },
                 success: { (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
                     println("Yes this was a success")
-                    self.dismissViewControllerAnimated(true, completion: nil)
+                    prefs.setInteger(1, forKey: "glimper")
+                    prefs.synchronize()
+                    self.performSegueWithIdentifier("backtocali", sender: self)
 
 
                 },
@@ -194,7 +202,8 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         // tbc : foursquare
         var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         view.addGestureRecognizer(tap)
-        
+        tap.cancelsTouchesInView = false
+
     }
     
     
@@ -203,7 +212,12 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    
+    func textFieldDidBeginEditing(textField: UITextField) {    //delegate method
+        if (textField == self.Description) {
+            self.Description.text = "";
+        }
+    }
+
     
     override func viewWillAppear(animated: Bool) {
         getlocfs.setTitle(locLabel, forState: UIControlState.Normal)
@@ -295,11 +309,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         // Return the number of rows in the section.
         return datas.count
     }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        if segue.identifier == "goto_globe1" {
-            
-        }
-    }
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ImageCell", forIndexPath: indexPath) as! ImageCell
         

@@ -77,11 +77,19 @@ class Globe: UIViewController,MKMapViewDelegate, CLLocationManagerDelegate {
             
             clusteringController = KPClusteringController(mapView: self.mapView)
             clusteringController.delegate = self
-            dispatch_async(dispatch_get_main_queue()) {
-                
+            let progressHUD = ProgressHUD(text: "Loading...")
+            self.view.addSubview(progressHUD)
+
+            let delayInSeconds = 0.5
+            let popTime = dispatch_time(DISPATCH_TIME_NOW,
+                Int64(delayInSeconds * Double(NSEC_PER_SEC))) // 1
+            dispatch_after(popTime, GlobalMainQueue) { // 2
+
                 self.clusteringController.setAnnotations(self.annotations())
-                
+                progressHUD.removeFromSuperview()
+
             }
+            
             locManager.desiredAccuracy = kCLLocationAccuracyBest
             locManager.requestWhenInUseAuthorization()
             locManager.startMonitoringSignificantLocationChanges()
@@ -100,6 +108,7 @@ class Globe: UIViewController,MKMapViewDelegate, CLLocationManagerDelegate {
     }
     
     func getannot(){
+        
         dispatch_async(dispatch_get_main_queue()) {
             self.clusteringController.setAnnotations(self.annotations())
         }
@@ -108,35 +117,40 @@ class Globe: UIViewController,MKMapViewDelegate, CLLocationManagerDelegate {
     override func viewWillAppear(animated: Bool) {
         UIApplication.sharedApplication().statusBarHidden=false;
         super.viewWillAppear(animated)
-        
-        reachability.startNotifier()
-        
-        // Initial reachability check
-        if reachability.isReachable() {
-            let algorithm : KPGridClusteringAlgorithm = KPGridClusteringAlgorithm()
-            
-            algorithm.annotationSize = CGSizeMake(25, 50)
-            algorithm.clusteringStrategy = KPGridClusteringAlgorithmStrategy.TwoPhase;
-            
-            clusteringController = KPClusteringController(mapView: self.mapView)
-            clusteringController.delegate = self
-            getannot()
-            var helloWorldTimer = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: Selector("getannot"), userInfo: nil, repeats: true)
-
-            
-            locManager.desiredAccuracy = kCLLocationAccuracyBest
-            locManager.requestWhenInUseAuthorization()
-            locManager.startMonitoringSignificantLocationChanges()
-            // Check if the user allowed authorization
-            mapView.showsUserLocation = true
-            //uisb.layer.zPosition = 9999;
-        } else {
-            let alertController = UIAlertController(title: "Glimp", message:
-                "No Connection", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
-            self.presentViewController(alertController, animated: true, completion: nil)
-            
-        }
+//        let prefs = NSUserDefaults.standardUserDefaults()
+//        prefs.setInteger(0, forKey: "glimper")
+//        prefs.synchronize()
+//        reachability.startNotifier()
+//        
+//        // Initial reachability check
+//        if reachability.isReachable() {
+//            let algorithm : KPGridClusteringAlgorithm = KPGridClusteringAlgorithm()
+//            
+//            algorithm.annotationSize = CGSizeMake(25, 50)
+//            algorithm.clusteringStrategy = KPGridClusteringAlgorithmStrategy.TwoPhase;
+//            
+//            clusteringController = KPClusteringController(mapView: self.mapView)
+//            clusteringController.delegate = self
+//            
+//            self.clusteringController.setAnnotations(self.annotations())
+//
+//            //getannot()
+//            var helloWorldTimer = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: Selector("getannot"), userInfo: nil, repeats: true)
+//
+//            
+//            locManager.desiredAccuracy = kCLLocationAccuracyBest
+//            locManager.requestWhenInUseAuthorization()
+//            locManager.startMonitoringSignificantLocationChanges()
+//            // Check if the user allowed authorization
+//            mapView.showsUserLocation = true
+//            //uisb.layer.zPosition = 9999;
+//        } else {
+//            let alertController = UIAlertController(title: "Glimp", message:
+//                "No Connection", preferredStyle: UIAlertControllerStyle.Alert)
+//            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+//            self.presentViewController(alertController, animated: true, completion: nil)
+//            
+//        }
 
     }
     
@@ -192,10 +206,9 @@ class Globe: UIViewController,MKMapViewDelegate, CLLocationManagerDelegate {
             let coordinate1 : CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat, lon)
             
             let a1: TestAnnotation = TestAnnotation(coordinate: coordinate1, title: gid)
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
 
             annotations.append(a1)
-            }
+            
         }
         
             return annotations
@@ -207,10 +220,12 @@ class Globe: UIViewController,MKMapViewDelegate, CLLocationManagerDelegate {
 
 extension Globe : MKMapViewDelegate {
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
-
+        if annotation is MKUserLocation {
+            return nil
+        }
         
         var annotationView : MKPinAnnotationView?
-        
+
         if annotation is KPAnnotation {
             let a : KPAnnotation = annotation as! KPAnnotation
             
@@ -219,8 +234,13 @@ extension Globe : MKMapViewDelegate {
                 
                 if (annotationView == nil) {
                     annotationView = MKPinAnnotationView(annotation: a, reuseIdentifier: "cluster")
+                    annotationView!.canShowCallout = true
+                    annotationView!.animatesDrop = false
+
                 }
-                
+                annotationView!.canShowCallout = false
+                annotationView!.animatesDrop = false
+
                 annotationView!.image =  UIImage(named:"marker1.png")
                 
             }
@@ -230,6 +250,8 @@ extension Globe : MKMapViewDelegate {
                 if (annotationView == nil) {
                     annotationView = MKPinAnnotationView(annotation: a, reuseIdentifier: "pin")
                 }
+                annotationView!.canShowCallout = true
+                annotationView!.animatesDrop = false
 
                 annotationView!.image =  UIImage(named:"marker.png")
             }

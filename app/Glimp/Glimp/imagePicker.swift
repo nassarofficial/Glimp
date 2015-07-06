@@ -19,6 +19,9 @@ class ImagePicker: UIViewController,UIAlertViewDelegate,UIImagePickerControllerD
     
     @IBOutlet weak var setp: UIButton!
     @IBAction func setpp(sender: AnyObject) {
+//        let progressHUD = ProgressHUD(text: "Uploading...")
+//        self.view.addSubview(progressHUD)
+
             let prefs = NSUserDefaults.standardUserDefaults()
             let name = prefs.stringForKey("USERNAME")
             var usernamep = String(name!)
@@ -37,18 +40,21 @@ class ImagePicker: UIViewController,UIAlertViewDelegate,UIImagePickerControllerD
             manager.POST( url, parameters: params,
                 constructingBodyWithBlock: { (data: AFMultipartFormData!) in
                     println("")
-                    var res = data.appendPartWithFileData(imageData, name: "fileToUpload", fileName: "randomimagename.jpg", mimeType: "image/jpeg")
+                    var res: Void = data.appendPartWithFileData(imageData, name: "fileToUpload", fileName: "randomimagename.jpg", mimeType: "image/jpeg")
                     println("was file added properly to the body? \(res)")
+//                    progressHUD.removeFromSuperview()
+
                 },
                 success: { (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
                     println("Yes this was a success")
-                    
+
                 },
                 failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
                     println("We got an error here.. \(error.localizedDescription)")
+
             })
-        
     }
+    
     
     override func viewDidLoad()
     {
@@ -65,12 +71,12 @@ class ImagePicker: UIViewController,UIAlertViewDelegate,UIImagePickerControllerD
             profilepic = String(stringInterpolationSegment: (point as! NSDictionary)["profile_pic"]!)
         }
         println("hello")
-        if profilepic == "profilepic.jpg"{
+        if profilepic == "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profilepic.jpeg"{
             imageView.image = UIImage(named: "add_photo-1");
             println("nope")
         }
         else {
-            let url = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/"+profilepic)
+            let url = NSURL(string: profilepic)
             println(url)
             imageView.hnk_setImageFromURL(url!)
             

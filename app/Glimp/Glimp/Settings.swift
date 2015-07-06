@@ -9,6 +9,7 @@
 import UIKit
 
 class Settings: UIViewController {
+    @IBAction func unwindToSegueS (segue : UIStoryboardSegue) {}
 
 
     @IBAction func privacypolicy(sender: AnyObject) {
@@ -28,6 +29,10 @@ class Settings: UIViewController {
 
     }
     
+    @IBAction func changepassword(sender: AnyObject) {
+        self.performSegueWithIdentifier("change_password", sender: self)
+
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

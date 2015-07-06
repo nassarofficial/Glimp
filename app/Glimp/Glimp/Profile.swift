@@ -24,32 +24,23 @@ class Profile: UIViewController {
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var following: UIButton!
     
+    @IBOutlet weak var ppView: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var profilescroll: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var user: UILabel!
     @IBAction func unwindToSegueprof (segue : UIStoryboardSegue) {}
+    @IBAction func unwindToprofile (segue : UIStoryboardSegue) {
+    }
+
     var datas: [JSON] = []
     var userid: String = ""
-    
+    var profilepic: String = ""
     
     func getprofile(){
         let prefs = NSUserDefaults.standardUserDefaults()
         let name = prefs.stringForKey("USERNAME")
-
-        dispatch_async(dispatch_get_main_queue()) {
-            
-            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/feed.php", parameters: ["userid": self.userid]).responseJSON { (request, response, json, error) in
-                if json != nil {
-                    var jsonObj = JSON(json!)
-                    if let data = jsonObj["glimps"].arrayValue as [JSON]?{
-                        self.datas = data
-                        self.tableView.reloadData()
-                    }
-                }
-            }
-            
-        
         self.tabBarController?.tabBar.hidden = false
         let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profile.php?username="+name!)
         //println(baseURL)
@@ -62,48 +53,81 @@ class Profile: UIViewController {
         
         
         for point in points["profile"] as! NSArray {
-            self.userid = String(stringInterpolationSegment: (point as! NSDictionary)["id"]!)
+            self.userid = String(stringInterpolationSegment: (point as! NSDictionary)["userider"]!)
             let f1 = String(stringInterpolationSegment: (point as! NSDictionary)["friends"]!)
             let f2 = String(stringInterpolationSegment: (point as! NSDictionary)["followers"]!)
             let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
             
             self.following.setTitle(f1, forState: UIControlState.Normal)
-            
-            
             self.followers.setTitle(f2, forState: UIControlState.Normal)
-            
             self.glimps.setTitle(gl, forState: UIControlState.Normal)
-            
-            
-            
-            self.location.text = (point as! NSDictionary)["location"] as? String
-            let urlString = (point as! NSDictionary)["profilepic"] as? String
-            let url = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/"+urlString!)
-            self.imageView.hnk_setImageFromURL(url!)
+            //self.location.text = (point as! NSDictionary)["location"] as? String
             
         }
+
+            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/feed.php", parameters: ["userid": self.userid]).responseJSON { (request, response, json, error) in
+                if json != nil {
+                    var jsonObj = JSON(json!)
+                    if let data = jsonObj["glimps"].arrayValue as [JSON]?{
+                        self.datas = data
+                        self.tableView.reloadData()
+                    }
+                    
+                }
+            }
+
+        let baseURL1 = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profilepic.php?username="+name!)
+        let pointData1 = NSData(contentsOfURL: baseURL1!, options: nil, error: nil)
+        let points1 = NSJSONSerialization.JSONObjectWithData(pointData1!,
+            options: nil,
+            error: nil) as! NSDictionary
+        for point1 in points1["profilepic"] as! NSArray {
+            self.profilepic = String(stringInterpolationSegment: (point1 as! NSDictionary)["profile_pic"]!)
         }
+        println("hello")
+        if profilepic == "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profilepic.jpeg"{
+            imageView.image = UIImage(named: "add_photo-1");
+        }
+        else {
+            println(profilepic)
+            let url = NSURL(string: profilepic)
+            println(url)
+            imageView.hnk_setImageFromURL(url!)
+            
+        }
+
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        automaticallyAdjustsScrollViewInsets = false
+
+        self.profilescroll.addPullToRefreshWithAction({
+            NSOperationQueue().addOperationWithBlock {
+                dispatch_async(dispatch_get_main_queue()) { // 2
+
+                self.getprofile()
+                }
+                NSOperationQueue.mainQueue().addOperationWithBlock {
+                    self.profilescroll.stopPullToRefresh()
+                }
+            }
+            }, withAnimator: PacmanAnimator())
+        
         let prefs = NSUserDefaults.standardUserDefaults()
         let name = prefs.stringForKey("USERNAME")
         self.user.text = name
+        automaticallyAdjustsScrollViewInsets = false
+
         UIApplication.sharedApplication().statusBarHidden=false;
-
-
         // Do any additional setup after loading the view.
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
+        profilescroll.startPullToRefresh()
 
     }
-    
-    override func viewWillAppear(animated: Bool) {
-        getprofile()
-    }
-    
+        
     override func shouldAutorotate() -> Bool {
         return false
     }
@@ -144,13 +168,13 @@ class Profile: UIViewController {
                 captionLabel.text = caption
                 let comment = data["description"].string
                 commentLabel!.text = comment
-
+                //println(comment)
                 
                 var dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 
                 var date = dateFormatter.dateFromString(data["time"].string!)
-
+                //println(date)
                 
                 //var date = NSDate(data["time"].string!)
 

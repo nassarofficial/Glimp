@@ -9,6 +9,8 @@
 import UIKit
 import Alamofire
 import Haneke
+import Refresher
+
 
 class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var comments: UIScrollView!
@@ -20,6 +22,13 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var commentsfield: UITextField!
 
     @IBAction func posttoserver(sender: AnyObject) {
+        println(user_id)
+        println(glimpid)
+        println(commentsfield.text)
+        let prefs = NSUserDefaults.standardUserDefaults()
+        
+        let name = prefs.stringForKey("USERNAME")
+
         if commentsfield.text.isEmpty {
             let alert = UIAlertView()
             alert.title = "Empty Comment"
@@ -27,14 +36,16 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
             alert.addButtonWithTitle("Ok")
             alert.show()        }
         else{
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/postcomments.php", parameters: [ "userid": user_id,
+        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/postcomments.php", parameters: [ "userid": name!,
             "glimpid": glimpid,
             "comment": commentsfield.text])
             .response { (request, response, data, error) in
+                self.getdata()
+                self.tableView.reloadData()
+                self.commentsfield.text=""
+                self.tableView.startPullToRefresh()
+
         }
-        getdata()
-        commentsfield.text=""
-        self.tableView.reloadData()
         }
     }
     
@@ -54,12 +65,22 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dispatch_async(dispatch_get_main_queue()) {
+        automaticallyAdjustsScrollViewInsets = false
+        tableView.addPullToRefreshWithAction({
+            NSOperationQueue().addOperationWithBlock {
+                self.registerForKeyboardNotifications()
+                dispatch_sync(dispatch_get_global_queue(
+                    Int(QOS_CLASS_USER_INTERACTIVE.value), 0)) {
 
-            self.getdata()
-            
-        }
-        let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideKeyboard")
+                self.getdata()
+                }
+                NSOperationQueue.mainQueue().addOperationWithBlock {
+                    self.tableView.stopPullToRefresh()
+                }
+            }
+            }, withAnimator: PacmanAnimator())
+
+           let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideKeyboard")
         
         // prevents the scroll view from swallowing up the touch event of child buttons
         tapGesture.cancelsTouchesInView = false
@@ -69,10 +90,10 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(true)
-        self.registerForKeyboardNotifications()
-        
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(true)
+        tableView.startPullToRefresh()
+
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -149,7 +170,8 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         if let imageView = cell.viewWithTag(101) as? UIImageView {
             if let urlString = data["profile_pic"].string{
-                let url = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profile_pics/"+urlString)
+                let url = NSURL(string: urlString)
+                println(url)
                 let imageSize = 65 as CGFloat
                 imageView.frame.size.height = imageSize
                 imageView.frame.size.width  = imageSize

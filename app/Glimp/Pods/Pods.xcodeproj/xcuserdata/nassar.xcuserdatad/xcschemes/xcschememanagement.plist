@@ -29,7 +29,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Glimp-Refresher.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Glimp-SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-Glimp-SwiftyTimer.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -42,37 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0D0B1423A376CC23FE8105E8</key>
+		<key>30F97CE2F30C646B7785235D</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1903528D3941047380E43C57</key>
+		<key>50B89615412989B7B61A877F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1E796286D8112EFCD1844B2A</key>
+		<key>795BB20C014D9C38FDCD34A4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>2AF0CE5B6CD4A3C8BE70C206</key>
+		<key>8454005CC14B214FB699F0FE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B0087B9D6B826C85E42D19D6</key>
+		<key>88EB818989F42A9BC8A85605</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B58E0B22D1DE87C431AB6280</key>
+		<key>A6B48843F3CE1E475D16C06F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C504A705101116F03A19AF9E</key>
+		<key>AD8F3783EBAB72FD8EC7985E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DDF47CB60D8C527BF995A01E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F4ED74EC0B925BE967DFBD14</key>
 		<dict>
 			<key>primary</key>
 			<true/>

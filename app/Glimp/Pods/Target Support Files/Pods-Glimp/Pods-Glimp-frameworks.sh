@@ -53,7 +53,9 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework 'FLKAutoLayout.framework'
   install_framework 'Haneke.framework'
   install_framework 'ORStackView.framework'
+  install_framework 'Refresher.framework'
   install_framework 'SwiftyJSON.framework'
+  install_framework 'SwiftyTimer.framework'
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'AFNetworking.framework'
@@ -61,5 +63,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework 'FLKAutoLayout.framework'
   install_framework 'Haneke.framework'
   install_framework 'ORStackView.framework'
+  install_framework 'Refresher.framework'
   install_framework 'SwiftyJSON.framework'
+  install_framework 'SwiftyTimer.framework'
 fi

@@ -1,8 +1,10 @@
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_FRAMEWORK_BUILD_PATH"
+CLANG_CXX_LANGUAGE_STANDARD = c++11
+CLANG_CXX_LIBRARY = libc++
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_FRAMEWORK_BUILD_PATH" "$(PODS_ROOT)/Instabug/"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$PODS_FRAMEWORK_BUILD_PATH/AFNetworking.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/Alamofire.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/FLKAutoLayout.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/Haneke.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/ORStackView.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/SwiftyJSON.framework/Headers"
-OTHER_LDFLAGS = $(inherited) -ObjC -framework "AFNetworking" -framework "Alamofire" -framework "FLKAutoLayout" -framework "Haneke" -framework "ORStackView" -framework "SwiftyJSON"
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_FRAMEWORK_BUILD_PATH/AFNetworking.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/Alamofire.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/FLKAutoLayout.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/Haneke.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/Instabug.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/ORStackView.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/Refresher.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/SwiftyJSON.framework/Headers" -iquote "$PODS_FRAMEWORK_BUILD_PATH/SwiftyTimer.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -framework "AFNetworking" -framework "Alamofire" -framework "AudioToolbox" -framework "CoreGraphics" -framework "CoreMotion" -framework "CoreTelephony" -framework "FLKAutoLayout" -framework "Foundation" -framework "GLKit" -framework "Haneke" -framework "Instabug" -framework "MessageUI" -framework "ORStackView" -framework "OpenGLES" -framework "QuartzCore" -framework "Refresher" -framework "SwiftyJSON" -framework "SwiftyTimer" -framework "SystemConfiguration" -framework "UIKit"
 OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_FRAMEWORK_BUILD_PATH = $(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/Pods-Glimp

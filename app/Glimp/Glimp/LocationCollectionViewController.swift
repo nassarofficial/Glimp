@@ -25,7 +25,7 @@ class LocationCollectionViewController: UIViewController {
         println("locationid: "+locid)
         println("location: "+loc)
         navigationItem.title = loc
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/loc.php", parameters: [ "locid": locid]).responseJSON { (request, response, json, error) in
+        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/loc.php", parameters: [ "locid": loc]).responseJSON { (request, response, json, error) in
             if json != nil {
                 var jsonObj = JSON(json!)
                 if let data = jsonObj["loc"].arrayValue as [JSON]?{

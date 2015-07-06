@@ -24,6 +24,8 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var navbar: UINavigationBar!
     var glimperid : String = ""
     var mapView: MKMapView!
+    @IBAction func unwindToSegueHome (segue : UIStoryboardSegue) {
+    }
 
     @IBAction func zoomOut(sender: AnyObject) {
         var ladelta : CLLocationDegrees = 30
@@ -82,6 +84,7 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     }
 
     func annotations() -> [JPSThumbnailAnnotation] {
+
         var annotations: [JPSThumbnailAnnotation] = []
         let prefs = NSUserDefaults.standardUserDefaults()
         let name = prefs.stringForKey("USERNAME")
@@ -99,7 +102,7 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
             var a = JPSThumbnail()
             var imageurl=String(stringInterpolationSegment: (point as! NSDictionary)["profile_pic"]!)
             
-            var url = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/"+imageurl)
+            var url = NSURL(string: imageurl)
             let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
             a.image = UIImage(data: data!)
                 
@@ -131,7 +134,7 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         NSUserDefaults.standardUserDefaults().objectForKey("deviceToken")
-
+        
         //////////////////////////////////////
         reachability.startNotifier()
         
@@ -158,16 +161,36 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
             locManager.desiredAccuracy = kCLLocationAccuracyBest
             locManager.startUpdatingLocation()
             mapView.showsUserLocation = true
+            UIApplication.sharedApplication().statusBarHidden=false;
+            self.tabBarController?.tabBar.hidden = false
+            let progressHUD = ProgressHUD(text: "Loading...")
+            self.view.addSubview(progressHUD)
+
+            let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
+            let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
+            if (isLoggedIn != 1) {
+                self.performSegueWithIdentifier("goto_login", sender: self)
+                
+            } else {
+                let delayInSeconds = 0.2
+                let popTime = dispatch_time(DISPATCH_TIME_NOW,
+                    Int64(delayInSeconds * Double(NSEC_PER_SEC))) // 1
+                dispatch_after(popTime, GlobalMainQueue) { // 2
+                    
+                    self.mapView.addAnnotations(self.annotations())
+                    progressHUD.removeFromSuperview()
+                }
+            }
             
 
+            
         } else {
             let alertController = UIAlertController(title: "Glimp", message:
                 "No Connection", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
             self.presentViewController(alertController, animated: true, completion: nil)
-
+            
         }
-        
     }
     
     
@@ -193,23 +216,10 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     // Reverse GeoCode Function to extract address from current Location
     
     override func viewWillAppear(animated: Bool) {
-        UIApplication.sharedApplication().statusBarHidden=false;
-        self.tabBarController?.tabBar.hidden = false
-        dispatch_async(dispatch_get_main_queue()) {
-            let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
-            let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
-            if (isLoggedIn != 1) {
-                self.performSegueWithIdentifier("goto_login", sender: self)
-                
-            } else {
-
-                self.mapView.addAnnotations(self.annotations())
-            }
-            
-        }
-
-
+        
     }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

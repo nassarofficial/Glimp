@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.glimpnow.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>com.glimp.app.$(PRODUCT_NAME:rfc1034identifier)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.35</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -24,6 +24,16 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>fb1417939628510557</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.glimp.app.Glimp</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.glimp.app.Glimp</string>
 			</array>
 		</dict>
 	</array>
@@ -39,7 +49,6 @@
 	<string>We need your location data to use this app.</string>
 	<key>UIBackgroundModes</key>
 	<array>
-		<string>location</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

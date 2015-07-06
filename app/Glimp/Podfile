@@ -1,12 +1,16 @@
 # Uncomment this line to define a global platform for your project
 # platform :ios, '8.0'
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '7.0'
+platform :ios, '8.0'
 use_frameworks!
 target 'Glimp' do
-pod 'AFNetworking', '~> 2.5'
-pod 'ORStackView', '~> 2.0'
-pod 'SwiftyJSON', '~> 2.1'
-pod 'Alamofire', '~> 1.2'
+pod 'AFNetworking'
+pod 'ORStackView'
+pod 'SwiftyJSON'
+pod 'Alamofire'
 pod 'HanekeSwift'
+pod 'Instabug'
+pod 'Refresher'
+pod 'SwiftyTimer'
+
 end

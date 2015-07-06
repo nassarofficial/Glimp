@@ -157,8 +157,12 @@ class GlimpView: UIViewController{
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        getglimps()
-        getdate()
+        dispatch_async(dispatch_get_main_queue()) { // 2
+
+        self.getglimps()
+            self.getdate()
+
+        }
     }
     
     func getdate(){
@@ -172,7 +176,7 @@ class GlimpView: UIViewController{
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateFormatter.timeZone = NSTimeZone(abbreviation: "Cairo");
 
-        let enddate = dateFormatter.dateFromString("2015-06-19 18:52:56")
+        let enddate = dateFormatter.dateFromString(self.timeend)
         let calendars = NSCalendar.currentCalendar()
         let componentss = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: enddate!)
         let hours = componentss.hour
@@ -197,26 +201,26 @@ class GlimpView: UIViewController{
     override func viewWillAppear(animated: Bool) {
         UIApplication.sharedApplication().statusBarHidden=true;
         self.tabBarController?.tabBar.hidden = true
-        let userCalendar = NSCalendar.currentCalendar()
-        let dateMakerFormatter = NSDateFormatter()
-        dateMakerFormatter.calendar = userCalendar
-        
-        dateMakerFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        
-        
-        let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .MediumStyle)
-
-        var startTime = dateMakerFormatter.dateFromString(timestart)
-        var endTime = dateMakerFormatter.dateFromString(timeend)
-        
-        let hourMinuteComponents: NSCalendarUnit = .CalendarUnitHour | .CalendarUnitMinute
-        
-        let timeDifference = userCalendar.components(hourMinuteComponents,fromDate: startTime!,toDate: endTime!,options: nil)
-        
-        println(timeDifference.hour)
-        println(timeDifference.minute)
-        
-        timeleft.text = String(timeDifference.hour) + " hrs " + String(timeDifference.minute) + " mins "
+//        let userCalendar = NSCalendar.currentCalendar()
+//        let dateMakerFormatter = NSDateFormatter()
+//        dateMakerFormatter.calendar = userCalendar
+//        
+//        dateMakerFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+//        
+//        
+//        let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .MediumStyle)
+//
+//        var startTime = dateMakerFormatter.dateFromString(timestart)
+//        var endTime = dateMakerFormatter.dateFromString(timeend)
+//        
+//        let hourMinuteComponents: NSCalendarUnit = .CalendarUnitHour | .CalendarUnitMinute
+//        
+//        let timeDifference = userCalendar.components(hourMinuteComponents,fromDate: startTime!,toDate: endTime!,options: nil)
+//        
+//        println(timeDifference.hour)
+//        println(timeDifference.minute)
+//        
+//        timeleft.text = String(timeDifference.hour) + " hrs " + String(timeDifference.minute) + " mins "
 
     }
 

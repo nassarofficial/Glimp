@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B0087B9D6B826C85E42D19D6"
+               BlueprintIdentifier = "F4ED74EC0B925BE967DFBD14"
                BuildableName = "Pods_Glimp.framework"
                BlueprintName = "Pods-Glimp"
                ReferencedContainer = "container:Pods.xcodeproj">

@@ -7,15 +7,16 @@
 //
 
 import UIKit
-import AVFoundation
 import AssetsLibrary
 import CoreLocation
 
+import AVFoundation
 
 
 var SessionRunningAndDeviceAuthorizedContext = "SessionRunningAndDeviceAuthorizedContext"
 var CapturingStillImageContext = "CapturingStillImageContext"
 var RecordingContext = "RecordingContext"
+var uploadUrl = NSURL.fileURLWithPath(NSTemporaryDirectory().stringByAppendingPathComponent("captured").stringByAppendingString(".mov"))
 
 class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()
@@ -29,6 +30,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
     var videoDeviceInput: AVCaptureDeviceInput?
     var movieFileOutput: AVCaptureMovieFileOutput?
 
+    @IBOutlet weak var setflash: UIButton!
     var outputFilePath: String?
     var gllatitude: Float?
     var gllongitude: Float?
@@ -41,6 +43,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
             return (self.session?.running != nil && self.deviceAuthorized )
         }
     }
+    var toggler = 0
     
     var runtimeErrorHandlingObserver: AnyObject?
     var lockInterfaceRotation: Bool = false
@@ -55,7 +58,12 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
         
         if(count > 0)
         {
-            countDownLabel.text = String(count--)
+            NSTimer.after(1.second) {
+           
+
+            self.countDownLabel.text = String(self.count--)
+                
+            }
         }
         else if (count == 0)
         {
@@ -66,6 +74,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
     }
 
     
+
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         CLGeocoder().reverseGeocodeLocation(manager.location, completionHandler: {(placemarks, error)->Void in
             
@@ -93,16 +102,29 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
     }
 
     // MARK: Override methods
+    // Call the function from tap gesture recognizer added to your view (or button)
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-
         var session: AVCaptureSession = AVCaptureSession()
+        session.sessionPreset = AVCaptureSessionPresetMedium
+
+      //  session.sessionPreset = AVCaptureSessionPreset640x480
+        session.beginConfiguration()
+        session.commitConfiguration()
+        
+        //session.sessionPreset = AVCaptureSessionPresetMedium
+        
         self.session = session
+
         
+        //session.beginConfiguration()
+        //session.commitConfiguration()
+
         self.previewView.session = session
-        
         self.checkDeviceAuthorizationStatus()
         locationManager.requestWhenInUseAuthorization()
         locationManager.delegate = self
@@ -172,19 +194,25 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
                 }
                 
                 self.movieFileOutput = movieFileOutput
-                
+
             }
-            
+
         })
         
+
         
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        var glimperVC: GlimpPreview = segue.destinationViewController as! GlimpPreview
-        glimperVC.ViewControllerVideoPath = self.outputFilePath!
-        glimperVC.gllat = self.gllatitude
-        glimperVC.gllong = self.gllongitude
-        glimperVC.locLabel = self.administrativeArea
+        if (segue.identifier == "gotovideoeditor") {
+            let glimperVC = segue.destinationViewController as! GlimpPreview
+            
+            glimperVC.ViewControllerVideoPath = self.outputFilePath!
+            glimperVC.gllat = self.gllatitude
+            glimperVC.gllong = self.gllongitude
+            glimperVC.locLabel = self.administrativeArea
+            
+        }
+
     }
 
     
@@ -192,6 +220,10 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
         UIApplication.sharedApplication().statusBarHidden=true;
        // self.hidesBottomBarWhenPushed = true
         //self.navigationController?.setToolbarHidden(true, animated: animated)
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let booler = prefs.integerForKey("glimper")
+        println(booler)
+        
         dispatch_async(self.sessionQueue!, {
             self.addObserver(self, forKeyPath: "sessionRunningAndDeviceAuthorized", options: NSKeyValueObservingOptions.Old | NSKeyValueObservingOptions.New, context: &SessionRunningAndDeviceAuthorizedContext)
             self.addObserver(self, forKeyPath: "movieFileOutput.recording", options: NSKeyValueObservingOptions.Old | NSKeyValueObservingOptions.New, context: &RecordingContext)
@@ -231,11 +263,11 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
                 
                 self.removeObserver(self, forKeyPath: "sessionRunningAndDeviceAuthorized", context: &SessionRunningAndDeviceAuthorizedContext)
                 
-                //self.removeObserver(self, forKeyPath: "movieFileOutput.recording", context: &SessionRunningAndDeviceAuthorizedContext)
+                self.removeObserver(self, forKeyPath: "movieFileOutput.recording", context: &SessionRunningAndDeviceAuthorizedContext)
                 
                 
             }
-            
+
             
             
         })
@@ -359,7 +391,23 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
         
     }
     
-    
+    @IBAction func s(sender: AnyObject) {
+        let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        if (device.hasTorch) {
+            device.lockForConfiguration(nil)
+            if (device.torchMode == AVCaptureTorchMode.On) {
+                device.torchMode = AVCaptureTorchMode.Off
+                setflash.setImage(UIImage(named: "flash.png"), forState: UIControlState.Normal)
+
+            } else {
+                setflash.setImage(UIImage(named: "flashicon.png"), forState: UIControlState.Normal)
+
+                device.setTorchModeOnWithLevel(1.0, error: nil)
+            }
+            device.unlockForConfiguration()
+        }
+
+    }
     
     class func setFlashMode(flashMode: AVCaptureFlashMode, device: AVCaptureDevice){
         
@@ -434,7 +482,6 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
         
     }
     
-    
     // MARK: File Output Delegate
     func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!) {
         
@@ -474,7 +521,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
 
         self.recordButton.enabled = false
         self.recordButton.setImage(UIImage(named: "stopicon.png"), forState: UIControlState.Normal)
-        var timer = NSTimer.scheduledTimerWithTimeInterval(0.4, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        var timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
 
         dispatch_async(self.sessionQueue!, {
             if !self.movieFileOutput!.recording{
@@ -489,7 +536,6 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
                     AVCaptureVideoOrientation(rawValue: (self.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation.rawValue )!
                 
                 // Turning OFF flash for video recording
-                Glimp.setFlashMode(AVCaptureFlashMode.Auto, device: self.videoDeviceInput!.device)
 
                 
                 var err: NSErrorPointer = nil
@@ -501,7 +547,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
                 
                 let documentsPath : AnyObject = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,.UserDomainMask,true)[0]
                 self.outputFilePath = documentsPath.stringByAppendingPathComponent("glimp_1".stringByAppendingPathExtension("mov")!)
-                
+
                 self.movieFileOutput!.startRecordingToOutputFileURL(NSURL.fileURLWithPath(self.outputFilePath!), recordingDelegate: self)
             }else{
                 self.movieFileOutput!.stopRecording()

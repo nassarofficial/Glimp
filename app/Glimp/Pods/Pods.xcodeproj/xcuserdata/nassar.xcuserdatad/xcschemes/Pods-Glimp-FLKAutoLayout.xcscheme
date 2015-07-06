@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2AF0CE5B6CD4A3C8BE70C206"
+               BlueprintIdentifier = "30F97CE2F30C646B7785235D"
                BuildableName = "FLKAutoLayout.framework"
                BlueprintName = "Pods-Glimp-FLKAutoLayout"
                ReferencedContainer = "container:Pods.xcodeproj">

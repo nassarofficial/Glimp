@@ -129,9 +129,29 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         
     }
     
+    override func viewDidAppear(animated: Bool) {
+        var nav = self.navigationController?.navigationBar
+        nav?.barStyle = UIBarStyle.Black
+        nav?.tintColor = UIColor.yellowColor()
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
+        imageView.contentMode = .ScaleAspectFit
+        
+        let image = UIImage(named: "glimplogo-2.png")
+        imageView.image = image
+        
+        navigationItem.titleView = imageView
+    }
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
+        imageView.contentMode = .ScaleAspectFit
+        let image = UIImage(named: "glimp-logo")
+        imageView.image = image
+        navigationItem.titleView = imageView
+
         let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         NSUserDefaults.standardUserDefaults().objectForKey("deviceToken")
         
@@ -216,7 +236,8 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     // Reverse GeoCode Function to extract address from current Location
     
     override func viewWillAppear(animated: Bool) {
-        
+        UIApplication.sharedApplication().statusBarHidden=false;
+
     }
     
     

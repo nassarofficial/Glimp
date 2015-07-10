@@ -31,7 +31,13 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         // Initial reachability check
         if reachability.isReachable() {
             self.uploading.hidden = false
+            if Description.text == "Enter Your Description" || Description.text.isEmpty{
+                let alertController = UIAlertController(title: "Glimp", message:
+                    "Please enter a description", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
 
+            } else {
             let prefs = NSUserDefaults.standardUserDefaults()
 
             let name = prefs.stringForKey("USERNAME")
@@ -74,14 +80,14 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
                     println("We got an error here.. \(error.localizedDescription)")
             })
             
-        } else {
+            } }else {
             let alertController = UIAlertController(title: "Glimp", message:
                 "No Connection", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
             self.presentViewController(alertController, animated: true, completion: nil)
 
         }
-
+        
     }
     @IBOutlet var tableView: UITableView!
     @IBOutlet weak var Description: UITextView!

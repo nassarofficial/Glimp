@@ -37,7 +37,7 @@ DEPENDENCIES:
   - Instabug
   - ORStackView
   - Refresher
-  - SwiftyJSON
+  - SwiftyJSON (~> 2.2.0)
   - SwiftyTimer
 
 SPEC CHECKSUMS:

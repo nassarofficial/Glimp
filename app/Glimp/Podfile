@@ -6,11 +6,10 @@ use_frameworks!
 target 'Glimp' do
 pod 'AFNetworking'
 pod 'ORStackView'
-pod 'SwiftyJSON'
 pod 'Alamofire'
 pod 'HanekeSwift'
 pod 'Instabug'
 pod 'Refresher'
 pod 'SwiftyTimer'
-
+pod 'SwiftyJSON', '~> 2.2.0'
 end

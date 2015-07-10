@@ -32,6 +32,8 @@ class GlimpView: UIViewController{
     @IBOutlet weak var views: UILabel!
     @IBOutlet weak var backbutton: UIButton!
     
+    @IBOutlet weak var descindicator: UIActivityIndicatorView!
+    @IBOutlet weak var vidindicator: UIActivityIndicatorView!
     @IBOutlet var mainview: UIView!
     @IBOutlet weak var gplayer: UIView!
     @IBOutlet weak var comments: UIButton!
@@ -155,13 +157,16 @@ class GlimpView: UIViewController{
     
     
     override func viewDidLoad() {
-
+        vidindicator.hidden = false
+        descindicator.hidden = false
         super.viewDidLoad()
         dispatch_async(dispatch_get_main_queue()) { // 2
 
         self.getglimps()
-            self.getdate()
+            self.vidindicator.hidden = true
 
+            self.getdate()
+            self.descindicator.hidden = true
         }
     }
     

@@ -21,6 +21,8 @@ class ImagePicker: UIViewController,UIAlertViewDelegate,UIImagePickerControllerD
     @IBAction func setpp(sender: AnyObject) {
 //        let progressHUD = ProgressHUD(text: "Uploading...")
 //        self.view.addSubview(progressHUD)
+        let progressHUD = ProgressHUD(text: "Uploading...")
+        self.view.addSubview(progressHUD)
 
             let prefs = NSUserDefaults.standardUserDefaults()
             let name = prefs.stringForKey("USERNAME")
@@ -42,16 +44,16 @@ class ImagePicker: UIViewController,UIAlertViewDelegate,UIImagePickerControllerD
                     println("")
                     var res: Void = data.appendPartWithFileData(imageData, name: "fileToUpload", fileName: "randomimagename.jpg", mimeType: "image/jpeg")
                     println("was file added properly to the body? \(res)")
-//                    progressHUD.removeFromSuperview()
+                    progressHUD.removeFromSuperview()
 
                 },
                 success: { (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
                     println("Yes this was a success")
-
+                    progressHUD.removeFromSuperview()
                 },
                 failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
                     println("We got an error here.. \(error.localizedDescription)")
-
+                    progressHUD.removeFromSuperview()
             })
     }
     
@@ -59,6 +61,9 @@ class ImagePicker: UIViewController,UIAlertViewDelegate,UIImagePickerControllerD
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        let progressHUD = ProgressHUD(text: "Loading...")
+        self.view.addSubview(progressHUD)
+
         let prefs = NSUserDefaults.standardUserDefaults()
         let name = prefs.stringForKey("USERNAME")
         
@@ -73,13 +78,14 @@ class ImagePicker: UIViewController,UIAlertViewDelegate,UIImagePickerControllerD
         println("hello")
         if profilepic == "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profilepic.jpeg"{
             imageView.image = UIImage(named: "add_photo-1");
-            println("nope")
+            progressHUD.removeFromSuperview()
         }
         else {
             let url = NSURL(string: profilepic)
             println(url)
             imageView.hnk_setImageFromURL(url!)
-            
+            progressHUD.removeFromSuperview()
+
         }
         if booler == "1" {
             setp.enabled = true

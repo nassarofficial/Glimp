@@ -198,6 +198,12 @@ class UserProfileNotif: UIViewController {
             self.location.text = (point as! NSDictionary)["location"] as? String
             let urlString = (point as! NSDictionary)["profilepic"] as? String
             let url = NSURL(string: urlString!)
+            var imageSize = 86 as CGFloat
+            self.imageView.frame.size.height = imageSize
+            self.imageView.frame.size.width  = imageSize
+            self.imageView.layer.cornerRadius = imageSize / 2.05
+            self.imageView.clipsToBounds = true
+
             imageView.hnk_setImageFromURL(url!)
             println(url)
             println("dsfsd")

@@ -22,6 +22,7 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var commentsfield: UITextField!
 
     @IBAction func posttoserver(sender: AnyObject) {
+        postbut.enabled = false
         println(user_id)
         println(glimpid)
         println(commentsfield.text)
@@ -44,7 +45,7 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.tableView.reloadData()
                 self.commentsfield.text=""
                 self.tableView.startPullToRefresh()
-
+                self.postbut.enabled = true
         }
         }
     }

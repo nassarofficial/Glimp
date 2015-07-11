@@ -52,6 +52,10 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
     
+    
+    /// Indicators
+    
+    
     func update() {
         
         if(count > 0)
@@ -162,8 +166,8 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
                     // Because AVCaptureVideoPreviewLayer is the backing layer for AVCamPreviewView and UIView can only be manipulated on main thread.
                     // Note: As an exception to the above rule, it is not necessary to serialize video orientation changes on the AVCaptureVideoPreviewLayer’s connection with other session manipulation.
                     
-                    var orientation: AVCaptureVideoOrientation =  AVCaptureVideoOrientation(rawValue: self.interfaceOrientation.rawValue)!
-                    (self.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation = orientation
+                   // var orientation: AVCaptureVideoOrientation =  AVCaptureVideoOrientation(rawValue: self.interfaceOrientation.rawValue)!
+                    //(self.previewView.layer as! AVCaptureVideoPreviewLayer).connection.videoOrientation = orientation
                     
                 })
                 
@@ -189,7 +193,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
                 var connection: AVCaptureConnection? = movieFileOutput.connectionWithMediaType(AVMediaTypeVideo)
                 let stab = connection?.supportsVideoStabilization
                 if (stab != nil) {
-                    connection!.enablesVideoStabilizationWhenAvailable = true
+                   // connection!.enablesVideoStabilizationWhenAvailable = true
                 }
                 
                 self.movieFileOutput = movieFileOutput

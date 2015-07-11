@@ -28,6 +28,7 @@ class UserProfile: UIViewController {
     var username: String = ""
     var f3: String = ""
     var friendid: String = ""
+    @IBOutlet weak var tablespinner: UIActivityIndicatorView!
     
     @IBAction func followaction(sender: AnyObject) {
         if f3 == "not found"{
@@ -140,7 +141,14 @@ class UserProfile: UIViewController {
         let name = prefs.stringForKey("USERNAME")
         automaticallyAdjustsScrollViewInsets = false
         self.tabBarController?.tabBar.hidden = false
-
+        
+        if username == name {
+            followbutton.hidden = true
+        }
+        else {
+            followbutton.hidden = false
+        }
+        
         scroller.addPullToRefreshWithAction({
             NSOperationQueue().addOperationWithBlock {
                 dispatch_async(dispatch_get_main_queue()) { // 2
@@ -202,6 +210,12 @@ class UserProfile: UIViewController {
                     //self.location.text = (point as! NSDictionary)["location"] as? String
                     let urlString = (point as! NSDictionary)["profilepic"] as? String
                     let url = NSURL(string: urlString!)
+                    var imageSize = 86 as CGFloat
+                    self.imageView.frame.size.height = imageSize
+                    self.imageView.frame.size.width  = imageSize
+                    self.imageView.layer.cornerRadius = imageSize / 2.05
+                    self.imageView.clipsToBounds = true
+
                     self.imageView.hnk_setImageFromURL(url!)
                     
                 }
@@ -212,6 +226,7 @@ class UserProfile: UIViewController {
                         if let data = jsonObj["glimps"].arrayValue as [JSON]?{
                             self.datas = data
                             self.tableView.reloadData()
+                            self.tablespinner.hidden = true
                         }
                     }
                 }

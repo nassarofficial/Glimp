@@ -192,7 +192,7 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
                 self.performSegueWithIdentifier("goto_login", sender: self)
                 
             } else {
-                let delayInSeconds = 0.2
+                let delayInSeconds = 0.1
                 let popTime = dispatch_time(DISPATCH_TIME_NOW,
                     Int64(delayInSeconds * Double(NSEC_PER_SEC))) // 1
                 dispatch_after(popTime, GlobalMainQueue) { // 2

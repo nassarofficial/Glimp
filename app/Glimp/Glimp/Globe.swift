@@ -52,6 +52,13 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
     var segmentindex = 0
     var gid = ""
     var gusername = ""
+    
+    
+    // Indicators
+    
+    @IBOutlet weak var nores: UILabel!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
     @IBAction func unwindToSegueprod (segue : UIStoryboardSegue) {}
 
     @IBAction func unwindToSegueG (segue : UIStoryboardSegue) {
@@ -116,7 +123,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
     }
     func textFieldShouldReturn(searcher: UITextField!) -> Bool {   //delegate method
         searcher.resignFirstResponder()
-        
+        spinner.hidden=false
         if segmentindex == 0 {
             usersearcher.hidden = true
             var geocoder=CLGeocoder()
@@ -164,11 +171,12 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
                     if let data = jsonObj["response"]["venues"].arrayValue as [JSON]?{
                         self.datas = data
                         //println(self.datas) http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/search.php?scope=users&term=nassar
-                        
+                        self.spinner.hidden = true
                         self.tableView.reloadData()
                     }
                 }
                 else {
+                    self.nores.hidden = true
                     self.tableView.reloadData()
                 }
             }
@@ -188,11 +196,14 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
                     if let data = jsonObj["search"].arrayValue as [JSON]?{
                         self.datas = data
                         //println(self.datas) http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/search.php?scope=users&term=nassar
-                        
+                        self.spinner.hidden = true
+
                         self.tableView.reloadData()
                     }
                 }
                 else {
+                    self.nores.hidden = true
+
                     self.tableView.reloadData()
                 }
 
@@ -214,7 +225,8 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
                     if let data = jsonObj["search"].arrayValue as [JSON]?{
                         self.datas = data
                         //println(self.datas) http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/search.php?scope=users&term=nassar
-                        
+                        self.spinner.hidden = true
+
                         self.tableView.reloadData()
                     }
                 }
@@ -287,6 +299,8 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
         //self.searcher.delegate = self
         usersearcher.hidden = true
         segmentedcontrol.hidden = true
+        spinner.hidden = true
+        nores.hidden = true
         // Initial reachability check
         if reachability.isReachable() {
             let algorithm : KPGridClusteringAlgorithm = KPGridClusteringAlgorithm()

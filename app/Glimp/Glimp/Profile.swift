@@ -27,6 +27,7 @@ class Profile: UIViewController {
     @IBOutlet weak var ppView: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBOutlet weak var tablespinner: UIActivityIndicatorView!
     @IBOutlet weak var profilescroll: UIScrollView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var user: UILabel!
@@ -71,6 +72,7 @@ class Profile: UIViewController {
                     if let data = jsonObj["glimps"].arrayValue as [JSON]?{
                         self.datas = data
                         self.tableView.reloadData()
+                        self.tablespinner.hidden = true
                     }
                     
                 }
@@ -92,10 +94,16 @@ class Profile: UIViewController {
             println(profilepic)
             let url = NSURL(string: profilepic)
             println(url)
+            var imageSize = 86 as CGFloat
+            self.imageView.frame.size.height = imageSize
+            self.imageView.frame.size.width  = imageSize
+            self.imageView.layer.cornerRadius = imageSize / 2.05
+            self.imageView.clipsToBounds = true
+
             imageView.hnk_setImageFromURL(url!)
             
         }
-
+        
     }
     
     override func viewDidLoad() {

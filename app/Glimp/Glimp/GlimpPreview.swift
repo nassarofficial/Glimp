@@ -30,14 +30,23 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         
         // Initial reachability check
         if reachability.isReachable() {
-            self.uploading.hidden = false
             if Description.text == "Enter Your Description" || Description.text.isEmpty{
                 let alertController = UIAlertController(title: "Glimp", message:
                     "Please enter a description", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                 self.presentViewController(alertController, animated: true, completion: nil)
 
-            } else {
+            } else if count(Description.text) != 20 {
+                let alertController = UIAlertController(title: "Glimp", message:
+                    "Please enter more characters (Minimum 20, Maximum 150)", preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
+
+            }
+            
+            else {
+                self.uploading.hidden = false
+
             let prefs = NSUserDefaults.standardUserDefaults()
 
             let name = prefs.stringForKey("USERNAME")
@@ -98,6 +107,11 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     
     @IBAction func hidefs(sender: AnyObject) {
         self.viewofloc.hidden = true
+    }
+    
+    func textField(Description: UITextView, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+        let newLength = count(Description.text.utf16) + count(string.utf16) - range.length
+        return newLength <= 150 // Bool
     }
     
     @IBAction func getlocfs(sender: AnyObject) {

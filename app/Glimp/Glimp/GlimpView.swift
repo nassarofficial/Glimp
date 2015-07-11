@@ -8,6 +8,7 @@
 
 import UIKit
 import MediaPlayer
+import Alamofire
 
 class GlimpView: UIViewController{
     var glimpsid:String!
@@ -206,26 +207,10 @@ class GlimpView: UIViewController{
     override func viewWillAppear(animated: Bool) {
         UIApplication.sharedApplication().statusBarHidden=true;
         self.tabBarController?.tabBar.hidden = true
-//        let userCalendar = NSCalendar.currentCalendar()
-//        let dateMakerFormatter = NSDateFormatter()
-//        dateMakerFormatter.calendar = userCalendar
-//        
-//        dateMakerFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-//        
-//        
-//        let timestamp = NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .MediumStyle)
-//
-//        var startTime = dateMakerFormatter.dateFromString(timestart)
-//        var endTime = dateMakerFormatter.dateFromString(timeend)
-//        
-//        let hourMinuteComponents: NSCalendarUnit = .CalendarUnitHour | .CalendarUnitMinute
-//        
-//        let timeDifference = userCalendar.components(hourMinuteComponents,fromDate: startTime!,toDate: endTime!,options: nil)
-//        
-//        println(timeDifference.hour)
-//        println(timeDifference.minute)
-//        
-//        timeleft.text = String(timeDifference.hour) + " hrs " + String(timeDifference.minute) + " mins "
+        
+        Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/views.php", parameters: ["gid": glimpsid]).responseJSON { (request, response, json, error) in
+            println(response)
+        }
 
     }
 

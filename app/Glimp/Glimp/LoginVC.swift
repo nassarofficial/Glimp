@@ -24,16 +24,10 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     var facebookProperty = FBSDKProfile()
     let kClientId = "166564040526-3g8glqoub2fp2f52vkr2ugcgj2dn8pgt.apps.googleusercontent.com"
     var signInButton : GPPSignInButton!
-    func hideKeyboard() {
-        view.endEditing(true)
-    }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard"))
-        tapGesture.cancelsTouchesInView = true
-        view.addGestureRecognizer(tapGesture)
-
+        
         ////////////////
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             println("Already have access token")
@@ -351,7 +345,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         var username:NSString = txtUsername.text
         var password:NSString = txtPassword.text
         var userid:NSString
-
+        
         if ( username.isEqualToString("") || password.isEqualToString("") ) {
             
             var alertView:UIAlertView = UIAlertView()

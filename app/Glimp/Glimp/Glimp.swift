@@ -52,6 +52,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
     
+    @IBOutlet var flashbutton: UIButton!
     
     /// Indicators
     
@@ -335,13 +336,11 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
             dispatch_async(dispatch_get_main_queue(), {
                 
                 if isRecording {
-                    self.recordButton.titleLabel!.text = "Stop"
                     self.recordButton.enabled = true
                     self.cameraButton.enabled = false
                     
                 }else{
                     self.performSegueWithIdentifier("gotovideoeditor", sender: self)
-                    self.recordButton.titleLabel!.text = "Record"
                     self.recordButton.enabled = true
                     self.cameraButton.enabled = true
                     
@@ -505,8 +504,6 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
     // MARK: Actions
     
     @IBAction func toggleMovieRecord(sender: AnyObject) {
-        counterbg.hidden = false
-        
         self.recordButton.enabled = false
         self.recordButton.setImage(UIImage(named: "stopicon.png"), forState: UIControlState.Normal)
         var timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)

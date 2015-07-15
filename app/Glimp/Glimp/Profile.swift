@@ -34,11 +34,12 @@ class Profile: UIViewController {
     @IBAction func unwindToSegueprof (segue : UIStoryboardSegue) {}
     @IBAction func unwindToprofile (segue : UIStoryboardSegue) {
     }
+    @IBAction func unwindToSegueG (segue : UIStoryboardSegue) {}
 
     var datas: [JSON] = []
     var userid: String = ""
     var profilepic: String = ""
-    
+    var glimpsid: String = ""
     func getprofile(){
         let prefs = NSUserDefaults.standardUserDefaults()
         let name = prefs.stringForKey("USERNAME")
@@ -104,6 +105,13 @@ class Profile: UIViewController {
             
         }
         
+    }
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "goto_video") {
+            let secondViewController = segue.destinationViewController as! GlimpView
+            let ider = glimpsid as String!
+            secondViewController.glimpsid = ider
+        }
     }
     
     override func viewDidLoad() {
@@ -193,6 +201,18 @@ class Profile: UIViewController {
         }
         return cell
     }
+    
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        let currentCell = self.tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!;
+        let row = indexPath.row
+        self.glimpsid = String(stringInterpolationSegment: datas[row]["id"])
+        performSegueWithIdentifier("goto_video", sender: self)
+
+    }
+    
+    
+    
     func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
         let calendar = NSCalendar.currentCalendar()
         let unitFlags = NSCalendarUnit.CalendarUnitMinute | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitWeekOfYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitSecond

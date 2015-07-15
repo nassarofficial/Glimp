@@ -52,13 +52,7 @@
 #define COCOAPODS_POD_AVAILABLE_Alamofire
 #define COCOAPODS_VERSION_MAJOR_Alamofire 1
 #define COCOAPODS_VERSION_MINOR_Alamofire 2
-#define COCOAPODS_VERSION_PATCH_Alamofire 2
-
-// FLKAutoLayout
-#define COCOAPODS_POD_AVAILABLE_FLKAutoLayout
-#define COCOAPODS_VERSION_MAJOR_FLKAutoLayout 0
-#define COCOAPODS_VERSION_MINOR_FLKAutoLayout 2
-#define COCOAPODS_VERSION_PATCH_FLKAutoLayout 1
+#define COCOAPODS_VERSION_PATCH_Alamofire 3
 
 // HanekeSwift
 #define COCOAPODS_POD_AVAILABLE_HanekeSwift
@@ -71,12 +65,6 @@
 #define COCOAPODS_VERSION_MAJOR_Instabug 4
 #define COCOAPODS_VERSION_MINOR_Instabug 1
 #define COCOAPODS_VERSION_PATCH_Instabug 4
-
-// ORStackView
-#define COCOAPODS_POD_AVAILABLE_ORStackView
-#define COCOAPODS_VERSION_MAJOR_ORStackView 2
-#define COCOAPODS_VERSION_MINOR_ORStackView 0
-#define COCOAPODS_VERSION_PATCH_ORStackView 0
 
 // Refresher
 #define COCOAPODS_POD_AVAILABLE_Refresher

@@ -29,7 +29,9 @@ class UserProfile: UIViewController {
     var f3: String = ""
     var friendid: String = ""
     @IBOutlet weak var tablespinner: UIActivityIndicatorView!
-    
+    @IBAction func unwindToSegueG (segue : UIStoryboardSegue) {}
+    var glimpsid: String = ""
+
     @IBAction func followaction(sender: AnyObject) {
         if f3 == "not found"{
             println("NOT FRIEND")
@@ -44,7 +46,7 @@ class UserProfile: UIViewController {
 //            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/addfriend.php", parameters: parameters)
 //
 //
-            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/addfriend.php", parameters: parameters)
+            Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/addfriend.php", parameters: parameters)
                 .response { (request, response, data, error) in
                     self.updater()
             }
@@ -240,6 +242,15 @@ class UserProfile: UIViewController {
 
         
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
+        if (segue.identifier == "goto_video") {
+            let secondViewController = segue.destinationViewController as! GlimpView
+            let ider = glimpsid as String!
+            secondViewController.glimpsid = ider
+        }
+    }
+
     override func viewDidAppear(animated: Bool) {
         
         super.viewDidAppear(animated)
@@ -305,6 +316,16 @@ class UserProfile: UIViewController {
         }
         return cell
     }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
+        let currentCell = self.tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!;
+        let row = indexPath.row
+        self.glimpsid = String(stringInterpolationSegment: datas[row]["id"])
+        performSegueWithIdentifier("goto_video", sender: self)
+
+    }
+
+    
     func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
         let calendar = NSCalendar.currentCalendar()
         let unitFlags = NSCalendarUnit.CalendarUnitMinute | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitWeekOfYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitSecond

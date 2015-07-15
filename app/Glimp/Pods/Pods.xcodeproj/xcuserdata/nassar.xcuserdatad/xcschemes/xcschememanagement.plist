@@ -4,27 +4,12 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-Glimp-AFNetworking.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Glimp-Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Pods-Glimp-FLKAutoLayout.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Pods-Glimp-HanekeSwift.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Pods-Glimp-ORStackView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -52,47 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>13072EE4D717FF75052D0DD3</key>
+		<key>1542BBA8D6F010BE305EC291</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>469BF2EE87C52FACBB49F7EA</key>
+		<key>5B6D7F7666887D024CFE7B80</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>62523D6F0E9A94842B1B61EC</key>
+		<key>A0BD12439CD7C4C7C2AF8FE8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>639C189B5F82D952086EEDF9</key>
+		<key>A124440EFDE09675821A2D1B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>79807D8048C2E43F28579183</key>
+		<key>AC07422E53DD5695A1D12F4C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>87627014A51231E041A5BED8</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>93253A5641D630D43BC672F5</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DA8A28FAAA29ECB653EC8603</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F3C1513AA3BE3324E22982A8</key>
+		<key>B2656EE92957AC76EFE737BA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

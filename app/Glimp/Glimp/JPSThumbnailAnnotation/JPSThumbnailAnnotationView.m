@@ -251,7 +251,7 @@ static CGFloat const kJPSThumbnailAnnotationViewAnimationDuration = 0.25f;
     [bezierPath addLineToPoint:CGPointMake(10.0f, 10.0f)];
     [bezierPath addLineToPoint:CGPointMake(2.0f, 18.0f)];
     [[UIColor lightGrayColor] setStroke];
-    bezierPath.lineWidth = 3.0f;
+    bezierPath.lineWidth = 5.0f;
     [bezierPath stroke];
     
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();

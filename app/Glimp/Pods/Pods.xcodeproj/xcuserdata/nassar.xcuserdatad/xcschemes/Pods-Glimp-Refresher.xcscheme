@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "87627014A51231E041A5BED8"
+               BlueprintIdentifier = "5B6D7F7666887D024CFE7B80"
                BuildableName = "Refresher.framework"
                BlueprintName = "Pods-Glimp-Refresher"
                ReferencedContainer = "container:Pods.xcodeproj">

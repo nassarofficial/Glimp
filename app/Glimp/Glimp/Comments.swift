@@ -20,6 +20,7 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var postbut: UIButton!
     @IBOutlet weak var commentsfield: UITextField!
+    @IBOutlet weak var commentf: UIView!
 
     @IBAction func posttoserver(sender: AnyObject) {
         postbut.enabled = false
@@ -66,6 +67,10 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard"))
+        tapGesture.cancelsTouchesInView = true
+        tableView.addGestureRecognizer(tapGesture)
+
         automaticallyAdjustsScrollViewInsets = false
         tableView.addPullToRefreshWithAction({
             NSOperationQueue().addOperationWithBlock {
@@ -81,7 +86,6 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
             }, withAnimator: PacmanAnimator())
 
-           let tapGesture: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideKeyboard")
         
         // prevents the scroll view from swallowing up the touch event of child buttons
         tapGesture.cancelsTouchesInView = false
@@ -123,8 +127,8 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func keyboardWasShown(notification: NSNotification) {
         var info: Dictionary = notification.userInfo!
         var keyboardSize: CGSize = (info[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size)!
-        var buttonOrigin: CGPoint = self.postbut.frame.origin;
-        var buttonHeight: CGFloat = self.postbut.frame.size.height;
+        var buttonOrigin: CGPoint = self.commentf.frame.origin;
+        var buttonHeight: CGFloat = self.commentf.frame.size.height;
         var visibleRect: CGRect = self.view.frame
         visibleRect.size.height -= keyboardSize.height
         

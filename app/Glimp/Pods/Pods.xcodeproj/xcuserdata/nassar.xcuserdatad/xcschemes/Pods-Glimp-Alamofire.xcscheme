@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F3C1513AA3BE3324E22982A8"
+               BlueprintIdentifier = "A124440EFDE09675821A2D1B"
                BuildableName = "Alamofire.framework"
                BlueprintName = "Pods-Glimp-Alamofire"
                ReferencedContainer = "container:Pods.xcodeproj">

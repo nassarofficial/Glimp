@@ -36,7 +36,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                 self.presentViewController(alertController, animated: true, completion: nil)
 
-            } else if count(Description.text) != 20 {
+            } else if count(Description.text) < 20 {
                 let alertController = UIAlertController(title: "Glimp", message:
                     "Please enter more characters (Minimum 20, Maximum 150)", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))

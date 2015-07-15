@@ -24,9 +24,12 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBOutlet weak var navbar: UINavigationBar!
     var glimperid : String = ""
     var mapView: MKMapView!
-    @IBAction func unwindToSegueHome (segue : UIStoryboardSegue) {
-    }
+    
+    
+    
 
+    @IBAction func unwindToSegueHome (segue : UIStoryboardSegue) {}
+    
     @IBAction func zoomOut(sender: AnyObject) {
         var ladelta : CLLocationDegrees = 30
         var lndelta : CLLocationDegrees = 30
@@ -39,6 +42,7 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         mapView.setRegion(reg, animated: true)
         
     }
+    
     @IBAction func findMePressed(sender: AnyObject) {
         var ladelta : CLLocationDegrees = 0.01
         var lndelta : CLLocationDegrees = 0.01
@@ -62,7 +66,6 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     let reachability = Reachability.reachabilityForInternetConnection()
 
-    var screenEdgeRecognizer: UIScreenEdgePanGestureRecognizer!
     var currentRadius:CGFloat = 0.0
     
     override func shouldAutorotate() -> Bool {
@@ -75,6 +78,7 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
     }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if (segue.identifier == "goto_video") {
             let secondViewController = segue.destinationViewController as! GlimpView
@@ -143,9 +147,14 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         navigationItem.titleView = imageView
     }
 
+    func tap(){
+        println("FIRED!")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
         imageView.contentMode = .ScaleAspectFit
         let image = UIImage(named: "glimp-logo")
@@ -192,12 +201,13 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
                 self.performSegueWithIdentifier("goto_login", sender: self)
                 
             } else {
-                let delayInSeconds = 0.1
+                let delayInSeconds = 0.01
                 let popTime = dispatch_time(DISPATCH_TIME_NOW,
                     Int64(delayInSeconds * Double(NSEC_PER_SEC))) // 1
                 dispatch_after(popTime, GlobalMainQueue) { // 2
                     
                     self.mapView.addAnnotations(self.annotations())
+
                     progressHUD.removeFromSuperview()
                 }
             }
@@ -216,7 +226,16 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     
     
-    
+    func refresher(){
+        let delayInSeconds = 0.01
+        let popTime = dispatch_time(DISPATCH_TIME_NOW,
+            Int64(delayInSeconds * Double(NSEC_PER_SEC))) // 1
+        dispatch_after(popTime, GlobalMainQueue) { // 2
+
+        self.mapView.addAnnotations(self.annotations())
+        println("refreshed")
+        }
+    }
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         //1 grab current location
@@ -260,11 +279,15 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
 
 
     func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+
         (view as? JPSThumbnailAnnotationViewProtocol)?.didSelectAnnotationViewInMap(mapView)
+
     }
     
     func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
+
         (view as? JPSThumbnailAnnotationViewProtocol)?.didDeselectAnnotationViewInMap(mapView)
+
     }
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {

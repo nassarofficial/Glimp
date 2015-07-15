@@ -15,7 +15,7 @@ class Usercell: UITableViewCell {
     @IBOutlet weak var labelCaption: UILabel!
     @IBOutlet weak var userimage: UIImageView!
     @IBOutlet weak var descriptionCap: UILabel!
-
+    
 }
 
 class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapViewDelegate, CLLocationManagerDelegate {
@@ -25,7 +25,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
     @IBAction func unwindToSegueprof (segue : UIStoryboardSegue) {}
     @IBAction func unwindToSegue (segue : UIStoryboardSegue) {}
     @IBAction func unwindToSeguer (segue : UIStoryboardSegue) {}
-
+    
     @IBOutlet weak var searchicon: UIImageView!
     @IBOutlet weak var searcher: UITextField!
     let reachability = Reachability.reachabilityForInternetConnection()
@@ -37,11 +37,18 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var segmenter: UISegmentedControl!
     
+    
+    @IBAction func droppin(sender: AnyObject) {
+        println("fired")
+        
+    }
+    
+    
     @IBOutlet weak var usersearcher: UIView!
     @IBOutlet weak var segmentedcontrol: UIView!
     
     private var clusteringController : KPClusteringController!
-
+    
     var glimperid: String!
     var data: NSData?
     var json : JSON?
@@ -60,13 +67,13 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     @IBAction func unwindToSegueprod (segue : UIStoryboardSegue) {}
-
+    
     @IBAction func unwindToSegueG (segue : UIStoryboardSegue) {
-}
+    }
     @IBAction func cancelbutton(sender: AnyObject) {
         UIApplication.sharedApplication().sendAction("resignFirstResponder", to:nil, from:nil, forEvent:nil)
-
-
+        
+        
         self.mapView.removeAnnotation(annoation)
         segmentedcontrol.hidden = true
         self.searcher.text = "Search";
@@ -74,12 +81,12 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
         self.searcher.textAlignment = NSTextAlignment.Center
         self.usersearcher.hidden = true
     }
-
+    
     @IBAction func segmentedControlAction(sender: AnyObject) {
         self.datas = []
         self.tableView.reloadData()
         self.datas = []
-
+        
         if(segmenter.selectedSegmentIndex == 0)
         {
             segmentindex = 0;
@@ -87,7 +94,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             self.datas = []
             self.tableView.reloadData()
             self.datas = []
-
+            
         }
         else if(segmenter.selectedSegmentIndex == 1)
         {
@@ -101,25 +108,25 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
         }
         else if(segmenter.selectedSegmentIndex == 2)
         {
-
+            
             segmentindex = 2;
             usersearcher.hidden = false
             self.datas = []
             self.tableView.reloadData()
             self.datas = []
-
+            
         }
         else if(segmenter.selectedSegmentIndex == 3)
         {
-
+            
             segmentindex = 3;
             usersearcher.hidden = false
             self.datas = []
             self.tableView.reloadData()
             self.datas = []
-
+            
         }
-
+        
     }
     func textFieldShouldReturn(searcher: UITextField!) -> Bool {   //delegate method
         searcher.resignFirstResponder()
@@ -152,7 +159,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
                     self.mapView.setVisibleMapRect(mr, animated: true)
                     
             })
-
+            
         }
         else if segmentindex == 1 {
             self.datas = []
@@ -166,7 +173,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             Alamofire.request(.GET, url).responseJSON { (request, response, json, error) in
                 println(response)
                 if json != nil {
-                  //  self.spinnerblock.hidden=true
+                    //  self.spinnerblock.hidden=true
                     var jsonObj = JSON(json!)
                     if let data = jsonObj["response"]["venues"].arrayValue as [JSON]?{
                         self.datas = data
@@ -181,7 +188,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
                 }
             }
             self.datas = []
-
+            
         }
         else if segmentindex == 2{
             usersearcher.hidden = false
@@ -197,19 +204,19 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
                         self.datas = data
                         //println(self.datas) http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/search.php?scope=users&term=nassar
                         self.spinner.hidden = true
-
+                        
                         self.tableView.reloadData()
                     }
                 }
                 else {
                     self.nores.hidden = true
-
+                    
                     self.tableView.reloadData()
                 }
-
+                
             }
             self.datas = []
-
+            
         }
         else if segmentindex == 3{
             usersearcher.hidden = false
@@ -217,7 +224,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             self.datas = []
             var escapedAddress = self.searcher.text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
             var url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/search.php?scope=users&term="+escapedAddress!
-
+            
             Alamofire.request(.GET, url).responseJSON { (request, response, json, error) in
                 if json != nil {
                     //  self.spinnerblock.hidden=true
@@ -226,32 +233,32 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
                         self.datas = data
                         //println(self.datas) http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/search.php?scope=users&term=nassar
                         self.spinner.hidden = true
-
+                        
                         self.tableView.reloadData()
                     }
                 }
             }
             self.datas = []
-
+            
         }
-
+        
         return true
     }
-
-
+    
+    
     @IBAction func started(sender: AnyObject) {
         self.searcher.text = "";
         segmentedcontrol.hidden = false
         searchicon.hidden = true
         self.searcher.textAlignment = NSTextAlignment.Left
-
+        
     }
     @IBAction func zoomOut(sender: AnyObject) {
         var ladelta : CLLocationDegrees = 30
         var lndelta : CLLocationDegrees = 30
         let latitude = locManager.location.coordinate.latitude
         let longitude = locManager.location.coordinate.longitude
-
+        
         var s:MKCoordinateSpan = MKCoordinateSpanMake(ladelta,lndelta)
         var l:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
         var reg:MKCoordinateRegion = MKCoordinateRegionMake(l, s)
@@ -269,15 +276,15 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
         var reg:MKCoordinateRegion = MKCoordinateRegionMake(l, s)
         mapView.setRegion(reg, animated: true)
     }
-
+    
     
     
     // MARK: UIViewController
-
+    
     
     func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
     }
-
+    
     func searchBarShouldBeginEditing( searcher: UISearchBar!){
         segmentedcontrol.hidden = false
         usersearcher.hidden = false
@@ -292,8 +299,8 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             usersearcher.hidden = false
         }
     }
-
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //self.searcher.delegate = self
@@ -312,15 +319,15 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             clusteringController.delegate = self
             let progressHUD = ProgressHUD(text: "Loading...")
             self.view.addSubview(progressHUD)
-
+            
             let delayInSeconds = 0.5
             let popTime = dispatch_time(DISPATCH_TIME_NOW,
                 Int64(delayInSeconds * Double(NSEC_PER_SEC))) // 1
             dispatch_after(popTime, GlobalMainQueue) { // 2
-
+                
                 self.clusteringController.setAnnotations(self.annotations())
                 progressHUD.removeFromSuperview()
-
+                
             }
             
             locManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -336,7 +343,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             self.presentViewController(alertController, animated: true, completion: nil)
             
         }
-
+        
         
     }
     
@@ -345,12 +352,12 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
         dispatch_async(dispatch_get_main_queue()) {
             self.clusteringController.setAnnotations(self.annotations())
         }
-
+        
     }
     override func viewWillAppear(animated: Bool) {
         UIApplication.sharedApplication().statusBarHidden=false;
         super.viewWillAppear(animated)
-
+        
     }
     
     
@@ -365,7 +372,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             let secondViewController = segue.destinationViewController as! UserProfile
             let ider = gid as String!
             let ider2 = gusername as String!
-
+            
             secondViewController.userid = ider
             secondViewController.username = ider2
         }
@@ -378,10 +385,10 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             secondViewController.loc = ider2
             
         }
-
-
+        
+        
     }
-
+    
     func makeRequest(url : String, params : [String : String]?, completionHandler: (responseObject: JSON?, error: NSError?) -> ())  -> Request? {
         
         return Alamofire.request(.GET, url, parameters: params, encoding: .URL)
@@ -402,20 +409,20 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
                     }(), error: error)
         }
     }
-
+    
     
     
     func annotations() -> [TestAnnotation] {
         var annotations: [TestAnnotation] = []
         let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/globe.php")
-
+        
         let pointData = NSData(contentsOfURL: baseURL!, options: nil, error: nil)
-
+        
         let points = NSJSONSerialization.JSONObjectWithData(pointData!,
             options: nil,
             error: nil) as! NSDictionary
-
-
+        
+        
         for point in points["glimps"] as! NSArray {
             let lat = (point as! NSDictionary)["latitude"] as! CLLocationDegrees
             let lon = (point as! NSDictionary)["longitude"] as! CLLocationDegrees
@@ -424,15 +431,15 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             let coordinate1 : CLLocationCoordinate2D = CLLocationCoordinate2DMake(lat, lon)
             
             let a1: TestAnnotation = TestAnnotation(coordinate: coordinate1, title: gid)
-
+            
             annotations.append(a1)
             
         }
         
-            return annotations
+        return annotations
         
-        }
-
+    }
+    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         // #warning Potentially incomplete method implementation.
         // Return the number of sections.
@@ -471,19 +478,19 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
                 cell.userimage.clipsToBounds = true
                 
                 cell.userimage.hnk_setImageFromURL(url!)
-
+                
             }
             if let locdesc = data["location"]["address"].string {
                 cell.descriptionCap.text = locdesc
             }
-//            var prefix = data["categories"]["icon"][0]["prefix"].string
-//            var suffix = data["categories"]["icon"][0]["suffix"].string
+            //            var prefix = data["categories"]["icon"][0]["prefix"].string
+            //            var suffix = data["categories"]["icon"][0]["suffix"].string
             
-
+            
         }
         else if segmentindex == 2{
             cell.userimage.hnk_cancelSetImage()
-
+            
             var empty: String = " "
             let data = datas[indexPath.row]
             usersearcher.hidden = false
@@ -517,7 +524,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             if let locdesc = data["loc"].string {
                 cell.descriptionCap.text = locdesc
             }
-
+            
             if let imager = data["filename"].string {
                 var properurl = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/thumbnail/"+imager+".png"
                 var url = NSURL(string: properurl)
@@ -532,7 +539,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             }
             
         }
-
+        
         return cell
         
     }
@@ -540,7 +547,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         let currentCell = self.tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!;
         let row = indexPath.row
-
+        
         if segmentindex == 1 {
             println(datas[row])
             self.locLabel = String(stringInterpolationSegment: datas[row]["name"])
@@ -552,7 +559,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             self.gid = String(stringInterpolationSegment: datas[row]["id"])
             self.gusername =  String(stringInterpolationSegment: datas[row]["username"])
             performSegueWithIdentifier("goto_user", sender: self)
-
+            
         }
         else if segmentindex == 3 {
             println(datas[row])
@@ -560,7 +567,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             performSegueWithIdentifier("goto_video", sender: self)
         }
     }
-
+    
     
     
     
@@ -576,7 +583,7 @@ extension Globe : MKMapViewDelegate {
         }
         
         var annotationView : MKPinAnnotationView?
-
+        
         if annotation is KPAnnotation {
             let a : KPAnnotation = annotation as! KPAnnotation
             
@@ -587,11 +594,11 @@ extension Globe : MKMapViewDelegate {
                     annotationView = MKPinAnnotationView(annotation: a, reuseIdentifier: "cluster")
                     annotationView!.canShowCallout = true
                     annotationView!.animatesDrop = false
-
+                    
                 }
                 annotationView!.canShowCallout = false
                 annotationView!.animatesDrop = false
-
+                
                 annotationView!.image =  UIImage(named:"marker1.png")
                 
             }
@@ -603,7 +610,7 @@ extension Globe : MKMapViewDelegate {
                 }
                 annotationView!.canShowCallout = true
                 annotationView!.animatesDrop = false
-
+                
                 annotationView!.image =  UIImage(named:"marker.png")
             }
             
@@ -619,13 +626,13 @@ extension Globe : MKMapViewDelegate {
         // Initial reachability check
         if reachability.isReachable() {
             clusteringController.refresh(true)
-
+            
         } else {
             let alertController = UIAlertController(title: "Glimp", message:
                 "No Connection", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
         }
-
+        
     }
     
     
@@ -643,7 +650,7 @@ extension Globe : MKMapViewDelegate {
             if cluster.annotations.count == 1{
                 glimperid = view.annotation.title!
                 self.performSegueWithIdentifier("goto_video", sender: self)
-
+                
                 
             }
         }

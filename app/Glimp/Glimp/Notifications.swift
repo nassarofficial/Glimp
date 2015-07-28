@@ -15,7 +15,7 @@ class Notifications: UIViewController {
     var user_id : String = ""
     var glimpid : String = ""
     var username : String = ""
-    
+    var broadcast_id : String = ""
     
     
     @IBAction func unwindToSegue (segue : UIStoryboardSegue) {}
@@ -76,7 +76,7 @@ class Notifications: UIViewController {
             secondViewController.glimpid = self.glimpid
             
         }
-        if (segue.identifier == "goto_profile") {
+        else if (segue.identifier == "goto_profile") {
             let secondViewController = segue.destinationViewController as! UserProfile
             let ider = user_id as String!
             println("before glimp:" + user_id)
@@ -87,7 +87,12 @@ class Notifications: UIViewController {
             secondViewController.username = ider2
 
         }
-        
+        else if (segue.identifier == "goto_broadreq") {
+            let secondViewController = segue.destinationViewController as! BroadcastReq
+            secondViewController.broadcast_id = self.broadcast_id
+            println(self.broadcast_id)
+        }
+
     }
 
     
@@ -121,6 +126,9 @@ class Notifications: UIViewController {
                 else if type == 2 {
                     notification!.text = "commented on your glimp."
                 }
+                else if type == 3 {
+                    notification!.text = "wants to know what's going around near you!"
+                }
                 var dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 
@@ -150,22 +158,21 @@ class Notifications: UIViewController {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         let currentCell = self.tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!;
         let row = indexPath.row
+        println(datas[row])
         self.glimpid = String(stringInterpolationSegment: datas[row]["g_id"])
         self.user_id = String(stringInterpolationSegment: datas[row]["f_id"])
+        self.broadcast_id = String(stringInterpolationSegment: datas[row]["b_id"])
+
         self.username = String(stringInterpolationSegment: datas[row]["username"])
-
-
-        println(datas[row]["g_id"])
-        println("hello glimp" + self.glimpid)
-        println("type:")
-        println(datas[row]["type"])
-        println("user id:")
-        println(self.user_id)
         
         if datas[row]["type"] == 1 {
             performSegueWithIdentifier("goto_profile", sender: self)
-        } else {
+        } else if datas[row]["type"] == 2 {
             performSegueWithIdentifier("goto_comments", sender: self)
+        }
+        else if datas[row]["type"] == 3{
+           performSegueWithIdentifier("goto_broadreq", sender: self)
+            
         }
     }
 

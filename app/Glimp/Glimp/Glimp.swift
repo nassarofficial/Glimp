@@ -22,7 +22,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
     var userLocation: CLLocationCoordinate2D?
     var administrativeArea:String = ""
     // MARK: property
-    
+    var broadcast_id = "0"
     @IBOutlet weak var counterbg: UIImageView!
     var sessionQueue: dispatch_queue_t?
     var session: AVCaptureSession?
@@ -213,6 +213,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
             glimperVC.gllat = self.gllatitude
             glimperVC.gllong = self.gllongitude
             glimperVC.locLabel = self.administrativeArea
+            glimperVC.broadcast_id = self.broadcast_id
             
         }
         

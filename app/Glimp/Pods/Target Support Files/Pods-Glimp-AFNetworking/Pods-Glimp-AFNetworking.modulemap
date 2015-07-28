@@ -1,6 +1,0 @@
-framework module AFNetworking {
-  umbrella header "Pods-Glimp-AFNetworking-umbrella.h"
-
-  export *
-  module * { export * }
-}

@@ -11,6 +11,27 @@ protocol ModalViewControllerDelegate
 {
     func sendValue(var value : NSString)
 }
+extension String
+{
+    subscript(integerIndex: Int) -> Character {
+        let index = advance(startIndex, integerIndex)
+        return self[index]
+    }
+    
+    subscript(integerRange: Range<Int>) -> String {
+        let start = advance(startIndex, integerRange.startIndex)
+        let end = advance(startIndex, integerRange.endIndex)
+        let range = start..<end
+        return self[range]
+        
+    }
+    
+    func contains(find: String) -> Bool{
+        return self.rangeOfString(find) != nil
+    }
+    
+}
+
 
 class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,PlayerDelegate {
     var ViewControllerVideoPath = ""
@@ -19,7 +40,26 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     var locLabel: String = "Add Location"
     var locID: String = ""
     let reachability = Reachability.reachabilityForInternetConnection()
+    var broadcast_id = "0"
+    /// ---------------------------------------
+    @IBOutlet var Description: AutoCompleteTextField!
+    //@IBOutlet weak var autocompleteTextfield: AutoCompleteTextField!
+    
+    private var responseData:NSMutableData?
+    private var selectedPointAnnotation:MKPointAnnotation?
+    private var connection:NSURLConnection?
+    
+    private let baseURLString = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/friendlist.php"
+    var ticker : Int = 0
+    var query : String = ""
+    var ment : Int = 0
+    var i = 0
+    var tickerer = 0
+    var flagger = ""
+    var arr = [Int]()
 
+    ///-----------------------------------------
+    
     @IBAction func hidepre(sender: AnyObject) {
         self.navigationController?.popViewControllerAnimated(true)
 
@@ -63,12 +103,13 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
                 "loc" : locLabel,
                 "locid": locID,
                 "desc" : Description.text,
-                "username": usernamep
+                "username": usernamep,
+                "b_id": broadcast_id
             ]
             
             let manager = AFHTTPRequestOperationManager()
-            let url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/upload.php"
-            //let url = "http://localhost/upload.php"
+            //let url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/upload.php"
+            let url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/upload-beta.php"
 
             manager.responseSerializer = AFHTTPResponseSerializer()
             manager.POST( url, parameters: params,
@@ -99,7 +140,6 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         
     }
     @IBOutlet var tableView: UITableView!
-    @IBOutlet weak var Description: UITextView!
     @IBOutlet weak var viewofpost: UIView!
     @IBOutlet weak var viewofloc: UIView!
     @IBOutlet var getlocfs: UIButton!
@@ -109,7 +149,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         self.viewofloc.hidden = true
     }
     
-    func textField(Description: UITextView, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textField(Description: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
         let newLength = count(Description.text.utf16) + count(string.utf16) - range.length
         return newLength <= 150 // Bool
     }
@@ -172,6 +212,8 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        configureTextField()
+        handleTextFieldInterfaces()
         self.uploading.hidden = true
 
         self.viewofloc.hidden = true
@@ -355,7 +397,158 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     }
     
     
+    private func configureTextField(){
+        Description.autoCompleteTextColor = UIColor(red: 128.0/255.0, green: 128.0/255.0, blue: 128.0/255.0, alpha: 1.0)
+        Description.autoCompleteTextFont = UIFont(name: "HelveticaNeue-Light", size: 12.0)
+        Description.autoCompleteCellHeight = 35.0
+        Description.maximumAutoCompleteCount = 20
+        Description.hidesWhenSelected = true
+        Description.hidesWhenEmpty = true
+        Description.enableAttributedText = true
+        var attributes = [String:AnyObject]()
+        attributes[NSForegroundColorAttributeName] = UIColor.blackColor()
+        attributes[NSFontAttributeName] = UIFont(name: "HelveticaNeue-Bold", size: 12.0)
+        Description.autoCompleteAttributes = attributes
+    }
     
+    private func handleTextFieldInterfaces(){
+        Description.onTextChange = {[weak self] text in
+            let prefs = NSUserDefaults.standardUserDefaults()
+            
+            let name = prefs.stringForKey("USERNAME")
+            var usernamep = String(name!)
+
+            if !text.isEmpty {
+                
+                self!.ticker = count(text) - 1
+                println(self!.ticker)
+                var idx = advance(text.startIndex,self!.ticker)
+                
+                if (text[idx] == "@" && self!.flagger == ""){
+                    
+                    self!.flagger = "@"
+                    self!.arr.insert(self!.ticker, atIndex: 0)
+                    if self!.connection != nil{
+                        self!.connection!.cancel()
+                        self!.connection = nil
+                    }
+                    
+                    let urlString = "\(self!.baseURLString)?username=\(usernamep)&query=\(self!.query)"
+                    let url = NSURL(string: urlString.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)!)
+                    if url != nil{
+                        let urlRequest = NSURLRequest(URL: url!)
+                        println(urlRequest)
+                        self!.connection = NSURLConnection(request: urlRequest, delegate: self)
+                    }
+                    
+                }
+                else if self!.flagger == "@" {
+
+                    if (text[idx] != " "){
+                        
+                        self!.arr.insert(self!.ticker, atIndex: 1)
+                        if self!.connection != nil{
+                            self!.connection!.cancel()
+                            self!.connection = nil
+                        }
+                        if (self!.arr[0]+1 > self!.arr[1]){
+                            
+                            self!.query = ""
+                        } else {
+                            self!.query = text[self!.arr[0]+1...self!.arr[1]]
+                        }
+
+                        let urlString = "\(self!.baseURLString)?username=\(usernamep)&query=\(self!.query)"
+                        let url = NSURL(string: urlString.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)!)
+                        if url != nil{
+                            let urlRequest = NSURLRequest(URL: url!)
+                            println(urlRequest)
+                            self!.connection = NSURLConnection(request: urlRequest, delegate: self)
+                        }
+                        
+                    } else if (text[idx] == " "){
+                        
+                        self!.flagger = ""
+                    }
+                } else if (text[idx] == " "){
+                    
+                    self!.flagger = ""
+                }
+                if !(text.contains("@")){
+                    println("here")
+                    self!.flagger = ""
+                    self!.Description.hidesWhenSelected = true
+                    self!.Description.hidesWhenEmpty = true
+                    
+                }
+            }
+        }
+        
+        Description.onSelect = {[weak self] text, indexpath in
+            self!.Description.hidesWhenSelected = true
+            
+            var before = self!.Description.text as String
+            var ticker = self!.arr[0]
+            var dif = (self!.arr[1] - self!.arr[0]+1) - 1
+            var texter = String(text) as String
+            var end = count(before) - 1
+            var fhalf = before[0...ticker]
+            var tillafterentry = count(fhalf)+dif
+            var ender = count(before)-1
+            if (tillafterentry < ender){
+                self!.Description.hidesWhenSelected = true
+                self!.Description.text = (fhalf + texter + before[tillafterentry...count(before)-1])
+            } else {
+                self!.Description.hidesWhenSelected = true
+                self!.Description.text = (fhalf + texter)
+            }
+        }
+    }
+    
+    
+    //MARK: NSURLConnectionDelegate
+    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
+        responseData = NSMutableData()
+    }
+    
+    func connection(connection: NSURLConnection, didReceiveData data: NSData) {
+        responseData?.appendData(data)
+    }
+    
+    func connectionDidFinishLoading(connection: NSURLConnection) {
+        if responseData != nil{
+            var error:NSError?
+            if let result = NSJSONSerialization.JSONObjectWithData(responseData!, options: nil, error: &error) as? NSDictionary{
+                let status = result["status"] as? String
+                if status == "OK"{
+                    if let predictions = result["predictions"] as? NSArray{
+                        println(result["predictions"])
+                        
+                        var locations = [String]()
+                        var autocomp = [String]()
+                        
+                        for dict in predictions as! [NSDictionary]{
+                            locations.append(dict["username"] as! String)
+                            autocomp.append(dict["username"] as! String)
+                            
+                            println(dict["username"])
+                        }
+                        self.Description.autoCompleteStrings = locations
+                        self.Description.autoCompleteStringsrem = autocomp
+                        
+                    }
+                }
+                else{
+                    self.Description.autoCompleteStrings = nil
+                }
+            }
+        }
+    }
+    
+    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
+        println("Error: \(error.localizedDescription)")
+    }
+
 }
 
 

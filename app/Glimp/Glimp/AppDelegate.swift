@@ -46,7 +46,6 @@ extension AppDelegate : UIApplicationDelegate {
             .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
         self.deviceToken = deviceTokenString
         
-        println("sdfds")
         println( deviceTokenString )
         
     }

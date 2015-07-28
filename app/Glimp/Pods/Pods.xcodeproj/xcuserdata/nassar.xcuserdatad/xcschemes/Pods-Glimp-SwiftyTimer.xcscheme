@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "AC07422E53DD5695A1D12F4C"
+               BlueprintIdentifier = "8D232A068CDC08925D5C9DA5"
                BuildableName = "SwiftyTimer.framework"
                BlueprintName = "Pods-Glimp-SwiftyTimer"
                ReferencedContainer = "container:Pods.xcodeproj">

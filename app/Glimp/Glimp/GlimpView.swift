@@ -24,7 +24,7 @@ class GlimpView: UIViewController{
     var min : String = ""
     var timestart : String = ""
     var timeend : String = ""
-    
+    var broadcat_id = ""
     @IBOutlet weak var timeleft: UILabel!
     @IBOutlet weak var username: UIButton!
     @IBOutlet weak var labeler: UILabel!
@@ -46,6 +46,7 @@ class GlimpView: UIViewController{
     }
     @IBAction func unwindToSegue (segue : UIStoryboardSegue) {}
     @IBAction func unwindToSeguer (segue : UIStoryboardSegue) {}
+    @IBOutlet var vidreply: UIButton!
 
     // MARK: object lifecycle
     
@@ -91,6 +92,10 @@ class GlimpView: UIViewController{
             secondViewController.userid = ider
 
             secondViewController.username = ider2
+        }
+        if (segue.identifier == "goto_broadcast") {
+            let secondViewController = segue.destinationViewController as! BroadcastReq
+            secondViewController.broadcast_id = self.broadcat_id
             
         }
 
@@ -127,9 +132,15 @@ class GlimpView: UIViewController{
             self.loc = String(stringInterpolationSegment: (point as! NSDictionary)["loc"]!) as String
             self.timestart = String(stringInterpolationSegment: (point as! NSDictionary)["time"]!) as String
             self.timeend = String(stringInterpolationSegment: (point as! NSDictionary)["stoptime"]!) as String
-            
+            self.broadcat_id = String(stringInterpolationSegment: (point as! NSDictionary)["b_id"]!) as String
+
             self.location.setTitle(loc, forState: UIControlState.Normal)
-            
+            if (broadcat_id == "0"){
+                vidreply.hidden = true
+            } else {
+                vidreply.hidden = false
+            }
+
         }
         
         let url = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/"+self.ViewControllerVideoPath)
@@ -153,7 +164,6 @@ class GlimpView: UIViewController{
             //            navigation.layer.zPosition = 9999;
             
         }
-
     }
     
     
@@ -161,6 +171,7 @@ class GlimpView: UIViewController{
         vidindicator.hidden = false
         descindicator.hidden = false
         super.viewDidLoad()
+        vidreply.hidden = false
         dispatch_async(dispatch_get_main_queue()) { // 2
 
         self.getglimps()

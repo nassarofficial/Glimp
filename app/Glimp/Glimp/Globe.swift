@@ -17,6 +17,9 @@ class Usercell: UITableViewCell {
     @IBOutlet weak var descriptionCap: UILabel!
     
 }
+class QuesReqAnnot: MKPointAnnotation {
+    var imageName: String!
+}
 
 class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapViewDelegate, CLLocationManagerDelegate {
     var locManager = CLLocationManager()
@@ -30,6 +33,8 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
     @IBOutlet weak var searcher: UITextField!
     let reachability = Reachability.reachabilityForInternetConnection()
     
+    var newCoord:CLLocationCoordinate2D!
+    
     @IBOutlet weak var tableView: UITableView!
     
     @IBOutlet weak var topbar: UIView!
@@ -38,11 +43,13 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
     @IBOutlet weak var segmenter: UISegmentedControl!
     
     
-    @IBAction func droppin(sender: AnyObject) {
-        println("fired")
-        
+    @IBAction func droppin(gestureRecognizer:UIGestureRecognizer) {
+        var touchPoint = gestureRecognizer.locationInView(mapView)
+        var newAnotation = QuesReqAnnot()
+        newCoord = mapView.convertPoint(touchPoint, toCoordinateFromView: self.mapView)
+        performSegueWithIdentifier("push_request", sender: self)
+
     }
-    
     
     @IBOutlet weak var usersearcher: UIView!
     @IBOutlet weak var segmentedcontrol: UIView!
@@ -128,6 +135,8 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
         }
         
     }
+    
+    
     func textFieldShouldReturn(searcher: UITextField!) -> Bool {   //delegate method
         searcher.resignFirstResponder()
         spinner.hidden=false
@@ -157,7 +166,8 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
                     mr.origin.y=pt.y-mr.size.height*0.25
                     
                     self.mapView.setVisibleMapRect(mr, animated: true)
-                    
+                    self.spinner.hidden = true
+
             })
             
         }
@@ -384,6 +394,12 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             secondViewController.locid = ider
             secondViewController.loc = ider2
             
+        } else if (segue.identifier == "push_request"){
+            let secondViewController = segue.destinationViewController as! SendBroadcast
+            let ider = newCoord as CLLocationCoordinate2D!
+            
+            secondViewController.newCoord = ider
+
         }
         
         
@@ -616,7 +632,26 @@ extension Globe : MKMapViewDelegate {
             
             annotationView!.canShowCallout = false;
         }
-        
+//        else {
+//            let reuseId = "test"
+//            let a : QuesReqAnnot = annotation as! QuesReqAnnot
+//
+//            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
+//            if annotationView == nil {
+//                annotationView = MKAnnotationView(annotation: a, reuseIdentifier: reuseId)
+//                annotationView.canShowCallout = true
+//            }
+//            else {
+//                annotationView.annotation = annotation
+//            }
+//            
+//            //Set annotation-specific properties **AFTER**
+//            //the view is dequeued or created...
+//            
+//            let cpa = annotation as! QuesReqAnnot
+//            annotationView.image = UIImage(named:cpa.imageName)
+//            
+//        }
         return annotationView;
     }
     

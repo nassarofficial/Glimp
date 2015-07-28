@@ -9,6 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 import Haneke
+import Alamofire
 
 private enum SideViewState {
     case Hidden
@@ -94,8 +95,6 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         let name = prefs.stringForKey("USERNAME")
         
         let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/home.php?username="+name!)
-        //let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/home.php?username=nassar")
-
         let pointData = NSData(contentsOfURL: baseURL!, options: nil, error: nil)
         
         let points = NSJSONSerialization.JSONObjectWithData(pointData!,
@@ -118,7 +117,6 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
             a.coordinate = CLLocationCoordinate2DMake(lat, lon)
             a.disclosureBlock = {
                 self.glimperid = String(stringInterpolationSegment: (point as! NSDictionary)["id"]!)
-                println(self.glimperid)
 
                 self.performSegueWithIdentifier("goto_video", sender: self)
 
@@ -132,24 +130,25 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         
         
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        var nav = self.navigationController?.navigationBar
-        nav?.barStyle = UIBarStyle.Black
-        nav?.tintColor = UIColor.yellowColor()
-        
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
-        imageView.contentMode = .ScaleAspectFit
-        
-        let image = UIImage(named: "glimplogo-2.png")
-        imageView.image = image
-        
-        navigationItem.titleView = imageView
-    }
+//    
+//    override func viewDidAppear(animated: Bool) {
+//        var nav = self.navigationController?.navigationBar
+//        nav?.barStyle = UIBarStyle.Black
+//        nav?.tintColor = UIColor.yellowColor()
+//        
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
+//        imageView.contentMode = .ScaleAspectFit
+//        
+//        let image = UIImage(named: "glimplogo-2.png")
+//        imageView.image = image
+//        
+//        navigationItem.titleView = imageView
+//    }
 
     func tap(){
-        println("FIRED!")
+      //  println("FIRED!")
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -179,8 +178,8 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
             view.addSubview(self.mapView)
             view.sendSubviewToBack(self.mapView)
             
-            let image = UIImage(named: "glimp-logo")
-            navigationItem.titleView = UIImageView(image: image)
+//            let image = UIImage(named: "glimp-logo")
+//            navigationItem.titleView = UIImageView(image: image)
             
             self.tabBarController?.tabBar.hidden = false
             //Edge to feed to get the feed
@@ -212,6 +211,8 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
                 }
             }
             
+            var updateTimer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: "getBroadcast", userInfo: nil, repeats: true)
+            
 
             
         } else {
@@ -223,7 +224,24 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         }
     }
     
-    
+    func getBroadcast(){
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let name = prefs.stringForKey("USERNAME")
+
+        let parameters = [
+            "username": name!,
+            "lat": Float(locManager.location.coordinate.latitude),
+            "long": Float(locManager.location.coordinate.longitude)
+        ]
+        
+        Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/broadcast.php", parameters: parameters as? [String : AnyObject])
+            .response { (request, response, data, error) in
+                println(request)
+                
+        }
+
+    }
+
     
     
     func refresher(){
@@ -233,7 +251,7 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         dispatch_after(popTime, GlobalMainQueue) { // 2
 
         self.mapView.addAnnotations(self.annotations())
-        println("refreshed")
+       // println("refreshed")
         }
     }
     

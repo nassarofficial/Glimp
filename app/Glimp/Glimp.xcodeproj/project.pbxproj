@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6E0528D21B1653C400C50C5C /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0528D11B1653C400C50C5C /* Comments.swift */; };
 		6E0E21681B279C870095D3A4 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0E21671B279C870095D3A4 /* Settings.swift */; };
+		6E15F1C91B5718E9009EA1B5 /* quem.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E15F1C81B5718E9009EA1B5 /* quem.png */; };
 		6E3480891B347D09003F0D6A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3480631B347D09003F0D6A /* AFHTTPRequestOperation.m */; };
 		6E34808A1B347D09003F0D6A /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3480651B347D09003F0D6A /* AFHTTPRequestOperationManager.m */; };
 		6E34808B1B347D09003F0D6A /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3480671B347D09003F0D6A /* AFHTTPSessionManager.m */; };
@@ -19,7 +20,6 @@
 		6E3480901B347D09003F0D6A /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3480721B347D09003F0D6A /* AFURLResponseSerialization.m */; };
 		6E3480911B347D09003F0D6A /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3480741B347D09003F0D6A /* AFURLSessionManager.m */; };
 		6E3480921B347D09003F0D6A /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 6E3480751B347D09003F0D6A /* LICENSE */; };
-		6E3480931B347D09003F0D6A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 6E3480761B347D09003F0D6A /* README.md */; };
 		6E3480941B347D09003F0D6A /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3480791B347D09003F0D6A /* AFNetworkActivityIndicatorManager.m */; };
 		6E3480951B347D09003F0D6A /* UIActivityIndicatorView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E34807B1B347D09003F0D6A /* UIActivityIndicatorView+AFNetworking.m */; };
 		6E3480961B347D09003F0D6A /* UIAlertView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E34807D1B347D09003F0D6A /* UIAlertView+AFNetworking.m */; };
@@ -49,7 +49,6 @@
 		6E92D9571B41F9DE0020C4CF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E92D9541B41F9DE0020C4CF /* FBSDKLoginKit.framework */; };
 		6EA803711B2F5A9800316620 /* imagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA803701B2F5A9800316620 /* imagePicker.swift */; };
 		6EC8BE7B1B0D213300F38728 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EC8BE7A1B0D213300F38728 /* Images.xcassets */; };
-		6EC8BE8A1B0D213300F38728 /* GlimpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC8BE891B0D213300F38728 /* GlimpTests.swift */; };
 		6EC8BEB51B0D215000F38728 /* video.mov in Resources */ = {isa = PBXBuildFile; fileRef = 6EC8BE971B0D215000F38728 /* video.mov */; };
 		6EC8BEB61B0D215000F38728 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC8BE991B0D215000F38728 /* AppDelegate.swift */; };
 		6EC8BEB71B0D215000F38728 /* AVCamPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC8BE9A1B0D215000F38728 /* AVCamPreviewView.swift */; };
@@ -65,13 +64,7 @@
 		6EC8BEC41B0D215000F38728 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC8BEA71B0D215000F38728 /* SignupVC.swift */; };
 		6EC8BEC51B0D215000F38728 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC8BEA81B0D215000F38728 /* Player.swift */; };
 		6EC8BEC61B0D215000F38728 /* TestAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EC8BEA91B0D215000F38728 /* TestAnnotation.swift */; };
-		6EC8BEC71B0D215000F38728 /* ottawa.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6EC8BEAA1B0D215000F38728 /* ottawa.jpg */; };
-		6EC8BEC81B0D215000F38728 /* apple.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6EC8BEAB1B0D215000F38728 /* apple.jpg */; };
-		6EC8BEC91B0D215000F38728 /* glimplogo-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC8BEAC1B0D215000F38728 /* glimplogo-2.png */; };
-		6EC8BECA1B0D215000F38728 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6EC8BEAD1B0D215000F38728 /* test.jpg */; };
-		6EC8BECB1B0D215000F38728 /* empire.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6EC8BEAE1B0D215000F38728 /* empire.jpg */; };
 		6EC8BECC1B0D215000F38728 /* marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC8BEAF1B0D215000F38728 /* marker.png */; };
-		6EC8BECD1B0D215000F38728 /* empire.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6EC8BEB01B0D215000F38728 /* empire.jpg */; };
 		6EC8BECE1B0D215000F38728 /* marker1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EC8BEB11B0D215000F38728 /* marker1.png */; };
 		6EC8BEFA1B0D218F00F38728 /* JPSThumbnailAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC8BED41B0D218F00F38728 /* JPSThumbnailAnnotation.m */; };
 		6EC8BEFB1B0D218F00F38728 /* JPSThumbnailAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6EC8BED61B0D218F00F38728 /* JPSThumbnailAnnotationView.m */; };
@@ -112,23 +105,17 @@
 		6EE9322A1B3F2FE400E52F63 /* UserProfileNotif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE932291B3F2FE400E52F63 /* UserProfileNotif.swift */; };
 		6EE9322C1B3F4BF900E52F63 /* SFSwiftNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE9322B1B3F4BF900E52F63 /* SFSwiftNotification.swift */; };
 		6EE9322E1B3F508C00E52F63 /* splash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6EE9322D1B3F508C00E52F63 /* splash.mp3 */; };
+		6EE97F881B5EECCA00C83AC7 /* SendBroadcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE97F871B5EECCA00C83AC7 /* SendBroadcast.swift */; };
+		6EEC68781B59384F0050866C /* BroadcastReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC68771B59384F0050866C /* BroadcastReq.swift */; };
+		6EF5E5441B66C4B900B043FC /* AutoCompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF5E5431B66C4B900B043FC /* AutoCompleteTextField.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		6EC8BE841B0D213300F38728 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6EC8BE641B0D213300F38728 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6EC8BE6B1B0D213300F38728;
-			remoteInfo = Glimp;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		009E1EC5BCD743793E4C63A8 /* Pods-Glimp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glimp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Glimp/Pods-Glimp.debug.xcconfig"; sourceTree = "<group>"; };
 		6E0528D11B1653C400C50C5C /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		6E0528DF1B16593F00C50C5C /* Haneke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Haneke.framework; path = "Pods/../build/Debug-iphoneos/Pods-Glimp/Haneke.framework"; sourceTree = "<group>"; };
 		6E0E21671B279C870095D3A4 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		6E15F1C81B5718E9009EA1B5 /* quem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quem.png; sourceTree = "<group>"; };
 		6E3480621B347D09003F0D6A /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		6E3480631B347D09003F0D6A /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		6E3480641B347D09003F0D6A /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -204,7 +191,6 @@
 		6EC469421B16612500585CD6 /* Pods_Glimp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Glimp.framework; path = "Pods/../build/Debug-iphoneos/Pods_Glimp.framework"; sourceTree = "<group>"; };
 		6EC8BE6C1B0D213300F38728 /* Glimp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glimp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EC8BE7A1B0D213300F38728 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6EC8BE831B0D213300F38728 /* GlimpTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GlimpTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EC8BE881B0D213300F38728 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6EC8BE891B0D213300F38728 /* GlimpTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlimpTests.swift; sourceTree = "<group>"; };
 		6EC8BE971B0D215000F38728 /* video.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = video.mov; sourceTree = "<group>"; };
@@ -223,13 +209,8 @@
 		6EC8BEA71B0D215000F38728 /* SignupVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
 		6EC8BEA81B0D215000F38728 /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		6EC8BEA91B0D215000F38728 /* TestAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestAnnotation.swift; sourceTree = "<group>"; };
-		6EC8BEAA1B0D215000F38728 /* ottawa.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ottawa.jpg; sourceTree = "<group>"; };
-		6EC8BEAB1B0D215000F38728 /* apple.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = apple.jpg; sourceTree = "<group>"; };
 		6EC8BEAC1B0D215000F38728 /* glimplogo-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glimplogo-2.png"; sourceTree = "<group>"; };
-		6EC8BEAD1B0D215000F38728 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
-		6EC8BEAE1B0D215000F38728 /* empire.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = empire.jpg; sourceTree = "<group>"; };
 		6EC8BEAF1B0D215000F38728 /* marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker.png; sourceTree = "<group>"; };
-		6EC8BEB01B0D215000F38728 /* empire.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = empire.jpg; sourceTree = "<group>"; };
 		6EC8BEB11B0D215000F38728 /* marker1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker1.png; sourceTree = "<group>"; };
 		6EC8BED21B0D218F00F38728 /* JPSThumbnail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSThumbnail.h; sourceTree = "<group>"; };
 		6EC8BED31B0D218F00F38728 /* JPSThumbnailAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JPSThumbnailAnnotation.h; sourceTree = "<group>"; };
@@ -287,6 +268,9 @@
 		6EE932291B3F2FE400E52F63 /* UserProfileNotif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileNotif.swift; sourceTree = "<group>"; };
 		6EE9322B1B3F4BF900E52F63 /* SFSwiftNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFSwiftNotification.swift; sourceTree = "<group>"; };
 		6EE9322D1B3F508C00E52F63 /* splash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = splash.mp3; sourceTree = "<group>"; };
+		6EE97F871B5EECCA00C83AC7 /* SendBroadcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendBroadcast.swift; sourceTree = "<group>"; };
+		6EEC68771B59384F0050866C /* BroadcastReq.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BroadcastReq.swift; sourceTree = "<group>"; };
+		6EF5E5431B66C4B900B043FC /* AutoCompleteTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteTextField.swift; sourceTree = "<group>"; };
 		8BD82ADCF977F1BBF70B9E37 /* Pods_Glimp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glimp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC89E911EA7B3C2B3C980BB /* Pods-Glimp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glimp.release.xcconfig"; path = "Pods/Target Support Files/Pods-Glimp/Pods-Glimp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -316,13 +300,6 @@
 				6E92D9561B41F9DE0020C4CF /* FBSDKCoreKit.framework in Frameworks */,
 				6E92D9571B41F9DE0020C4CF /* FBSDKLoginKit.framework in Frameworks */,
 				6E92D9551B41F9DE0020C4CF /* Bolts.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6EC8BE801B0D213300F38728 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,7 +408,6 @@
 			isa = PBXGroup;
 			children = (
 				6EC8BE6C1B0D213300F38728 /* Glimp.app */,
-				6EC8BE831B0D213300F38728 /* GlimpTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -455,6 +431,8 @@
 				6E88E98A1B42ADED00C29AF2 /* GooglePlus.framework */,
 				6EC8BE991B0D215000F38728 /* AppDelegate.swift */,
 				6EC8BE9A1B0D215000F38728 /* AVCamPreviewView.swift */,
+				6EF5E5431B66C4B900B043FC /* AutoCompleteTextField.swift */,
+				6ECF7D6B1B4835AA002A37C6 /* BeatAnimator.swift */,
 				6E76E75C1B40C34B0006AEC2 /* ChangePassword.swift */,
 				6E5990051B1BAA80001D4016 /* CollectionViewCell.swift */,
 				6ECF7D791B48931A002A37C6 /* SwiftyTimer.swift */,
@@ -463,6 +441,7 @@
 				6EE932271B3F2E3E00E52F63 /* CommentsNotif.swift */,
 				6E7F10AD1B3F724D00E27E27 /* ForgetMyPassword.swift */,
 				6EC8BE9C1B0D215000F38728 /* Globe.swift */,
+				6EEC68771B59384F0050866C /* BroadcastReq.swift */,
 				6EDD622E1B38456C004A5726 /* GlimS.swift */,
 				6EC8BEA01B0D215000F38728 /* Glimp.swift */,
 				6EC8BEA11B0D215000F38728 /* GlimpPreview.swift */,
@@ -475,9 +454,11 @@
 				6EE9322D1B3F508C00E52F63 /* splash.mp3 */,
 				6E5990031B1BA26D001D4016 /* LocationCollectionViewController.swift */,
 				6E6BDA791B3E300500BF9FE2 /* Notifications.swift */,
+				6ECF7D6C1B4835AA002A37C6 /* PacmanAnimator.swift */,
 				6EC8BEA81B0D215000F38728 /* Player.swift */,
 				6EC8BE9D1B0D215000F38728 /* Profile.swift */,
 				6E70795F1B2AF6E2006A2B24 /* Reachability.swift */,
+				6EE97F871B5EECCA00C83AC7 /* SendBroadcast.swift */,
 				6E0E21671B279C870095D3A4 /* Settings.swift */,
 				6EE9322B1B3F4BF900E52F63 /* SFSwiftNotification.swift */,
 				6EC8BEA71B0D215000F38728 /* SignupVC.swift */,
@@ -486,15 +467,9 @@
 				6EC8BEA91B0D215000F38728 /* TestAnnotation.swift */,
 				6E6087211B28B11600B0AAD8 /* UserProfile.swift */,
 				6ECF7D691B4821FF002A37C6 /* utils.swift */,
-				6EC8BEAA1B0D215000F38728 /* ottawa.jpg */,
-				6ECF7D6B1B4835AA002A37C6 /* BeatAnimator.swift */,
-				6ECF7D6C1B4835AA002A37C6 /* PacmanAnimator.swift */,
-				6EC8BEAB1B0D215000F38728 /* apple.jpg */,
+				6E15F1C81B5718E9009EA1B5 /* quem.png */,
 				6EC8BEAC1B0D215000F38728 /* glimplogo-2.png */,
-				6EC8BEAD1B0D215000F38728 /* test.jpg */,
-				6EC8BEAE1B0D215000F38728 /* empire.jpg */,
 				6EC8BEAF1B0D215000F38728 /* marker.png */,
-				6EC8BEB01B0D215000F38728 /* empire.jpg */,
 				6EC8BEB11B0D215000F38728 /* marker1.png */,
 				6EDD62301B384A6E004A5726 /* Storyboard.storyboard */,
 				6EC8BE7A1B0D213300F38728 /* Images.xcassets */,
@@ -699,24 +674,6 @@
 			productReference = 6EC8BE6C1B0D213300F38728 /* Glimp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6EC8BE821B0D213300F38728 /* GlimpTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6EC8BE901B0D213300F38728 /* Build configuration list for PBXNativeTarget "GlimpTests" */;
-			buildPhases = (
-				6EC8BE7F1B0D213300F38728 /* Sources */,
-				6EC8BE801B0D213300F38728 /* Frameworks */,
-				6EC8BE811B0D213300F38728 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6EC8BE851B0D213300F38728 /* PBXTargetDependency */,
-			);
-			name = GlimpTests;
-			productName = GlimpTests;
-			productReference = 6EC8BE831B0D213300F38728 /* GlimpTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -738,11 +695,6 @@
 							};
 						};
 					};
-					6EC8BE821B0D213300F38728 = {
-						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = N3R5Q6LRA7;
-						TestTargetID = 6EC8BE6B1B0D213300F38728;
-					};
 				};
 			};
 			buildConfigurationList = 6EC8BE671B0D213300F38728 /* Build configuration list for PBXProject "Glimp" */;
@@ -759,7 +711,6 @@
 			projectRoot = "";
 			targets = (
 				6EC8BE6B1B0D213300F38728 /* Glimp */,
-				6EC8BE821B0D213300F38728 /* GlimpTests */,
 			);
 		};
 /* End PBXProject section */
@@ -772,26 +723,14 @@
 				6EC8BF551B0D269300F38728 /* Info.plist in Resources */,
 				6E88E98C1B42ADED00C29AF2 /* GooglePlus.bundle in Resources */,
 				6EC8BEB51B0D215000F38728 /* video.mov in Resources */,
-				6EC8BEC71B0D215000F38728 /* ottawa.jpg in Resources */,
 				6ED022B91B43283900E0420E /* Instabug.bundle in Resources */,
 				6EC8BECC1B0D215000F38728 /* marker.png in Resources */,
-				6EC8BEC91B0D215000F38728 /* glimplogo-2.png in Resources */,
-				6EC8BEC81B0D215000F38728 /* apple.jpg in Resources */,
 				6EC8BECE1B0D215000F38728 /* marker1.png in Resources */,
+				6E15F1C91B5718E9009EA1B5 /* quem.png in Resources */,
 				6EE9322E1B3F508C00E52F63 /* splash.mp3 in Resources */,
-				6EC8BECB1B0D215000F38728 /* empire.jpg in Resources */,
-				6EC8BECD1B0D215000F38728 /* empire.jpg in Resources */,
 				6EDD62311B384A6E004A5726 /* Storyboard.storyboard in Resources */,
 				6E3480921B347D09003F0D6A /* LICENSE in Resources */,
 				6EC8BE7B1B0D213300F38728 /* Images.xcassets in Resources */,
-				6EC8BECA1B0D215000F38728 /* test.jpg in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		6EC8BE811B0D213300F38728 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -866,10 +805,10 @@
 				6EC8BF001B0D218F00F38728 /* RAMRotationAnimation.swift in Sources */,
 				6E6087221B28B11600B0AAD8 /* UserProfile.swift in Sources */,
 				6EC8BEFF1B0D218F00F38728 /* RAMFumeAnimation.swift in Sources */,
-				6E3480931B347D09003F0D6A /* README.md in Sources */,
 				6EC8BEC51B0D215000F38728 /* Player.swift in Sources */,
 				6EDD622F1B38456C004A5726 /* GlimS.swift in Sources */,
 				6EC8BEB81B0D215000F38728 /* Home.swift in Sources */,
+				6EE97F881B5EECCA00C83AC7 /* SendBroadcast.swift in Sources */,
 				6EC8BF051B0D218F00F38728 /* KPAnnotation.m in Sources */,
 				6EC8BF0A1B0D218F00F38728 /* NSArray+KP.m in Sources */,
 				6E0528D21B1653C400C50C5C /* Comments.swift in Sources */,
@@ -887,6 +826,7 @@
 				6ECF7D7A1B48931A002A37C6 /* SwiftyTimer.swift in Sources */,
 				6EC8BEC61B0D215000F38728 /* TestAnnotation.swift in Sources */,
 				6E7F10AE1B3F724D00E27E27 /* ForgetMyPassword.swift in Sources */,
+				6EEC68781B59384F0050866C /* BroadcastReq.swift in Sources */,
 				6E3480981B347D09003F0D6A /* UIImageView+AFNetworking.m in Sources */,
 				6EC8BEFA1B0D218F00F38728 /* JPSThumbnailAnnotation.m in Sources */,
 				6E3480961B347D09003F0D6A /* UIAlertView+AFNetworking.m in Sources */,
@@ -900,6 +840,7 @@
 				6EC8BF041B0D218F00F38728 /* RAMItemAnimationProtocol.swift in Sources */,
 				6EC8BEFB1B0D218F00F38728 /* JPSThumbnailAnnotationView.m in Sources */,
 				6ECF7D6E1B4835AA002A37C6 /* PacmanAnimator.swift in Sources */,
+				6EF5E5441B66C4B900B043FC /* AutoCompleteTextField.swift in Sources */,
 				6E3480951B347D09003F0D6A /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				6E34808E1B347D09003F0D6A /* AFURLConnectionOperation.m in Sources */,
 				6E3480911B347D09003F0D6A /* AFURLSessionManager.m in Sources */,
@@ -921,23 +862,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6EC8BE7F1B0D213300F38728 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6EC8BE8A1B0D213300F38728 /* GlimpTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		6EC8BE851B0D213300F38728 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6EC8BE6B1B0D213300F38728 /* Glimp */;
-			targetProxy = 6EC8BE841B0D213300F38728 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		6EC8BE8B1B0D213300F38728 /* Debug */ = {
@@ -1034,7 +959,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Ahmed Nassar (5429P34657)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods-Glimp",
@@ -1045,7 +970,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "704c39ad-5cc2-423c-b198-4271d0adca50";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = GLIMP/Bridging_Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1060,7 +985,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos/Pods-Glimp",
@@ -1071,52 +996,10 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "704c39ad-5cc2-423c-b198-4271d0adca50";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = GLIMP/Bridging_Header.h;
 				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		6EC8BE911B0D213300F38728 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = GlimpTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos8.4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Glimp.app/Glimp";
-			};
-			name = Debug;
-		};
-		6EC8BE921B0D213300F38728 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = GlimpTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				SDKROOT = iphoneos8.4;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Glimp.app/Glimp";
 			};
 			name = Release;
 		};
@@ -1137,15 +1020,6 @@
 			buildConfigurations = (
 				6EC8BE8E1B0D213300F38728 /* Debug */,
 				6EC8BE8F1B0D213300F38728 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6EC8BE901B0D213300F38728 /* Build configuration list for PBXNativeTarget "GlimpTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				6EC8BE911B0D213300F38728 /* Debug */,
-				6EC8BE921B0D213300F38728 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

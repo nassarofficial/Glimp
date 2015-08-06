@@ -21,7 +21,6 @@ class SendBroadcast: UIViewController {
     @IBOutlet var message: UITextField!
     var newCoord:CLLocationCoordinate2D!
     
-    @IBOutlet var scroller: UIScrollView!
     var profilepic: String = ""
     @IBOutlet var viewblock: UIView!
     var lat : Float = 0.00
@@ -36,59 +35,27 @@ class SendBroadcast: UIViewController {
     @IBAction func sendRequest(sender: AnyObject) {
         let prefs = NSUserDefaults.standardUserDefaults()
         let name = prefs.stringForKey("USERNAME")
+        var usernamep = String(name!)
 
         let parameters = [
-            "username": name!,
+            "username": usernamep,
             "lat": lat ,
             "long": long
         ]
 
         Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/sendBroadcast.php", parameters: parameters as? [String : AnyObject])
             .response { (request, response, data, error) in
-                println(response)
-                
+            //    println(response)
+                self.performSegueWithIdentifier("unwindToSegueGer", sender: nil)
+     
         }
 
     }
 
     
-
-    func registerForKeyboardNotifications() -> Void {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardWillShowNotification, object: nil)
-        
-    }
-    
-    func deregisterFromKeyboardNotifications() -> Void {
-        println("Deregistering!")
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardDidHideNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyboardWasShown:", name: UIKeyboardWillHideNotification, object: nil)
-        
-    }
-    
-    func keyboardWasShown(notification: NSNotification) {
-        var info: Dictionary = notification.userInfo!
-        var keyboardSize: CGSize = (info[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size)!
-        var buttonOrigin: CGPoint = self.viewblock.frame.origin;
-        var buttonHeight: CGFloat = self.viewblock.frame.size.height;
-        var visibleRect: CGRect = self.viewblock.frame
-        visibleRect.size.height -= keyboardSize.height
-        
-        if (!CGRectContainsPoint(visibleRect, buttonOrigin)) {
-            var scrollPoint: CGPoint = CGPointMake(0.0, buttonOrigin.y - visibleRect.size.height + buttonHeight + 4)
-            self.scroller.setContentOffset(scrollPoint, animated: true)
-            
-        }
-    }
-    
-    func hideKeyboard() {
-        message.resignFirstResponder()   //FirstResponder's must be resigned for hiding keyboard.
-        self.scroller.setContentOffset(CGPointZero, animated: true)
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         let prefs = NSUserDefaults.standardUserDefaults()
         let name = prefs.stringForKey("USERNAME")
         username.text = name
@@ -134,7 +101,11 @@ class SendBroadcast: UIViewController {
         self.mapView.setRegion(reg, animated: true)
     }
     
-    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+
     
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         if annotation is MKPointAnnotation {
@@ -162,16 +133,10 @@ class SendBroadcast: UIViewController {
 //
 //            view.dragState = .None
 //        default: break
-            println("moving")
         lat = Float(annotation.coordinate.latitude)
         long = Float(annotation.coordinate.longitude)
 
         //}
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 

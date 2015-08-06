@@ -78,7 +78,7 @@ class UserProfile: UIViewController {
         let name = prefs.stringForKey("USERNAME")
 
         let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profileuser.php?username="+username+"&friend="+name!)
-        
+        println(baseURL)
         let pointData = NSData(contentsOfURL: baseURL!, options: nil, error: nil)
         
         let points = NSJSONSerialization.JSONObjectWithData(pointData!,
@@ -156,7 +156,7 @@ class UserProfile: UIViewController {
                 dispatch_async(dispatch_get_main_queue()) { // 2
 
                 let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profileuser.php?username="+self.username+"&friend="+name!)
-                
+                println(baseURL)
                 let pointData = NSData(contentsOfURL: baseURL!, options: nil, error: nil)
                 
                 let points = NSJSONSerialization.JSONObjectWithData(pointData!,

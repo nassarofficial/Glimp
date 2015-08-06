@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		6E0528D21B1653C400C50C5C /* Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0528D11B1653C400C50C5C /* Comments.swift */; };
+		6E0912051B6D073D00333A9A /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0912041B6D073D00333A9A /* UITextField+Extension.swift */; };
+		6E0912071B6D5A1000333A9A /* Hashtag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0912061B6D5A1000333A9A /* Hashtag.swift */; };
 		6E0E21681B279C870095D3A4 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E0E21671B279C870095D3A4 /* Settings.swift */; };
 		6E15F1C91B5718E9009EA1B5 /* quem.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E15F1C81B5718E9009EA1B5 /* quem.png */; };
 		6E3480891B347D09003F0D6A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3480631B347D09003F0D6A /* AFHTTPRequestOperation.m */; };
@@ -28,6 +30,7 @@
 		6E3480991B347D09003F0D6A /* UIProgressView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3480841B347D09003F0D6A /* UIProgressView+AFNetworking.m */; };
 		6E34809A1B347D09003F0D6A /* UIRefreshControl+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3480861B347D09003F0D6A /* UIRefreshControl+AFNetworking.m */; };
 		6E34809B1B347D09003F0D6A /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3480881B347D09003F0D6A /* UIWebView+AFNetworking.m */; };
+		6E4F6B161B6C176A00CB775E /* BlockTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4F6B151B6C176A00CB775E /* BlockTableView.swift */; };
 		6E5990041B1BA26D001D4016 /* LocationCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5990031B1BA26D001D4016 /* LocationCollectionViewController.swift */; };
 		6E5990061B1BAA80001D4016 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E5990051B1BAA80001D4016 /* CollectionViewCell.swift */; };
 		6E6087221B28B11600B0AAD8 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E6087211B28B11600B0AAD8 /* UserProfile.swift */; };
@@ -107,13 +110,16 @@
 		6EE9322E1B3F508C00E52F63 /* splash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6EE9322D1B3F508C00E52F63 /* splash.mp3 */; };
 		6EE97F881B5EECCA00C83AC7 /* SendBroadcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE97F871B5EECCA00C83AC7 /* SendBroadcast.swift */; };
 		6EEC68781B59384F0050866C /* BroadcastReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC68771B59384F0050866C /* BroadcastReq.swift */; };
-		6EF5E5441B66C4B900B043FC /* AutoCompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF5E5431B66C4B900B043FC /* AutoCompleteTextField.swift */; };
+		6EF233891B71302F0083C754 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF233881B71302F0083C754 /* Report.swift */; };
+		6EF2338B1B71321C0083C754 /* Reporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF2338A1B71321C0083C754 /* Reporter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		009E1EC5BCD743793E4C63A8 /* Pods-Glimp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glimp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Glimp/Pods-Glimp.debug.xcconfig"; sourceTree = "<group>"; };
 		6E0528D11B1653C400C50C5C /* Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comments.swift; sourceTree = "<group>"; };
 		6E0528DF1B16593F00C50C5C /* Haneke.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Haneke.framework; path = "Pods/../build/Debug-iphoneos/Pods-Glimp/Haneke.framework"; sourceTree = "<group>"; };
+		6E0912041B6D073D00333A9A /* UITextField+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		6E0912061B6D5A1000333A9A /* Hashtag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hashtag.swift; sourceTree = "<group>"; };
 		6E0E21671B279C870095D3A4 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		6E15F1C81B5718E9009EA1B5 /* quem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = quem.png; sourceTree = "<group>"; };
 		6E3480621B347D09003F0D6A /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -154,6 +160,7 @@
 		6E3480861B347D09003F0D6A /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
 		6E3480871B347D09003F0D6A /* UIWebView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWebView+AFNetworking.h"; sourceTree = "<group>"; };
 		6E3480881B347D09003F0D6A /* UIWebView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWebView+AFNetworking.m"; sourceTree = "<group>"; };
+		6E4F6B151B6C176A00CB775E /* BlockTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockTableView.swift; sourceTree = "<group>"; };
 		6E5990031B1BA26D001D4016 /* LocationCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewController.swift; sourceTree = "<group>"; };
 		6E5990051B1BAA80001D4016 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		6E6087211B28B11600B0AAD8 /* UserProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
@@ -270,7 +277,8 @@
 		6EE9322D1B3F508C00E52F63 /* splash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = splash.mp3; sourceTree = "<group>"; };
 		6EE97F871B5EECCA00C83AC7 /* SendBroadcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendBroadcast.swift; sourceTree = "<group>"; };
 		6EEC68771B59384F0050866C /* BroadcastReq.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BroadcastReq.swift; sourceTree = "<group>"; };
-		6EF5E5431B66C4B900B043FC /* AutoCompleteTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoCompleteTextField.swift; sourceTree = "<group>"; };
+		6EF233881B71302F0083C754 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
+		6EF2338A1B71321C0083C754 /* Reporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reporter.swift; sourceTree = "<group>"; };
 		8BD82ADCF977F1BBF70B9E37 /* Pods_Glimp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glimp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC89E911EA7B3C2B3C980BB /* Pods-Glimp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glimp.release.xcconfig"; path = "Pods/Target Support Files/Pods-Glimp/Pods-Glimp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -431,7 +439,6 @@
 				6E88E98A1B42ADED00C29AF2 /* GooglePlus.framework */,
 				6EC8BE991B0D215000F38728 /* AppDelegate.swift */,
 				6EC8BE9A1B0D215000F38728 /* AVCamPreviewView.swift */,
-				6EF5E5431B66C4B900B043FC /* AutoCompleteTextField.swift */,
 				6ECF7D6B1B4835AA002A37C6 /* BeatAnimator.swift */,
 				6E76E75C1B40C34B0006AEC2 /* ChangePassword.swift */,
 				6E5990051B1BAA80001D4016 /* CollectionViewCell.swift */,
@@ -441,6 +448,7 @@
 				6EE932271B3F2E3E00E52F63 /* CommentsNotif.swift */,
 				6E7F10AD1B3F724D00E27E27 /* ForgetMyPassword.swift */,
 				6EC8BE9C1B0D215000F38728 /* Globe.swift */,
+				6E4F6B151B6C176A00CB775E /* BlockTableView.swift */,
 				6EEC68771B59384F0050866C /* BroadcastReq.swift */,
 				6EDD622E1B38456C004A5726 /* GlimS.swift */,
 				6EC8BEA01B0D215000F38728 /* Glimp.swift */,
@@ -448,6 +456,7 @@
 				6ED1F7391B47F6DA00B2A4B3 /* ProgressHUD.swift */,
 				6EC8BEA61B0D215000F38728 /* Getter.swift */,
 				6EC8BEA31B0D215000F38728 /* GlimpView.swift */,
+				6E0912061B6D5A1000333A9A /* Hashtag.swift */,
 				6EC8BE9B1B0D215000F38728 /* Home.swift */,
 				6EA803701B2F5A9800316620 /* imagePicker.swift */,
 				6EC8BEA41B0D215000F38728 /* LoginVC.swift */,
@@ -458,6 +467,8 @@
 				6EC8BEA81B0D215000F38728 /* Player.swift */,
 				6EC8BE9D1B0D215000F38728 /* Profile.swift */,
 				6E70795F1B2AF6E2006A2B24 /* Reachability.swift */,
+				6EF233881B71302F0083C754 /* Report.swift */,
+				6EF2338A1B71321C0083C754 /* Reporter.swift */,
 				6EE97F871B5EECCA00C83AC7 /* SendBroadcast.swift */,
 				6E0E21671B279C870095D3A4 /* Settings.swift */,
 				6EE9322B1B3F4BF900E52F63 /* SFSwiftNotification.swift */,
@@ -466,6 +477,7 @@
 				6EE932291B3F2FE400E52F63 /* UserProfileNotif.swift */,
 				6EC8BEA91B0D215000F38728 /* TestAnnotation.swift */,
 				6E6087211B28B11600B0AAD8 /* UserProfile.swift */,
+				6E0912041B6D073D00333A9A /* UITextField+Extension.swift */,
 				6ECF7D691B4821FF002A37C6 /* utils.swift */,
 				6E15F1C81B5718E9009EA1B5 /* quem.png */,
 				6EC8BEAC1B0D215000F38728 /* glimplogo-2.png */,
@@ -790,10 +802,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E3480991B347D09003F0D6A /* UIProgressView+AFNetworking.m in Sources */,
+				6EF233891B71302F0083C754 /* Report.swift in Sources */,
 				6EC8BEFE1B0D218F00F38728 /* RAMFrameItemAnimation.swift in Sources */,
 				6E34808D1B347D09003F0D6A /* AFSecurityPolicy.m in Sources */,
 				6ECF7D6D1B4835AA002A37C6 /* BeatAnimator.swift in Sources */,
 				6E3480971B347D09003F0D6A /* UIButton+AFNetworking.m in Sources */,
+				6E4F6B161B6C176A00CB775E /* BlockTableView.swift in Sources */,
+				6E0912051B6D073D00333A9A /* UITextField+Extension.swift in Sources */,
 				6EC8BF031B0D218F00F38728 /* RAMAnimatedTabBarController.swift in Sources */,
 				6EC8BEB71B0D215000F38728 /* AVCamPreviewView.swift in Sources */,
 				6EA803711B2F5A9800316620 /* imagePicker.swift in Sources */,
@@ -814,6 +829,7 @@
 				6E0528D21B1653C400C50C5C /* Comments.swift in Sources */,
 				6EC8BEFC1B0D218F00F38728 /* JPSThumnail.m in Sources */,
 				6EC8BEC41B0D215000F38728 /* SignupVC.swift in Sources */,
+				6EF2338B1B71321C0083C754 /* Reporter.swift in Sources */,
 				6EE932281B3F2E3E00E52F63 /* CommentsNotif.swift in Sources */,
 				6EC8BEC31B0D215000F38728 /* Getter.swift in Sources */,
 				6EC8BEC01B0D215000F38728 /* GlimpView.swift in Sources */,
@@ -827,6 +843,7 @@
 				6EC8BEC61B0D215000F38728 /* TestAnnotation.swift in Sources */,
 				6E7F10AE1B3F724D00E27E27 /* ForgetMyPassword.swift in Sources */,
 				6EEC68781B59384F0050866C /* BroadcastReq.swift in Sources */,
+				6E0912071B6D5A1000333A9A /* Hashtag.swift in Sources */,
 				6E3480981B347D09003F0D6A /* UIImageView+AFNetworking.m in Sources */,
 				6EC8BEFA1B0D218F00F38728 /* JPSThumbnailAnnotation.m in Sources */,
 				6E3480961B347D09003F0D6A /* UIAlertView+AFNetworking.m in Sources */,
@@ -840,7 +857,6 @@
 				6EC8BF041B0D218F00F38728 /* RAMItemAnimationProtocol.swift in Sources */,
 				6EC8BEFB1B0D218F00F38728 /* JPSThumbnailAnnotationView.m in Sources */,
 				6ECF7D6E1B4835AA002A37C6 /* PacmanAnimator.swift in Sources */,
-				6EF5E5441B66C4B900B043FC /* AutoCompleteTextField.swift in Sources */,
 				6E3480951B347D09003F0D6A /* UIActivityIndicatorView+AFNetworking.m in Sources */,
 				6E34808E1B347D09003F0D6A /* AFURLConnectionOperation.m in Sources */,
 				6E3480911B347D09003F0D6A /* AFURLSessionManager.m in Sources */,

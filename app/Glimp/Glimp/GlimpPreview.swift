@@ -1,5 +1,3 @@
-
-
 import UIKit
 import CoreLocation
 import Alamofire
@@ -42,7 +40,6 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     let reachability = Reachability.reachabilityForInternetConnection()
     var broadcast_id = "0"
     /// ---------------------------------------
-    @IBOutlet var Description: AutoCompleteTextField!
     //@IBOutlet weak var autocompleteTextfield: AutoCompleteTextField!
     
     private var responseData:NSMutableData?
@@ -57,13 +54,51 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     var tickerer = 0
     var flagger = ""
     var arr = [Int]()
-
+    var mention = ""
     ///-----------------------------------------
+    @IBOutlet var locationer: UITableView!
     
-    @IBAction func hidepre(sender: AnyObject) {
-        self.navigationController?.popViewControllerAnimated(true)
+    @IBOutlet var suggester: UITableView!
+    @IBOutlet var previewer: UIView!
+    
+    @IBOutlet var customlocation: UITextField!
+    @IBOutlet var Description: UITextView!
+    
+    @IBAction func custloc(sender: AnyObject) {
+        locLabel = customlocation.text
+        getlocfs.setTitle(customlocation.text, forState: UIControlState.Normal)
+        self.viewofloc.hidden = true
 
     }
+    
+    // tbc : foursquare
+    var datas: [JSON] = []
+    var datasMentions: [JSON] = []
+
+    @IBAction func hidepre(sender: AnyObject) {
+        self.navigationController?.popViewControllerAnimated(true)
+        
+    }
+    
+    func getdata(query:String){
+        let prefs = NSUserDefaults.standardUserDefaults()
+        
+        let name = prefs.stringForKey("USERNAME")
+        var usernamep = String(name!)
+
+        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/friendlist.php", parameters: ["username": usernamep, "query" : query]).responseJSON { (request, response, json, error) in
+            println(response)
+            if json != nil {
+                var jsonObj = JSON(json!)
+                if let data = jsonObj["predictions"].arrayValue as [JSON]?{
+                    self.datasMentions = data
+                    self.suggester.reloadData()
+                }
+            }
+        }
+        
+    }
+
     @IBOutlet weak var uploading: UIVisualEffectView!
     @IBAction func posttoserver(sender: AnyObject) {
         reachability.startNotifier()
@@ -75,71 +110,71 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
                     "Please enter a description", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                 self.presentViewController(alertController, animated: true, completion: nil)
-
+                
             } else if count(Description.text) < 20 {
                 let alertController = UIAlertController(title: "Glimp", message:
                     "Please enter more characters (Minimum 20, Maximum 150)", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                 self.presentViewController(alertController, animated: true, completion: nil)
-
+                
             }
-            
+                
             else {
                 self.uploading.hidden = false
-
-            let prefs = NSUserDefaults.standardUserDefaults()
-
-            let name = prefs.stringForKey("USERNAME")
-            var usernamep = String(name!)
-
-            // now lets get the directory contents (including folders)
-            var progress: NSProgress?
-            
-            var fileURL = NSURL.fileURLWithPath(self.ViewControllerVideoPath)!
-            
-            var params = [
-                "latitude": gllat!,
-                "longitude": gllong!,
-                "loc" : locLabel,
-                "locid": locID,
-                "desc" : Description.text,
-                "username": usernamep,
-                "b_id": broadcast_id
-            ]
-            
-            let manager = AFHTTPRequestOperationManager()
-            //let url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/upload.php"
-            let url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/upload-beta.php"
-
-            manager.responseSerializer = AFHTTPResponseSerializer()
-            manager.POST( url, parameters: params,
-                constructingBodyWithBlock: { (data: AFMultipartFormData!) in
-                    println("")
-                    var res = data.appendPartWithFileURL(fileURL,name: "fileToUpload", error: nil)
-                    println("was file added properly to the body? \(res)")
-                },
-                success: { (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
-                    println("Yes this was a success")
-                    prefs.setInteger(1, forKey: "glimper")
-                    prefs.synchronize()
-                    self.performSegueWithIdentifier("backtocali", sender: self)
-
-
-                },
-                failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
-                    println("We got an error here.. \(error.localizedDescription)")
-            })
-            
+                
+                let prefs = NSUserDefaults.standardUserDefaults()
+                
+                let name = prefs.stringForKey("USERNAME")
+                var usernamep = String(name!)
+                
+                // now lets get the directory contents (including folders)
+                var progress: NSProgress?
+                
+                var fileURL = NSURL.fileURLWithPath(self.ViewControllerVideoPath)!
+                
+                var params = [
+                    "latitude": gllat!,
+                    "longitude": gllong!,
+                    "loc" : locLabel,
+                    "locid": locID,
+                    "desc" : Description.text,
+                    "username": usernamep,
+                    "b_id": broadcast_id
+                ]
+                
+                let manager = AFHTTPRequestOperationManager()
+                //let url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/upload.php"
+                let url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/upload-beta.php"
+                
+                manager.responseSerializer = AFHTTPResponseSerializer()
+                manager.POST( url, parameters: params,
+                    constructingBodyWithBlock: { (data: AFMultipartFormData!) in
+                        println("")
+                        var res = data.appendPartWithFileURL(fileURL,name: "fileToUpload", error: nil)
+                        println("was file added properly to the body? \(res)")
+                    },
+                    success: { (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
+                        println("Yes this was a success")
+                        prefs.setInteger(1, forKey: "glimper")
+                        prefs.synchronize()
+                        self.performSegueWithIdentifier("backtocali", sender: self)
+                        
+                        
+                    },
+                    failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
+                        println("We got an error here.. \(error.localizedDescription)")
+                })
+                
             } }else {
             let alertController = UIAlertController(title: "Glimp", message:
                 "No Connection", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
             self.presentViewController(alertController, animated: true, completion: nil)
-
+            
         }
         
     }
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet var selectloc: UIButton!
     @IBOutlet weak var viewofpost: UIView!
     @IBOutlet weak var viewofloc: UIView!
     @IBOutlet var getlocfs: UIButton!
@@ -165,7 +200,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
                 "No Connection", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
             self.presentViewController(alertController, animated: true, completion: nil)
-
+            
         }
         
     }
@@ -175,10 +210,9 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         
     }
     
-    @IBOutlet var previewer: UIView!
-    
-    // tbc : foursquare
-    var datas: [JSON] = []
+    @IBAction func tiyl(sender: AnyObject) {
+        customlocation.text = ""
+    }
     
     
     private var player: Player!
@@ -196,7 +230,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
-
+    
     // MARK: view lifecycle
     
     
@@ -212,33 +246,37 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        configureTextField()
-        handleTextFieldInterfaces()
         self.uploading.hidden = true
-
+        ////
+        self.suggester.hidden = true
+        
         self.viewofloc.hidden = true
         self.viewofpost.hidden = true
         let castlat = NSString(format: "%.2f", gllat!)
         let castlong = NSString(format: "%.2f", gllong!)
-        tableView.delegate = self
-        self.tableView.dataSource = self
         
+        locationer.delegate = self
+        self.locationer.dataSource = self
+        
+        suggester.delegate = self
+        self.suggester.dataSource = self
+
         /////
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         
         ////
-              
-                Alamofire.request(.GET, "https://api.foursquare.com/v2/venues/search?ll=\(castlat),\(castlong)&client_id=DPUDNKBQKC12FJ0KBRLVU5BG4JREZV1YAIVRXIULPLFZHMAL&client_secret=PA0I5FS3JWPDMOL0H5XLQNDJYBJPGNOEP4QX1ML23YOFGZ3G&v=20140806").responseJSON { (request, response, json, error) in
-                    if json != nil {
-                        var jsonObj = JSON(json!)
-                        if let data = jsonObj["response"]["venues"].arrayValue as [JSON]?{
-                            self.datas = data
-                            //println(self.datas)
-                            self.tableView.reloadData()
-                        }
-                    }
+        
+        Alamofire.request(.GET, "https://api.foursquare.com/v2/venues/search?ll=\(castlat),\(castlong)&client_id=DPUDNKBQKC12FJ0KBRLVU5BG4JREZV1YAIVRXIULPLFZHMAL&client_secret=PA0I5FS3JWPDMOL0H5XLQNDJYBJPGNOEP4QX1ML23YOFGZ3G&v=20140806").responseJSON { (request, response, json, error) in
+            if json != nil {
+                var jsonObj = JSON(json!)
+                if let data = jsonObj["response"]["venues"].arrayValue as [JSON]?{
+                    self.datas = data
+                    //println(self.datas)
+                    self.locationer.reloadData()
                 }
+            }
+        }
         
         self.tabBarController?.tabBar.hidden = true
         
@@ -265,7 +303,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         view.addGestureRecognizer(tap)
         tap.cancelsTouchesInView = false
-
+        
     }
     
     
@@ -279,8 +317,12 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
             self.Description.text = "";
         }
     }
-
     
+    func textFieldShouldReturn(textField: UITextField!) -> Bool {
+        self.view.endEditing(true);
+        return false;
+    }
+
     override func viewWillAppear(animated: Bool) {
         getlocfs.setTitle(locLabel, forState: UIControlState.Normal)
         
@@ -355,9 +397,6 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     {
     }
     
-    func textViewDidChange(Description: UITextView)
-    {
-    }
     
     // tbc : foursquare
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -368,188 +407,138 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return datas.count
+        if tableView == locationer {
+            return datas.count
+        } else if tableView == suggester {
+            return datasMentions.count
+        }
+        return 0
     }
-
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ImageCell", forIndexPath: indexPath) as! ImageCell
-        
-        let data = datas[indexPath.row]
-        if let caption = data["name"].string {
-            cell.labelCaption.text = caption
+        if tableView == locationer {
+            let data = datas[indexPath.row]
+            if let caption = data["name"].string {
+                cell.labelCaption.text = caption
+            }
+        } else if tableView == suggester {
+            let data = datasMentions[indexPath.row]
+            if let caption = data["username"].string {
+                cell.labelCaption.text = caption
+            }
+
         }
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        let currentCell = self.tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!;
-        let row = indexPath.row
-        self.locLabel = datas[row]["name"].string!
-        self.locID = datas[row]["id"].string!
-        
-        getlocfs.setTitle(locLabel, forState: UIControlState.Normal)
-        
-        self.viewofloc.hidden = true
-       // println(self.locID)
-       // println(self.locLabel)
-    }
-    
-    
-    private func configureTextField(){
-        Description.autoCompleteTextColor = UIColor(red: 128.0/255.0, green: 128.0/255.0, blue: 128.0/255.0, alpha: 1.0)
-        Description.autoCompleteTextFont = UIFont(name: "HelveticaNeue-Light", size: 12.0)
-        Description.autoCompleteCellHeight = 35.0
-        Description.maximumAutoCompleteCount = 20
-        Description.hidesWhenSelected = true
-        Description.hidesWhenEmpty = true
-        Description.enableAttributedText = true
-        var attributes = [String:AnyObject]()
-        attributes[NSForegroundColorAttributeName] = UIColor.blackColor()
-        attributes[NSFontAttributeName] = UIFont(name: "HelveticaNeue-Bold", size: 12.0)
-        Description.autoCompleteAttributes = attributes
-    }
-    
-    private func handleTextFieldInterfaces(){
-        Description.onTextChange = {[weak self] text in
-            let prefs = NSUserDefaults.standardUserDefaults()
+        if tableView == locationer {
+            let currentCell = self.locationer.cellForRowAtIndexPath(indexPath) as UITableViewCell!;
+            let row = indexPath.row
+            self.locLabel = datas[row]["name"].string!
+            self.locID = datas[row]["id"].string!
             
-            let name = prefs.stringForKey("USERNAME")
-            var usernamep = String(name!)
-
-            if !text.isEmpty {
-                
-                self!.ticker = count(text) - 1
-                println(self!.ticker)
-                var idx = advance(text.startIndex,self!.ticker)
-                
-                if (text[idx] == "@" && self!.flagger == ""){
-                    
-                    self!.flagger = "@"
-                    self!.arr.insert(self!.ticker, atIndex: 0)
-                    if self!.connection != nil{
-                        self!.connection!.cancel()
-                        self!.connection = nil
-                    }
-                    
-                    let urlString = "\(self!.baseURLString)?username=\(usernamep)&query=\(self!.query)"
-                    let url = NSURL(string: urlString.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)!)
-                    if url != nil{
-                        let urlRequest = NSURLRequest(URL: url!)
-                        println(urlRequest)
-                        self!.connection = NSURLConnection(request: urlRequest, delegate: self)
-                    }
-                    
-                }
-                else if self!.flagger == "@" {
-
-                    if (text[idx] != " "){
-                        
-                        self!.arr.insert(self!.ticker, atIndex: 1)
-                        if self!.connection != nil{
-                            self!.connection!.cancel()
-                            self!.connection = nil
-                        }
-                        if (self!.arr[0]+1 > self!.arr[1]){
-                            
-                            self!.query = ""
-                        } else {
-                            self!.query = text[self!.arr[0]+1...self!.arr[1]]
-                        }
-
-                        let urlString = "\(self!.baseURLString)?username=\(usernamep)&query=\(self!.query)"
-                        let url = NSURL(string: urlString.stringByAddingPercentEscapesUsingEncoding(NSASCIIStringEncoding)!)
-                        if url != nil{
-                            let urlRequest = NSURLRequest(URL: url!)
-                            println(urlRequest)
-                            self!.connection = NSURLConnection(request: urlRequest, delegate: self)
-                        }
-                        
-                    } else if (text[idx] == " "){
-                        
-                        self!.flagger = ""
-                    }
-                } else if (text[idx] == " "){
-                    
-                    self!.flagger = ""
-                }
-                if !(text.contains("@")){
-                    println("here")
-                    self!.flagger = ""
-                    self!.Description.hidesWhenSelected = true
-                    self!.Description.hidesWhenEmpty = true
-                    
-                }
-            }
-        }
-        
-        Description.onSelect = {[weak self] text, indexpath in
-            self!.Description.hidesWhenSelected = true
+            getlocfs.setTitle(locLabel, forState: UIControlState.Normal)
             
-            var before = self!.Description.text as String
-            var ticker = self!.arr[0]
-            var dif = (self!.arr[1] - self!.arr[0]+1) - 1
-            var texter = String(text) as String
-            var end = count(before) - 1
-            var fhalf = before[0...ticker]
-            var tillafterentry = count(fhalf)+dif
+            self.viewofloc.hidden = true
+            // println(self.locID)
+            // println(self.locLabel)
+        } else if tableView == suggester {
+            let currentCell = self.suggester.cellForRowAtIndexPath(indexPath) as UITableViewCell!;
+            let row = indexPath.row
+            self.mention = datasMentions[row]["username"].string!
+            suggester.hidden = true
+            var gettext:String = Description!.text
+            
+            var before = gettext as String
+            var ticker = arr[0]
+            var tickerend = arr[1]
             var ender = count(before)-1
-            if (tillafterentry < ender){
-                self!.Description.hidesWhenSelected = true
-                self!.Description.text = (fhalf + texter + before[tillafterentry...count(before)-1])
+            var fhalf = before[0...ticker] + self.mention
+            if (count(fhalf) < ender){
+                suggester.hidden = true
+                
             } else {
-                self!.Description.hidesWhenSelected = true
-                self!.Description.text = (fhalf + texter)
+                suggester.hidden = true
+                Description!.text = fhalf
             }
         }
     }
     
-    
-    //MARK: NSURLConnectionDelegate
-    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
-        responseData = NSMutableData()
-    }
-    
-    func connection(connection: NSURLConnection, didReceiveData data: NSData) {
-        responseData?.appendData(data)
-    }
-    
-    func connectionDidFinishLoading(connection: NSURLConnection) {
-        if responseData != nil{
-            var error:NSError?
-            if let result = NSJSONSerialization.JSONObjectWithData(responseData!, options: nil, error: &error) as? NSDictionary{
-                let status = result["status"] as? String
-                if status == "OK"{
-                    if let predictions = result["predictions"] as? NSArray{
-                        println(result["predictions"])
-                        
-                        var locations = [String]()
-                        var autocomp = [String]()
-                        
-                        for dict in predictions as! [NSDictionary]{
-                            locations.append(dict["username"] as! String)
-                            autocomp.append(dict["username"] as! String)
-                            
-                            println(dict["username"])
-                        }
-                        self.Description.autoCompleteStrings = locations
-                        self.Description.autoCompleteStringsrem = autocomp
-                        
+    func textViewDidChange(textview: UITextView) { //Handle the text changes here
+        var gettext:String = textview.text
+        if count(gettext) != 0 {
+            suggester.hidden = false
+            ticker = count(gettext) - 1
+            println(ticker)
+            var idx = advance(gettext.startIndex,ticker)
+            
+            if (gettext[idx] == "@" && flagger == ""){
+                arr.insert(ticker, atIndex: 0)
+                arr.insert(ticker, atIndex: 1)
+                flagger = "@"
+                getdata(query)
+                
+                println("entered mention")
+            }
+            else if flagger == "@" {
+                
+                if (gettext[idx] != " "){
+                    suggester.hidden = true
+                    
+                    arr.insert(ticker, atIndex: 1)
+                    getdata(query)
+                    
+                    if (arr[0]+1 > arr[1]){
+                        getdata(query)
+                        suggester.hidden = false
+                        query = ""
+                    } else {
+                        query = gettext[arr[0]+1...arr[1]]
+                        getdata(query)
+                        suggester.hidden = true
                     }
-                }
-                else{
-                    self.Description.autoCompleteStrings = nil
+                    println(query)
+                } else if (gettext[idx] == " "){
+                    arr.insert(ticker, atIndex: 1)
+                    
+                    suggester.hidden = true
+                    flagger = ""
+                    getdata(query)
+                    
                 }
             }
+            if (gettext[idx] == " "){
+                //println(ticker)
+                flagger = ""
+                suggester.hidden = true
+            }
+            if (gettext[idx] == " " && flagger == "@"){
+                arr.insert(ticker, atIndex: 1)
+                suggester.hidden = true
+                
+            }
+            if !(gettext.contains("@")){
+                
+                flagger = ""
+                suggester.hidden = true
+            }
+            if (flagger == "" && gettext[idx] != "@"){
+                suggester.hidden = true
+            }
+            if (flagger == "@" && gettext[idx] != "@"){
+                suggester.hidden = false
+                getdata(query)
+                
+            }
+            
+        } else {
+            suggester.hidden = false
+            
         }
     }
+
     
-    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
-        println("Error: \(error.localizedDescription)")
-    }
-
 }
-
-
-

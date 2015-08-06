@@ -44,7 +44,8 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         var loginButton = FBSDKLoginButton()
         loginButton.center = self.te.center
         loginButton.delegate = self
-        
+        self.view.addSubview(loginButton)
+
 //        signInButton = GPPSignInButton()
         // MARK: Google login Process
 //        var signIn = GPPSignIn.sharedInstance()
@@ -63,7 +64,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
 //        
 //        signIn.delegate = self;
         
-        self.view.addSubview(loginButton)
 //        self.view.addSubview(signInButton)
         
         

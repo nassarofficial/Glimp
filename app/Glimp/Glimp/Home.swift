@@ -208,10 +208,13 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
                     self.mapView.addAnnotations(self.annotations())
 
                     progressHUD.removeFromSuperview()
+                    var updateTimer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: "getBroadcast", userInfo: nil, repeats: true)
+                    
+                    println(self.locManager.location.coordinate.longitude)
+                    println(self.locManager.location.coordinate.longitude)
+
                 }
             }
-            
-            var updateTimer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: "getBroadcast", userInfo: nil, repeats: true)
             
 
             
@@ -227,9 +230,10 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     func getBroadcast(){
         let prefs = NSUserDefaults.standardUserDefaults()
         let name = prefs.stringForKey("USERNAME")
+        var usernamep = String(name!)
 
         let parameters = [
-            "username": name!,
+            "username": usernamep,
             "lat": Float(locManager.location.coordinate.latitude),
             "long": Float(locManager.location.coordinate.longitude)
         ]

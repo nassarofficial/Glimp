@@ -25,14 +25,15 @@ class GlimpView: UIViewController{
     var timestart : String = ""
     var timeend : String = ""
     var broadcat_id = ""
+    var payloader = ""
     @IBOutlet weak var timeleft: UILabel!
     @IBOutlet weak var username: UIButton!
     @IBOutlet weak var labeler: UILabel!
     @IBOutlet weak var location: UIButton!
-    @IBOutlet weak var gdescription: UILabel!
     @IBOutlet weak var views: UILabel!
     @IBOutlet weak var backbutton: UIButton!
     
+    @IBOutlet var textView: UITextView!
     @IBOutlet weak var descindicator: UIActivityIndicatorView!
     @IBOutlet weak var vidindicator: UIActivityIndicatorView!
     @IBOutlet var mainview: UIView!
@@ -98,13 +99,45 @@ class GlimpView: UIViewController{
             secondViewController.broadcast_id = self.broadcat_id
             
         }
+        if (segue.identifier == "goto_userprofilemention") {
+            let secondViewController = segue.destinationViewController as! UserProfile
+          //  let ider = userid as String!
+            
+            let ider2 = payloader as String!
+            //println(ider2)
+          //  secondViewController.userid = ider
+            
+            secondViewController.username = ider2
+        }
+        if (segue.identifier == "goto_hash") {
+            let secondViewController = segue.destinationViewController as! Hashtag
+            //  let ider = userid as String!
+            var stringer =  payloader
+            let ider2 = stringer as String!
+            //println(ider2)
+            //  secondViewController.userid = idergoto_report
+            
+            secondViewController.loc = ider2
+        }
+        if (segue.identifier == "goto_report") {
+            let secondViewController = segue.destinationViewController as! Report
+            //  let ider = userid as String!
+            var glimp =  glimpsid
+            let ider2 = glimp
+                as String!
+            //println(ider2)
+            //  secondViewController.userid = idergoto_report
+            
+            secondViewController.glimpid = ider2
+        }
+
 
     }
 
 
     func getglimps(){
         setupView()
-        println(self.glimpsid)
+        //println(self.glimpsid)
         self.spinner.stopAnimating()
 
         let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/glimp.php?glimpid="+self.glimpsid!)
@@ -120,8 +153,9 @@ class GlimpView: UIViewController{
             self.ViewControllerVideoPath = (point as! NSDictionary)["filename"] as! String
             self.username.setTitle((point as! NSDictionary)["username"] as? String, forState: UIControlState.Normal)
             self.usernamep = String(stringInterpolationSegment: (point as! NSDictionary)["username"]!) as String
-            self.gdescription.text = (point as! NSDictionary)["description"] as? String
-            
+            self.textView.text = (point as! NSDictionary)["description"] as? String
+            textView.resolveHashTags()
+
             self.userid = String(stringInterpolationSegment: (point as! NSDictionary)["userid"]!) as String
             
             let com = String(stringInterpolationSegment: (point as! NSDictionary)["COMMENT"]!) as String
@@ -220,7 +254,7 @@ class GlimpView: UIViewController{
         self.tabBarController?.tabBar.hidden = true
         
         Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/views.php", parameters: ["gid": glimpsid]).responseJSON { (request, response, json, error) in
-            println(response)
+           // println(response)
         }
 
     }
@@ -228,6 +262,40 @@ class GlimpView: UIViewController{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+}
+extension GlimpView : UITextViewDelegate {
+    
+    // increase the height of the textview as the user types
+    func showHashTagAlert(tagType:String, payload:String){
+        let alertView = UIAlertView()
+        alertView.title = "\(tagType) tag detected"
+        // get a handle on the payload
+        alertView.message = "\(payload)"
+        alertView.addButtonWithTitle("Ok")
+        alertView.show()
+    }
+    
+    func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
+        
+        // check for our fake URL scheme hash:helloWorld
+        if let scheme = URL.scheme {
+            switch scheme {
+            case "hash" :
+                payloader = URL.resourceSpecifier!
+                println(payloader)
+                performSegueWithIdentifier("goto_hash", sender: self)
+               // showHashTagAlert("hash", payload: URL.resourceSpecifier!)
+            case "mention" :
+                payloader = URL.resourceSpecifier!
+                performSegueWithIdentifier("goto_userprofilemention", sender: self)
+            default:
+                println("just a regular url")
+            }
+        }
+        
+        return true
     }
     
 }

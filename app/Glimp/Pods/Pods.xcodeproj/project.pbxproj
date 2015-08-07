@@ -1,0 +1,1281 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0B98689CD05ED9C1DC45600D /* Pods-Glimp-Refresher-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4E2C16771734EEA848D8F761 /* Pods-Glimp-Refresher-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0EC987421EDF778F3AB0BB23 /* UIImageView+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73F79F9652A0550B71C9C163 /* UIImageView+Haneke.swift */; };
+		1214A6A828714CFA1BCAEA57 /* Alamofire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243F5BAED46A42387715EA48 /* Alamofire.swift */; };
+		17CDE7327E26E6800D8E6278 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B4D90F833AC04EDB814222 /* SwiftyJSON.swift */; };
+		22596AE0A7598D1C11BEEA8A /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAD5746E9F213454ED65AEA8 /* Validation.swift */; };
+		248B1A08DA20FC14913C6125 /* Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FCCE0328832C06DB1D463B /* Fetcher.swift */; };
+		26438C434FD9EEFBCBBF06C1 /* Format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A0EA69218E5F754A551C772 /* Format.swift */; };
+		2CCDE0A4A416D338CD05FAF7 /* String+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26A9E85509D651F330F51B79 /* String+Haneke.swift */; };
+		34AAD983ADDF590528EA094C /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB5447C866E8BCCF59B6774E /* Request.swift */; };
+		3C932E44BBEAD3FA8A29D0F5 /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF3E74A91CEA147258F854AC /* Animator.swift */; };
+		3FDAC38E234472F84BE12F2B /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8200D1D6E2CDBCA4E693C /* Log.swift */; };
+		437A421B85C4C5586466C93C /* Pods-Glimp-HanekeSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 3BAD6E8F8AB9E00FAD20C1B9 /* Pods-Glimp-HanekeSwift-dummy.m */; };
+		4F9DAB5233C905DF5E9406A6 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873A5502970285EB73F5D9F7 /* ParameterEncoding.swift */; };
+		50C561A4A2E04D3E4B5D7993 /* UIButton+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E4065E6E54D8296821A7D1 /* UIButton+Haneke.swift */; };
+		55CC437F2A01B95B45BDD6ED /* Pods-Glimp-SwiftyJSON-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AFD1EEC2C30B049AEDF6E6A1 /* Pods-Glimp-SwiftyJSON-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		563E7B186F975CCDC77FD315 /* Pods-Glimp-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 28C84D8EDA94EB29DC1DEEB2 /* Pods-Glimp-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5CB4E57E2541BCDC772206CA /* PullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 541B05D8A227E96DF5D1F93F /* PullToRefreshView.swift */; };
+		644DD203F8EA6248EED71A8B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F99E487746BDC59CC32B054 /* Foundation.framework */; };
+		6A307EFD901190E12B5733BF /* NSFileManager+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90125BBE57EFF2F59E5F7E15 /* NSFileManager+Haneke.swift */; };
+		6D64B359C9613D49B2D3742D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F99E487746BDC59CC32B054 /* Foundation.framework */; };
+		6F0EBB226113776D9C66B2A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F99E487746BDC59CC32B054 /* Foundation.framework */; };
+		700EE7BED7787347AD344A2A /* CGSize+Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FC6EE6170D62706D414CE9 /* CGSize+Swift.swift */; };
+		7FCE784DD46ACC233F7C3028 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3217D5C3012A5378D57DCF1B /* Fetch.swift */; };
+		7FF56DDA887BDE6B2B0FD6D9 /* Pods-Glimp-Alamofire-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0169F0D55950A309D1FE8AE6 /* Pods-Glimp-Alamofire-dummy.m */; };
+		834D2F45777DED4BE9946AF4 /* CryptoSwiftMD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C99B4468F5E7A1FD277252 /* CryptoSwiftMD5.swift */; };
+		877F7DD42D8B2C904DEAC419 /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4AFCE24EB61FE469074B64 /* Manager.swift */; };
+		8B0632ABD9B13FF384642F54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F99E487746BDC59CC32B054 /* Foundation.framework */; };
+		8C45255B005CAD65B69BB874 /* Pods-Glimp-SwiftyTimer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = B24E2AC993FF6AC929D052DB /* Pods-Glimp-SwiftyTimer-dummy.m */; };
+		90C26A0D41354BD95D5FED24 /* UIImage+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C3E325E017BF5237D61556 /* UIImage+Haneke.swift */; };
+		950FF6D35F21FF25D6CD30D4 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21081CC500B0748A59CD6DB6 /* Download.swift */; };
+		9D05D1A9ADB1190B1AFEEED6 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B90CECE63366494DD7FC90 /* Upload.swift */; };
+		A86AF761DB6C8F7913C5501A /* NetworkFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2600C4035EDD5E531091E48D /* NetworkFetcher.swift */; };
+		A9DC681D448027E2144A8F9B /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6514054460B2FF77198B57E /* Data.swift */; };
+		A9E05A54E4BA575A4877C2BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F99E487746BDC59CC32B054 /* Foundation.framework */; };
+		AD6655586B788A599F693274 /* ResponseSerialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = C126537A8E2034E9B49D0568 /* ResponseSerialization.swift */; };
+		B193AF4DB0015BB0D95CD9C8 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9C7818E6C83CA651BD3857 /* Cache.swift */; };
+		B4FAB1CB1E390D9B95F1CBF9 /* Pods-Glimp-Refresher-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F143974DE569C6DD7A0F1EC /* Pods-Glimp-Refresher-dummy.m */; };
+		CB2C2BF3592BDF0FAA59228D /* PullToRefreshExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F735B6D5B7D7743EF41A55FB /* PullToRefreshExtension.swift */; };
+		CF08222E74A5BEB8EA0D6E84 /* Pods-Glimp-SwiftyJSON-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7595AE6F3AEA56B008B75B05 /* Pods-Glimp-SwiftyJSON-dummy.m */; };
+		D3A662C79286FAE2CD5317CC /* DiskFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C77F5C8E5C1EBB3B120DBCEA /* DiskFetcher.swift */; };
+		DAF0F927F263502A8398E5AA /* SwiftyTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3FDFC677E418A149B4E5CC /* SwiftyTimer.swift */; };
+		E1D610E1DD590F88CC6A305E /* Pods-Glimp-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 05D08305172EBB74B6264AD5 /* Pods-Glimp-dummy.m */; };
+		E75980A21F7A7D35F22F3E33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F99E487746BDC59CC32B054 /* Foundation.framework */; };
+		E9D5E05B7BEB4C168C51FB7B /* DiskCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB0E202BDE8754F7F18DBEF /* DiskCache.swift */; };
+		EC30B9191601CBD172F661D2 /* Pods-Glimp-HanekeSwift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 54838E8F5609BAAE798D37A9 /* Pods-Glimp-HanekeSwift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EDBE1C6F052EC7C0CBF228A6 /* Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78B2BFD9D9E315C231A70D6 /* Haneke.swift */; };
+		F09C6901C95AE04AAEE72FF5 /* NSHTTPURLResponse+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEE2F4A762A58C27CD26FB3 /* NSHTTPURLResponse+Haneke.swift */; };
+		F2756B9FC7FF434D6FABEF6E /* Pods-Glimp-Alamofire-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BEEE5BE614F7743EF6C24BAB /* Pods-Glimp-Alamofire-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F375693614161F52587088EC /* Pods-Glimp-SwiftyTimer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 765F776DDC8766DBB6A0C62C /* Pods-Glimp-SwiftyTimer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F93071C2E7358F915D6E78A1 /* UIView+Haneke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E98D7D1F9C11CD81F365226 /* UIView+Haneke.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8D2049795A29AA5CA54D19E0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B4FB95D057859970D4DEE53 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 292D0AEDBB3F43039B1F0780;
+			remoteInfo = "Pods-Glimp-Refresher";
+		};
+		99A3529AC67580650372A35E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B4FB95D057859970D4DEE53 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6D3C64E29B60D9251D3ACF16;
+			remoteInfo = "Pods-Glimp-Alamofire";
+		};
+		A24AE82C874A1B144839A807 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B4FB95D057859970D4DEE53 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 652132694956C0D9AAD9EDE4;
+			remoteInfo = "Pods-Glimp-HanekeSwift";
+		};
+		B06FCB166345AEF7EB56CA6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B4FB95D057859970D4DEE53 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D232A068CDC08925D5C9DA5;
+			remoteInfo = "Pods-Glimp-SwiftyTimer";
+		};
+		E0AEC3A8C5B3CB2C078652E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6B4FB95D057859970D4DEE53 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 616E6A2E518905F99AEB1273;
+			remoteInfo = "Pods-Glimp-SwiftyJSON";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0169F0D55950A309D1FE8AE6 /* Pods-Glimp-Alamofire-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Glimp-Alamofire-dummy.m"; sourceTree = "<group>"; };
+		04C11D8086B70EFDC0610E8A /* Pods-Glimp-HanekeSwift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimp-HanekeSwift.xcconfig"; sourceTree = "<group>"; };
+		05D08305172EBB74B6264AD5 /* Pods-Glimp-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Glimp-dummy.m"; sourceTree = "<group>"; };
+		070E7C85E50B224454168C23 /* Pods-Glimp-SwiftyTimer-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimp-SwiftyTimer-Private.xcconfig"; sourceTree = "<group>"; };
+		0F3FDFC677E418A149B4E5CC /* SwiftyTimer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyTimer.swift; path = Src/SwiftyTimer.swift; sourceTree = "<group>"; };
+		1E98D7D1F9C11CD81F365226 /* UIView+Haneke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIView+Haneke.swift"; path = "Haneke/UIView+Haneke.swift"; sourceTree = "<group>"; };
+		1F36BE6804BD4FECDD407AA7 /* Pods-Glimp-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Glimp-acknowledgements.markdown"; sourceTree = "<group>"; };
+		21081CC500B0748A59CD6DB6 /* Download.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Download.swift; path = Source/Download.swift; sourceTree = "<group>"; };
+		243F5BAED46A42387715EA48 /* Alamofire.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Alamofire.swift; path = Source/Alamofire.swift; sourceTree = "<group>"; };
+		2600C4035EDD5E531091E48D /* NetworkFetcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkFetcher.swift; path = Haneke/NetworkFetcher.swift; sourceTree = "<group>"; };
+		26A9E85509D651F330F51B79 /* String+Haneke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Haneke.swift"; path = "Haneke/String+Haneke.swift"; sourceTree = "<group>"; };
+		26C3E325E017BF5237D61556 /* UIImage+Haneke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImage+Haneke.swift"; path = "Haneke/UIImage+Haneke.swift"; sourceTree = "<group>"; };
+		28C84D8EDA94EB29DC1DEEB2 /* Pods-Glimp-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Glimp-umbrella.h"; sourceTree = "<group>"; };
+		2CF8200D1D6E2CDBCA4E693C /* Log.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Log.swift; path = Haneke/Log.swift; sourceTree = "<group>"; };
+		30942E5F4AABE247270E654A /* Pods-Glimp-SwiftyTimer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimp-SwiftyTimer.xcconfig"; sourceTree = "<group>"; };
+		319792FEDAF89F2FB167C94C /* Pods-Glimp-Alamofire-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimp-Alamofire-Private.xcconfig"; sourceTree = "<group>"; };
+		3217D5C3012A5378D57DCF1B /* Fetch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Fetch.swift; path = Haneke/Fetch.swift; sourceTree = "<group>"; };
+		3BAD6E8F8AB9E00FAD20C1B9 /* Pods-Glimp-HanekeSwift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Glimp-HanekeSwift-dummy.m"; sourceTree = "<group>"; };
+		3D2864AF4FA943952D8E861F /* Pods-Glimp-Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Glimp-Alamofire.modulemap"; sourceTree = "<group>"; };
+		40649C0AEBFE2A6748610084 /* Pods-Glimp-SwiftyTimer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Glimp-SwiftyTimer.modulemap"; sourceTree = "<group>"; };
+		41C99B4468F5E7A1FD277252 /* CryptoSwiftMD5.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CryptoSwiftMD5.swift; path = Haneke/CryptoSwiftMD5.swift; sourceTree = "<group>"; };
+		4532B48BDF5F660DC9C6B87C /* Pods-Glimp-HanekeSwift-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimp-HanekeSwift-Private.xcconfig"; sourceTree = "<group>"; };
+		459DA0EFDE77FD1D12600235 /* Haneke.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Haneke.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4E2C16771734EEA848D8F761 /* Pods-Glimp-Refresher-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Glimp-Refresher-umbrella.h"; sourceTree = "<group>"; };
+		4F99E487746BDC59CC32B054 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS8.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		541B05D8A227E96DF5D1F93F /* PullToRefreshView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PullToRefreshView.swift; path = Refresher/PullToRefreshView.swift; sourceTree = "<group>"; };
+		54838E8F5609BAAE798D37A9 /* Pods-Glimp-HanekeSwift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Glimp-HanekeSwift-umbrella.h"; sourceTree = "<group>"; };
+		5BD6AA1996131F3C3E167AF7 /* Pods-Glimp-SwiftyTimer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Glimp-SwiftyTimer-prefix.pch"; sourceTree = "<group>"; };
+		5DEE2F4A762A58C27CD26FB3 /* NSHTTPURLResponse+Haneke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSHTTPURLResponse+Haneke.swift"; path = "Haneke/NSHTTPURLResponse+Haneke.swift"; sourceTree = "<group>"; };
+		5EB0E202BDE8754F7F18DBEF /* DiskCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DiskCache.swift; path = Haneke/DiskCache.swift; sourceTree = "<group>"; };
+		5FCAAEBF07A9B1EAAC19368A /* Pods-Glimp-environment.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Glimp-environment.h"; sourceTree = "<group>"; };
+		62FF53B4FAB352D95089E400 /* Pods-Glimp-SwiftyJSON.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Glimp-SwiftyJSON.modulemap"; sourceTree = "<group>"; };
+		67FC6EE6170D62706D414CE9 /* CGSize+Swift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "CGSize+Swift.swift"; path = "Haneke/CGSize+Swift.swift"; sourceTree = "<group>"; };
+		6C4AFCE24EB61FE469074B64 /* Manager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Manager.swift; path = Source/Manager.swift; sourceTree = "<group>"; };
+		73F79F9652A0550B71C9C163 /* UIImageView+Haneke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIImageView+Haneke.swift"; path = "Haneke/UIImageView+Haneke.swift"; sourceTree = "<group>"; };
+		7595AE6F3AEA56B008B75B05 /* Pods-Glimp-SwiftyJSON-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Glimp-SwiftyJSON-dummy.m"; sourceTree = "<group>"; };
+		765F776DDC8766DBB6A0C62C /* Pods-Glimp-SwiftyTimer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Glimp-SwiftyTimer-umbrella.h"; sourceTree = "<group>"; };
+		8254FCF3B5CFBBE5932CDCE3 /* Pods-Glimp-Refresher-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimp-Refresher-Private.xcconfig"; sourceTree = "<group>"; };
+		86E4065E6E54D8296821A7D1 /* UIButton+Haneke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIButton+Haneke.swift"; path = "Haneke/UIButton+Haneke.swift"; sourceTree = "<group>"; };
+		873A5502970285EB73F5D9F7 /* ParameterEncoding.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ParameterEncoding.swift; path = Source/ParameterEncoding.swift; sourceTree = "<group>"; };
+		88FCCE0328832C06DB1D463B /* Fetcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Fetcher.swift; path = Haneke/Fetcher.swift; sourceTree = "<group>"; };
+		89809BBC0E6D120569AAEF67 /* Instabug.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; path = Instabug.bundle; sourceTree = "<group>"; };
+		8A5237970F7B6797F97B9923 /* IBGEnums.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IBGEnums.h; path = Instabug.framework/Versions/A/Headers/IBGEnums.h; sourceTree = "<group>"; };
+		8EDD65CD93779574F1859EE2 /* Refresher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Refresher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8F143974DE569C6DD7A0F1EC /* Pods-Glimp-Refresher-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Glimp-Refresher-dummy.m"; sourceTree = "<group>"; };
+		8F7F28797CE7118B1F07ED6F /* SwiftyTimer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyTimer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		90125BBE57EFF2F59E5F7E15 /* NSFileManager+Haneke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSFileManager+Haneke.swift"; path = "Haneke/NSFileManager+Haneke.swift"; sourceTree = "<group>"; };
+		90C3C50E3FB4AD02BBE0C1B9 /* Pods-Glimp-SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Glimp-SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
+		91C50B8F717EA7620772B7F6 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		93853AE4C45EB25BC85C5779 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9395FCAE07FDC856A5FC5371 /* Pods-Glimp-Alamofire-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Glimp-Alamofire-prefix.pch"; sourceTree = "<group>"; };
+		97988BFF665AC69121E11E7C /* Pods-Glimp-HanekeSwift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Glimp-HanekeSwift.modulemap"; sourceTree = "<group>"; };
+		9A0EA69218E5F754A551C772 /* Format.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Format.swift; path = Haneke/Format.swift; sourceTree = "<group>"; };
+		9BDBF8B9625808BA12A89637 /* Pods-Glimp-SwiftyJSON.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimp-SwiftyJSON.xcconfig"; sourceTree = "<group>"; };
+		9DE651E8A65062CB7F1BAC49 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A227246544A5E1AA02D630A9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A2B9DA8D7142C2B05EBE8274 /* Pods-Glimp-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Glimp-acknowledgements.plist"; sourceTree = "<group>"; };
+		A2FE5D4E8E62AF4A7F22B2D9 /* Pods-Glimp-Refresher-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Glimp-Refresher-prefix.pch"; sourceTree = "<group>"; };
+		A8B92C6C8F514454F309F118 /* Pods-Glimp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimp.release.xcconfig"; sourceTree = "<group>"; };
+		AB5447C866E8BCCF59B6774E /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
+		AFD1EEC2C30B049AEDF6E6A1 /* Pods-Glimp-SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Glimp-SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
+		B24E2AC993FF6AC929D052DB /* Pods-Glimp-SwiftyTimer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Glimp-SwiftyTimer-dummy.m"; sourceTree = "<group>"; };
+		B2FF101E06564BA66705158C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B5B90CECE63366494DD7FC90 /* Upload.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Upload.swift; path = Source/Upload.swift; sourceTree = "<group>"; };
+		B600C5881FDFF08BABC73A32 /* Instabug.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Instabug.h; path = Instabug.framework/Versions/A/Headers/Instabug.h; sourceTree = "<group>"; };
+		BC3F46EB9E01FC87C254992F /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		BEEE5BE614F7743EF6C24BAB /* Pods-Glimp-Alamofire-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Glimp-Alamofire-umbrella.h"; sourceTree = "<group>"; };
+		C126537A8E2034E9B49D0568 /* ResponseSerialization.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseSerialization.swift; path = Source/ResponseSerialization.swift; sourceTree = "<group>"; };
+		C77F5C8E5C1EBB3B120DBCEA /* DiskFetcher.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DiskFetcher.swift; path = Haneke/DiskFetcher.swift; sourceTree = "<group>"; };
+		C78B2BFD9D9E315C231A70D6 /* Haneke.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Haneke.swift; path = Haneke/Haneke.swift; sourceTree = "<group>"; };
+		C80BE75BF4B42BE343194562 /* Pods_Glimp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glimp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9167CA37678CA660FD7406E /* Pods-Glimp-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Glimp-resources.sh"; sourceTree = "<group>"; };
+		C95751AB00EA0BA668B904CF /* Pods-Glimp-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Glimp-frameworks.sh"; sourceTree = "<group>"; };
+		CF3E74A91CEA147258F854AC /* Animator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Animator.swift; path = Refresher/Animator.swift; sourceTree = "<group>"; };
+		D6645E4A676E859E69DEED60 /* Pods-Glimp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimp.debug.xcconfig"; sourceTree = "<group>"; };
+		DAD5746E9F213454ED65AEA8 /* Validation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Source/Validation.swift; sourceTree = "<group>"; };
+		E2395B782F284AE2F390D2E7 /* Pods-Glimp-HanekeSwift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Glimp-HanekeSwift-prefix.pch"; sourceTree = "<group>"; };
+		E34F59B3F7C8F0C6E31EB5C5 /* Pods-Glimp-SwiftyJSON-Private.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimp-SwiftyJSON-Private.xcconfig"; sourceTree = "<group>"; };
+		E6514054460B2FF77198B57E /* Data.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Data.swift; path = Haneke/Data.swift; sourceTree = "<group>"; };
+		E8F13A7589629F5869FF28AF /* Pods-Glimp.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Glimp.modulemap"; sourceTree = "<group>"; };
+		EF1F13A6F6B3A61541A11B86 /* Pods-Glimp-Refresher.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimp-Refresher.xcconfig"; sourceTree = "<group>"; };
+		F1EAA52EC0B007CC7D80CAB5 /* Pods-Glimp-Alamofire.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Glimp-Alamofire.xcconfig"; sourceTree = "<group>"; };
+		F2997427DED70BE34A5DC0FB /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F735B6D5B7D7743EF41A55FB /* PullToRefreshExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PullToRefreshExtension.swift; path = Refresher/PullToRefreshExtension.swift; sourceTree = "<group>"; };
+		F7B4D90F833AC04EDB814222 /* SwiftyJSON.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftyJSON.swift; path = Source/SwiftyJSON.swift; sourceTree = "<group>"; };
+		F866DEFDAAD38B95E105A0EE /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB20017B10E1A7E6D3CA66F8 /* Pods-Glimp-Refresher.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Glimp-Refresher.modulemap"; sourceTree = "<group>"; };
+		FE25955B836CF61553ECCB30 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF9C7818E6C83CA651BD3857 /* Cache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Cache.swift; path = Haneke/Cache.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		22F5B7F580545919E2C4B6B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6D64B359C9613D49B2D3742D /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3718627F0BE6742CA61E7DF7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A9E05A54E4BA575A4877C2BB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3B732DC769F92AF2D592C26D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6F0EBB226113776D9C66B2A1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4E669361010E5B3E2A04377F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B0632ABD9B13FF384642F54 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6D2C05A65342B7BC823AE3B7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E75980A21F7A7D35F22F3E33 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D8FF9487E397A4F425F12C67 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				644DD203F8EA6248EED71A8B /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0619F382CCF697DE224E9F7B /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				9DE651E8A65062CB7F1BAC49 /* Info.plist */,
+				97988BFF665AC69121E11E7C /* Pods-Glimp-HanekeSwift.modulemap */,
+				04C11D8086B70EFDC0610E8A /* Pods-Glimp-HanekeSwift.xcconfig */,
+				4532B48BDF5F660DC9C6B87C /* Pods-Glimp-HanekeSwift-Private.xcconfig */,
+				3BAD6E8F8AB9E00FAD20C1B9 /* Pods-Glimp-HanekeSwift-dummy.m */,
+				E2395B782F284AE2F390D2E7 /* Pods-Glimp-HanekeSwift-prefix.pch */,
+				54838E8F5609BAAE798D37A9 /* Pods-Glimp-HanekeSwift-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-Glimp-HanekeSwift";
+			sourceTree = "<group>";
+		};
+		0FDF0B490A99AB7800808B86 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				B2FF101E06564BA66705158C /* Info.plist */,
+				62FF53B4FAB352D95089E400 /* Pods-Glimp-SwiftyJSON.modulemap */,
+				9BDBF8B9625808BA12A89637 /* Pods-Glimp-SwiftyJSON.xcconfig */,
+				E34F59B3F7C8F0C6E31EB5C5 /* Pods-Glimp-SwiftyJSON-Private.xcconfig */,
+				7595AE6F3AEA56B008B75B05 /* Pods-Glimp-SwiftyJSON-dummy.m */,
+				90C3C50E3FB4AD02BBE0C1B9 /* Pods-Glimp-SwiftyJSON-prefix.pch */,
+				AFD1EEC2C30B049AEDF6E6A1 /* Pods-Glimp-SwiftyJSON-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-Glimp-SwiftyJSON";
+			sourceTree = "<group>";
+		};
+		21D2B59BD8E27C09092F48C0 /* SwiftyTimer */ = {
+			isa = PBXGroup;
+			children = (
+				0F3FDFC677E418A149B4E5CC /* SwiftyTimer.swift */,
+				FEABDC4679BD632F06C6FDCA /* Support Files */,
+			);
+			path = SwiftyTimer;
+			sourceTree = "<group>";
+		};
+		2ACABFD20DD4ACB87F5FF155 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				4F99E487746BDC59CC32B054 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		2BFE178971AC07C061D2FAB2 /* SwiftyJSON */ = {
+			isa = PBXGroup;
+			children = (
+				F7B4D90F833AC04EDB814222 /* SwiftyJSON.swift */,
+				0FDF0B490A99AB7800808B86 /* Support Files */,
+			);
+			path = SwiftyJSON;
+			sourceTree = "<group>";
+		};
+		35E9198836EF5794C83B8E94 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2ACABFD20DD4ACB87F5FF155 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		40A4853E063B3AFD79249E8F /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				CFCCFEE2A76E8F0BA382829E /* Pods-Glimp */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		51E47870C3F278FE985CE10E /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				FE25955B836CF61553ECCB30 /* Info.plist */,
+				FB20017B10E1A7E6D3CA66F8 /* Pods-Glimp-Refresher.modulemap */,
+				EF1F13A6F6B3A61541A11B86 /* Pods-Glimp-Refresher.xcconfig */,
+				8254FCF3B5CFBBE5932CDCE3 /* Pods-Glimp-Refresher-Private.xcconfig */,
+				8F143974DE569C6DD7A0F1EC /* Pods-Glimp-Refresher-dummy.m */,
+				A2FE5D4E8E62AF4A7F22B2D9 /* Pods-Glimp-Refresher-prefix.pch */,
+				4E2C16771734EEA848D8F761 /* Pods-Glimp-Refresher-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-Glimp-Refresher";
+			sourceTree = "<group>";
+		};
+		57F05981D2A6393AED030A49 /* HanekeSwift */ = {
+			isa = PBXGroup;
+			children = (
+				67FC6EE6170D62706D414CE9 /* CGSize+Swift.swift */,
+				FF9C7818E6C83CA651BD3857 /* Cache.swift */,
+				41C99B4468F5E7A1FD277252 /* CryptoSwiftMD5.swift */,
+				E6514054460B2FF77198B57E /* Data.swift */,
+				5EB0E202BDE8754F7F18DBEF /* DiskCache.swift */,
+				C77F5C8E5C1EBB3B120DBCEA /* DiskFetcher.swift */,
+				3217D5C3012A5378D57DCF1B /* Fetch.swift */,
+				88FCCE0328832C06DB1D463B /* Fetcher.swift */,
+				9A0EA69218E5F754A551C772 /* Format.swift */,
+				C78B2BFD9D9E315C231A70D6 /* Haneke.swift */,
+				2CF8200D1D6E2CDBCA4E693C /* Log.swift */,
+				90125BBE57EFF2F59E5F7E15 /* NSFileManager+Haneke.swift */,
+				5DEE2F4A762A58C27CD26FB3 /* NSHTTPURLResponse+Haneke.swift */,
+				2600C4035EDD5E531091E48D /* NetworkFetcher.swift */,
+				26A9E85509D651F330F51B79 /* String+Haneke.swift */,
+				86E4065E6E54D8296821A7D1 /* UIButton+Haneke.swift */,
+				26C3E325E017BF5237D61556 /* UIImage+Haneke.swift */,
+				73F79F9652A0550B71C9C163 /* UIImageView+Haneke.swift */,
+				1E98D7D1F9C11CD81F365226 /* UIView+Haneke.swift */,
+				0619F382CCF697DE224E9F7B /* Support Files */,
+			);
+			path = HanekeSwift;
+			sourceTree = "<group>";
+		};
+		5AA847022205A07184B9C3DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				93853AE4C45EB25BC85C5779 /* Alamofire.framework */,
+				459DA0EFDE77FD1D12600235 /* Haneke.framework */,
+				C80BE75BF4B42BE343194562 /* Pods_Glimp.framework */,
+				8EDD65CD93779574F1859EE2 /* Refresher.framework */,
+				F866DEFDAAD38B95E105A0EE /* SwiftyJSON.framework */,
+				8F7F28797CE7118B1F07ED6F /* SwiftyTimer.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6AA4ADFD97539ACDC2CED5D6 /* Instabug */ = {
+			isa = PBXGroup;
+			children = (
+				8A5237970F7B6797F97B9923 /* IBGEnums.h */,
+				B600C5881FDFF08BABC73A32 /* Instabug.h */,
+				C235D0FF2243176C8CAEA668 /* Resources */,
+			);
+			path = Instabug;
+			sourceTree = "<group>";
+		};
+		791054BC8B53C4B9AD394A62 /* Refresher */ = {
+			isa = PBXGroup;
+			children = (
+				CF3E74A91CEA147258F854AC /* Animator.swift */,
+				F735B6D5B7D7743EF41A55FB /* PullToRefreshExtension.swift */,
+				541B05D8A227E96DF5D1F93F /* PullToRefreshView.swift */,
+				51E47870C3F278FE985CE10E /* Support Files */,
+			);
+			path = Refresher;
+			sourceTree = "<group>";
+		};
+		81686ADD4FC59E8DFD40D3A3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				AA64C34500DCF80E6B744B3B /* AFNetworking */,
+				A809A2069EA6BB12258379EC /* Alamofire */,
+				57F05981D2A6393AED030A49 /* HanekeSwift */,
+				6AA4ADFD97539ACDC2CED5D6 /* Instabug */,
+				791054BC8B53C4B9AD394A62 /* Refresher */,
+				2BFE178971AC07C061D2FAB2 /* SwiftyJSON */,
+				21D2B59BD8E27C09092F48C0 /* SwiftyTimer */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9F1E531ACCC34D12BBB9EBDF /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				91C50B8F717EA7620772B7F6 /* Info.plist */,
+				3D2864AF4FA943952D8E861F /* Pods-Glimp-Alamofire.modulemap */,
+				F1EAA52EC0B007CC7D80CAB5 /* Pods-Glimp-Alamofire.xcconfig */,
+				319792FEDAF89F2FB167C94C /* Pods-Glimp-Alamofire-Private.xcconfig */,
+				0169F0D55950A309D1FE8AE6 /* Pods-Glimp-Alamofire-dummy.m */,
+				9395FCAE07FDC856A5FC5371 /* Pods-Glimp-Alamofire-prefix.pch */,
+				BEEE5BE614F7743EF6C24BAB /* Pods-Glimp-Alamofire-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-Glimp-Alamofire";
+			sourceTree = "<group>";
+		};
+		A809A2069EA6BB12258379EC /* Alamofire */ = {
+			isa = PBXGroup;
+			children = (
+				243F5BAED46A42387715EA48 /* Alamofire.swift */,
+				21081CC500B0748A59CD6DB6 /* Download.swift */,
+				6C4AFCE24EB61FE469074B64 /* Manager.swift */,
+				873A5502970285EB73F5D9F7 /* ParameterEncoding.swift */,
+				AB5447C866E8BCCF59B6774E /* Request.swift */,
+				C126537A8E2034E9B49D0568 /* ResponseSerialization.swift */,
+				B5B90CECE63366494DD7FC90 /* Upload.swift */,
+				DAD5746E9F213454ED65AEA8 /* Validation.swift */,
+				9F1E531ACCC34D12BBB9EBDF /* Support Files */,
+			);
+			path = Alamofire;
+			sourceTree = "<group>";
+		};
+		AA64C34500DCF80E6B744B3B /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+		C235D0FF2243176C8CAEA668 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				89809BBC0E6D120569AAEF67 /* Instabug.bundle */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		CFCCFEE2A76E8F0BA382829E /* Pods-Glimp */ = {
+			isa = PBXGroup;
+			children = (
+				A227246544A5E1AA02D630A9 /* Info.plist */,
+				E8F13A7589629F5869FF28AF /* Pods-Glimp.modulemap */,
+				1F36BE6804BD4FECDD407AA7 /* Pods-Glimp-acknowledgements.markdown */,
+				A2B9DA8D7142C2B05EBE8274 /* Pods-Glimp-acknowledgements.plist */,
+				05D08305172EBB74B6264AD5 /* Pods-Glimp-dummy.m */,
+				5FCAAEBF07A9B1EAAC19368A /* Pods-Glimp-environment.h */,
+				C95751AB00EA0BA668B904CF /* Pods-Glimp-frameworks.sh */,
+				C9167CA37678CA660FD7406E /* Pods-Glimp-resources.sh */,
+				28C84D8EDA94EB29DC1DEEB2 /* Pods-Glimp-umbrella.h */,
+				D6645E4A676E859E69DEED60 /* Pods-Glimp.debug.xcconfig */,
+				A8B92C6C8F514454F309F118 /* Pods-Glimp.release.xcconfig */,
+			);
+			name = "Pods-Glimp";
+			path = "Target Support Files/Pods-Glimp";
+			sourceTree = "<group>";
+		};
+		E8B7FC69FFDC57CF7BF44356 = {
+			isa = PBXGroup;
+			children = (
+				BC3F46EB9E01FC87C254992F /* Podfile */,
+				35E9198836EF5794C83B8E94 /* Frameworks */,
+				81686ADD4FC59E8DFD40D3A3 /* Pods */,
+				5AA847022205A07184B9C3DA /* Products */,
+				40A4853E063B3AFD79249E8F /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		FEABDC4679BD632F06C6FDCA /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F2997427DED70BE34A5DC0FB /* Info.plist */,
+				40649C0AEBFE2A6748610084 /* Pods-Glimp-SwiftyTimer.modulemap */,
+				30942E5F4AABE247270E654A /* Pods-Glimp-SwiftyTimer.xcconfig */,
+				070E7C85E50B224454168C23 /* Pods-Glimp-SwiftyTimer-Private.xcconfig */,
+				B24E2AC993FF6AC929D052DB /* Pods-Glimp-SwiftyTimer-dummy.m */,
+				5BD6AA1996131F3C3E167AF7 /* Pods-Glimp-SwiftyTimer-prefix.pch */,
+				765F776DDC8766DBB6A0C62C /* Pods-Glimp-SwiftyTimer-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Pods-Glimp-SwiftyTimer";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		068417F8DCAFCEA9CB239296 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EC30B9191601CBD172F661D2 /* Pods-Glimp-HanekeSwift-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2DA1F42794E083B8D77091B0 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F375693614161F52587088EC /* Pods-Glimp-SwiftyTimer-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A66067AF735A4E1FC268EA24 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F2756B9FC7FF434D6FABEF6E /* Pods-Glimp-Alamofire-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B07075251286B1B2D9E3DB97 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				563E7B186F975CCDC77FD315 /* Pods-Glimp-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E1502B4B85013FA6D1FEF7FA /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0B98689CD05ED9C1DC45600D /* Pods-Glimp-Refresher-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F487F99AE6CA4055C8EB5670 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55CC437F2A01B95B45BDD6ED /* Pods-Glimp-SwiftyJSON-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		1C4E4E5F22D9A16434F68B87 /* Pods-Glimp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C95C1E13BF4A61D03A52DA30 /* Build configuration list for PBXNativeTarget "Pods-Glimp" */;
+			buildPhases = (
+				CC49721063481226A4712CF3 /* Sources */,
+				3718627F0BE6742CA61E7DF7 /* Frameworks */,
+				B07075251286B1B2D9E3DB97 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B3E831D2D91C24B437E63F2D /* PBXTargetDependency */,
+				2A5FB796102478B3FD0997EB /* PBXTargetDependency */,
+				A37845831B35E995DA5A569B /* PBXTargetDependency */,
+				09F488B821CDDF3F950ABE67 /* PBXTargetDependency */,
+				44E26C44F57F46E9C127D464 /* PBXTargetDependency */,
+			);
+			name = "Pods-Glimp";
+			productName = "Pods-Glimp";
+			productReference = C80BE75BF4B42BE343194562 /* Pods_Glimp.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		292D0AEDBB3F43039B1F0780 /* Pods-Glimp-Refresher */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4EE5EE68F0164C93FE93C18B /* Build configuration list for PBXNativeTarget "Pods-Glimp-Refresher" */;
+			buildPhases = (
+				B4B7B32A7FAECBE9731A1C77 /* Sources */,
+				3B732DC769F92AF2D592C26D /* Frameworks */,
+				E1502B4B85013FA6D1FEF7FA /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Glimp-Refresher";
+			productName = "Pods-Glimp-Refresher";
+			productReference = 8EDD65CD93779574F1859EE2 /* Refresher.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		616E6A2E518905F99AEB1273 /* Pods-Glimp-SwiftyJSON */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6B0DC1A75EB616B8DE2BACD7 /* Build configuration list for PBXNativeTarget "Pods-Glimp-SwiftyJSON" */;
+			buildPhases = (
+				B6CDD3247537394DDCD8C713 /* Sources */,
+				4E669361010E5B3E2A04377F /* Frameworks */,
+				F487F99AE6CA4055C8EB5670 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Glimp-SwiftyJSON";
+			productName = "Pods-Glimp-SwiftyJSON";
+			productReference = F866DEFDAAD38B95E105A0EE /* SwiftyJSON.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		652132694956C0D9AAD9EDE4 /* Pods-Glimp-HanekeSwift */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97F8B97937FB260A24A2CABF /* Build configuration list for PBXNativeTarget "Pods-Glimp-HanekeSwift" */;
+			buildPhases = (
+				72AF5FC2D80B2137545BFB37 /* Sources */,
+				22F5B7F580545919E2C4B6B8 /* Frameworks */,
+				068417F8DCAFCEA9CB239296 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Glimp-HanekeSwift";
+			productName = "Pods-Glimp-HanekeSwift";
+			productReference = 459DA0EFDE77FD1D12600235 /* Haneke.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		6D3C64E29B60D9251D3ACF16 /* Pods-Glimp-Alamofire */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BE7C253E8BFF29A92FE5C891 /* Build configuration list for PBXNativeTarget "Pods-Glimp-Alamofire" */;
+			buildPhases = (
+				4EDDF640A14D7671636A6A53 /* Sources */,
+				D8FF9487E397A4F425F12C67 /* Frameworks */,
+				A66067AF735A4E1FC268EA24 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Glimp-Alamofire";
+			productName = "Pods-Glimp-Alamofire";
+			productReference = 93853AE4C45EB25BC85C5779 /* Alamofire.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8D232A068CDC08925D5C9DA5 /* Pods-Glimp-SwiftyTimer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C086279F4128CB4B512B21BA /* Build configuration list for PBXNativeTarget "Pods-Glimp-SwiftyTimer" */;
+			buildPhases = (
+				9B92DC6FC218F6D330B921C4 /* Sources */,
+				6D2C05A65342B7BC823AE3B7 /* Frameworks */,
+				2DA1F42794E083B8D77091B0 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-Glimp-SwiftyTimer";
+			productName = "Pods-Glimp-SwiftyTimer";
+			productReference = 8F7F28797CE7118B1F07ED6F /* SwiftyTimer.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6B4FB95D057859970D4DEE53 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+			};
+			buildConfigurationList = 5DDC2AF8EAACB7562F76E484 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = E8B7FC69FFDC57CF7BF44356;
+			productRefGroup = 5AA847022205A07184B9C3DA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1C4E4E5F22D9A16434F68B87 /* Pods-Glimp */,
+				6D3C64E29B60D9251D3ACF16 /* Pods-Glimp-Alamofire */,
+				652132694956C0D9AAD9EDE4 /* Pods-Glimp-HanekeSwift */,
+				292D0AEDBB3F43039B1F0780 /* Pods-Glimp-Refresher */,
+				616E6A2E518905F99AEB1273 /* Pods-Glimp-SwiftyJSON */,
+				8D232A068CDC08925D5C9DA5 /* Pods-Glimp-SwiftyTimer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4EDDF640A14D7671636A6A53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1214A6A828714CFA1BCAEA57 /* Alamofire.swift in Sources */,
+				950FF6D35F21FF25D6CD30D4 /* Download.swift in Sources */,
+				877F7DD42D8B2C904DEAC419 /* Manager.swift in Sources */,
+				4F9DAB5233C905DF5E9406A6 /* ParameterEncoding.swift in Sources */,
+				7FF56DDA887BDE6B2B0FD6D9 /* Pods-Glimp-Alamofire-dummy.m in Sources */,
+				34AAD983ADDF590528EA094C /* Request.swift in Sources */,
+				AD6655586B788A599F693274 /* ResponseSerialization.swift in Sources */,
+				9D05D1A9ADB1190B1AFEEED6 /* Upload.swift in Sources */,
+				22596AE0A7598D1C11BEEA8A /* Validation.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72AF5FC2D80B2137545BFB37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				700EE7BED7787347AD344A2A /* CGSize+Swift.swift in Sources */,
+				B193AF4DB0015BB0D95CD9C8 /* Cache.swift in Sources */,
+				834D2F45777DED4BE9946AF4 /* CryptoSwiftMD5.swift in Sources */,
+				A9DC681D448027E2144A8F9B /* Data.swift in Sources */,
+				E9D5E05B7BEB4C168C51FB7B /* DiskCache.swift in Sources */,
+				D3A662C79286FAE2CD5317CC /* DiskFetcher.swift in Sources */,
+				7FCE784DD46ACC233F7C3028 /* Fetch.swift in Sources */,
+				248B1A08DA20FC14913C6125 /* Fetcher.swift in Sources */,
+				26438C434FD9EEFBCBBF06C1 /* Format.swift in Sources */,
+				EDBE1C6F052EC7C0CBF228A6 /* Haneke.swift in Sources */,
+				3FDAC38E234472F84BE12F2B /* Log.swift in Sources */,
+				6A307EFD901190E12B5733BF /* NSFileManager+Haneke.swift in Sources */,
+				F09C6901C95AE04AAEE72FF5 /* NSHTTPURLResponse+Haneke.swift in Sources */,
+				A86AF761DB6C8F7913C5501A /* NetworkFetcher.swift in Sources */,
+				437A421B85C4C5586466C93C /* Pods-Glimp-HanekeSwift-dummy.m in Sources */,
+				2CCDE0A4A416D338CD05FAF7 /* String+Haneke.swift in Sources */,
+				50C561A4A2E04D3E4B5D7993 /* UIButton+Haneke.swift in Sources */,
+				90C26A0D41354BD95D5FED24 /* UIImage+Haneke.swift in Sources */,
+				0EC987421EDF778F3AB0BB23 /* UIImageView+Haneke.swift in Sources */,
+				F93071C2E7358F915D6E78A1 /* UIView+Haneke.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9B92DC6FC218F6D330B921C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C45255B005CAD65B69BB874 /* Pods-Glimp-SwiftyTimer-dummy.m in Sources */,
+				DAF0F927F263502A8398E5AA /* SwiftyTimer.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B4B7B32A7FAECBE9731A1C77 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3C932E44BBEAD3FA8A29D0F5 /* Animator.swift in Sources */,
+				B4FAB1CB1E390D9B95F1CBF9 /* Pods-Glimp-Refresher-dummy.m in Sources */,
+				CB2C2BF3592BDF0FAA59228D /* PullToRefreshExtension.swift in Sources */,
+				5CB4E57E2541BCDC772206CA /* PullToRefreshView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B6CDD3247537394DDCD8C713 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CF08222E74A5BEB8EA0D6E84 /* Pods-Glimp-SwiftyJSON-dummy.m in Sources */,
+				17CDE7327E26E6800D8E6278 /* SwiftyJSON.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CC49721063481226A4712CF3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E1D610E1DD590F88CC6A305E /* Pods-Glimp-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		09F488B821CDDF3F950ABE67 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-Glimp-SwiftyJSON";
+			target = 616E6A2E518905F99AEB1273 /* Pods-Glimp-SwiftyJSON */;
+			targetProxy = E0AEC3A8C5B3CB2C078652E2 /* PBXContainerItemProxy */;
+		};
+		2A5FB796102478B3FD0997EB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-Glimp-HanekeSwift";
+			target = 652132694956C0D9AAD9EDE4 /* Pods-Glimp-HanekeSwift */;
+			targetProxy = A24AE82C874A1B144839A807 /* PBXContainerItemProxy */;
+		};
+		44E26C44F57F46E9C127D464 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-Glimp-SwiftyTimer";
+			target = 8D232A068CDC08925D5C9DA5 /* Pods-Glimp-SwiftyTimer */;
+			targetProxy = B06FCB166345AEF7EB56CA6E /* PBXContainerItemProxy */;
+		};
+		A37845831B35E995DA5A569B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-Glimp-Refresher";
+			target = 292D0AEDBB3F43039B1F0780 /* Pods-Glimp-Refresher */;
+			targetProxy = 8D2049795A29AA5CA54D19E0 /* PBXContainerItemProxy */;
+		};
+		B3E831D2D91C24B437E63F2D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-Glimp-Alamofire";
+			target = 6D3C64E29B60D9251D3ACF16 /* Pods-Glimp-Alamofire */;
+			targetProxy = 99A3529AC67580650372A35E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0ADC5B36793635249D864075 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 319792FEDAF89F2FB167C94C /* Pods-Glimp-Alamofire-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-Glimp-Alamofire/Pods-Glimp-Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-Glimp-Alamofire/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-Glimp-Alamofire/Pods-Glimp-Alamofire.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		15A1BBCD8317B2D17EC9ACC2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 319792FEDAF89F2FB167C94C /* Pods-Glimp-Alamofire-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-Glimp-Alamofire/Pods-Glimp-Alamofire-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-Glimp-Alamofire/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-Glimp-Alamofire/Pods-Glimp-Alamofire.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Alamofire;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		2477089F16CA14E1CFFE7A38 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		27062FD77BA70D90128DBEE1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8B92C6C8F514454F309F118 /* Pods-Glimp.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Glimp/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-Glimp/Pods-Glimp.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_Glimp;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		440C62ECDB380F71643BD081 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4532B48BDF5F660DC9C6B87C /* Pods-Glimp-HanekeSwift-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-Glimp-HanekeSwift/Pods-Glimp-HanekeSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-Glimp-HanekeSwift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-Glimp-HanekeSwift/Pods-Glimp-HanekeSwift.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Haneke;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		6409249140B42A71DA4D1705 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D6645E4A676E859E69DEED60 /* Pods-Glimp.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-Glimp/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-Glimp/Pods-Glimp.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_Glimp;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		814E8C978A805AA4763E150D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 070E7C85E50B224454168C23 /* Pods-Glimp-SwiftyTimer-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-Glimp-SwiftyTimer/Pods-Glimp-SwiftyTimer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-Glimp-SwiftyTimer/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-Glimp-SwiftyTimer/Pods-Glimp-SwiftyTimer.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SwiftyTimer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		969084AB51F63BE51757CBD5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4532B48BDF5F660DC9C6B87C /* Pods-Glimp-HanekeSwift-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-Glimp-HanekeSwift/Pods-Glimp-HanekeSwift-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-Glimp-HanekeSwift/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-Glimp-HanekeSwift/Pods-Glimp-HanekeSwift.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Haneke;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9953C251C8C111C6D0466078 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				ONLY_ACTIVE_ARCH = YES;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+		A5A516F039F5EBB8F031BF67 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E34F59B3F7C8F0C6E31EB5C5 /* Pods-Glimp-SwiftyJSON-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-Glimp-SwiftyJSON/Pods-Glimp-SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-Glimp-SwiftyJSON/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-Glimp-SwiftyJSON/Pods-Glimp-SwiftyJSON.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SwiftyJSON;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		AAAA288326C56D60EAE68BC6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8254FCF3B5CFBBE5932CDCE3 /* Pods-Glimp-Refresher-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-Glimp-Refresher/Pods-Glimp-Refresher-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-Glimp-Refresher/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-Glimp-Refresher/Pods-Glimp-Refresher.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = Refresher;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C0B95379F535F5AA1874928C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8254FCF3B5CFBBE5932CDCE3 /* Pods-Glimp-Refresher-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-Glimp-Refresher/Pods-Glimp-Refresher-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-Glimp-Refresher/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-Glimp-Refresher/Pods-Glimp-Refresher.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = Refresher;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F10F47A391930F7FA349A74C /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 070E7C85E50B224454168C23 /* Pods-Glimp-SwiftyTimer-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-Glimp-SwiftyTimer/Pods-Glimp-SwiftyTimer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-Glimp-SwiftyTimer/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-Glimp-SwiftyTimer/Pods-Glimp-SwiftyTimer.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = SwiftyTimer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		F484A60F0E989B082FC4791B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E34F59B3F7C8F0C6E31EB5C5 /* Pods-Glimp-SwiftyJSON-Private.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-Glimp-SwiftyJSON/Pods-Glimp-SwiftyJSON-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-Glimp-SwiftyJSON/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-Glimp-SwiftyJSON/Pods-Glimp-SwiftyJSON.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = SwiftyJSON;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4EE5EE68F0164C93FE93C18B /* Build configuration list for PBXNativeTarget "Pods-Glimp-Refresher" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C0B95379F535F5AA1874928C /* Debug */,
+				AAAA288326C56D60EAE68BC6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5DDC2AF8EAACB7562F76E484 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9953C251C8C111C6D0466078 /* Debug */,
+				2477089F16CA14E1CFFE7A38 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6B0DC1A75EB616B8DE2BACD7 /* Build configuration list for PBXNativeTarget "Pods-Glimp-SwiftyJSON" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F484A60F0E989B082FC4791B /* Debug */,
+				A5A516F039F5EBB8F031BF67 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97F8B97937FB260A24A2CABF /* Build configuration list for PBXNativeTarget "Pods-Glimp-HanekeSwift" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				440C62ECDB380F71643BD081 /* Debug */,
+				969084AB51F63BE51757CBD5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BE7C253E8BFF29A92FE5C891 /* Build configuration list for PBXNativeTarget "Pods-Glimp-Alamofire" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				15A1BBCD8317B2D17EC9ACC2 /* Debug */,
+				0ADC5B36793635249D864075 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C086279F4128CB4B512B21BA /* Build configuration list for PBXNativeTarget "Pods-Glimp-SwiftyTimer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				814E8C978A805AA4763E150D /* Debug */,
+				F10F47A391930F7FA349A74C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C95C1E13BF4A61D03A52DA30 /* Build configuration list for PBXNativeTarget "Pods-Glimp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6409249140B42A71DA4D1705 /* Debug */,
+				27062FD77BA70D90128DBEE1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6B4FB95D057859970D4DEE53 /* Project object */;
+}

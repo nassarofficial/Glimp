@@ -26,7 +26,8 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     var glimperid : String = ""
     var mapView: MKMapView!
     
-    
+    var later = ""
+    var longer = ""
     
 
     @IBAction func unwindToSegueHome (segue : UIStoryboardSegue) {}
@@ -208,10 +209,10 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
                     self.mapView.addAnnotations(self.annotations())
 
                     progressHUD.removeFromSuperview()
-                    var updateTimer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: "getBroadcast", userInfo: nil, repeats: true)
-                    
-                    println(self.locManager.location.coordinate.longitude)
-                    println(self.locManager.location.coordinate.longitude)
+//                    var updateTimer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: "getBroadcast", userInfo: nil, repeats: true)
+//                    
+//                    later = Float(self.locManager.location.coordinate.longitude) as String
+//                    longer = Float(self.locManager.location.coordinate.longitude) as String
 
                 }
             }

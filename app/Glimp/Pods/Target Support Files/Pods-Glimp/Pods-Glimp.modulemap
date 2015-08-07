@@ -1,6 +1,0 @@
-framework module Pods_Glimp {
-  umbrella header "Pods-Glimp-umbrella.h"
-
-  export *
-  module * { export * }
-}

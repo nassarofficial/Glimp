@@ -108,6 +108,8 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UIApplication.sharedApplication().statusBarHidden=false;
+
         self.suggester.hidden = true
         suggester.delegate = self
         self.suggester.dataSource = self
@@ -209,42 +211,35 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ImageCell", forIndexPath: indexPath) as! ImageCell
-        if tableView == feed {
-
-            let data = datas[indexPath.row]
-            let commentLabel = cell.viewWithTag(200) as? UITextView
-            commentLabel?.resolveHashTags()
-            
-            if let captionLabel = cell.viewWithTag(100) as? UILabel {
-                if let caption = data["username"].string{
-                    captionLabel.text = caption
-                    let comment = data["comment"].string
-                    commentLabel!.text = comment
-                    
-                }
+        let cell = tableView.dequeueReusableCellWithIdentifier("ImageCell", forIndexPath: indexPath) as! UITableViewCell //1
+        let data = datas[indexPath.row]
+        
+        if let commentLabel = cell.viewWithTag(200) as? UITextView {
+            if let comment = data["comment"].string {
+            commentLabel.text = comment
             }
-            if let imageView = cell.viewWithTag(101) as? UIImageView {
-                if let urlString = data["profile_pic"].string{
-                    let url = NSURL(string: urlString)
-                    println(url)
-                    let imageSize = 65 as CGFloat
-                    imageView.frame.size.height = imageSize
-                    imageView.frame.size.width  = imageSize
-                    imageView.layer.cornerRadius = imageSize / 2.0
-                    imageView.clipsToBounds = true
-                    
-                    imageView.hnk_setImageFromURL(url!)
-                }
-            }
-        } else if tableView == suggester {
-            let data = datasMentions[indexPath.row]
-            if let caption = data["username"].string {
-                cell.labelCaption.text = caption
-            }
-            
         }
-
+        
+        
+        if let captionLabel = cell.viewWithTag(100) as? UILabel {
+            if let caption = data["username"].string{
+                captionLabel.text = caption
+                
+            }
+        }
+        if let imageView = cell.viewWithTag(101) as? UIImageView {
+            if let urlString = data["profile_pic"].string{
+                let url = NSURL(string: urlString)
+                println(url)
+                let imageSize = 65 as CGFloat
+                imageView.frame.size.height = imageSize
+                imageView.frame.size.width  = imageSize
+                imageView.layer.cornerRadius = imageSize / 2.0
+                imageView.clipsToBounds = true
+                
+                imageView.hnk_setImageFromURL(url!)
+            }
+        }
         return cell
     }
 

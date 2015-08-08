@@ -13,14 +13,15 @@ class Settings: UIViewController {
 
 
     @IBAction func privacypolicy(sender: AnyObject) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.glimpnow.com/#!CopyofPrivacy/c1rrp")!)
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.glimpnow.com/privacypolicy.php")!)
 
     }
     
     @IBAction func termsofuse(sender: AnyObject) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.glimpnow.com/#!CopyofTerms/c1x6q")!)
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.glimpnow.com/termsofuse.php")!)
 
     }
+    
     @IBAction func logout(sender: AnyObject) {
         let appDomain = NSBundle.mainBundle().bundleIdentifier
         NSUserDefaults.standardUserDefaults().removePersistentDomainForName(appDomain!)

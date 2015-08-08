@@ -87,6 +87,11 @@ class Notifications: UIViewController {
             secondViewController.username = ider2
 
         }
+        else if (segue.identifier == "goto_glimp") {
+            let secondViewController = segue.destinationViewController as! GlimpView
+            secondViewController.glimpsid = self.glimpid
+            
+        }
 
     }
 
@@ -124,6 +129,14 @@ class Notifications: UIViewController {
                 else if type == 3 {
                     notification!.text = "wants to know what's going around near you!"
                 }
+                else if type == 4 {
+                    notification!.text = "has tagged you in his glimp."
+                }
+                else if type == 5 {
+                    notification!.text = "mentioned you in a comment"
+                }
+
+
                 var dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 
@@ -169,6 +182,16 @@ class Notifications: UIViewController {
            performSegueWithIdentifier("goto_broadreq", sender: self)
             
         }
+        else if datas[row]["type"] == 4{
+            performSegueWithIdentifier("goto_glimp", sender: self)
+            
+        }
+        else if datas[row]["type"] == 5{
+            performSegueWithIdentifier("goto_comments", sender: self)
+            
+        }
+
+
     }
 
     func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {

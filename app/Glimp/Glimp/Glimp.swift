@@ -48,6 +48,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
     
     @IBOutlet var countDownLabel: UILabel!
     
+    @IBOutlet var closebutton: UIButton!
     @IBOutlet weak var previewView: AVCamPreviewView!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
@@ -339,12 +340,15 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
                 if isRecording {
                     self.recordButton.enabled = true
                     self.cameraButton.enabled = false
-                    
+                    self.closebutton.enabled = false
+                    self.closebutton.hidden = true
                 }else{
                     self.performSegueWithIdentifier("gotovideoeditor", sender: self)
                     self.recordButton.enabled = true
                     self.cameraButton.enabled = true
-                    
+                    self.closebutton.enabled = true
+                    self.closebutton.hidden = false
+
                 }
                 
                 

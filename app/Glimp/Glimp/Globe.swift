@@ -340,6 +340,9 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
                 
             }
             
+            var updateTimer = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: "getannot", userInfo: nil, repeats: true)
+
+            
             locManager.desiredAccuracy = kCLLocationAccuracyBest
             locManager.requestWhenInUseAuthorization()
             locManager.startMonitoringSignificantLocationChanges()

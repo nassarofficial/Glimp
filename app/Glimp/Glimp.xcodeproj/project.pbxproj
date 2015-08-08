@@ -103,6 +103,7 @@
 		6ED1F73A1B47F6DA00B2A4B3 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED1F7391B47F6DA00B2A4B3 /* ProgressHUD.swift */; };
 		6EDD622F1B38456C004A5726 /* GlimS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDD622E1B38456C004A5726 /* GlimS.swift */; };
 		6EDD62311B384A6E004A5726 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EDD62301B384A6E004A5726 /* Storyboard.storyboard */; };
+		6EE5A4551B764D53000B4955 /* RAMBounceAnimation1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE5A4541B764D53000B4955 /* RAMBounceAnimation1.swift */; };
 		6EE6DEA71B4E9C7F007F121D /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE6DEA61B4E9C7F007F121D /* SwiftyJSON.swift */; };
 		6EE932281B3F2E3E00E52F63 /* CommentsNotif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE932271B3F2E3E00E52F63 /* CommentsNotif.swift */; };
 		6EE9322A1B3F2FE400E52F63 /* UserProfileNotif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE932291B3F2FE400E52F63 /* UserProfileNotif.swift */; };
@@ -268,6 +269,7 @@
 		6ED1F7391B47F6DA00B2A4B3 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		6EDD622E1B38456C004A5726 /* GlimS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlimS.swift; sourceTree = "<group>"; };
 		6EDD62301B384A6E004A5726 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		6EE5A4541B764D53000B4955 /* RAMBounceAnimation1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAMBounceAnimation1.swift; sourceTree = "<group>"; };
 		6EE6DEA61B4E9C7F007F121D /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		6EE932271B3F2E3E00E52F63 /* CommentsNotif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsNotif.swift; sourceTree = "<group>"; };
 		6EE932291B3F2FE400E52F63 /* UserProfileNotif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileNotif.swift; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 			isa = PBXGroup;
 			children = (
 				6EC8BEDB1B0D218F00F38728 /* RAMBounceAnimation.swift */,
+				6EE5A4541B764D53000B4955 /* RAMBounceAnimation1.swift */,
 			);
 			path = BounceAnimation;
 			sourceTree = "<group>";
@@ -807,6 +810,7 @@
 				6EC8BEB71B0D215000F38728 /* AVCamPreviewView.swift in Sources */,
 				6EA803711B2F5A9800316620 /* imagePicker.swift in Sources */,
 				6EC8BEC11B0D215000F38728 /* LoginVC.swift in Sources */,
+				6EE5A4551B764D53000B4955 /* RAMBounceAnimation1.swift in Sources */,
 				6E76E75D1B40C34B0006AEC2 /* ChangePassword.swift in Sources */,
 				6E5990061B1BAA80001D4016 /* CollectionViewCell.swift in Sources */,
 				6EC8BEBA1B0D215000F38728 /* Profile.swift in Sources */,
@@ -978,7 +982,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "11140bcf-a629-4a4b-9fb1-1c956bdbdaed";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = GLIMP/Bridging_Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1004,7 +1008,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "11140bcf-a629-4a4b-9fb1-1c956bdbdaed";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = GLIMP/Bridging_Header.h;
 				TARGETED_DEVICE_FAMILY = 1;

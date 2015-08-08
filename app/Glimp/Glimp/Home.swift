@@ -98,63 +98,53 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/home.php?username="+name!)
         let pointData = NSData(contentsOfURL: baseURL!, options: nil, error: nil)
         
+        
         let points = NSJSONSerialization.JSONObjectWithData(pointData!,
             options: nil,
             error: nil) as! NSDictionary
+        
 
-        for point in points["glimps"] as! NSArray {
-            var a = JPSThumbnail()
-            var imageurl=String(stringInterpolationSegment: (point as! NSDictionary)["profile_pic"]!)
-            
-            var url = NSURL(string: imageurl)
-            let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
-            a.image = UIImage(data: data!)
+        if points["glimps"] != nil{
+
+            for point in points["glimps"] as! NSArray {
+                var a = JPSThumbnail()
+                var imageurl=String(stringInterpolationSegment: (point as! NSDictionary)["profile_pic"]!)
                 
-            a.title =  String(stringInterpolationSegment: (point as! NSDictionary)["username"]!)
-            a.subtitle =  String(stringInterpolationSegment: (point as! NSDictionary)["loc"]!)
-            var lat = (point as! NSDictionary)["latitude"] as! CLLocationDegrees
-            var lon = (point as! NSDictionary)["longitude"] as! CLLocationDegrees
-            
-            a.coordinate = CLLocationCoordinate2DMake(lat, lon)
-            a.disclosureBlock = {
-                self.glimperid = String(stringInterpolationSegment: (point as! NSDictionary)["id"]!)
+                var url = NSURL(string: imageurl)
+                let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
+                a.image = UIImage(data: data!)
+                    
+                a.title =  String(stringInterpolationSegment: (point as! NSDictionary)["username"]!)
+                a.subtitle =  String(stringInterpolationSegment: (point as! NSDictionary)["loc"]!)
+                var lat = (point as! NSDictionary)["latitude"] as! CLLocationDegrees
+                var lon = (point as! NSDictionary)["longitude"] as! CLLocationDegrees
+                
+                a.coordinate = CLLocationCoordinate2DMake(lat, lon)
+                
+                a.disclosureBlock = {
+                    self.glimperid = String(stringInterpolationSegment: (point as! NSDictionary)["id"]!)
 
-                self.performSegueWithIdentifier("goto_video", sender: self)
+                    self.performSegueWithIdentifier("goto_video", sender: self)
 
-            }
-            var a1: JPSThumbnailAnnotation = JPSThumbnailAnnotation(thumbnail: a)
+                }
+                var a1: JPSThumbnailAnnotation = JPSThumbnailAnnotation(thumbnail: a)
 
-                annotations.append(a1)
+                    annotations.append(a1)
+
+                }
+        } else {
+            println("No Glimps")
 
         }
-        return annotations
-        
-        
-    }
-//    
-//    override func viewDidAppear(animated: Bool) {
-//        var nav = self.navigationController?.navigationBar
-//        nav?.barStyle = UIBarStyle.Black
-//        nav?.tintColor = UIColor.yellowColor()
-//        
-//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 80, height: 40))
-//        imageView.contentMode = .ScaleAspectFit
-//        
-//        let image = UIImage(named: "glimplogo-2.png")
-//        imageView.image = image
-//        
-//        navigationItem.titleView = imageView
-//    }
 
-    func tap(){
-      //  println("FIRED!")
+        return annotations
+
     }
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
+    
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 38, height: 38))
         imageView.contentMode = .ScaleAspectFit
         let image = UIImage(named: "glimp-logo")
@@ -192,8 +182,6 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
             mapView.showsUserLocation = true
             UIApplication.sharedApplication().statusBarHidden=false;
             self.tabBarController?.tabBar.hidden = false
-            let progressHUD = ProgressHUD(text: "Loading...")
-            self.view.addSubview(progressHUD)
 
             let prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
             let isLoggedIn:Int = prefs.integerForKey("ISLOGGEDIN") as Int
@@ -203,18 +191,19 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
             } else {
                 let delayInSeconds = 0.01
                 let popTime = dispatch_time(DISPATCH_TIME_NOW,
-                    Int64(delayInSeconds * Double(NSEC_PER_SEC))) // 1
+                    Int64(delayInSeconds * Double(NSEC_PER_SEC)))
+                let progressHUD = ProgressHUD(text: "Loading...")
+                self.view.addSubview(progressHUD)
                 dispatch_after(popTime, GlobalMainQueue) { // 2
                     
+
                     self.mapView.addAnnotations(self.annotations())
 
                     progressHUD.removeFromSuperview()
-//                    var updateTimer = NSTimer.scheduledTimerWithTimeInterval(30.0, target: self, selector: "getBroadcast", userInfo: nil, repeats: true)
-//                    
-//                    later = Float(self.locManager.location.coordinate.longitude) as String
-//                    longer = Float(self.locManager.location.coordinate.longitude) as String
 
                 }
+                var updateTimer = NSTimer.scheduledTimerWithTimeInterval(120.0, target: self, selector: "refresher", userInfo: nil, repeats: true)
+
             }
             
 
@@ -228,24 +217,6 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         }
     }
     
-    func getBroadcast(){
-        let prefs = NSUserDefaults.standardUserDefaults()
-        let name = prefs.stringForKey("USERNAME")
-        var usernamep = String(name!)
-
-        let parameters = [
-            "username": usernamep,
-            "lat": Float(locManager.location.coordinate.latitude),
-            "long": Float(locManager.location.coordinate.longitude)
-        ]
-        
-        Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/broadcast.php", parameters: parameters as? [String : AnyObject])
-            .response { (request, response, data, error) in
-                println(request)
-                
-        }
-
-    }
 
     
     
@@ -256,7 +227,7 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         dispatch_after(popTime, GlobalMainQueue) { // 2
 
         self.mapView.addAnnotations(self.annotations())
-       // println("refreshed")
+        println("refreshed")
         }
     }
     

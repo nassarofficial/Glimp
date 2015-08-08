@@ -87,11 +87,6 @@ class Notifications: UIViewController {
             secondViewController.username = ider2
 
         }
-        else if (segue.identifier == "goto_broadreq") {
-            let secondViewController = segue.destinationViewController as! BroadcastReq
-            secondViewController.broadcast_id = self.broadcast_id
-            println(self.broadcast_id)
-        }
 
     }
 

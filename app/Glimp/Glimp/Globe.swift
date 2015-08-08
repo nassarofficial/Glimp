@@ -394,12 +394,6 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             secondViewController.locid = ider
             secondViewController.loc = ider2
             
-        } else if (segue.identifier == "push_request"){
-            let secondViewController = segue.destinationViewController as! SendBroadcast
-            let ider = newCoord as CLLocationCoordinate2D!
-            
-            secondViewController.newCoord = ider
-
         }
         
         

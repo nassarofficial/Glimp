@@ -94,11 +94,6 @@ class GlimpView: UIViewController{
 
             secondViewController.username = ider2
         }
-        if (segue.identifier == "goto_broadcast") {
-            let secondViewController = segue.destinationViewController as! BroadcastReq
-            secondViewController.broadcast_id = self.broadcat_id
-            
-        }
         if (segue.identifier == "goto_userprofilemention") {
             let secondViewController = segue.destinationViewController as! UserProfile
           //  let ider = userid as String!

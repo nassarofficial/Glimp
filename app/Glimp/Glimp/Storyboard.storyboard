@@ -321,7 +321,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </customObject>
-                <tabBarItem title="Globe" image="ED85D1DF-612C-4E0F-9179-B3ACAACEEE67" id="ftO-5d-f5Q" customClass="RAMAnimatedTabBarItem" customModule="Glimp" customModuleProvider="target">
+                <tabBarItem title="Globe" image="97CC3F31-E60B-4263-AE0C-6827A681767F" id="ftO-5d-f5Q" customClass="RAMAnimatedTabBarItem" customModule="Glimp" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                             <color key="value" red="1" green="0.99459729669999997" blue="0.98094406270000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -4174,7 +4174,7 @@
                                     <action selector="reportnow:" destination="eG1-2X-Exb" eventType="touchUpInside" id="hxW-3y-yGF"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="I believe this should be on Glimp because..." translatesAutoresizingMaskIntoConstraints="NO" id="7c9-fu-gIa">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="I believe this should not be on Glimp because..." translatesAutoresizingMaskIntoConstraints="NO" id="7c9-fu-gIa">
                                 <rect key="frame" x="16" y="82" width="568" height="196"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -4244,7 +4244,7 @@
         <image name="2" width="31" height="31"/>
         <image name="3" width="41" height="41"/>
         <image name="5" width="26" height="25"/>
-        <image name="ED85D1DF-612C-4E0F-9179-B3ACAACEEE67" width="31" height="31">
+        <image name="97CC3F31-E60B-4263-AE0C-6827A681767F" width="31" height="31">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

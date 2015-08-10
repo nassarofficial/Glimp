@@ -50,6 +50,8 @@
 		6E92D9551B41F9DE0020C4CF /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E92D9521B41F9DE0020C4CF /* Bolts.framework */; };
 		6E92D9561B41F9DE0020C4CF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E92D9531B41F9DE0020C4CF /* FBSDKCoreKit.framework */; };
 		6E92D9571B41F9DE0020C4CF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E92D9541B41F9DE0020C4CF /* FBSDKLoginKit.framework */; };
+		6E9FF3651B7950C100FB61F8 /* flash.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E9FF3641B7950C100FB61F8 /* flash.png */; };
+		6E9FF3671B7950CD00FB61F8 /* flashicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E9FF3661B7950CD00FB61F8 /* flashicon.png */; };
 		6EA803711B2F5A9800316620 /* imagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA803701B2F5A9800316620 /* imagePicker.swift */; };
 		6EC8BE7B1B0D213300F38728 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EC8BE7A1B0D213300F38728 /* Images.xcassets */; };
 		6EC8BEB51B0D215000F38728 /* video.mov in Resources */ = {isa = PBXBuildFile; fileRef = 6EC8BE971B0D215000F38728 /* video.mov */; };
@@ -191,6 +193,8 @@
 		6E92D9521B41F9DE0020C4CF /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		6E92D9531B41F9DE0020C4CF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		6E92D9541B41F9DE0020C4CF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		6E9FF3641B7950C100FB61F8 /* flash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flash.png; path = Images.xcassets/flash.imageset/flash.png; sourceTree = "<group>"; };
+		6E9FF3661B7950CD00FB61F8 /* flashicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flashicon.png; path = Images.xcassets/flashicon.imageset/flashicon.png; sourceTree = "<group>"; };
 		6EA803701B2F5A9800316620 /* imagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imagePicker.swift; sourceTree = "<group>"; };
 		6EC4693E1B1660AC00585CD6 /* Pods_Glimp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Glimp.framework; path = "Pods/../build/Debug-iphoneos/Pods_Glimp.framework"; sourceTree = "<group>"; };
 		6EC469401B16611E00585CD6 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods-Glimp/Alamofire.framework"; sourceTree = "<group>"; };
@@ -475,6 +479,8 @@
 				6E6087211B28B11600B0AAD8 /* UserProfile.swift */,
 				6E0912041B6D073D00333A9A /* UITextField+Extension.swift */,
 				6ECF7D691B4821FF002A37C6 /* utils.swift */,
+				6E9FF3641B7950C100FB61F8 /* flash.png */,
+				6E9FF3661B7950CD00FB61F8 /* flashicon.png */,
 				6E15F1C81B5718E9009EA1B5 /* quem.png */,
 				6EC8BEAC1B0D215000F38728 /* glimplogo-2.png */,
 				6EC8BEAF1B0D215000F38728 /* marker.png */,
@@ -733,8 +739,10 @@
 				6E88E98C1B42ADED00C29AF2 /* GooglePlus.bundle in Resources */,
 				6EC8BEB51B0D215000F38728 /* video.mov in Resources */,
 				6ED022B91B43283900E0420E /* Instabug.bundle in Resources */,
+				6E9FF3671B7950CD00FB61F8 /* flashicon.png in Resources */,
 				6EC8BECC1B0D215000F38728 /* marker.png in Resources */,
 				6EC8BECE1B0D215000F38728 /* marker1.png in Resources */,
+				6E9FF3651B7950C100FB61F8 /* flash.png in Resources */,
 				6E15F1C91B5718E9009EA1B5 /* quem.png in Resources */,
 				6EE9322E1B3F508C00E52F63 /* splash.mp3 in Resources */,
 				6EDD62311B384A6E004A5726 /* Storyboard.storyboard in Resources */,
@@ -982,7 +990,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "11140bcf-a629-4a4b-9fb1-1c956bdbdaed";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = GLIMP/Bridging_Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1008,7 +1016,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "11140bcf-a629-4a4b-9fb1-1c956bdbdaed";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = GLIMP/Bridging_Header.h;
 				TARGETED_DEVICE_FAMILY = 1;

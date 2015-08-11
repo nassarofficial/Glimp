@@ -195,24 +195,21 @@ class CommentsNotif: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ImageCell", forIndexPath: indexPath) as! UITableViewCell //1
         let data = datas[indexPath.row]
-        let commentLabel = cell.viewWithTag(200) as? UITextView
-        commentLabel?.resolveHashTags()
-
+        
+        if let commentLabel = cell.viewWithTag(200) as? UITextView {
+            if let comment = data["comment"].string {
+                commentLabel.text = comment
+            }
+        }
+        
         
         if let captionLabel = cell.viewWithTag(100) as? UILabel {
             if let caption = data["username"].string{
                 captionLabel.text = caption
-                let comment = data["comment"].string
-                commentLabel!.text = comment
                 
             }
         }
         if let imageView = cell.viewWithTag(101) as? UIImageView {
-            let cell = tableView.dequeueReusableCellWithIdentifier("ImageCell", forIndexPath: indexPath) as! ImageCell
-
-            if tableView == feed {
-                if let caption = data["name"].string {
-
             if let urlString = data["profile_pic"].string{
                 let url = NSURL(string: urlString)
                 println(url)
@@ -223,14 +220,6 @@ class CommentsNotif: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 imageView.clipsToBounds = true
                 
                 imageView.hnk_setImageFromURL(url!)
-            }
-        }
-    } else if tableView == suggester {
-                let data = datasMentions[indexPath.row]
-                if let caption = data["username"].string {
-                    cell.labelCaption.text = caption
-                }
-    
             }
         }
         return cell

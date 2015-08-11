@@ -48,6 +48,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
     
     @IBOutlet var countDownLabel: UILabel!
     
+    @IBOutlet var closebutton: UIButton!
     @IBOutlet weak var previewView: AVCamPreviewView!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var cameraButton: UIButton!
@@ -76,11 +77,17 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
             device.lockForConfiguration(nil)
             if (device.torchMode == AVCaptureTorchMode.On) {
                 device.torchMode = AVCaptureTorchMode.Off
-                setflash.setImage(UIImage(named: "flash.png"), forState: UIControlState.Normal)
-                
+                //setflash.setImage(UIImage(named: "flashicon"), forState: UIControlState.Normal)
+                //self.setflash.setImage(UIImage(named: "flash.png"), forState: UIControlState.Selected)
+//                self.setflash.setImage(UIImage(named: "flash.png") as UIImage?, forState: .Normal)
+                let image = UIImage(named: "flash.png") as UIImage!
+                self.setflash.setImage(image, forState: UIControlState.Normal)
+
+
             } else {
-                setflash.setImage(UIImage(named: "flashicon.png"), forState: UIControlState.Normal)
-                
+                //setflash.setImage(UIImage(named: "flashicon"), forState: UIControlState.Normal)
+                self.setflash.setImage(UIImage(contentsOfFile: "flashicon.png") as UIImage?, forState: .Normal)
+
                 device.setTorchModeOnWithLevel(1.0, error: nil)
             }
             device.unlockForConfiguration()
@@ -129,11 +136,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
         self.session = session
         self.previewView.session = session
         
-        self.checkDeviceAuthorizationStatus()
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.startUpdatingLocation()
+
         var preferredTimeScale:Int32 = 30
         var totalSeconds:Int64 = Int64(Int(30) * Int(preferredTimeScale)) // after 7 sec video recording stop automatically
         var maxDuration:CMTime = CMTimeMake(totalSeconds, preferredTimeScale)
@@ -218,9 +221,54 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
         }
         
     }
-    
+    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        switch status {
+        case .NotDetermined:
+            locationManager.requestAlwaysAuthorization()
+            break
+        case .AuthorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+            break
+        case .AuthorizedAlways:
+            locationManager.startUpdatingLocation()
+            break
+        case .Restricted:
+            var alert = UIAlertController(title: "Location Services not Enabled", message: "Please Allow Glimp To Access to Location Services from Settings", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            self.performSegueWithIdentifier("backFromModal", sender: self)
+            
+            break
+        case .Denied:
+            var alert = UIAlertController(title: "Location Services not Enabled", message: "Please Allow Glimp To Access to Location Services from Settings", preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            self.performSegueWithIdentifier("backFromModal", sender: self)
+            
+            break
+        default:
+            break
+        }
+    }
+
     
     override func viewWillAppear(animated: Bool) {
+//        if (CLLocationManager.locationServicesEnabled()) {
+            println("test")
+            self.checkDeviceAuthorizationStatus()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.startUpdatingLocation()
+//        } else {
+//            var alert = UIAlertController(title: "Location Services not Enabled", message: "Please Allow Glimp To Access to Location Services from Settings", preferredStyle: UIAlertControllerStyle.Alert)
+//            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+//            self.presentViewController(alert, animated: true, completion: nil)
+//            self.performSegueWithIdentifier("backFromModal", sender: self)
+//            
+//            println("Location services are not enabled");
+//        }
+
         UIApplication.sharedApplication().statusBarHidden=true;
         // self.hidesBottomBarWhenPushed = true
         //self.navigationController?.setToolbarHidden(true, animated: animated)
@@ -339,12 +387,15 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
                 if isRecording {
                     self.recordButton.enabled = true
                     self.cameraButton.enabled = false
-                    
+                    self.closebutton.enabled = false
+                    self.closebutton.hidden = true
                 }else{
                     self.performSegueWithIdentifier("gotovideoeditor", sender: self)
                     self.recordButton.enabled = true
                     self.cameraButton.enabled = true
-                    
+                    self.closebutton.enabled = true
+                    self.closebutton.hidden = false
+
                 }
                 
                 

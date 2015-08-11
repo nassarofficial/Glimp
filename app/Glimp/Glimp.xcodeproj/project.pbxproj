@@ -50,6 +50,8 @@
 		6E92D9551B41F9DE0020C4CF /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E92D9521B41F9DE0020C4CF /* Bolts.framework */; };
 		6E92D9561B41F9DE0020C4CF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E92D9531B41F9DE0020C4CF /* FBSDKCoreKit.framework */; };
 		6E92D9571B41F9DE0020C4CF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E92D9541B41F9DE0020C4CF /* FBSDKLoginKit.framework */; };
+		6E9FF3651B7950C100FB61F8 /* flash.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E9FF3641B7950C100FB61F8 /* flash.png */; };
+		6E9FF3671B7950CD00FB61F8 /* flashicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E9FF3661B7950CD00FB61F8 /* flashicon.png */; };
 		6EA803711B2F5A9800316620 /* imagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA803701B2F5A9800316620 /* imagePicker.swift */; };
 		6EC8BE7B1B0D213300F38728 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EC8BE7A1B0D213300F38728 /* Images.xcassets */; };
 		6EC8BEB51B0D215000F38728 /* video.mov in Resources */ = {isa = PBXBuildFile; fileRef = 6EC8BE971B0D215000F38728 /* video.mov */; };
@@ -103,13 +105,12 @@
 		6ED1F73A1B47F6DA00B2A4B3 /* ProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ED1F7391B47F6DA00B2A4B3 /* ProgressHUD.swift */; };
 		6EDD622F1B38456C004A5726 /* GlimS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EDD622E1B38456C004A5726 /* GlimS.swift */; };
 		6EDD62311B384A6E004A5726 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6EDD62301B384A6E004A5726 /* Storyboard.storyboard */; };
+		6EE5A4551B764D53000B4955 /* RAMBounceAnimation1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE5A4541B764D53000B4955 /* RAMBounceAnimation1.swift */; };
 		6EE6DEA71B4E9C7F007F121D /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE6DEA61B4E9C7F007F121D /* SwiftyJSON.swift */; };
 		6EE932281B3F2E3E00E52F63 /* CommentsNotif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE932271B3F2E3E00E52F63 /* CommentsNotif.swift */; };
 		6EE9322A1B3F2FE400E52F63 /* UserProfileNotif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE932291B3F2FE400E52F63 /* UserProfileNotif.swift */; };
 		6EE9322C1B3F4BF900E52F63 /* SFSwiftNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE9322B1B3F4BF900E52F63 /* SFSwiftNotification.swift */; };
 		6EE9322E1B3F508C00E52F63 /* splash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6EE9322D1B3F508C00E52F63 /* splash.mp3 */; };
-		6EE97F881B5EECCA00C83AC7 /* SendBroadcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE97F871B5EECCA00C83AC7 /* SendBroadcast.swift */; };
-		6EEC68781B59384F0050866C /* BroadcastReq.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EEC68771B59384F0050866C /* BroadcastReq.swift */; };
 		6EF233891B71302F0083C754 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF233881B71302F0083C754 /* Report.swift */; };
 		6EF2338B1B71321C0083C754 /* Reporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF2338A1B71321C0083C754 /* Reporter.swift */; };
 /* End PBXBuildFile section */
@@ -192,6 +193,8 @@
 		6E92D9521B41F9DE0020C4CF /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
 		6E92D9531B41F9DE0020C4CF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
 		6E92D9541B41F9DE0020C4CF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		6E9FF3641B7950C100FB61F8 /* flash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flash.png; path = Images.xcassets/flash.imageset/flash.png; sourceTree = "<group>"; };
+		6E9FF3661B7950CD00FB61F8 /* flashicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flashicon.png; path = Images.xcassets/flashicon.imageset/flashicon.png; sourceTree = "<group>"; };
 		6EA803701B2F5A9800316620 /* imagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imagePicker.swift; sourceTree = "<group>"; };
 		6EC4693E1B1660AC00585CD6 /* Pods_Glimp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Glimp.framework; path = "Pods/../build/Debug-iphoneos/Pods_Glimp.framework"; sourceTree = "<group>"; };
 		6EC469401B16611E00585CD6 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods-Glimp/Alamofire.framework"; sourceTree = "<group>"; };
@@ -270,13 +273,12 @@
 		6ED1F7391B47F6DA00B2A4B3 /* ProgressHUD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressHUD.swift; sourceTree = "<group>"; };
 		6EDD622E1B38456C004A5726 /* GlimS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlimS.swift; sourceTree = "<group>"; };
 		6EDD62301B384A6E004A5726 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = "<group>"; };
+		6EE5A4541B764D53000B4955 /* RAMBounceAnimation1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RAMBounceAnimation1.swift; sourceTree = "<group>"; };
 		6EE6DEA61B4E9C7F007F121D /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
 		6EE932271B3F2E3E00E52F63 /* CommentsNotif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsNotif.swift; sourceTree = "<group>"; };
 		6EE932291B3F2FE400E52F63 /* UserProfileNotif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileNotif.swift; sourceTree = "<group>"; };
 		6EE9322B1B3F4BF900E52F63 /* SFSwiftNotification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SFSwiftNotification.swift; sourceTree = "<group>"; };
 		6EE9322D1B3F508C00E52F63 /* splash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = splash.mp3; sourceTree = "<group>"; };
-		6EE97F871B5EECCA00C83AC7 /* SendBroadcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendBroadcast.swift; sourceTree = "<group>"; };
-		6EEC68771B59384F0050866C /* BroadcastReq.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BroadcastReq.swift; sourceTree = "<group>"; };
 		6EF233881B71302F0083C754 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		6EF2338A1B71321C0083C754 /* Reporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reporter.swift; sourceTree = "<group>"; };
 		8BD82ADCF977F1BBF70B9E37 /* Pods_Glimp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glimp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -441,7 +443,6 @@
 				6EC8BE9A1B0D215000F38728 /* AVCamPreviewView.swift */,
 				6ECF7D6B1B4835AA002A37C6 /* BeatAnimator.swift */,
 				6E4F6B151B6C176A00CB775E /* BlockTableView.swift */,
-				6EEC68771B59384F0050866C /* BroadcastReq.swift */,
 				6E76E75C1B40C34B0006AEC2 /* ChangePassword.swift */,
 				6E5990051B1BAA80001D4016 /* CollectionViewCell.swift */,
 				6ECF7D791B48931A002A37C6 /* SwiftyTimer.swift */,
@@ -469,7 +470,6 @@
 				6E70795F1B2AF6E2006A2B24 /* Reachability.swift */,
 				6EF233881B71302F0083C754 /* Report.swift */,
 				6EF2338A1B71321C0083C754 /* Reporter.swift */,
-				6EE97F871B5EECCA00C83AC7 /* SendBroadcast.swift */,
 				6E0E21671B279C870095D3A4 /* Settings.swift */,
 				6EE9322B1B3F4BF900E52F63 /* SFSwiftNotification.swift */,
 				6EC8BEA71B0D215000F38728 /* SignupVC.swift */,
@@ -479,6 +479,8 @@
 				6E6087211B28B11600B0AAD8 /* UserProfile.swift */,
 				6E0912041B6D073D00333A9A /* UITextField+Extension.swift */,
 				6ECF7D691B4821FF002A37C6 /* utils.swift */,
+				6E9FF3641B7950C100FB61F8 /* flash.png */,
+				6E9FF3661B7950CD00FB61F8 /* flashicon.png */,
 				6E15F1C81B5718E9009EA1B5 /* quem.png */,
 				6EC8BEAC1B0D215000F38728 /* glimplogo-2.png */,
 				6EC8BEAF1B0D215000F38728 /* marker.png */,
@@ -554,6 +556,7 @@
 			isa = PBXGroup;
 			children = (
 				6EC8BEDB1B0D218F00F38728 /* RAMBounceAnimation.swift */,
+				6EE5A4541B764D53000B4955 /* RAMBounceAnimation1.swift */,
 			);
 			path = BounceAnimation;
 			sourceTree = "<group>";
@@ -736,8 +739,10 @@
 				6E88E98C1B42ADED00C29AF2 /* GooglePlus.bundle in Resources */,
 				6EC8BEB51B0D215000F38728 /* video.mov in Resources */,
 				6ED022B91B43283900E0420E /* Instabug.bundle in Resources */,
+				6E9FF3671B7950CD00FB61F8 /* flashicon.png in Resources */,
 				6EC8BECC1B0D215000F38728 /* marker.png in Resources */,
 				6EC8BECE1B0D215000F38728 /* marker1.png in Resources */,
+				6E9FF3651B7950C100FB61F8 /* flash.png in Resources */,
 				6E15F1C91B5718E9009EA1B5 /* quem.png in Resources */,
 				6EE9322E1B3F508C00E52F63 /* splash.mp3 in Resources */,
 				6EDD62311B384A6E004A5726 /* Storyboard.storyboard in Resources */,
@@ -813,6 +818,7 @@
 				6EC8BEB71B0D215000F38728 /* AVCamPreviewView.swift in Sources */,
 				6EA803711B2F5A9800316620 /* imagePicker.swift in Sources */,
 				6EC8BEC11B0D215000F38728 /* LoginVC.swift in Sources */,
+				6EE5A4551B764D53000B4955 /* RAMBounceAnimation1.swift in Sources */,
 				6E76E75D1B40C34B0006AEC2 /* ChangePassword.swift in Sources */,
 				6E5990061B1BAA80001D4016 /* CollectionViewCell.swift in Sources */,
 				6EC8BEBA1B0D215000F38728 /* Profile.swift in Sources */,
@@ -823,7 +829,6 @@
 				6EC8BEC51B0D215000F38728 /* Player.swift in Sources */,
 				6EDD622F1B38456C004A5726 /* GlimS.swift in Sources */,
 				6EC8BEB81B0D215000F38728 /* Home.swift in Sources */,
-				6EE97F881B5EECCA00C83AC7 /* SendBroadcast.swift in Sources */,
 				6EC8BF051B0D218F00F38728 /* KPAnnotation.m in Sources */,
 				6EC8BF0A1B0D218F00F38728 /* NSArray+KP.m in Sources */,
 				6E0528D21B1653C400C50C5C /* Comments.swift in Sources */,
@@ -842,7 +847,6 @@
 				6ECF7D7A1B48931A002A37C6 /* SwiftyTimer.swift in Sources */,
 				6EC8BEC61B0D215000F38728 /* TestAnnotation.swift in Sources */,
 				6E7F10AE1B3F724D00E27E27 /* ForgetMyPassword.swift in Sources */,
-				6EEC68781B59384F0050866C /* BroadcastReq.swift in Sources */,
 				6E0912071B6D5A1000333A9A /* Hashtag.swift in Sources */,
 				6E3480981B347D09003F0D6A /* UIImageView+AFNetworking.m in Sources */,
 				6EC8BEFA1B0D218F00F38728 /* JPSThumbnailAnnotation.m in Sources */,
@@ -986,7 +990,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "11140bcf-a629-4a4b-9fb1-1c956bdbdaed";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = GLIMP/Bridging_Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1012,7 +1016,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "11140bcf-a629-4a4b-9fb1-1c956bdbdaed";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = GLIMP/Bridging_Header.h;
 				TARGETED_DEVICE_FAMILY = 1;

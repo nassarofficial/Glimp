@@ -340,6 +340,9 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
                 
             }
             
+            var updateTimer = NSTimer.scheduledTimerWithTimeInterval(60.0, target: self, selector: "getannot", userInfo: nil, repeats: true)
+
+            
             locManager.desiredAccuracy = kCLLocationAccuracyBest
             locManager.requestWhenInUseAuthorization()
             locManager.startMonitoringSignificantLocationChanges()
@@ -394,12 +397,6 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             secondViewController.locid = ider
             secondViewController.loc = ider2
             
-        } else if (segue.identifier == "push_request"){
-            let secondViewController = segue.destinationViewController as! SendBroadcast
-            let ider = newCoord as CLLocationCoordinate2D!
-            
-            secondViewController.newCoord = ider
-
         }
         
         

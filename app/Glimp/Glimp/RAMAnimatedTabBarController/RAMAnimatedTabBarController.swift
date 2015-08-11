@@ -249,18 +249,35 @@ class RAMAnimatedTabBarController: UITabBarController {
         let items = tabBar.items as! [RAMAnimatedTabBarItem]
 
         let currentIndex = gesture.view!.tag
+        println(currentIndex)
+
         if selectedIndex != currentIndex {
-            var animationItem : RAMAnimatedTabBarItem = items[currentIndex]
-            var icon = iconsView[currentIndex].icon
-            var textLabel = iconsView[currentIndex].textLabel
-            animationItem.playAnimation(icon, textLabel: textLabel)
+            if currentIndex == 2 {
+                var animationItem : RAMAnimatedTabBarItem = items[0]
+                var icon = iconsView[0].icon
+                var textLabel = iconsView[0].textLabel
+                animationItem.playAnimation(icon, textLabel: textLabel)
+                
+                let deselelectIcon = iconsView[selectedIndex].icon
+                let deselelectTextLabel = iconsView[selectedIndex].textLabel
+                let deselectItem = items[selectedIndex]
+                deselectItem.deselectAnimation(deselelectIcon, textLabel: deselelectTextLabel)
+                
+                selectedIndex = gesture.view!.tag
 
-            let deselelectIcon = iconsView[selectedIndex].icon
-            let deselelectTextLabel = iconsView[selectedIndex].textLabel
-            let deselectItem = items[selectedIndex]
-            deselectItem.deselectAnimation(deselelectIcon, textLabel: deselelectTextLabel)
+            } else {
+                var animationItem : RAMAnimatedTabBarItem = items[currentIndex]
+                var icon = iconsView[currentIndex].icon
+                var textLabel = iconsView[currentIndex].textLabel
+                animationItem.playAnimation(icon, textLabel: textLabel)
 
-            selectedIndex = gesture.view!.tag
+                let deselelectIcon = iconsView[selectedIndex].icon
+                let deselelectTextLabel = iconsView[selectedIndex].textLabel
+                let deselectItem = items[selectedIndex]
+                deselectItem.deselectAnimation(deselelectIcon, textLabel: deselelectTextLabel)
+
+                selectedIndex = gesture.view!.tag
+            }
         }
     }
 }

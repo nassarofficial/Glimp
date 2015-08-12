@@ -55,6 +55,7 @@ class GlimpView: UIViewController{
         Alamofire.request(.POST, "/http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/deleteGlimp.php", parameters: ["g_id": glimpsid]).responseJSON { (request, response, json, error) in
             // println(response)
         }
+        performSegueWithIdentifier("unwinder", sender: self)
 
     }
     

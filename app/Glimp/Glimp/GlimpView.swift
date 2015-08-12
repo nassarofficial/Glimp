@@ -49,6 +49,7 @@ class GlimpView: UIViewController{
     @IBAction func unwindToSeguer (segue : UIStoryboardSegue) {}
     @IBOutlet var vidreply: UIButton!
 
+    @IBOutlet var reportbut: UIButton!
     @IBOutlet var deletebut: UIButton!
     @IBAction func deleteGlimp(sender: AnyObject) {
        
@@ -264,9 +265,10 @@ class GlimpView: UIViewController{
         
         if (name == usernamep){
             deletebut.hidden = false
-            
+            reportbut.hidden = true
         } else {
             deletebut.hidden = true
+            reportbut.hidden = false
         }
         
         Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/views.php", parameters: ["gid": glimpsid]).responseJSON { (request, response, json, error) in

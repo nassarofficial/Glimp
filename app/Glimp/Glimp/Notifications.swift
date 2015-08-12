@@ -18,6 +18,7 @@ class Notifications: UIViewController {
     var broadcast_id : String = ""
     
     
+    @IBOutlet var notifications: UILabel!
     @IBAction func unwindToSegue (segue : UIStoryboardSegue) {}
 
     @IBOutlet weak var tableView: UITableView!
@@ -37,11 +38,14 @@ class Notifications: UIViewController {
                 Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/notifications.php", parameters: ["userid": name!]).responseJSON { (request, response, json, error) in
                     println(response)
                     if json != nil {
+                        self.notifications.hidden = true
                         var jsonObj = JSON(json!)
                         if let data = jsonObj["notifications"].arrayValue as [JSON]?{
                             self.datas = data
                             self.tableView.reloadData()
                         }
+                    } else {
+                        self.notifications.hidden = false
                     }
                 }
                 }

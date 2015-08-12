@@ -321,7 +321,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </customObject>
-                <tabBarItem title="Globe" image="DB016BA2-4774-4E39-823F-07E020586782" id="ftO-5d-f5Q" customClass="RAMAnimatedTabBarItem" customModule="Glimp" customModuleProvider="target">
+                <tabBarItem title="Globe" image="83A1B6DA-3C4A-46A0-96F4-F255AE452EB5" id="ftO-5d-f5Q" customClass="RAMAnimatedTabBarItem" customModule="Glimp" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                             <color key="value" red="1" green="0.99459729669999997" blue="0.98094406270000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -613,7 +613,7 @@
                                     <navigationItem id="z3L-za-9Bh">
                                         <barButtonItem key="leftBarButtonItem" image="whitearrow" id="M7M-tn-YXS">
                                             <connections>
-                                                <segue destination="yOU-T7-YLP" kind="unwind" unwindAction="unwindToSegue:" id="qEl-TJ-YLF"/>
+                                                <segue destination="yOU-T7-YLP" kind="unwind" identifier="unwinder" unwindAction="unwindToSegue:" id="qEl-TJ-YLF"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -774,6 +774,7 @@
                         <outlet property="gplayer" destination="HuD-hF-icp" id="iWv-lw-c2U"/>
                         <outlet property="location" destination="tTp-vB-giG" id="INv-y8-1Kj"/>
                         <outlet property="mainview" destination="LPC-0M-wKZ" id="LYN-gc-okn"/>
+                        <outlet property="reportbut" destination="FBU-Vl-eOh" id="Gbx-wr-hIN"/>
                         <outlet property="textView" destination="GW4-K4-gmp" id="FGr-hJ-IQ5"/>
                         <outlet property="timeleft" destination="bS6-kV-M8z" id="DXe-Hh-ZFz"/>
                         <outlet property="username" destination="xFb-wV-Vil" id="GHu-v7-AIN"/>
@@ -2356,18 +2357,28 @@
                                     <constraint firstAttribute="height" constant="20" id="nB7-de-IRQ"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Notifications" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zSL-Uf-2eo">
+                                <rect key="frame" x="0.0" y="100" width="600" height="44"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.2470588235" green="0.93333333330000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="0.2470588235" green="0.93333333330000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="mPp-Lf-4cK" secondAttribute="bottom" id="0jL-em-a20"/>
                             <constraint firstItem="1Ri-bY-Dpl" firstAttribute="leading" secondItem="4r4-50-ulI" secondAttribute="leading" id="7gl-hs-QOA"/>
+                            <constraint firstItem="vXw-Mb-nna" firstAttribute="top" secondItem="zSL-Uf-2eo" secondAttribute="bottom" constant="407" id="Fy9-lP-eoJ"/>
                             <constraint firstAttribute="trailing" secondItem="tcr-Qs-Pet" secondAttribute="trailing" id="GMe-nh-iHa"/>
                             <constraint firstItem="vXw-Mb-nna" firstAttribute="top" secondItem="tcr-Qs-Pet" secondAttribute="bottom" id="I40-Ln-NCU"/>
                             <constraint firstItem="1Ri-bY-Dpl" firstAttribute="top" secondItem="4r4-50-ulI" secondAttribute="top" id="LNA-AD-kfK"/>
                             <constraint firstItem="6iK-Oc-nT6" firstAttribute="top" secondItem="itE-xS-UeM" secondAttribute="bottom" id="O1v-Nd-cn0"/>
+                            <constraint firstItem="zSL-Uf-2eo" firstAttribute="top" secondItem="6iK-Oc-nT6" secondAttribute="bottom" constant="36" id="Z5l-jW-JVl"/>
+                            <constraint firstItem="zSL-Uf-2eo" firstAttribute="leading" secondItem="4r4-50-ulI" secondAttribute="leading" id="ZYt-uH-0oE"/>
                             <constraint firstAttribute="trailing" secondItem="1Ri-bY-Dpl" secondAttribute="trailing" id="ZZe-DN-IIE"/>
                             <constraint firstItem="tcr-Qs-Pet" firstAttribute="top" secondItem="6iK-Oc-nT6" secondAttribute="bottom" id="akW-Xz-u9d"/>
+                            <constraint firstAttribute="trailing" secondItem="zSL-Uf-2eo" secondAttribute="trailing" id="gFD-1e-y1s"/>
                             <constraint firstItem="tcr-Qs-Pet" firstAttribute="leading" secondItem="4r4-50-ulI" secondAttribute="leading" id="iPB-LB-32q"/>
                             <constraint firstAttribute="trailing" secondItem="6iK-Oc-nT6" secondAttribute="trailing" id="ltW-iz-rqP"/>
                             <constraint firstItem="6iK-Oc-nT6" firstAttribute="leading" secondItem="4r4-50-ulI" secondAttribute="leading" id="pOh-71-6O1"/>
@@ -2388,6 +2399,7 @@
                     </tabBarItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="notifications" destination="zSL-Uf-2eo" id="7W2-Z3-fN5"/>
                         <outlet property="tableView" destination="tcr-Qs-Pet" id="ycD-hY-eE3"/>
                         <segue destination="nQx-YJ-fgN" kind="presentation" identifier="goto_comments" id="Ug3-Zg-Kbb"/>
                         <segue destination="bx8-n6-9hL" kind="presentation" identifier="goto_profile" id="zB1-jF-56W"/>
@@ -4281,7 +4293,7 @@
         <image name="2" width="31" height="31"/>
         <image name="3" width="41" height="41"/>
         <image name="5" width="26" height="25"/>
-        <image name="DB016BA2-4774-4E39-823F-07E020586782" width="31" height="31">
+        <image name="83A1B6DA-3C4A-46A0-96F4-F255AE452EB5" width="31" height="31">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA

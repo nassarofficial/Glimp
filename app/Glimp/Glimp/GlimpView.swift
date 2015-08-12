@@ -49,6 +49,17 @@ class GlimpView: UIViewController{
     @IBAction func unwindToSeguer (segue : UIStoryboardSegue) {}
     @IBOutlet var vidreply: UIButton!
 
+    @IBOutlet var deletebut: UIButton!
+    @IBAction func deleteGlimp(sender: AnyObject) {
+       
+        Alamofire.request(.POST, "/http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/deleteGlimp.php", parameters: ["g_id": glimpsid]).responseJSON { (request, response, json, error) in
+            // println(response)
+        }
+
+    }
+    
+    
+    
     // MARK: object lifecycle
     
     //    override init() {
@@ -247,11 +258,21 @@ class GlimpView: UIViewController{
     override func viewWillAppear(animated: Bool) {
         UIApplication.sharedApplication().statusBarHidden=true;
         self.tabBarController?.tabBar.hidden = true
+        let prefs = NSUserDefaults.standardUserDefaults()
+        let name = prefs.stringForKey("USERNAME")
+        
+        if (name == usernamep){
+            deletebut.hidden = false
+            
+        } else {
+            deletebut.hidden = true
+        }
         
         Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/views.php", parameters: ["gid": glimpsid]).responseJSON { (request, response, json, error) in
            // println(response)
         }
-
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

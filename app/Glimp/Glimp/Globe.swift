@@ -233,7 +233,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             // spinnerblock.hidden=false
             self.datas = []
             var escapedAddress = self.searcher.text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-            var url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/search.php?scope=users&term="+escapedAddress!
+            var url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/search.php?scope=description&term="+escapedAddress!
             
             Alamofire.request(.GET, url).responseJSON { (request, response, json, error) in
                 if json != nil {

@@ -321,7 +321,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </customObject>
-                <tabBarItem title="Globe" image="B86A8E48-86A1-4032-8CAA-0B2FA81109D1" id="ftO-5d-f5Q" customClass="RAMAnimatedTabBarItem" customModule="Glimp" customModuleProvider="target">
+                <tabBarItem title="Globe" image="DB016BA2-4774-4E39-823F-07E020586782" id="ftO-5d-f5Q" customClass="RAMAnimatedTabBarItem" customModule="Glimp" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                             <color key="value" red="1" green="0.99459729669999997" blue="0.98094406270000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -681,6 +681,19 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YEX-VH-8ab">
+                                        <rect key="frame" x="54" y="3" width="38" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="38" id="1tM-9T-yuX"/>
+                                            <constraint firstAttribute="height" constant="34" id="prq-H4-ZaP"/>
+                                        </constraints>
+                                        <state key="normal" image="trashcan">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteGlimp:" destination="bFs-XM-iuW" eventType="touchUpInside" id="GUb-w0-i7q"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.83921568627450982" green="0.88235294117647056" blue="0.90588235294117647" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -697,12 +710,15 @@
                                     <constraint firstItem="QkK-Ic-L0C" firstAttribute="top" secondItem="EUW-fc-kYU" secondAttribute="top" constant="15" id="HF7-Fl-ITJ"/>
                                     <constraint firstAttribute="bottom" secondItem="A7Q-k1-ad3" secondAttribute="bottom" constant="4" id="LWz-Zd-R1A"/>
                                     <constraint firstItem="eJ3-hP-3lr" firstAttribute="top" secondItem="EUW-fc-kYU" secondAttribute="top" constant="3" id="R58-0D-5wT"/>
+                                    <constraint firstItem="YEX-VH-8ab" firstAttribute="leading" secondItem="EUW-fc-kYU" secondAttribute="leading" constant="8" id="X5V-Mz-Bnc"/>
                                     <constraint firstItem="YgE-5h-GJy" firstAttribute="top" secondItem="EUW-fc-kYU" secondAttribute="top" constant="10" id="bRO-rO-HPE"/>
                                     <constraint firstItem="YgE-5h-GJy" firstAttribute="leading" secondItem="eJ3-hP-3lr" secondAttribute="trailing" constant="21" id="gId-Za-ISP"/>
                                     <constraint firstAttribute="height" constant="40" id="lVb-DB-ZcH"/>
+                                    <constraint firstAttribute="bottom" secondItem="YEX-VH-8ab" secondAttribute="bottom" constant="3" id="lhz-33-E74"/>
                                     <constraint firstAttribute="bottom" secondItem="QkK-Ic-L0C" secondAttribute="bottom" constant="10" id="meZ-r5-GEX"/>
                                     <constraint firstItem="FBU-Vl-eOh" firstAttribute="top" secondItem="EUW-fc-kYU" secondAttribute="top" constant="3" id="ncV-yu-TtF"/>
                                     <constraint firstAttribute="bottom" secondItem="FBU-Vl-eOh" secondAttribute="bottom" constant="4" id="qWh-1h-JzZ"/>
+                                    <constraint firstItem="YEX-VH-8ab" firstAttribute="top" secondItem="EUW-fc-kYU" secondAttribute="top" constant="3" id="tGY-1r-7jV"/>
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GW4-K4-gmp">
@@ -753,6 +769,7 @@
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="comments" destination="A7Q-k1-ad3" id="GBf-KQ-xL7"/>
+                        <outlet property="deletebut" destination="YEX-VH-8ab" id="Xas-bs-yA2"/>
                         <outlet property="descindicator" destination="Ndd-v9-tO6" id="HjX-Kw-8ed"/>
                         <outlet property="gplayer" destination="HuD-hF-icp" id="iWv-lw-c2U"/>
                         <outlet property="location" destination="tTp-vB-giG" id="INv-y8-1Kj"/>
@@ -4264,7 +4281,7 @@
         <image name="2" width="31" height="31"/>
         <image name="3" width="41" height="41"/>
         <image name="5" width="26" height="25"/>
-        <image name="B86A8E48-86A1-4032-8CAA-0B2FA81109D1" width="31" height="31">
+        <image name="DB016BA2-4774-4E39-823F-07E020586782" width="31" height="31">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -4420,6 +4437,7 @@ AAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAAAAAAAAAAHb4
         <image name="report" width="50" height="50"/>
         <image name="rr-button" width="268" height="91"/>
         <image name="search-1" width="18" height="18"/>
+        <image name="trashcan" width="37" height="45"/>
         <image name="vidreply" width="50" height="50"/>
         <image name="views" width="49" height="31"/>
         <image name="whitearrow" width="12" height="14"/>
@@ -4427,15 +4445,15 @@ AAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAAAAAAAAAAHb4
         <image name="whitenotifbutton" width="27" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1Oh-oo-ujf"/>
-        <segue reference="zB1-jF-56W"/>
         <segue reference="tnm-A6-B8C"/>
         <segue reference="ECb-bR-hIP"/>
-        <segue reference="lNM-1g-0qH"/>
-        <segue reference="5qj-ch-8ln"/>
-        <segue reference="SZh-dH-QcX"/>
+        <segue reference="zB1-jF-56W"/>
+        <segue reference="CIw-aP-jlL"/>
         <segue reference="uX9-Yq-LsO"/>
+        <segue reference="SZh-dH-QcX"/>
+        <segue reference="5qj-ch-8ln"/>
         <segue reference="RCZ-o2-e14"/>
+        <segue reference="1Oh-oo-ujf"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.2784313725" green="0.81176470590000005" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
 </document>

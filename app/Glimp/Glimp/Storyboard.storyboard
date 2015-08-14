@@ -321,7 +321,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </customObject>
-                <tabBarItem title="Globe" image="83A1B6DA-3C4A-46A0-96F4-F255AE452EB5" id="ftO-5d-f5Q" customClass="RAMAnimatedTabBarItem" customModule="Glimp" customModuleProvider="target">
+                <tabBarItem title="Globe" image="F13ECCFE-2284-4D0A-8632-E2D2D07A1767" id="ftO-5d-f5Q" customClass="RAMAnimatedTabBarItem" customModule="Glimp" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                             <color key="value" red="1" green="0.99459729669999997" blue="0.98094406270000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1206,16 +1206,16 @@
                                     <action selector="signupTapped:" destination="GDn-ee-6pW" eventType="touchUpInside" id="Qyr-6M-hLn"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Me1-ai-5G4">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Me1-ai-5G4">
                                 <rect key="frame" x="181" y="366" width="237" height="28"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
                                 <state key="normal" title="Have and Account? Click Here to Login">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="gotoLogin:" destination="GDn-ee-6pW" eventType="touchUpInside" id="fYU-Bt-MOn"/>
-                                    <segue destination="mHk-lY-OJj" kind="presentation" identifier="goto_login" id="1Oh-oo-ujf"/>
+                                    <segue destination="mHk-lY-OJj" kind="presentation" identifier="goto_login" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" animates="NO" id="1Oh-oo-ujf"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By Signing Up, you agree to Glimp's Terms of Use and Privacy Policy." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdl-FN-HJ7">
@@ -2756,13 +2756,13 @@
                                     <action selector="toggleMovieRecord:" destination="LNd-6P-KOf" eventType="touchUpInside" id="8tn-mQ-Ewh"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdM-n7-ccc">
-                                <rect key="frame" x="36" y="540" width="37" height="37"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IdM-n7-ccc">
+                                <rect key="frame" x="36" y="552" width="21" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="Tzp-Ev-iBy"/>
                                     <constraint firstAttribute="width" constant="37" id="YGs-T1-Bj8"/>
                                 </constraints>
-                                <state key="normal" image="flashicon">
+                                <state key="normal" image="flash">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -3724,7 +3724,7 @@
                                                                         <constraint firstAttribute="width" constant="65" id="EYg-Jr-AOi"/>
                                                                     </constraints>
                                                                 </imageView>
-                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="200" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqI-P2-pdf">
+                                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="200" contentMode="scaleToFill" misplaced="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqI-P2-pdf">
                                                                     <rect key="frame" x="81" y="41" width="511" height="48"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -3733,7 +3733,7 @@
                                                                         <outlet property="delegate" destination="E8L-gx-KHj" id="Deg-K3-3aN"/>
                                                                     </connections>
                                                                 </textView>
-                                                                <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ty-CK-2Ik">
+                                                                <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Ty-CK-2Ik">
                                                                     <rect key="frame" x="81" y="16" width="511" height="17"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     <fontDescription key="fontDescription" name="MyriadPro-Bold" family="Myriad Pro" pointSize="17"/>
@@ -4293,7 +4293,7 @@
         <image name="2" width="31" height="31"/>
         <image name="3" width="41" height="41"/>
         <image name="5" width="26" height="25"/>
-        <image name="83A1B6DA-3C4A-46A0-96F4-F255AE452EB5" width="31" height="31">
+        <image name="F13ECCFE-2284-4D0A-8632-E2D2D07A1767" width="31" height="31">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -4433,7 +4433,7 @@ AAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAAAAAAAAAAHb4
         <image name="comments-1" width="43" height="36"/>
         <image name="counter" width="150" height="150"/>
         <image name="crossbutton" width="20" height="20"/>
-        <image name="flashicon" width="14" height="28"/>
+        <image name="flash" width="21" height="25"/>
         <image name="fwhitearrow" width="12" height="14"/>
         <image name="gbg" width="640" height="1136"/>
         <image name="gearicon" width="21" height="21"/>
@@ -4457,15 +4457,15 @@ AAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAAAAAAAAAAHb4
         <image name="whitenotifbutton" width="27" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="1Oh-oo-ujf"/>
         <segue reference="tnm-A6-B8C"/>
         <segue reference="ECb-bR-hIP"/>
         <segue reference="zB1-jF-56W"/>
         <segue reference="CIw-aP-jlL"/>
+        <segue reference="5qj-ch-8ln"/>
         <segue reference="uX9-Yq-LsO"/>
         <segue reference="SZh-dH-QcX"/>
-        <segue reference="5qj-ch-8ln"/>
         <segue reference="RCZ-o2-e14"/>
-        <segue reference="1Oh-oo-ujf"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.2784313725" green="0.81176470590000005" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
 </document>

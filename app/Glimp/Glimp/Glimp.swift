@@ -80,13 +80,14 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
                 //setflash.setImage(UIImage(named: "flashicon"), forState: UIControlState.Normal)
                 //self.setflash.setImage(UIImage(named: "flash.png"), forState: UIControlState.Selected)
 //                self.setflash.setImage(UIImage(named: "flash.png") as UIImage?, forState: .Normal)
-                let image = UIImage(named: "flash.png") as UIImage!
-                self.setflash.setImage(image, forState: UIControlState.Normal)
+                var image = UIImage(named: "flash") as UIImage!
+                flashbutton.setImage(image, forState: UIControlState.Normal)
 
 
             } else {
                 //setflash.setImage(UIImage(named: "flashicon"), forState: UIControlState.Normal)
-                self.setflash.setImage(UIImage(contentsOfFile: "flashicon.png") as UIImage?, forState: .Normal)
+                var image = UIImage(named: "flashicon") as UIImage!
+                flashbutton.setImage(image, forState: UIControlState.Normal)
 
                 device.setTorchModeOnWithLevel(1.0, error: nil)
             }

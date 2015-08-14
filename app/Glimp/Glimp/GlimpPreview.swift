@@ -235,12 +235,23 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     
     
     func keyboardWillShow(sender: NSNotification) {
-        self.previewer.frame.origin.y -= 217
+        if let userInfo = sender.userInfo {
+            let keyboardSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size
+            var keyboardHeight = CGFloat(keyboardSize?.height ?? 0)
+            self.previewer.frame.origin.y -= keyboardHeight
+
+        }
+
         
     }
     
     func keyboardWillHide(sender: NSNotification) {
-        self.previewer.frame.origin.y += 217
+        if let userInfo = sender.userInfo {
+            let keyboardSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size
+            var keyboardHeight = CGFloat(keyboardSize?.height ?? 0)
+            self.previewer.frame.origin.y += keyboardHeight
+            
+        }
     }
     
     override func viewDidLoad() {

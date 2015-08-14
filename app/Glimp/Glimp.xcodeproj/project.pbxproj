@@ -990,7 +990,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "11140bcf-a629-4a4b-9fb1-1c956bdbdaed";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = GLIMP/Bridging_Header.h;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1016,7 +1016,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "11140bcf-a629-4a4b-9fb1-1c956bdbdaed";
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = GLIMP/Bridging_Header.h;
 				TARGETED_DEVICE_FAMILY = 1;

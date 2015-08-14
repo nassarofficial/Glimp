@@ -28,12 +28,11 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     func hideKeyboard() {
         view.endEditing(true)
     }
+    @IBAction func unwindToSegueLogin (segue : UIStoryboardSegue) {
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let tapGesture = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard"))
-        tapGesture.cancelsTouchesInView = true
-        view.addGestureRecognizer(tapGesture)
 
         ////////////////
         if (FBSDKAccessToken.currentAccessToken() != nil) {
@@ -70,27 +69,24 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         
 //        self.view.addSubview(signInButton)
         
-        
         /////////////
         self.txtUsername.delegate = self;
         self.txtPassword.delegate = self;
-        
         let videoURL: NSURL = NSBundle.mainBundle().URLForResource("video", withExtension: "mov")!
-        //var fileURL = NSURL.fileURLWithPath("http://localhost/test/xx.mp4")
         
-        // Create and configure the movie player.
         self.moviePlayer = MPMoviePlayerController(contentURL: videoURL)
         
         self.moviePlayer.controlStyle = MPMovieControlStyle.None
         self.moviePlayer.scalingMode = MPMovieScalingMode.AspectFill
         
         self.moviePlayer.view.frame = self.view.frame
-        self.view .insertSubview(self.moviePlayer.view, atIndex: 0)
+        self.view.insertSubview(self.moviePlayer.view, atIndex: 0)
         
         self.moviePlayer.play()
         
         // Loop video.
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loopVideo", name: MPMoviePlayerPlaybackDidFinishNotification, object: self.moviePlayer)
+
     }
     
     func loopVideo() {
@@ -99,8 +95,6 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     override func supportedInterfaceOrientations() -> Int {
         return Int(UIInterfaceOrientationMask.Portrait.rawValue)
     }
-    
-    
     
     
     func fbregister(){
@@ -185,8 +179,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
             
         })
     }
-    
-    
+
     
     func fbregisteruser(){
         var inputTextField: UITextField?

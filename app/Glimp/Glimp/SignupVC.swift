@@ -32,12 +32,12 @@ class SignupVC: UIViewController, UITextFieldDelegate {
     
     @IBOutlet var termsofuse: UIButton!
     @IBAction func privacypolicy(sender: AnyObject) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.glimpnow.com/privacypolicy.php")!)
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.glimpnow.com/#!privacy/c3hw")!)
         
     }
     
     @IBAction func termsofuse(sender: AnyObject) {
-        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.glimpnow.com/termsofuse.php")!)
+        UIApplication.sharedApplication().openURL(NSURL(string: "http://www.glimpnow.com/#!terms/c23bu")!)
         
     }
 
@@ -132,7 +132,24 @@ class SignupVC: UIViewController, UITextFieldDelegate {
 //    }
 
 
-    
+    override func viewWillAppear(animated: Bool) {
+        let videoURL: NSURL = NSBundle.mainBundle().URLForResource("video", withExtension: "mov")!
+        //var fileURL = NSURL.fileURLWithPath("http://localhost/test/xx.mp4")
+        
+        // Create and configure the movie player.
+        self.moviePlayer = MPMoviePlayerController(contentURL: videoURL)
+        
+        self.moviePlayer.controlStyle = MPMovieControlStyle.None
+        self.moviePlayer.scalingMode = MPMovieScalingMode.AspectFill
+        
+        self.moviePlayer.view.frame = self.view.frame
+        self.view .insertSubview(self.moviePlayer.view, atIndex: 0)
+        
+        self.moviePlayer.play()
+        
+        // Loop video.
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loopVideo", name: MPMoviePlayerPlaybackDidFinishNotification, object: self.moviePlayer)
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -117,8 +117,14 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                 self.presentViewController(alertController, animated: true, completion: nil)
                 
-            }
-                
+            } else if (locLabel == "" || locLabel == " " || locLabel == "Add Location") {
+            let alertController = UIAlertController(title: "Glimp", message:
+                "Please select or enter a different location.", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+            
+        }
+
             else {
                 self.uploading.hidden = false
                 
@@ -314,7 +320,11 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         view.addGestureRecognizer(tap)
         tap.cancelsTouchesInView = false
-        
+        if locLabel == ""{
+            locLabel = "Add Location"
+            getlocfs.setTitle(locLabel, forState: UIControlState.Normal)
+
+        }
     }
     
     

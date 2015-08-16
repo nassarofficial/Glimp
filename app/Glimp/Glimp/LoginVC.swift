@@ -113,7 +113,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                 println("User Email is: \(userEmail)")
                 let id : NSString = result.valueForKey("id") as! NSString
                 
-                var post:NSString = "name=\(self.fbusername)&email=\(userEmail)&id=\(id)"
+                var post:NSString = "email=\(userEmail)&id=\(id)"
                 
                 self.fbid = id as String
                 

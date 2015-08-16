@@ -134,7 +134,7 @@ class Notifications: UIViewController {
                     notification!.text = "wants to know what's going around near you!"
                 }
                 else if type == 4 {
-                    notification!.text = "has tagged you in his glimp."
+                    notification!.text = "has tagged you in this glimp."
                 }
                 else if type == 5 {
                     notification!.text = "mentioned you in a comment"
@@ -188,7 +188,7 @@ class Notifications: UIViewController {
         }
         else if datas[row]["type"] == 4{
             performSegueWithIdentifier("goto_glimp", sender: self)
-            
+            println(self.glimpid)
         }
         else if datas[row]["type"] == 5{
             performSegueWithIdentifier("goto_comments", sender: self)

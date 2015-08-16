@@ -161,6 +161,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
                     },
                     success: { (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
                         println("Yes this was a success")
+                        
                         prefs.setInteger(1, forKey: "glimper")
                         prefs.synchronize()
                         self.performSegueWithIdentifier("backtocali", sender: self)

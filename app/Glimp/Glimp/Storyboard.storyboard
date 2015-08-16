@@ -321,7 +321,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </customObject>
-                <tabBarItem title="Globe" image="29E591EB-DC73-45CA-B16B-E1F7EA9EAE48" id="ftO-5d-f5Q" customClass="RAMAnimatedTabBarItem" customModule="Glimp" customModuleProvider="target">
+                <tabBarItem title="Globe" image="CD87454A-035B-4FFC-A384-38CF676FACB0" id="ftO-5d-f5Q" customClass="RAMAnimatedTabBarItem" customModule="Glimp" customModuleProvider="target">
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="textColor">
                             <color key="value" red="1" green="0.99459729669999997" blue="0.98094406270000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -2404,6 +2404,7 @@
                         <outlet property="tableView" destination="tcr-Qs-Pet" id="ycD-hY-eE3"/>
                         <segue destination="nQx-YJ-fgN" kind="presentation" identifier="goto_comments" id="Ug3-Zg-Kbb"/>
                         <segue destination="bx8-n6-9hL" kind="presentation" identifier="goto_profile" id="zB1-jF-56W"/>
+                        <segue destination="bFs-XM-iuW" kind="presentation" identifier="goto_glimp" id="uzH-5b-RAM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAL-w9-6aE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2421,7 +2422,7 @@
                     </userDefinedRuntimeAttributes>
                 </customObject>
             </objects>
-            <point key="canvasLocation" x="225" y="971"/>
+            <point key="canvasLocation" x="125" y="1047"/>
         </scene>
         <!--UserProfile-->
         <scene sceneID="kzy-ol-AYA">
@@ -4292,7 +4293,9 @@
     </scenes>
     <resources>
         <image name="2" width="31" height="31"/>
-        <image name="29E591EB-DC73-45CA-B16B-E1F7EA9EAE48" width="31" height="31">
+        <image name="3" width="41" height="41"/>
+        <image name="5" width="26" height="25"/>
+        <image name="CD87454A-035B-4FFC-A384-38CF676FACB0" width="31" height="31">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGOzxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK0HCBEW
 GxwgISksLzU4VSRudWxs1AkKCwwNDg8QViRjbGFzc1xOU0ltYWdlRmxhZ3NWTlNSZXBzV05TQ29sb3KA
@@ -4426,8 +4429,6 @@ HN4c4xzuHPcdCh0OHSEdLB01HTodQh1FHUodWR1dHWQdbB15HX4dgB2CHYcdjx2SHZcdnx2iHbQdtx28
 AAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAAAAAAAAAAHb4
 </mutableData>
         </image>
-        <image name="3" width="41" height="41"/>
-        <image name="5" width="26" height="25"/>
         <image name="add_photo" width="107" height="108"/>
         <image name="bluebar" width="566" height="66"/>
         <image name="camera-flip" width="28" height="23"/>
@@ -4458,15 +4459,15 @@ AAAAAAAAAgEAAAAAAAAAPwAAAAAAAAAAAAAAAAAAHb4
         <image name="whitenotifbutton" width="27" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="1Oh-oo-ujf"/>
         <segue reference="tnm-A6-B8C"/>
-        <segue reference="ECb-bR-hIP"/>
         <segue reference="zB1-jF-56W"/>
-        <segue reference="CIw-aP-jlL"/>
-        <segue reference="5qj-ch-8ln"/>
-        <segue reference="uX9-Yq-LsO"/>
+        <segue reference="uzH-5b-RAM"/>
+        <segue reference="78w-zW-VnF"/>
         <segue reference="SZh-dH-QcX"/>
+        <segue reference="5qj-ch-8ln"/>
         <segue reference="RCZ-o2-e14"/>
+        <segue reference="ECb-bR-hIP"/>
+        <segue reference="1Oh-oo-ujf"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.2784313725" green="0.81176470590000005" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
 </document>

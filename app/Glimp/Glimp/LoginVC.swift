@@ -15,10 +15,11 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     var moviePlayer: MPMoviePlayerController!
     
     @IBOutlet weak var te: UIView!
+    @IBOutlet var spinner: UIActivityIndicatorView!
     @IBOutlet weak var gplus: UIView!
     var fbusername: String = ""
     var fbid: String = ""
-    
+    var emailer: NSString = ""
     @IBOutlet var loginBut: UIButton!
     @IBOutlet var txtUsername : UITextField!
     @IBOutlet var txtPassword : UITextField!
@@ -33,7 +34,9 @@ class LoginVC: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        spinner.hidden = true
+        
+        
         ////////////////
         if (FBSDKAccessToken.currentAccessToken() != nil) {
             println("Already have access token")
@@ -98,22 +101,34 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     
     func fbregister(){
-        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
+        spinner.hidden = false
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"email,first_name,last_name,gender,id"])
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
             
             if ((error) != nil)
             {
-                // Process error
+                self.spinner.hidden = true
+                self.txtUsername.enabled = false
+                self.txtPassword.enabled = false
+                    // Process error
                 println("Error: \(error)")
             }
             else
             {
+                self.spinner.hidden = false
                 println("fetched user: \(result)")
-                let userEmail : NSString = result.valueForKey("email") as! NSString
-                println("User Email is: \(userEmail)")
+                
+                if result.valueForKey("email") != nil{
+                    self.emailer = result.valueForKey("email") as! NSString
+                }
+                else {
+                    self.emailer = " "
+                }
+                
+                println("User Email is: \(self.emailer)")
                 let id : NSString = result.valueForKey("id") as! NSString
                 
-                var post:NSString = "email=\(userEmail)&id=\(id)"
+                var post:NSString = "email=\(self.emailer)&id=\(id)"
                 
                 self.fbid = id as String
                 
@@ -147,14 +162,19 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         var responseData:NSString  = NSString(data:urlData!, encoding:NSUTF8StringEncoding)!
                         
                         NSLog("Response ==> %@", responseData);
-                        
+                        // Facebook Log
                         
                         if(responseData == "{\"registered\"}")
                         {
+                            self.spinner.hidden = true
+                            self.txtUsername.enabled = false
+                            self.txtPassword.enabled = false
                             self.fbregisteruser()
                             
                         }
                         else if (responseData == "{\"success\"}") {
+                            self.spinner.hidden = true
+
                             var prefs:NSUserDefaults = NSUserDefaults.standardUserDefaults()
 
                             prefs.setObject(self.fbusername, forKey: "USERNAME")
@@ -164,7 +184,53 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                             self.dismissViewControllerAnimated(true, completion: nil)
                             
                         }
+                        else if (responseData == "{\"failure\"}") {
+                            self.spinner.hidden = true
+                            
+                            var alertView:UIAlertView = UIAlertView()
+                            alertView.title = "Sign in Failed!"
+                            alertView.message = "Error with your Facebook account!"
+                            if let error = reponseError {
+                                alertView.message = (error.localizedDescription)
+                            }
+                            alertView.delegate = self
+                            alertView.addButtonWithTitle("OK")
+                            alertView.show()
+                            
+                        }
+                        else {
+                            self.spinner.hidden = true
+                            
+                            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/fbdelete.php", parameters: ["fbid": self.fbid, "email": self.emailer])
+                                
+                                .response { (request, response, data, error) in
+                                    println(request)
+                                    println(response)
+                                    println(error)
+                            }
+                            
+                            var alertView:UIAlertView = UIAlertView()
+                            alertView.title = "Sign in Failed!"
+                            alertView.message = "Facebook Permission not including email."
+                            if let error = reponseError {
+                                alertView.message = (error.localizedDescription)
+                            }
+                            alertView.delegate = self
+                            alertView.addButtonWithTitle("OK")
+                            alertView.show()
+
+                        }
                     } else {
+                        self.spinner.hidden = true
+                        
+                        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/fbdelete.php", parameters: ["fbid": self.fbid, "email": self.emailer])
+                            
+                            .response { (request, response, data, error) in
+                                println(request)
+                                println(response)
+                                println(error)
+                        }
+
                         var alertView:UIAlertView = UIAlertView()
                         alertView.title = "Sign in Failed!"
                         alertView.message = "Connection Failure"
@@ -183,7 +249,10 @@ class LoginVC: UIViewController, UITextFieldDelegate {
     
     func fbregisteruser(){
         var inputTextField: UITextField?
-        
+        self.spinner.hidden = true
+        self.txtUsername.enabled = false
+        self.txtPassword.enabled = false
+
         //Create the AlertController
         let actionSheetController: UIAlertController = UIAlertController(title: "Username", message: "Please Enter a username:", preferredStyle: .Alert)
         
@@ -191,7 +260,19 @@ class LoginVC: UIViewController, UITextFieldDelegate {
         
         //Create and add the Cancel action
         let cancelAction: UIAlertAction = UIAlertAction(title: "Cancel", style: .Cancel) { action -> Void in
-            //Do some stuff
+            self.spinner.hidden = true
+            self.txtUsername.enabled = false
+            self.txtPassword.enabled = false
+            println("TESTERRRR")
+            println(self.fbid)
+            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/fbdelete.php", parameters: ["fbid": self.fbid, "email": self.emailer])
+                
+                .response { (request, response, data, error) in
+                    println(request)
+                    println(response)
+                    println(error)
+            }
+
         }
         actionSheetController.addAction(cancelAction)
         //Create and an option action
@@ -285,7 +366,14 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                             alertView.delegate = self
                             alertView.addButtonWithTitle("OK")
                             alertView.show()
-                            
+                            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/fbdelete.php", parameters: ["fbid": self.fbid])
+                                
+                                .response { (request, response, data, error) in
+                                    println(request)
+                                    println(response)
+                                    println(error)
+                            }
+
                         }
                         
                         
@@ -403,7 +491,7 @@ class LoginVC: UIViewController, UITextFieldDelegate {
                         let deviceToken = String(delegate.deviceToken)
                         
                         
-                        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/beta/devicetokenizer.php", parameters: ["username": username,"devicetoken": deviceToken,  "OS": "iOS"])
+                        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/devicetokenizer.php", parameters: ["username": username,"devicetoken": deviceToken,  "OS": "iOS"])
                             
                             .response { (request, response, data, error) in
                                 println(request)

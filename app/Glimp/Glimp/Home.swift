@@ -109,11 +109,23 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
             for point in points["glimps"] as! NSArray {
                 var a = JPSThumbnail()
                 var imageurl=String(stringInterpolationSegment: (point as! NSDictionary)["profile_pic"]!)
+                if let url = NSURL(string: imageurl) {
+                    if let data = NSData(contentsOfURL: url){
+                        a.image = UIImage(data: data)
+                    }
+
+                } else {
+                    let url = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profilepic.jpeg")
+                    let data = NSData(contentsOfURL: url!)
+                    a.image = UIImage(data: data!)
+                }
+
+//                var url = NSURL(string: imageurl)
+//                //println(url)
+//                let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
+//                a.image = UIImage(data: data!)
                 
-                var url = NSURL(string: imageurl)
-                let data = NSData(contentsOfURL: url!) //make sure your image in this url does exist, otherwise unwrap in a if let check
-                a.image = UIImage(data: data!)
-                    
+                
                 a.title =  String(stringInterpolationSegment: (point as! NSDictionary)["username"]!)
                 a.subtitle =  String(stringInterpolationSegment: (point as! NSDictionary)["loc"]!)
                 var lat = (point as! NSDictionary)["latitude"] as! CLLocationDegrees

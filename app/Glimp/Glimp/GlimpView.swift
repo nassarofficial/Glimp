@@ -52,11 +52,25 @@ class GlimpView: UIViewController{
     @IBOutlet var reportbut: UIButton!
     @IBOutlet var deletebut: UIButton!
     @IBAction func deleteGlimp(sender: AnyObject) {
-       
-        Alamofire.request(.POST, "/http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/deleteGlimp.php", parameters: ["g_id": glimpsid]).responseJSON { (request, response, json, error) in
-            // println(response)
-        }
-        performSegueWithIdentifier("unwinder", sender: self)
+        var alert = UIAlertController(title: "Delete Glimp", message: "Are you sure you want to delete this glimp?", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { action in
+            switch action.style{
+            case .Default:
+                println("default")
+                Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/deleteGlimp.php", parameters: ["g_id": self.glimpsid]).responseJSON { (request, response, json, error) in
+                    // println(response)
+                }
+                self.performSegueWithIdentifier("unwinder", sender: self)
+
+            case .Cancel:
+                println("cancel")
+                
+            case .Destructive:
+                println("destructive")
+            }
+        }))
+        self.presentViewController(alert, animated: true, completion: nil)
+
 
     }
     
@@ -148,7 +162,7 @@ class GlimpView: UIViewController{
         //println(self.glimpsid)
         self.spinner.stopAnimating()
 
-        let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/glimp.php?glimpid="+self.glimpsid!)
+        let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/glimp1.php?glimpid="+self.glimpsid!)
         
         let pointData = NSData(contentsOfURL: baseURL!, options: nil, error: nil)
         
@@ -156,56 +170,64 @@ class GlimpView: UIViewController{
             options: nil,
             error: nil) as! NSDictionary
         
-        
-        for point in points["glimp"] as! NSArray {
-            self.ViewControllerVideoPath = (point as! NSDictionary)["filename"] as! String
-            self.username.setTitle((point as! NSDictionary)["username"] as? String, forState: UIControlState.Normal)
-            self.usernamep = String(stringInterpolationSegment: (point as! NSDictionary)["username"]!) as String
-            self.textView.text = (point as! NSDictionary)["description"] as? String
-            textView.resolveHashTags()
+        if let glimper = points["glimp"] as? NSArray {
+            for point in points["glimp"] as! NSArray {
+                self.ViewControllerVideoPath = (point as! NSDictionary)["filename"] as! String
+                self.username.setTitle((point as! NSDictionary)["username"] as? String, forState: UIControlState.Normal)
+                self.usernamep = String(stringInterpolationSegment: (point as! NSDictionary)["username"]!) as String
+                self.textView.text = (point as! NSDictionary)["description"] as? String
+                textView.resolveHashTags()
 
-            self.userid = String(stringInterpolationSegment: (point as! NSDictionary)["userid"]!) as String
-            
-            let com = String(stringInterpolationSegment: (point as! NSDictionary)["COMMENT"]!) as String
-            self.comments.setTitle(com, forState: UIControlState.Normal)
-            self.views.text = String(stringInterpolationSegment: (point as! NSDictionary)["views"]!) as String
-            self.locid = String(stringInterpolationSegment: (point as! NSDictionary)["locid"]!) as String
-            
-            self.loc = String(stringInterpolationSegment: (point as! NSDictionary)["loc"]!) as String
-            self.timestart = String(stringInterpolationSegment: (point as! NSDictionary)["time"]!) as String
-            self.timeend = String(stringInterpolationSegment: (point as! NSDictionary)["stoptime"]!) as String
-            self.broadcat_id = String(stringInterpolationSegment: (point as! NSDictionary)["b_id"]!) as String
+                self.userid = String(stringInterpolationSegment: (point as! NSDictionary)["userid"]!) as String
+                
+                let com = String(stringInterpolationSegment: (point as! NSDictionary)["COMMENT"]!) as String
+                self.comments.setTitle(com, forState: UIControlState.Normal)
+                self.views.text = String(stringInterpolationSegment: (point as! NSDictionary)["views"]!) as String
+                self.locid = String(stringInterpolationSegment: (point as! NSDictionary)["locid"]!) as String
+                
+                self.loc = String(stringInterpolationSegment: (point as! NSDictionary)["loc"]!) as String
+                self.timestart = String(stringInterpolationSegment: (point as! NSDictionary)["time"]!) as String
+                self.timeend = String(stringInterpolationSegment: (point as! NSDictionary)["stoptime"]!) as String
+                self.broadcat_id = String(stringInterpolationSegment: (point as! NSDictionary)["b_id"]!) as String
 
-            self.location.setTitle(loc, forState: UIControlState.Normal)
-            if (broadcat_id == "0"){
-                vidreply.hidden = true
-            } else {
-                vidreply.hidden = false
+                self.location.setTitle(loc, forState: UIControlState.Normal)
+                if (broadcat_id == "0"){
+                    vidreply.hidden = true
+                } else {
+                    vidreply.hidden = false
+                }
+
+            }
+            println(points["glimp"])
+            let url = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/"+self.ViewControllerVideoPath)
+            
+            //println(url)
+            
+            self.moviePlayer = MPMoviePlayerController(contentURL: url)
+            
+            
+            if let player = moviePlayer {
+                
+                player.view.frame = CGRect(x: 0, y: 44, width: self.view.bounds.width, height: 275)
+                player.prepareToPlay()
+                player.scalingMode = .AspectFill
+                self.mainview.addSubview(player.view)
+                
+                //            self.mainview.sendSubviewToBack(self.gplayer)
+                //            self.mainview.bringSubviewToFront(player.view)
+                //            self.mainview.bringSubviewToFront(self.navigation)
+                //            player.view.layer.zPosition = 1;
+                //            navigation.layer.zPosition = 9999;
+                
             }
 
-        }
-        
-        let url = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/"+self.ViewControllerVideoPath)
-        
-        //println(url)
-        
-        self.moviePlayer = MPMoviePlayerController(contentURL: url)
-        
-        
-        if let player = moviePlayer {
+        } else {
             
-            player.view.frame = CGRect(x: 0, y: 44, width: self.view.bounds.width, height: 275)
-            player.prepareToPlay()
-            player.scalingMode = .AspectFill
-            self.mainview.addSubview(player.view)
             
-            //            self.mainview.sendSubviewToBack(self.gplayer)
-            //            self.mainview.bringSubviewToFront(player.view)
-            //            self.mainview.bringSubviewToFront(self.navigation)
-            //            player.view.layer.zPosition = 1;
-            //            navigation.layer.zPosition = 9999;
             
         }
+        
+        
     }
     
     

@@ -64,15 +64,15 @@ class SignupVC: UIViewController, UITextFieldDelegate {
         else if (textField == self.txtPassword){
             self.txtPassword.text = "";
         }
-        else if (textField == self.txtPassword){
+        else if (textField == self.txtConfirmPassword){
             self.txtConfirmPassword.text = "";
         }
 
-        else if (textField == self.txtPassword){
+        else if (textField == self.txtEmail){
             self.txtEmail.text = "";
         }
 
-        else if (textField == self.txtPassword){
+        else if (textField == self.txtPhonenumber){
             self.txtPhonenumber.text = "";
         }
     }
@@ -215,10 +215,10 @@ class SignupVC: UIViewController, UITextFieldDelegate {
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
-        } else if ( counter < 6){
+        } else if ( counter < 5){
             var alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
-            alertView.message = "Username less than 6 characters"
+            alertView.message = "Username should be more than 5 characters"
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
@@ -226,7 +226,7 @@ class SignupVC: UIViewController, UITextFieldDelegate {
         } else if ( verifier < 6){
             var alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
-            alertView.message = "Passwords less than 6 characters"
+            alertView.message = "Passwords should be more than 6 characters"
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()

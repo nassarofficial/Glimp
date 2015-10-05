@@ -318,6 +318,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
         segmentedcontrol.hidden = true
         spinner.hidden = true
         nores.hidden = true
+        mapView.delegate = self
         // Initial reachability check
         if reachability.isReachable() {
             let algorithm : KPGridClusteringAlgorithm = KPGridClusteringAlgorithm()
@@ -595,60 +596,40 @@ extension Globe : MKMapViewDelegate {
             return nil
         }
         
-        var annotationView : MKPinAnnotationView?
+        var annotationView : MKAnnotationView?
         
         if annotation is KPAnnotation {
             let a : KPAnnotation = annotation as! KPAnnotation
             
             if a.isCluster() {
-                annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("cluster") as? MKPinAnnotationView
+                
+                annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("cluster") as MKAnnotationView!
                 
                 if (annotationView == nil) {
-                    annotationView = MKPinAnnotationView(annotation: a, reuseIdentifier: "cluster")
+                    annotationView = MKAnnotationView(annotation: a, reuseIdentifier: "cluster")
+
                     annotationView!.canShowCallout = true
-                    annotationView!.animatesDrop = false
                     
                 }
                 annotationView!.canShowCallout = false
-                annotationView!.animatesDrop = false
                 
                 annotationView!.image =  UIImage(named:"marker1.png")
                 
             }
                 
             else {
-                annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("pin") as? MKPinAnnotationView
+                annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("pin") as MKAnnotationView!
+
                 if (annotationView == nil) {
-                    annotationView = MKPinAnnotationView(annotation: a, reuseIdentifier: "pin")
+                    annotationView = MKAnnotationView(annotation: a, reuseIdentifier: "pin")
                 }
                 annotationView!.canShowCallout = true
-                annotationView!.animatesDrop = false
                 
                 annotationView!.image =  UIImage(named:"marker.png")
             }
             
             annotationView!.canShowCallout = false;
         }
-//        else {
-//            let reuseId = "test"
-//            let a : QuesReqAnnot = annotation as! QuesReqAnnot
-//
-//            var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId)
-//            if annotationView == nil {
-//                annotationView = MKAnnotationView(annotation: a, reuseIdentifier: reuseId)
-//                annotationView.canShowCallout = true
-//            }
-//            else {
-//                annotationView.annotation = annotation
-//            }
-//            
-//            //Set annotation-specific properties **AFTER**
-//            //the view is dequeued or created...
-//            
-//            let cpa = annotation as! QuesReqAnnot
-//            annotationView.image = UIImage(named:cpa.imageName)
-//            
-//        }
         return annotationView;
     }
     

@@ -55,6 +55,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     var flagger = ""
     var arr = [Int]()
     var mention = ""
+    var logger = 1
     ///-----------------------------------------
     @IBOutlet var locationer: UITableView!
     
@@ -262,7 +263,6 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         self.uploading.hidden = true
         ////
@@ -334,9 +334,10 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         //Causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-    func textFieldDidBeginEditing(textField: UITextField) {    //delegate method
-        if (textField == self.Description) {
-            self.Description.text = "";
+    func textViewDidBeginEditing(textView: UITextView) {
+        if logger == 1 {
+            Description.text = ""
+            logger = 0
         }
     }
     
@@ -411,10 +412,10 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         return true
     }
     
-    func textViewDidBeginEditing(Description: UITextView)
-    {
-    }
-    
+//    func textViewDidBeginEditing(Description: UITextView)
+//    {
+//    }
+//    
     func textViewDidEndEditing(Description: UITextView)
     {
     }
@@ -543,7 +544,6 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
                 
             }
             if !(gettext.contains("@")){
-                
                 flagger = ""
                 suggester.hidden = true
             }

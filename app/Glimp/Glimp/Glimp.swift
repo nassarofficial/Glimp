@@ -23,6 +23,8 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
     var administrativeArea:String = ""
     // MARK: property
     var broadcast_id = "0"
+    @IBAction func unwindToGlimp1 (segue : UIStoryboardSegue) {}
+
     @IBOutlet weak var counterbg: UIImageView!
     var sessionQueue: dispatch_queue_t?
     var session: AVCaptureSession?
@@ -33,8 +35,8 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
     var outputFilePath: String?
     var gllatitude: Float?
     var gllongitude: Float?
-    var count = 30
-    
+    var count = 29
+    var logger = 0
     var deviceAuthorized: Bool  = false
     var backgroundRecordId: UIBackgroundTaskIdentifier = UIBackgroundTaskInvalid
     var sessionRunningAndDeviceAuthorized: Bool {
@@ -42,7 +44,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
             return (self.session?.running != nil && self.deviceAuthorized )
         }
     }
-    
+
     var runtimeErrorHandlingObserver: AnyObject?
     var lockInterfaceRotation: Bool = false
     
@@ -60,14 +62,16 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
     
     func update() {
         
-        if(count > 0)
+        if(count > 0 && logger == 1)
         {
             countDownLabel.text = String(count--)
         }
         else if (count == 0)
         {
-            self.movieFileOutput!.stopRecording()
+            count = 29
             countDownLabel.text = String(30)
+
+            self.movieFileOutput!.stopRecording()
         }
         
     }
@@ -137,10 +141,6 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
         self.session = session
         self.previewView.session = session
         
-
-        var preferredTimeScale:Int32 = 30
-        var totalSeconds:Int64 = Int64(Int(30) * Int(preferredTimeScale)) // after 7 sec video recording stop automatically
-        var maxDuration:CMTime = CMTimeMake(totalSeconds, preferredTimeScale)
         // self.movieFileOutput!.maxRecordedDuration = maxDuration
         
         
@@ -218,7 +218,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
             glimperVC.gllong = self.gllongitude
             glimperVC.locLabel = self.administrativeArea
             glimperVC.broadcast_id = self.broadcast_id
-            
+            count = 29
         }
         
     }
@@ -255,7 +255,6 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
     
     override func viewWillAppear(animated: Bool) {
 //        if (CLLocationManager.locationServicesEnabled()) {
-            println("test")
             self.checkDeviceAuthorizationStatus()
             locationManager.delegate = self
             locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -305,7 +304,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
     }
     
     override func viewWillDisappear(animated: Bool) {
-        
+        count = 0
         dispatch_async(self.sessionQueue!, {
             
             if let sess = self.session{
@@ -396,7 +395,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
                     self.cameraButton.enabled = true
                     self.closebutton.enabled = true
                     self.closebutton.hidden = false
-
+                    self.count = 29
                 }
                 
                 
@@ -557,6 +556,14 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
     // MARK: Actions
     
     @IBAction func toggleMovieRecord(sender: AnyObject) {
+        count = 30
+        
+        if (logger == 1){
+            logger = 0
+        } else {
+            logger = 1
+        }
+
         self.recordButton.enabled = false
         self.recordButton.setImage(UIImage(named: "stopicon.png"), forState: UIControlState.Normal)
         var timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
@@ -595,6 +602,8 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
         })
         
     }
+    
+    
     @IBAction func changeCamera(sender: AnyObject) {
         
         

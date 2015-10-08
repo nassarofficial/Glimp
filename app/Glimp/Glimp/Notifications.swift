@@ -19,7 +19,7 @@ class Notifications: UIViewController {
     
     
     @IBOutlet var notifications: UILabel!
-    @IBAction func unwindToSegue (segue : UIStoryboardSegue) {}
+    @IBAction func unwindToSegueG (segue : UIStoryboardSegue) {}
 
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {

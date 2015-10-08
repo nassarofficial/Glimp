@@ -35,6 +35,18 @@ class Profile: UIViewController {
     @IBAction func unwindToprofile (segue : UIStoryboardSegue) {
     }
     @IBAction func unwindToSegueG (segue : UIStoryboardSegue) {}
+    var type: Int = 0
+
+    @IBAction func followersac(sender: AnyObject) {
+        type = 1
+        self.performSegueWithIdentifier("goto_follow", sender: self)
+    }
+    
+    @IBAction func followingac(sender: AnyObject) {
+        type = 2
+        self.performSegueWithIdentifier("goto_follow", sender: self)
+    }
+
 
     var datas: [JSON] = []
     var userid: String = ""
@@ -111,7 +123,12 @@ class Profile: UIViewController {
             let secondViewController = segue.destinationViewController as! GlimpView
             let ider = glimpsid as String!
             secondViewController.glimpsid = ider
+        }  else if (segue.identifier == "goto_follow") {
+            let secondViewController = segue.destinationViewController as! Follow
+            let ider = type as Int!
+            secondViewController.type = ider
         }
+
     }
     
     override func viewDidLoad() {

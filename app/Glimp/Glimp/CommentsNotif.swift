@@ -17,7 +17,8 @@ class CommentsNotif: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var user_id:String!
     var datas: [JSON] = []
     ////
-    
+    @IBAction func unwindToSegueG (segue : UIStoryboardSegue) {}
+
     var ticker : Int = 0
     var query : String = ""
     var ment : Int = 0

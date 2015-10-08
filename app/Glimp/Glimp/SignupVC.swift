@@ -223,10 +223,10 @@ class SignupVC: UIViewController, UITextFieldDelegate {
             alertView.addButtonWithTitle("OK")
             alertView.show()
 
-        } else if ( verifier < 6){
+        } else if ( verifier <= 6){
             var alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
-            alertView.message = "Passwords should be more than 6 characters"
+            alertView.message = "Passwords should be more than or equal to 6 characters"
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()

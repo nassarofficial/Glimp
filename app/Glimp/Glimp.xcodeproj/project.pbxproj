@@ -52,6 +52,7 @@
 		6E92D9571B41F9DE0020C4CF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E92D9541B41F9DE0020C4CF /* FBSDKLoginKit.framework */; };
 		6E9FF3651B7950C100FB61F8 /* flash.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E9FF3641B7950C100FB61F8 /* flash.png */; };
 		6E9FF3671B7950CD00FB61F8 /* flashicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6E9FF3661B7950CD00FB61F8 /* flashicon.png */; };
+		6EA131FF1BC46461002120A6 /* Follow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA131FE1BC46461002120A6 /* Follow.swift */; };
 		6EA803711B2F5A9800316620 /* imagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EA803701B2F5A9800316620 /* imagePicker.swift */; };
 		6EC8BE7B1B0D213300F38728 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6EC8BE7A1B0D213300F38728 /* Images.xcassets */; };
 		6EC8BEB51B0D215000F38728 /* video.mov in Resources */ = {isa = PBXBuildFile; fileRef = 6EC8BE971B0D215000F38728 /* video.mov */; };
@@ -113,6 +114,7 @@
 		6EE9322E1B3F508C00E52F63 /* splash.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 6EE9322D1B3F508C00E52F63 /* splash.mp3 */; };
 		6EF233891B71302F0083C754 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF233881B71302F0083C754 /* Report.swift */; };
 		6EF2338B1B71321C0083C754 /* Reporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF2338A1B71321C0083C754 /* Reporter.swift */; };
+		6EF630261BC309D600B1DD30 /* PSTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EF630251BC309D600B1DD30 /* PSTimer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -195,6 +197,7 @@
 		6E92D9541B41F9DE0020C4CF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		6E9FF3641B7950C100FB61F8 /* flash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flash.png; path = Images.xcassets/flash.imageset/flash.png; sourceTree = "<group>"; };
 		6E9FF3661B7950CD00FB61F8 /* flashicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = flashicon.png; path = Images.xcassets/flashicon.imageset/flashicon.png; sourceTree = "<group>"; };
+		6EA131FE1BC46461002120A6 /* Follow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Follow.swift; sourceTree = "<group>"; };
 		6EA803701B2F5A9800316620 /* imagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = imagePicker.swift; sourceTree = "<group>"; };
 		6EC4693E1B1660AC00585CD6 /* Pods_Glimp.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Pods_Glimp.framework; path = "Pods/../build/Debug-iphoneos/Pods_Glimp.framework"; sourceTree = "<group>"; };
 		6EC469401B16611E00585CD6 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Pods-Glimp/Alamofire.framework"; sourceTree = "<group>"; };
@@ -281,6 +284,7 @@
 		6EE9322D1B3F508C00E52F63 /* splash.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = splash.mp3; sourceTree = "<group>"; };
 		6EF233881B71302F0083C754 /* Report.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		6EF2338A1B71321C0083C754 /* Reporter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reporter.swift; sourceTree = "<group>"; };
+		6EF630251BC309D600B1DD30 /* PSTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PSTimer.swift; sourceTree = "<group>"; };
 		8BD82ADCF977F1BBF70B9E37 /* Pods_Glimp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glimp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAC89E911EA7B3C2B3C980BB /* Pods-Glimp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glimp.release.xcconfig"; path = "Pods/Target Support Files/Pods-Glimp/Pods-Glimp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -444,6 +448,7 @@
 				6E4F6B151B6C176A00CB775E /* BlockTableView.swift */,
 				6E76E75C1B40C34B0006AEC2 /* ChangePassword.swift */,
 				6E5990051B1BAA80001D4016 /* CollectionViewCell.swift */,
+				6EF630251BC309D600B1DD30 /* PSTimer.swift */,
 				6E0528D11B1653C400C50C5C /* Comments.swift */,
 				6EE932271B3F2E3E00E52F63 /* CommentsNotif.swift */,
 				6EC8BEA51B0D215000F38728 /* DataManager.swift */,
@@ -453,6 +458,7 @@
 				6EC8BEA01B0D215000F38728 /* Glimp.swift */,
 				6EC8BEA11B0D215000F38728 /* GlimpPreview.swift */,
 				6ED1F7391B47F6DA00B2A4B3 /* ProgressHUD.swift */,
+				6EA131FE1BC46461002120A6 /* Follow.swift */,
 				6EC8BEA61B0D215000F38728 /* Getter.swift */,
 				6EC8BEA31B0D215000F38728 /* GlimpView.swift */,
 				6E0912061B6D5A1000333A9A /* Hashtag.swift */,
@@ -821,6 +827,7 @@
 				6EC8BEC11B0D215000F38728 /* LoginVC.swift in Sources */,
 				6EE5A4551B764D53000B4955 /* RAMBounceAnimation1.swift in Sources */,
 				6E76E75D1B40C34B0006AEC2 /* ChangePassword.swift in Sources */,
+				6EF630261BC309D600B1DD30 /* PSTimer.swift in Sources */,
 				6E5990061B1BAA80001D4016 /* CollectionViewCell.swift in Sources */,
 				6EC8BEBA1B0D215000F38728 /* Profile.swift in Sources */,
 				6E34809A1B347D09003F0D6A /* UIRefreshControl+AFNetworking.m in Sources */,
@@ -836,6 +843,7 @@
 				6EC8BEFC1B0D218F00F38728 /* JPSThumnail.m in Sources */,
 				6EC8BEC41B0D215000F38728 /* SignupVC.swift in Sources */,
 				6EF2338B1B71321C0083C754 /* Reporter.swift in Sources */,
+				6EA131FF1BC46461002120A6 /* Follow.swift in Sources */,
 				6EE932281B3F2E3E00E52F63 /* CommentsNotif.swift in Sources */,
 				6EC8BEC31B0D215000F38728 /* Getter.swift in Sources */,
 				6EC8BEC01B0D215000F38728 /* GlimpView.swift in Sources */,

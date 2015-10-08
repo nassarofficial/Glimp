@@ -20,6 +20,16 @@ class UserProfile: UIViewController {
     @IBOutlet weak var scroller: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     
+    @IBAction func followersac(sender: AnyObject) {
+        type = 1
+        self.performSegueWithIdentifier("goto_follow", sender: self)
+    }
+    
+    @IBAction func followingac(sender: AnyObject) {
+        type = 2
+        self.performSegueWithIdentifier("goto_follow", sender: self)
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var user: UILabel!
     @IBAction func unwindToSegueprof (segue : UIStoryboardSegue) {}
@@ -29,12 +39,12 @@ class UserProfile: UIViewController {
     var f3: String = ""
     var friendid: String = ""
     @IBOutlet weak var tablespinner: UIActivityIndicatorView!
-    @IBAction func unwindToSegueG (segue : UIStoryboardSegue) {}
+    @IBAction func unwindToSegue (segue : UIStoryboardSegue) {}
     var glimpsid: String = ""
-
+    var type: Int = 0
     @IBAction func followaction(sender: AnyObject) {
         if f3 == "not found"{
-            println("NOT FRIEND")
+            //println("NOT FRIEND")
 
             let parameters = [
                 "user": friendid,
@@ -43,9 +53,6 @@ class UserProfile: UIViewController {
             
             self.followbutton.setImage(UIImage(named: "unfollowbutton.png"), forState: UIControlState.Normal)
 
-//            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/addfriend.php", parameters: parameters)
-//
-//
             Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/addfriend.php", parameters: parameters)
                 .response { (request, response, data, error) in
                     self.updater()
@@ -53,7 +60,7 @@ class UserProfile: UIViewController {
 
         }
         else{
-            println("FRIEND")
+            //println("FRIEND")
 
             let parameters = [
                 "uid": f3,
@@ -65,9 +72,6 @@ class UserProfile: UIViewController {
                     self.updater()
             }
 
-//            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/removefriend.php", parameters: parameters)
-//
-//            self.updater()
             
         }
 
@@ -94,11 +98,6 @@ class UserProfile: UIViewController {
             let f1 = String(stringInterpolationSegment: (point as! NSDictionary)["friends"]!)
             let f2 = String(stringInterpolationSegment: (point as! NSDictionary)["followers"]!)
             f3 = String(stringInterpolationSegment: (point as! NSDictionary)["follow"]!)
-            
-//            println("fOLLOW: "+f3)
-//            println("FOLLOWERS: "+f2)
-//            println("FOLLOWERS: "+f1)
-
             
             
             if f3 == "not found"{
@@ -249,6 +248,12 @@ class UserProfile: UIViewController {
             let ider = glimpsid as String!
             secondViewController.glimpsid = ider
         }
+        else if (segue.identifier == "goto_follow") {
+            let secondViewController = segue.destinationViewController as! Follow
+            let ider = type as Int!
+            secondViewController.type = ider
+        }
+
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -306,10 +311,6 @@ class UserProfile: UIViewController {
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
                 var date = dateFormatter.dateFromString(data["time"].string!)
-                
-                
-                //var date = NSDate(data["time"].string!)
-                
                 timeLabel!.text = timeAgoSinceDate(date!, numericDates: Bool(0))
 
             }

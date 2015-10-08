@@ -30,7 +30,7 @@ class ImagePicker: UIViewController,UIAlertViewDelegate,UIImagePickerControllerD
             // now lets get the directory contents (including folders)
             var progress: NSProgress?
             
-            var imageData: NSMutableData = NSMutableData(data: UIImageJPEGRepresentation(imageView.image, 0.05));
+            var imageData: NSMutableData = NSMutableData(data: UIImageJPEGRepresentation(imageView.image, 0.5));
             
             var params = [
                 "username": usernamep

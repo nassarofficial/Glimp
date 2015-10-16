@@ -118,7 +118,7 @@ class RAMAnimatedTabBarController: UITabBarController {
 
                 container.addSubview(icon)
                 if index == 2{
-                createConstraints(icon, container: container, size: item.image!.size, yOffset: 0)
+                createConstraints(icon, container: container, size: item.image!.size, yOffset: -5)
                 }
                 else
                 {

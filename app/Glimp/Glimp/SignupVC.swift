@@ -8,7 +8,7 @@
 import MediaPlayer
 import UIKit
 func isValidEmail(testStr : String) -> Bool {
-    println("validate calendar: \(testStr)")
+    print("validate calendar: \(testStr)")
     let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
     
     let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
@@ -81,37 +81,16 @@ class SignupVC: UIViewController, UITextFieldDelegate {
     func loopVideo() {
         self.moviePlayer.play()
     }
-    override func supportedInterfaceOrientations() -> Int {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
     }
-
-//    func textFieldDidBeginEditing(textField: UITextField!) -> Bool {
-//        if (textField == self.txtUsername) {
-//            self.txtUsername.text = "";
-//        }
-//        else if (textField == self.txtPassword){
-//        
-//            self.txtPassword.text = "";
-//
-//        }
-//        else if (textField == self.txtConfirmPassword){
-//            
-//            self.txtConfirmPassword.text = "";
-//            
-//        }
-//        else if (textField == self.txtEmail){
-//            
-//            self.txtEmail.text = "";
-//            
-//        }
-//        else if (textField == self.txtPhonenumber){
-//            
-//            self.txtPhonenumber.text = "";
-//            
-//        }
-//        return false
-//    }
-//    
+    func isNumeric(a: String) -> Bool {
+        if (Int(a) != nil) {
+            return true
+        } else {
+            return false
+        }
+    }
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
@@ -171,27 +150,20 @@ class SignupVC: UIViewController, UITextFieldDelegate {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func isNumeric(a: String) -> Bool {
-        if let n = a.toInt() {
-            return true
-        } else {
-            return false
-        }
-    }
 
     @IBAction func signupTapped(sender : UIButton) {
-        var username:NSString = txtUsername.text as NSString
-        var password:NSString = txtPassword.text as NSString
-        var confirm_password:NSString = txtConfirmPassword.text as NSString
-        var email:NSString = txtEmail.text as NSString
-        var phonenumber:NSString = txtPhonenumber.text as NSString
+        let username:NSString = txtUsername.text! as NSString
+        let password:NSString = txtPassword.text! as NSString
+        let confirm_password:NSString = txtConfirmPassword.text! as NSString
+        let email:NSString = txtEmail.text! as NSString
+        let phonenumber:NSString = txtPhonenumber.text! as NSString
         let counter = password.length    // returns 5 (Int)
         let veri = username as String
-        let verifier = count(veri)
+        let verifier = veri.characters.count
         
         if ( username.isEqualToString("") || password.isEqualToString("") || email.isEqualToString("") || phonenumber.isEqualToString("")) {
             
-            var alertView:UIAlertView = UIAlertView()
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
             alertView.message = "Please enter Username and Password"
             alertView.delegate = self
@@ -201,22 +173,22 @@ class SignupVC: UIViewController, UITextFieldDelegate {
             
         } else if ( !password.isEqual(confirm_password)) {
             
-            var alertView:UIAlertView = UIAlertView()
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
             alertView.message = "Passwords doesn't Match"
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
-        } else if (( find(nouser, username as String)) != nil) {
+        } else if (( nouser.indexOf((username as String))) != nil) {
             
-            var alertView:UIAlertView = UIAlertView()
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
             alertView.message = "Username not allowed"
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
         } else if ( counter < 5){
-            var alertView:UIAlertView = UIAlertView()
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
             alertView.message = "Username should be more than 5 characters"
             alertView.delegate = self
@@ -224,7 +196,7 @@ class SignupVC: UIViewController, UITextFieldDelegate {
             alertView.show()
 
         } else if ( verifier <= 6){
-            var alertView:UIAlertView = UIAlertView()
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
             alertView.message = "Passwords should be more than or equal to 6 characters"
             alertView.delegate = self
@@ -232,7 +204,7 @@ class SignupVC: UIViewController, UITextFieldDelegate {
             alertView.show()
         }
         else if ( isNumeric(phonenumber as String) == false ){
-            var alertView:UIAlertView = UIAlertView()
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
             alertView.message = "Phone Number is not a digit"
             alertView.delegate = self
@@ -240,7 +212,7 @@ class SignupVC: UIViewController, UITextFieldDelegate {
             alertView.show()
         }
         else if ( isValidEmail(email as String) == false ){
-            var alertView:UIAlertView = UIAlertView()
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Sign Up Failed!"
             alertView.message = "Not a valid email"
             alertView.delegate = self
@@ -249,18 +221,17 @@ class SignupVC: UIViewController, UITextFieldDelegate {
         }
 
         else {
-            var OS : String = "iOS"
-            var post:NSString = "username=\(username)&password=\(password)&c_password=\(confirm_password)&email=\(email)&phonenumber=\(phonenumber)"
+            let post:NSString = "username=\(username)&password=\(password)&c_password=\(confirm_password)&email=\(email)&phonenumber=\(phonenumber)"
             
             NSLog("PostData: %@",post);
             
-            var url:NSURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/jsonsignup.php")!
+            let url:NSURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/jsonsignup.php")!
             
-            var postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
+            let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
             
-            var postLength:NSString = String( postData.length )
+            let postLength:NSString = String( postData.length )
             
-            var request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
+            let request:NSMutableURLRequest = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "POST"
             request.HTTPBody = postData
             request.setValue(postLength as String, forHTTPHeaderField: "Content-Length")
@@ -271,7 +242,13 @@ class SignupVC: UIViewController, UITextFieldDelegate {
             var reponseError: NSError?
             var response: NSURLResponse?
             
-            var urlData: NSData? = NSURLConnection.sendSynchronousRequest(request, returningResponse:&response, error:&reponseError)
+            var urlData: NSData?
+            do {
+                urlData = try NSURLConnection.sendSynchronousRequest(request, returningResponse:&response)
+            } catch let error as NSError {
+                reponseError = error
+                urlData = nil
+            }
             
             if ( urlData != nil ) {
                 let res = response as! NSHTTPURLResponse!;
@@ -280,13 +257,12 @@ class SignupVC: UIViewController, UITextFieldDelegate {
                 
                 if (res.statusCode >= 200 && res.statusCode < 300)
                 {
-                    var responseData:NSString  = NSString(data:urlData!, encoding:NSUTF8StringEncoding)!
+                    let responseData:NSString  = NSString(data:urlData!, encoding:NSUTF8StringEncoding)!
                     
                     NSLog("Response ==> %@", responseData);
                     
-                    var error: NSError?
                     
-                    let jsonData:NSDictionary = NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers , error: &error) as! NSDictionary
+                    let jsonData:NSDictionary = (try! NSJSONSerialization.JSONObjectWithData(urlData!, options:NSJSONReadingOptions.MutableContainers )) as! NSDictionary
                     
                     
                     let success:NSInteger = jsonData.valueForKey("success") as! NSInteger
@@ -307,7 +283,7 @@ class SignupVC: UIViewController, UITextFieldDelegate {
                         } else {
                             error_msg = "Unknown Error"
                         }
-                        var alertView:UIAlertView = UIAlertView()
+                        let alertView:UIAlertView = UIAlertView()
                         alertView.title = "Sign Up Failed!"
                         alertView.message = error_msg as String
                         alertView.delegate = self
@@ -317,7 +293,7 @@ class SignupVC: UIViewController, UITextFieldDelegate {
                     }
                     
                 } else {
-                    var alertView:UIAlertView = UIAlertView()
+                    let alertView:UIAlertView = UIAlertView()
                     alertView.title = "Sign Up Failed!"
                     alertView.message = "Connection Failed"
                     alertView.delegate = self
@@ -325,7 +301,7 @@ class SignupVC: UIViewController, UITextFieldDelegate {
                     alertView.show()
                 }
             }  else {
-                var alertView:UIAlertView = UIAlertView()
+                let alertView:UIAlertView = UIAlertView()
                 alertView.title = "Sign in Failed!"
                 alertView.message = "Connection Failure"
                 if let error = reponseError {

@@ -20,18 +20,18 @@ class ChangePassword: UIViewController, UITextFieldDelegate {
         let prefs = NSUserDefaults.standardUserDefaults()
         let name = prefs.stringForKey("USERNAME")
 
-        let password = newpass.text as NSString
+        let password = newpass.text! as NSString
         let count = password.length
         if (self.confirmpass.text == "" || self.newpass.text == "" || self.confirmpass.text == "" ) {
-            var alertView:UIAlertView = UIAlertView()
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Empty Field"
             alertView.message = "An empty field detected, check your fields."
             alertView.delegate = self
             alertView.addButtonWithTitle("OK")
             alertView.show()
         }
-        else if (!newpass.text.isEqual(confirmpass.text)){
-            var alertView:UIAlertView = UIAlertView()
+        else if (!newpass.text!.isEqual(confirmpass.text)){
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Passwords arent matching"
             alertView.message = "Your passwords arent matching."
             alertView.delegate = self
@@ -39,7 +39,7 @@ class ChangePassword: UIViewController, UITextFieldDelegate {
             alertView.show()
         }
         else if (count < 6) {
-            var alertView:UIAlertView = UIAlertView()
+            let alertView:UIAlertView = UIAlertView()
             alertView.title = "Password Length"
             alertView.message = "Your password should be more than 6 characters"
             alertView.delegate = self
@@ -47,10 +47,14 @@ class ChangePassword: UIViewController, UITextFieldDelegate {
             alertView.show()
         }
         else {
-            Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/changepassword.php", parameters: ["userid":name!,"currentpassword": self.current.text,"newpassword": self.newpass.text,])
-                .responseString{ (request, response, JSON, error) in
+            
+            Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/changepassword.php", parameters: ["userid":name!,"currentpassword": self.current.text!,"newpassword": self.newpass.text!])
+                .responseString { response in
+                    if let JSON = response.result.value {
+                        print("JSON: \(JSON)")
+
                     if JSON == "{\"success\"}"{
-                        var alertView:UIAlertView = UIAlertView()
+                        let alertView:UIAlertView = UIAlertView()
                         alertView.title = "Password Changed"
                         alertView.message = "Your new password has been sent to your email!"
                         alertView.delegate = self
@@ -59,7 +63,7 @@ class ChangePassword: UIViewController, UITextFieldDelegate {
                         self.performSegueWithIdentifier("goto_login1", sender: self)
                     }
                     else if JSON == "{\"error\"}"{
-                        var alertView:UIAlertView = UIAlertView()
+                        let alertView:UIAlertView = UIAlertView()
                         alertView.title = "Current Password"
                         alertView.message = "This isn't your current password, try again!"
                         alertView.delegate = self
@@ -67,9 +71,9 @@ class ChangePassword: UIViewController, UITextFieldDelegate {
                         alertView.show()
                         self.sendbutton.enabled = true
                     }
-
+                        
                     else {
-                        var alertView:UIAlertView = UIAlertView()
+                        let alertView:UIAlertView = UIAlertView()
                         alertView.title = "Error"
                         alertView.message = "Error, Please try again later!"
                         alertView.delegate = self
@@ -77,11 +81,12 @@ class ChangePassword: UIViewController, UITextFieldDelegate {
                         alertView.show()
                         self.sendbutton.enabled = true
                     }
+                    }
 
             }
+                        
         }
     }
-
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         self.view.endEditing(true)
@@ -96,12 +101,6 @@ class ChangePassword: UIViewController, UITextFieldDelegate {
 
         // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
 
     /*
     // MARK: - Navigation

@@ -41,7 +41,7 @@ class RAMFrameItemAnimation: RAMItemAnimation {
         let animationImagesName = dict["images"] as! Array<String>
 
         // selected image
-        var selectedImageName = animationImagesName[animationImagesName.endIndex - 1]
+        let selectedImageName = animationImagesName[animationImagesName.endIndex - 1]
         selectedImage = UIImage(named: selectedImageName)
     }
 
@@ -67,7 +67,7 @@ class RAMFrameItemAnimation: RAMItemAnimation {
     }
 
     func playFrameAnimation(icon : UIImageView, images : Array<CGImage>) {
-        var frameAnimation = CAKeyframeAnimation(keyPath: "contents")
+        let frameAnimation = CAKeyframeAnimation(keyPath: "contents")
         frameAnimation.calculationMode = kCAAnimationDiscrete
         frameAnimation.duration = NSTimeInterval(duration)
         frameAnimation.values = images

@@ -8,7 +8,7 @@ class Getter{
     func ProfileDetails(){
         DataManager.getJson{(Data) -> Void in
             let json = JSON(data: Data)
-            self.UserData["Username"] = toString((json[0]["username"]))
+            self.UserData["Username"] = String((json[0]["username"]))
             }
     }
 }

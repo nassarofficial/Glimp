@@ -34,25 +34,31 @@ class Hashtag: UIViewController {
         vidcolindicator.hidden = false
 
         // Do any additional setup after loading the view, typically from a nib.
-        println("location: "+loc)
+        print("location: "+loc)
         //vidcolindicator.hidden = false
         hashtagger.text = "#"+loc
-            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/hashtag.php", parameters: [ "hashtag": loc]).responseJSON { (request, response, json, error) in
-                if json != nil {
-                    var jsonObj = JSON(json!)
+        
+        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/hashtag.php", parameters: [ "hashtag": loc])
+            .responseJSON { response in
+                print(response.request)  // original URL request
+                print(response.response) // URL response
+                print(response.data)     // server data
+                print(response.result)   // result of response serialization
+                
+                if let json = response.result.value {
+                    var jsonObj = JSON(json)
                     if let data = jsonObj["hashtag"].arrayValue as [JSON]?{
                         self.datas = data
-                        println(self.datas)
+                        //print(self.datas)
                         self.collectionView.reloadData()
                         self.vidcolindicator.hidden = true
+                    } else {
+                        self.noglimps.hidden = false
                     }
                 }
-                else {
-                    self.noglimps.hidden = false
-                }
-                println(response)
-            }
+        }
 
+        
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -71,9 +77,8 @@ class Hashtag: UIViewController {
     }
 
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath){
-        let row = indexPath.row
         glimperid = self.datas[indexPath.row]["id"].stringValue
-        println(glimperid)
+        print(glimperid)
         self.performSegueWithIdentifier("goto_video", sender: self)
 
     }

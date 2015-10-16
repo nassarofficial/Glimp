@@ -17,11 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var locationManager: CLLocationManager = CLLocationManager()
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        var types: UIUserNotificationType = UIUserNotificationType.Badge |
-            UIUserNotificationType.Alert |
-            UIUserNotificationType.Sound
+        let types: UIUserNotificationType = [UIUserNotificationType.Badge, UIUserNotificationType.Alert, UIUserNotificationType.Sound]
         
-        var settings: UIUserNotificationSettings = UIUserNotificationSettings( forTypes: types, categories: nil )
+        let settings: UIUserNotificationSettings = UIUserNotificationSettings( forTypes: types, categories: nil )
         
         application.registerUserNotificationSettings( settings )
         application.registerForRemoteNotifications()
@@ -32,50 +30,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
         
     }
     
-}
-
-
-extension AppDelegate : UIApplicationDelegate {
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
         
-        var characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
+        let characterSet: NSCharacterSet = NSCharacterSet( charactersInString: "<>" )
         
-        var deviceTokenString: String = ( deviceToken.description as NSString )
+        let deviceTokenString: String = ( deviceToken.description as NSString )
             .stringByTrimmingCharactersInSet( characterSet )
             .stringByReplacingOccurrencesOfString( " ", withString: "" ) as String
         self.deviceToken = deviceTokenString
         
-        println( deviceTokenString )
+        print( deviceTokenString )
         
     }
     
     func application( application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError ) {
         
-        println( error.localizedDescription )
+        print( error.localizedDescription )
     }
 
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
 //        var tabBarController = self.window!.rootViewController as! UITabBarController
         
-        var temp : NSDictionary = userInfo
-        if let info = userInfo["aps"] as? Dictionary<String, AnyObject>
+        if (userInfo["aps"] as? Dictionary<String, AnyObject> != nil)
         {
-            var alertMsg = info["alert"] as! String
-//            var tabArray = tabBarController.tabBar.items as NSArray!
-//            var tabItem = tabArray.objectAtIndex(3) as! UITabBarItem
-//            tabItem.badgeValue = "34"
-
             AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
             let soundURL = NSBundle.mainBundle().URLForResource("splash", withExtension: "mp3")
             var mySound: SystemSoundID = 0
-            AudioServicesCreateSystemSoundID(soundURL, &mySound)
+            AudioServicesCreateSystemSoundID(soundURL!, &mySound)
             
             // Play
             AudioServicesPlaySystemSound(mySound);
 
         }
-        println("hello")
+        print("hello")
         //scheduleNotification()
     }
     
@@ -83,7 +71,7 @@ extension AppDelegate : UIApplicationDelegate {
         //UIApplication.sharedApplication().cancelAllLocalNotifications()
         
         // Schedule the notification ********************************************
-        if UIApplication.sharedApplication().scheduledLocalNotifications.count == 0 {
+        if UIApplication.sharedApplication().scheduledLocalNotifications!.count == 0 {
             
             let notification = UILocalNotification()
             notification.alertBody = "Hey! Update your counter ;)"
@@ -97,8 +85,8 @@ extension AppDelegate : UIApplicationDelegate {
     func application(application: UIApplication,
         openURL url: NSURL,
         sourceApplication: String?,
-        annotation: AnyObject?) -> Bool {        let urlString = url.scheme
-            if urlString!.rangeOfString("fb") != nil {
+        annotation: AnyObject) -> Bool {        let urlString = url.scheme
+            if urlString.rangeOfString("fb") != nil {
                 return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
             } else {
                 return GPPURLHandler.handleURL(url, sourceApplication: sourceApplication, annotation: annotation)

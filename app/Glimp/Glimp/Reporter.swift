@@ -24,14 +24,12 @@ class Reporter: UIViewController {
     @IBAction func reportnow(sender: AnyObject) {
         spinner.hidden = false
         self.buttonrep.enabled = false
-
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/report.php", parameters: ["glimpid": self.glimpid, "reportid":self.reporttype,"description":textView.text]).responseJSON { (request, response, json, error) in
-            
-            if json != nil {
-                var jsonObj = JSON(json!)
-                        self.spinner.hidden = true
-                        self.textrep.hidden = false
-            }
+        
+        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/report.php", parameters: ["glimpid": self.glimpid, "reportid":self.reporttype,"description":textView.text])
+            .responseJSON { response in
+                
+                    self.spinner.hidden = true
+                    self.textrep.hidden = false
         }
         textView.resignFirstResponder()   //FirstResponder's must be resigned for hiding keyboard.
 

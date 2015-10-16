@@ -43,8 +43,11 @@ class GlimpView: UIViewController{
     @IBOutlet weak var bacbutton: UIBarButtonItem!
     @IBOutlet weak var navigation: UINavigationBar!
     @IBAction func gotoglobe(sender: AnyObject) {
-        println("hello")
+        print("hello")
     }
+    @IBAction func unwindToprofile (segue : UIStoryboardSegue) {
+    }
+
     @IBAction func unwindToSegue (segue : UIStoryboardSegue) {}
     @IBAction func unwindToSeguer (segue : UIStoryboardSegue) {}
     @IBOutlet var vidreply: UIButton!
@@ -52,21 +55,21 @@ class GlimpView: UIViewController{
     @IBOutlet var reportbut: UIButton!
     @IBOutlet var deletebut: UIButton!
     @IBAction func deleteGlimp(sender: AnyObject) {
-        var alert = UIAlertController(title: "Delete Glimp", message: "Are you sure you want to delete this glimp?", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "Delete Glimp", message: "Are you sure you want to delete this glimp?", preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { action in
             switch action.style{
             case .Default:
-                println("default")
-                Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/deleteGlimp.php", parameters: ["g_id": self.glimpsid]).responseJSON { (request, response, json, error) in
+                print("default")
+                Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/deleteGlimp.php", parameters: ["g_id": self.glimpsid]).responseJSON { response in
                     // println(response)
                 }
                 self.performSegueWithIdentifier("unwinder", sender: self)
 
             case .Cancel:
-                println("cancel")
+                print("cancel")
                 
             case .Destructive:
-                println("destructive")
+                print("destructive")
             }
         }))
         self.presentViewController(alert, animated: true, completion: nil)
@@ -134,7 +137,7 @@ class GlimpView: UIViewController{
         if (segue.identifier == "goto_hash") {
             let secondViewController = segue.destinationViewController as! Hashtag
             //  let ider = userid as String!
-            var stringer =  payloader
+            let stringer =  payloader
             let ider2 = stringer as String!
             //println(ider2)
             //  secondViewController.userid = idergoto_report
@@ -144,7 +147,7 @@ class GlimpView: UIViewController{
         if (segue.identifier == "goto_report") {
             let secondViewController = segue.destinationViewController as! Report
             //  let ider = userid as String!
-            var glimp =  glimpsid
+            let glimp =  glimpsid
             let ider2 = glimp
                 as String!
             //println(ider2)
@@ -164,11 +167,10 @@ class GlimpView: UIViewController{
 
         let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/glimp1.php?glimpid="+self.glimpsid!)
         
-        let pointData = NSData(contentsOfURL: baseURL!, options: nil, error: nil)
+        let pointData = try? NSData(contentsOfURL: baseURL!, options: [])
         
-        let points = NSJSONSerialization.JSONObjectWithData(pointData!,
-            options: nil,
-            error: nil) as! NSDictionary
+        let points = (try! NSJSONSerialization.JSONObjectWithData(pointData!,
+            options: [])) as! NSDictionary
         
         if let glimper = points["glimp"] as? NSArray {
             for point in points["glimp"] as! NSArray {
@@ -198,7 +200,7 @@ class GlimpView: UIViewController{
                 }
 
             }
-            println(points["glimp"])
+            print(points["glimp"])
             let url = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/"+self.ViewControllerVideoPath)
             
             //println(url)
@@ -249,24 +251,16 @@ class GlimpView: UIViewController{
     func getdate(){
         let startdate = NSDate()
         let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: startdate)
-        let hour = components.hour
-        let minutes = components.minute
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         dateFormatter.timeZone = NSTimeZone(abbreviation: "Cairo");
 
         let enddate = dateFormatter.dateFromString(self.timeend)
-        let calendars = NSCalendar.currentCalendar()
-        let componentss = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: enddate!)
-        let hours = componentss.hour
-        let minutess = componentss.minute
-        
-        let componentsss = calendar.components(.CalendarUnitHour | .CalendarUnitMinute, fromDate: startdate, toDate: enddate!, options: nil)
+        let componentsss = calendar.components([.Hour, .Minute], fromDate: startdate, toDate: enddate!, options: [])
         
         if componentsss.hour == 0{
-            println(String(componentsss.minute))
+            print(String(componentsss.minute))
         }
         else {
             if componentsss.hour == 1{
@@ -293,7 +287,7 @@ class GlimpView: UIViewController{
             reportbut.hidden = false
         }
         
-        Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/views.php", parameters: ["gid": glimpsid]).responseJSON { (request, response, json, error) in
+        Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/views.php", parameters: ["gid": glimpsid]).responseJSON { (request) in
            // println(response)
         }
         
@@ -319,22 +313,20 @@ extension GlimpView : UITextViewDelegate {
     }
     
     func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
-        
+        let scheme = URL.scheme
         // check for our fake URL scheme hash:helloWorld
-        if let scheme = URL.scheme {
             switch scheme {
             case "hash" :
-                payloader = URL.resourceSpecifier!
-                println(payloader)
+                payloader = URL.resourceSpecifier
+                print(payloader)
                 performSegueWithIdentifier("goto_hash", sender: self)
                // showHashTagAlert("hash", payload: URL.resourceSpecifier!)
             case "mention" :
-                payloader = URL.resourceSpecifier!
+                payloader = URL.resourceSpecifier
                 performSegueWithIdentifier("goto_userprofilemention", sender: self)
             default:
-                println("just a regular url")
+                print("just a regular url")
             }
-        }
         
         return true
     }

@@ -16,49 +16,51 @@ class ForgetMyPassword: UIViewController,UITextFieldDelegate {
 
     @IBOutlet weak var sendbutton: UIButton!
     @IBAction func getpassword(sender: AnyObject) {
-        var email = txtUsername.text
+        let email = txtUsername.text
         sendbutton.enabled = false
-        Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/forgetpassword1.php", parameters: ["email": email])
-            .responseString{ (request, response, JSON, error) in
-                println(JSON)
-                if JSON == "{\"success\"}"{
-                    var alertView:UIAlertView = UIAlertView()
-                    alertView.title = "Password Changed"
-                    alertView.message = "Your new password has been sent to your email!"
-                    alertView.delegate = self
-                    alertView.addButtonWithTitle("OK")
-                    alertView.show()
-                    self.performSegueWithIdentifier("goto_login1", sender: self)
-                } else if JSON == "{\"none\"}" {
-                    var alertView:UIAlertView = UIAlertView()
-                    alertView.title = "Email Incorrect"
-                    alertView.message = "Email Incorrect or doesnt exist!"
-                    alertView.delegate = self
-                    alertView.addButtonWithTitle("OK")
-                    alertView.show()
-                    self.sendbutton.enabled = true
-                
-                }
-                else if self.txtUsername.text == "" {
-                    var alertView:UIAlertView = UIAlertView()
-                    alertView.title = "Empty"
-                    alertView.message = "Enter you email address."
-                    alertView.delegate = self
-                    alertView.addButtonWithTitle("OK")
-                    alertView.show()
-                    self.sendbutton.enabled = true
-                    
-                }
-                else {
-                    var alertView:UIAlertView = UIAlertView()
-                    alertView.title = "Error"
-                    alertView.message = "Error, Please try again later!"
-                    alertView.delegate = self
-                    alertView.addButtonWithTitle("OK")
-                    alertView.show()
-                    self.sendbutton.enabled = true
+        Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/forgetpassword1.php", parameters: ["email": email!])
+            .responseJSON { response in
+                if let JSON = response.result.value {
+                    if JSON as! String == "{\"success\"}"{
+                        let alertView:UIAlertView = UIAlertView()
+                        alertView.title = "Password Changed"
+                        alertView.message = "Your new password has been sent to your email!"
+                        alertView.delegate = self
+                        alertView.addButtonWithTitle("OK")
+                        alertView.show()
+                        self.performSegueWithIdentifier("goto_login1", sender: self)
+                    } else if JSON as! String == "{\"none\"}" {
+                        let alertView:UIAlertView = UIAlertView()
+                        alertView.title = "Email Incorrect"
+                        alertView.message = "Email Incorrect or doesnt exist!"
+                        alertView.delegate = self
+                        alertView.addButtonWithTitle("OK")
+                        alertView.show()
+                        self.sendbutton.enabled = true
+                        
+                    }
+                    else if self.txtUsername.text == "" {
+                        let alertView:UIAlertView = UIAlertView()
+                        alertView.title = "Empty"
+                        alertView.message = "Enter you email address."
+                        alertView.delegate = self
+                        alertView.addButtonWithTitle("OK")
+                        alertView.show()
+                        self.sendbutton.enabled = true
+                        
+                    }
+                    else {
+                        let alertView:UIAlertView = UIAlertView()
+                        alertView.title = "Error"
+                        alertView.message = "Error, Please try again later!"
+                        alertView.delegate = self
+                        alertView.addButtonWithTitle("OK")
+                        alertView.show()
+                        self.sendbutton.enabled = true
+                    }
                 }
         }
+
     }
 
     override func viewDidLoad() {
@@ -83,8 +85,8 @@ class ForgetMyPassword: UIViewController,UITextFieldDelegate {
     func loopVideo() {
         self.moviePlayer.play()
     }
-    override func supportedInterfaceOrientations() -> Int {
-        return Int(UIInterfaceOrientationMask.Portrait.rawValue)
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
     }
 
     override func didReceiveMemoryWarning() {

@@ -16,7 +16,9 @@ class UserProfileNotif: UIViewController {
     @IBOutlet weak var location: UILabel!
     @IBOutlet weak var following: UIButton!
     @IBOutlet weak var followbutton: UIButton!
-    
+    @IBAction func unwindToprofile (segue : UIStoryboardSegue) {
+    }
+
     @IBOutlet weak var imageView: UIImageView!
     
     @IBOutlet weak var tableView: UITableView!
@@ -30,7 +32,7 @@ class UserProfileNotif: UIViewController {
     
     @IBAction func followaction(sender: AnyObject) {
         if f3 == "not found"{
-            println("NOT FRIEND")
+            print("NOT FRIEND")
             
             let parameters = [
                 "user": friendid,
@@ -49,7 +51,7 @@ class UserProfileNotif: UIViewController {
             
         }
         else{
-            println("FRIEND")
+            print("FRIEND")
             
             let parameters = [
                 "uid": f3,
@@ -75,11 +77,10 @@ class UserProfileNotif: UIViewController {
         
         let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profileuser.php?username="+username+"&friend="+name!)
         
-        let pointData = NSData(contentsOfURL: baseURL!, options: nil, error: nil)
+        let pointData = try? NSData(contentsOfURL: baseURL!, options: [])
         
-        let points = NSJSONSerialization.JSONObjectWithData(pointData!,
-            options: nil,
-            error: nil) as! NSDictionary
+        let points = (try! NSJSONSerialization.JSONObjectWithData(pointData!,
+            options: [])) as! NSDictionary
         
         
         for point in points["profile"] as! NSArray {
@@ -102,8 +103,8 @@ class UserProfileNotif: UIViewController {
                 let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
                 
                 self.following.setTitle(f1, forState: UIControlState.Normal)
-                println(f1)
-                println(f2)
+                print(f1)
+                print(f2)
                 
                 self.followers.setTitle(f2, forState: UIControlState.Normal)
                 
@@ -117,8 +118,8 @@ class UserProfileNotif: UIViewController {
                 let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
                 
                 self.following.setTitle(f1, forState: UIControlState.Normal)
-                println(f1)
-                println(f2)
+                print(f1)
+                print(f2)
                 
                 
                 self.followers.setTitle(f2, forState: UIControlState.Normal)
@@ -143,11 +144,10 @@ class UserProfileNotif: UIViewController {
         self.tabBarController?.tabBar.hidden = false
         let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profileuser.php?username="+username+"&friend="+name!)
         
-        let pointData = NSData(contentsOfURL: baseURL!, options: nil, error: nil)
+        let pointData = try? NSData(contentsOfURL: baseURL!, options: [])
         
-        let points = NSJSONSerialization.JSONObjectWithData(pointData!,
-            options: nil,
-            error: nil) as! NSDictionary
+        let points = (try! NSJSONSerialization.JSONObjectWithData(pointData!,
+            options: [])) as! NSDictionary
         
         
         for point in points["profile"] as! NSArray {
@@ -159,9 +159,9 @@ class UserProfileNotif: UIViewController {
             let f2 = String(stringInterpolationSegment: (point as! NSDictionary)["followers"]!)
             f3 = String(stringInterpolationSegment: (point as! NSDictionary)["follow"]!)
             
-            println("User Profile: "+userid)
-            println("Visited Profile: "+friendid)
-            println("Friend ID: "+f3)
+            print("User Profile: "+userid)
+            print("Visited Profile: "+friendid)
+            print("Friend ID: "+f3)
             
             
             
@@ -198,28 +198,29 @@ class UserProfileNotif: UIViewController {
             self.location.text = (point as! NSDictionary)["location"] as? String
             let urlString = (point as! NSDictionary)["profilepic"] as? String
             let url = NSURL(string: urlString!)
-            var imageSize = 86 as CGFloat
+            let imageSize = 86 as CGFloat
             self.imageView.frame.size.height = imageSize
             self.imageView.frame.size.width  = imageSize
             self.imageView.layer.cornerRadius = imageSize / 2.05
             self.imageView.clipsToBounds = true
 
             imageView.hnk_setImageFromURL(url!)
-            println(url)
-            println("dsfsd")
+            print(url)
+            print("dsfsd")
             
         }
-        
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/feeduser.php", parameters: ["userid": userid]).responseJSON { (request, response, json, error) in
-            if json != nil {
-                var jsonObj = JSON(json!)
-                if let data = jsonObj["glimps"].arrayValue as [JSON]?{
-                    self.datas = data
-                    self.tableView.reloadData()
+        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/feeduser.php", parameters: ["userid": userid])
+            .responseJSON { response in
+                
+                if let json = response.result.value {
+                    var jsonObj = JSON(json)
+                    if let data = jsonObj["glimps"].arrayValue as [JSON]?{
+                        self.datas = data
+                        self.tableView.reloadData()
+                    }
                 }
-            }
         }
-        
+
     }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
@@ -235,8 +236,8 @@ class UserProfileNotif: UIViewController {
         return false
     }
     
-    override func supportedInterfaceOrientations() -> Int {
-        return UIInterfaceOrientation.Portrait.rawValue
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return [UIInterfaceOrientationMask.Portrait ,UIInterfaceOrientationMask.PortraitUpsideDown]
     }
     
     
@@ -257,10 +258,8 @@ class UserProfileNotif: UIViewController {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let prefs = NSUserDefaults.standardUserDefaults()
-        let name = prefs.stringForKey("USERNAME")
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("feedcell", forIndexPath: indexPath) as! UITableViewCell //1
+        let cell = tableView.dequeueReusableCellWithIdentifier("feedcell", forIndexPath: indexPath) //1
         let data = datas[indexPath.row]
         let commentLabel = cell.viewWithTag(200) as? UILabel
         let timeLabel = cell.viewWithTag(250) as? UILabel
@@ -271,10 +270,10 @@ class UserProfileNotif: UIViewController {
                 captionLabel.text = caption
                 let comment = data["description"].string
                 commentLabel!.text = comment
-                var dateFormatter = NSDateFormatter()
+                let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 
-                var date = dateFormatter.dateFromString(data["time"].string!)
+                let date = dateFormatter.dateFromString(data["time"].string!)
                 
                 
                 //var date = NSDate(data["time"].string!)
@@ -287,11 +286,11 @@ class UserProfileNotif: UIViewController {
     }
     func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
         let calendar = NSCalendar.currentCalendar()
-        let unitFlags = NSCalendarUnit.CalendarUnitMinute | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitWeekOfYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitSecond
+        let unitFlags: NSCalendarUnit = [NSCalendarUnit.Minute, NSCalendarUnit.Hour, NSCalendarUnit.Day, NSCalendarUnit.WeekOfYear, NSCalendarUnit.Month, NSCalendarUnit.Year, NSCalendarUnit.Second]
         let now = NSDate()
         let earliest = now.earlierDate(date)
         let latest = (earliest == now) ? date : now
-        let components:NSDateComponents = calendar.components(unitFlags, fromDate: earliest, toDate: latest, options: nil)
+        let components:NSDateComponents = calendar.components(unitFlags, fromDate: earliest, toDate: latest, options: [])
         
         if (components.year >= 2) {
             return "\(components.year) years ago"

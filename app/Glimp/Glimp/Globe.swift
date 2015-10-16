@@ -44,8 +44,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
     
     
     @IBAction func droppin(gestureRecognizer:UIGestureRecognizer) {
-        var touchPoint = gestureRecognizer.locationInView(mapView)
-        var newAnotation = QuesReqAnnot()
+        let touchPoint = gestureRecognizer.locationInView(mapView)
         newCoord = mapView.convertPoint(touchPoint, toCoordinateFromView: self.mapView)
         performSegueWithIdentifier("push_request", sender: self)
 
@@ -106,7 +105,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
         else if(segmenter.selectedSegmentIndex == 1)
         {
             self.datas = []
-            println(segmenter.selectedSegmentIndex)
+            print(segmenter.selectedSegmentIndex)
             segmentindex = 1;
             usersearcher.hidden = false
             self.datas = []
@@ -142,26 +141,26 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
         spinner.hidden=false
         if segmentindex == 0 {
             usersearcher.hidden = true
-            var geocoder=CLGeocoder()
+            let geocoder=CLGeocoder()
             
-            geocoder.geocodeAddressString(searcher.text, completionHandler:
+            geocoder.geocodeAddressString(searcher.text!, completionHandler:
                 { (placemarks, error) -> Void in
                     
                     if (error != nil) {
-                        println("failed with error" + error.localizedDescription)
+                        print("failed with error" + error!.localizedDescription)
                         return
                     }
                     
                     
-                    var placemark:CLPlacemark=placemarks[0] as! CLPlacemark
-                    var location:CLLocationCoordinate2D=placemark.location.coordinate
+                    let placemark:CLPlacemark=placemarks![0] as CLPlacemark
+                    let location:CLLocationCoordinate2D=placemark.location!.coordinate
                     
                     self.annoation.coordinate=location
                     self.annoation.title=self.searcher.text
                     self.mapView.addAnnotation(self.annoation)
                     
                     var mr:MKMapRect=self.mapView.visibleMapRect
-                    var pt:MKMapPoint=MKMapPointForCoordinate(self.annoation.coordinate)
+                    let pt:MKMapPoint=MKMapPointForCoordinate(self.annoation.coordinate)
                     mr.origin.x=pt.x-mr.size.width*0.5
                     mr.origin.y=pt.y-mr.size.height*0.25
                     
@@ -174,82 +173,87 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
         else if segmentindex == 1 {
             self.datas = []
             usersearcher.hidden = false
-            var sende: String = self.searcher.text
-            var escapedAddress = sende.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-            var url = "https://api.foursquare.com/v2/venues/search?intent=global&query="+escapedAddress!+"&client_id=DPUDNKBQKC12FJ0KBRLVU5BG4JREZV1YAIVRXIULPLFZHMAL&client_secret=PA0I5FS3JWPDMOL0H5XLQNDJYBJPGNOEP4QX1ML23YOFGZ3G&v=20140806"
+            let sende: String = self.searcher.text!
             
-            println(url)
-            // https://api.foursquare.com/v2/venues/search?intent=global&query=\(sende)&client_id=DPUDNKBQKC12FJ0KBRLVU5BG4JREZV1YAIVRXIULPLFZHMAL&client_secret=PA0I5FS3JWPDMOL0H5XLQNDJYBJPGNOEP4QX1ML23YOFGZ3G&v=20140806
-            Alamofire.request(.GET, url).responseJSON { (request, response, json, error) in
-                println(response)
-                if json != nil {
-                    //  self.spinnerblock.hidden=true
-                    var jsonObj = JSON(json!)
-                    if let data = jsonObj["response"]["venues"].arrayValue as [JSON]?{
-                        self.datas = data
-                        //println(self.datas) http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/search.php?scope=users&term=nassar
-                        self.spinner.hidden = true
+            
+            let escapedAddress = sende.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+            let url = "https://api.foursquare.com/v2/venues/search?intent=global&query="+escapedAddress!+"&client_id=DPUDNKBQKC12FJ0KBRLVU5BG4JREZV1YAIVRXIULPLFZHMAL&client_secret=PA0I5FS3JWPDMOL0H5XLQNDJYBJPGNOEP4QX1ML23YOFGZ3G&v=20140806"
+            
+            Alamofire.request(.GET, url)
+                .responseJSON { response in
+                    
+                    if let json = response.result.value {
+                        var jsonObj = JSON(json)
+                        if let data = jsonObj["response"]["venues"].arrayValue as [JSON]?{
+                            self.datas = data
+                            //println(self.datas) http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/search.php?scope=users&term=nassar
+                            self.spinner.hidden = true
+                            self.tableView.reloadData()
+                        }
+                    }else {
+                        self.nores.hidden = true
                         self.tableView.reloadData()
                     }
-                }
-                else {
-                    self.nores.hidden = true
-                    self.tableView.reloadData()
-                }
             }
+
             self.datas = []
+
             
         }
         else if segmentindex == 2{
             usersearcher.hidden = false
             // spinnerblock.hidden=false
             self.datas = []
-            var escapedAddress = self.searcher.text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-            var url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/search.php?scope=users&term="+escapedAddress!
-            Alamofire.request(.GET, url).responseJSON { (request, response, json, error) in
-                if json != nil {
-                    //  self.spinnerblock.hidden=true
-                    var jsonObj = JSON(json!)
-                    if let data = jsonObj["search"].arrayValue as [JSON]?{
-                        self.datas = data
-                        //println(self.datas) http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/search.php?scope=users&term=nassar
-                        self.spinner.hidden = true
+            let escapedAddress = self.searcher.text!.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+            
+            let url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/v2/search.php?scope=users&secid=taB5hzwuWQdLCK%47Z7uj$vR%c2Q+UxEj?x9BS*-&term="+escapedAddress!
+            
+            Alamofire.request(.GET, url)
+                .responseJSON { response in
+                    
+                    if let json = response.result.value {
+                        var jsonObj = JSON(json)
+                        if let data = jsonObj["search"].arrayValue as [JSON]?{
+                            self.datas = data
+                            //println(self.datas) http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/search.php?scope=users&term=nassar
+                            self.spinner.hidden = true
+                            
+                            self.tableView.reloadData()
+                        }
+                    }else {
+                        self.nores.hidden = true
                         
                         self.tableView.reloadData()
                     }
-                }
-                else {
-                    self.nores.hidden = true
-                    
-                    self.tableView.reloadData()
-                }
-                
             }
-            self.datas = []
-            
+                    self.datas = []
         }
         else if segmentindex == 3{
             usersearcher.hidden = false
             // spinnerblock.hidden=false
             self.datas = []
-            var escapedAddress = self.searcher.text.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-            var url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/search.php?scope=description&term="+escapedAddress!
+            let escapedAddress = self.searcher.text!.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+            let url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/v2/search.php?scope=description&secid=taB5hzwuWQdLCK%47Z7uj$vR%c2Q+UxEj?x9BS*-term="+escapedAddress!
             
-            Alamofire.request(.GET, url).responseJSON { (request, response, json, error) in
-                if json != nil {
-                    //  self.spinnerblock.hidden=true
-                    var jsonObj = JSON(json!)
-                    if let data = jsonObj["search"].arrayValue as [JSON]?{
-                        self.datas = data
-                        //println(self.datas) http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/search.php?scope=users&term=nassar
-                        self.spinner.hidden = true
-                        
-                        self.tableView.reloadData()
+            
+            
+            
+            Alamofire.request(.GET, url)
+                .responseJSON { response in
+                    
+                    if let json = response.result.value {
+                        var jsonObj = JSON(json)
+                        if let data = jsonObj["search"].arrayValue as [JSON]?{
+                            self.datas = data
+                            //println(self.datas) http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/search.php?scope=users&term=nassar
+                            self.spinner.hidden = true
+                            
+                            self.tableView.reloadData()
+                        }
                     }
-                }
+                    self.datas = []
+
             }
-            self.datas = []
-            
         }
         
         return true
@@ -264,26 +268,26 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
         
     }
     @IBAction func zoomOut(sender: AnyObject) {
-        var ladelta : CLLocationDegrees = 30
-        var lndelta : CLLocationDegrees = 30
-        let latitude = locManager.location.coordinate.latitude
-        let longitude = locManager.location.coordinate.longitude
+        let ladelta : CLLocationDegrees = 30
+        let lndelta : CLLocationDegrees = 30
+        let latitude = locManager.location!.coordinate.latitude
+        let longitude = locManager.location!.coordinate.longitude
         
-        var s:MKCoordinateSpan = MKCoordinateSpanMake(ladelta,lndelta)
-        var l:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-        var reg:MKCoordinateRegion = MKCoordinateRegionMake(l, s)
+        let s:MKCoordinateSpan = MKCoordinateSpanMake(ladelta,lndelta)
+        let l:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        let reg:MKCoordinateRegion = MKCoordinateRegionMake(l, s)
         mapView.setRegion(reg, animated: true)
         
     }
     @IBAction func findMePressed(sender: AnyObject) {
-        var ladelta : CLLocationDegrees = 0.01
-        var lndelta : CLLocationDegrees = 0.01
-        let latitude = locManager.location.coordinate.latitude
-        let longitude = locManager.location.coordinate.longitude
+        let ladelta : CLLocationDegrees = 0.01
+        let lndelta : CLLocationDegrees = 0.01
+        let latitude = locManager.location!.coordinate.latitude
+        let longitude = locManager.location!.coordinate.longitude
         
-        var s:MKCoordinateSpan = MKCoordinateSpanMake(ladelta,lndelta)
-        var l:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-        var reg:MKCoordinateRegion = MKCoordinateRegionMake(l, s)
+        let s:MKCoordinateSpan = MKCoordinateSpanMake(ladelta,lndelta)
+        let l:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        let reg:MKCoordinateRegion = MKCoordinateRegionMake(l, s)
         mapView.setRegion(reg, animated: true)
     }
     
@@ -292,7 +296,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
     // MARK: UIViewController
     
     
-    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
+    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
     }
     
     func searchBarShouldBeginEditing( searcher: UISearchBar!){
@@ -320,7 +324,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
         nores.hidden = true
         mapView.delegate = self
         // Initial reachability check
-        if reachability.isReachable() {
+        if reachability!.isReachable() {
             let algorithm : KPGridClusteringAlgorithm = KPGridClusteringAlgorithm()
             
             algorithm.annotationSize = CGSizeMake(25, 50)
@@ -403,38 +407,16 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
         
     }
     
-    func makeRequest(url : String, params : [String : String]?, completionHandler: (responseObject: JSON?, error: NSError?) -> ())  -> Request? {
-        
-        return Alamofire.request(.GET, url, parameters: params, encoding: .URL)
-            .responseString { request, response, responseBody, error in completionHandler(
-                responseObject:
-                {
-                    // JSON to return
-                    var json : JSON?
-                    if let response = responseBody {
-                        // Parse the response to NSData
-                        if let data = (response as NSString).dataUsingEncoding(NSUTF8StringEncoding) {
-                            json = JSON(data: data)
-                        }
-                    }
-                    
-                    return json
-                    
-                    }(), error: error)
-        }
-    }
-    
     
     
     func annotations() -> [TestAnnotation] {
         var annotations: [TestAnnotation] = []
-        let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/globe.php")
+        let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/v2/globe.php?secid=taB5hzwuWQdLCK%47Z7uj$vR%c2Q+UxEj?x9BS*-")
         
-        let pointData = NSData(contentsOfURL: baseURL!, options: nil, error: nil)
+        let pointData = try? NSData(contentsOfURL: baseURL!, options: [])
         
-        let points = NSJSONSerialization.JSONObjectWithData(pointData!,
-            options: nil,
-            error: nil) as! NSDictionary
+        let points = (try! NSJSONSerialization.JSONObjectWithData(pointData!,
+            options: [])) as! NSDictionary
         
         
         for point in points["glimps"] as! NSArray {
@@ -467,24 +449,23 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCellWithIdentifier("Usercell", forIndexPath: indexPath) as! Usercell
+        let cell = tableView.dequeueReusableCellWithIdentifier("Usercell", forIndexPath: indexPath) as! Usercell
         
         if segmentindex == 1 {
             usersearcher.hidden = false
             
             let data = datas[indexPath.row]
-            var venueid = data["id"].string
             
             if let caption = data["name"].string {
                 cell.labelCaption.text = caption
-                var prefix = String(stringInterpolationSegment: data["categories"][0]["icon"]["prefix"])
-                var suffix = String(stringInterpolationSegment: data["categories"][0]["icon"]["suffix"])
+                let prefix = String(stringInterpolationSegment: data["categories"][0]["icon"]["prefix"])
+                let suffix = String(stringInterpolationSegment: data["categories"][0]["icon"]["suffix"])
                 
-                var categicon = prefix + "bg_64" + suffix
+                let categicon = prefix + "bg_64" + suffix
                 
-                println(categicon)
-                var url = NSURL(string: categicon)
-                var imageSize = 50 as CGFloat
+                print(categicon)
+                let url = NSURL(string: categicon)
+                let imageSize = 50 as CGFloat
                 cell.userimage.hnk_cancelSetImage()
                 cell.userimage.frame.size.height = imageSize
                 cell.userimage.frame.size.width  = imageSize
@@ -505,18 +486,18 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
         else if segmentindex == 2{
             cell.userimage.hnk_cancelSetImage()
             
-            var empty: String = " "
+            let empty: String = " "
             let data = datas[indexPath.row]
             usersearcher.hidden = false
-            println(data)
+            print(data)
             if let caption = data["username"].string {
                 cell.labelCaption.text = caption
                 cell.descriptionCap.text = empty
             }
             if let imager = data["profile_pic"].string {
-                var url = NSURL(string: imager)
-                println(url)
-                var imageSize = 50 as CGFloat
+                let url = NSURL(string: imager)
+                print(url)
+                let imageSize = 50 as CGFloat
                 cell.userimage.hnk_cancelSetImage()
                 cell.userimage.frame.size.height = imageSize
                 cell.userimage.frame.size.width  = imageSize
@@ -529,7 +510,6 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
         }
         else if segmentindex == 3{
             cell.userimage.hnk_cancelSetImage()
-            var empty: String = " "
             let data = datas[indexPath.row]
             usersearcher.hidden = false
             if let caption = data["description"].string {
@@ -540,9 +520,9 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
             }
             
             if let imager = data["filename"].string {
-                var properurl = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/thumbnail/"+imager+".png"
-                var url = NSURL(string: properurl)
-                var imageSize = 50 as CGFloat
+                let properurl = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/thumbnail/"+imager+".png"
+                let url = NSURL(string: properurl)
+                let imageSize = 50 as CGFloat
                 cell.userimage.hnk_cancelSetImage()
                 cell.userimage.frame.size.height = imageSize
                 cell.userimage.frame.size.width  = imageSize
@@ -559,24 +539,23 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        let currentCell = self.tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!;
         let row = indexPath.row
         
         if segmentindex == 1 {
-            println(datas[row])
+            print(datas[row])
             self.locLabel = String(stringInterpolationSegment: datas[row]["name"])
             self.locID = String(stringInterpolationSegment: datas[row]["id"])
             performSegueWithIdentifier("goto_location", sender: self)
         }
         else if segmentindex == 2 {
-            println(datas[row])
+            print(datas[row])
             self.gid = String(stringInterpolationSegment: datas[row]["id"])
             self.gusername =  String(stringInterpolationSegment: datas[row]["username"])
             performSegueWithIdentifier("goto_user", sender: self)
             
         }
         else if segmentindex == 3 {
-            println(datas[row])
+            print(datas[row])
             self.glimperid = String(stringInterpolationSegment: datas[row]["id"])
             performSegueWithIdentifier("goto_video", sender: self)
         }
@@ -585,13 +564,7 @@ class Globe: UIViewController,UITableViewDataSource, UITableViewDelegate,MKMapVi
     
     
     
-    
-}
-
-// MARK: <MKMapViewDelegate>
-
-extension Globe : MKMapViewDelegate {
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             return nil
         }
@@ -633,11 +606,11 @@ extension Globe : MKMapViewDelegate {
         return annotationView;
     }
     
-    func mapView(mapView: MKMapView!, regionDidChangeAnimated animated: Bool) {
-        reachability.startNotifier()
+    func mapView(mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        reachability!.startNotifier()
         
         // Initial reachability check
-        if reachability.isReachable() {
+        if reachability!.isReachable() {
             clusteringController.refresh(true)
             
         } else {
@@ -649,7 +622,7 @@ extension Globe : MKMapViewDelegate {
     }
     
     
-    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
         if view.annotation is KPAnnotation {
             let cluster : KPAnnotation = view.annotation as! KPAnnotation
             
@@ -661,7 +634,7 @@ extension Globe : MKMapViewDelegate {
                 mapView.setRegion(region, animated: true)
             }
             if cluster.annotations.count == 1{
-                glimperid = view.annotation.title!
+                glimperid = view.annotation!.title!
                 self.performSegueWithIdentifier("goto_video", sender: self)
                 
                 

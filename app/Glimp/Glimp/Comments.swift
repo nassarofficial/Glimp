@@ -38,45 +38,43 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBAction func posttoserver(sender: AnyObject) {
         postbut.enabled = false
-        println(user_id)
-        println(glimpid)
-        println(textView.text)
+        print(user_id)
+        print(glimpid)
+        print(textView.text)
         suggester.hidden = true
         let prefs = NSUserDefaults.standardUserDefaults()
         
         let name = prefs.stringForKey("USERNAME")
 
-        if textView.text.isEmpty {
+        if textView.text!.isEmpty {
             let alert = UIAlertView()
             alert.title = "Empty Comment"
             alert.message = "Please Enter Text In The Field"
             alert.addButtonWithTitle("Ok")
             alert.show()        }
         else{
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/postcomments.php", parameters: [ "userid": name!,
-            "glimpid": glimpid,
-            "comment": textView.text])
+            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/postcomments.php", parameters: ["userid": name!,"glimpid": glimpid!,
+"comment": textView.text!])
+                .responseJSON { response in
+                    self.getdata()
+                    self.feed.reloadData()
+                    self.textView.text=""
+                    self.feed.startPullToRefresh()
+                    self.postbut.enabled = true
+            }
 
-            .response { (request, response, data, error) in
-                println(request)
-                println(response)
-
-                self.getdata()
-                self.feed.reloadData()
-                self.textView.text=""
-                self.feed.startPullToRefresh()
-                self.postbut.enabled = true
-        }
+            
         }
     }
+        
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        println(segue.identifier)
+        print(segue.identifier)
         if (segue.identifier == "goto_userprofilemention") {
             let secondViewController = segue.destinationViewController as! UserProfile
             //  let ider = userid as String!
             
             let ider2 = payloader as String!
-            println(ider2)
+            print(ider2)
             //  secondViewController.userid = ider
             
             secondViewController.username = ider2
@@ -84,7 +82,7 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if (segue.identifier == "goto_hash") {
             let secondViewController = segue.destinationViewController as! Hashtag
             //  let ider = userid as String!
-            var stringer =  payloader
+            let stringer =  payloader
             let ider2 = stringer as String!
             //println(ider2)
             //  secondViewController.userid = ider
@@ -97,16 +95,28 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
 
     func getdata(){
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/comments.php", parameters: ["comment": glimpid]).responseJSON { (request, response, json, error) in
-            println(response)
-            if json != nil {
-                var jsonObj = JSON(json!)
-                if let data = jsonObj["comments"].arrayValue as [JSON]?{
-                    self.datas = data
-                    self.feed.reloadData()
+        
+        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/comments.php", parameters: ["comment": glimpid])
+            .response { request, response, json, error in
+                if json != nil {
+                    var jsonObj = JSON(json!)
+                    if let data = jsonObj["comments"].arrayValue as [JSON]?{
+                        self.datas = data
+                        self.feed.reloadData()
+                    }
                 }
-            }
         }
+
+//        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/comments.php", parameters: ["comment": glimpid]).responseJSON { (request, response, json, error) in
+//            println(response)
+//            if json != nil {
+//                var jsonObj = JSON(json!)
+//                if let data = jsonObj["comments"].arrayValue as [JSON]?{
+//                    self.datas = data
+//                    self.feed.reloadData()
+//                }
+//            }
+//        }
 
     }
     
@@ -121,13 +131,13 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.feed.dataSource = self
         textView.addTarget(self, action: "textFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
 
-        var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleTapGestureRecognizer:")
+        let tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleTapGestureRecognizer:")
         tapGestureRecognizer.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(tapGestureRecognizer)
         
         
         // tbc : foursquare
-        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         view.addGestureRecognizer(tap)
         tap.cancelsTouchesInView = false
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillShow:"), name:UIKeyboardWillShowNotification, object: nil);
@@ -138,7 +148,7 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
             NSOperationQueue().addOperationWithBlock {
                 //self.registerForKeyboardNotifications()
                 dispatch_sync(dispatch_get_global_queue(
-                    Int(QOS_CLASS_USER_INTERACTIVE.value), 0)) {
+                    Int(QOS_CLASS_USER_INTERACTIVE.rawValue), 0)) {
 
                 self.getdata()
                 }
@@ -211,8 +221,8 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func keyboardWillShow(sender: NSNotification) {
         if let userInfo = sender.userInfo {
-            let keyboardSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size
-            var keyboardHeight = CGFloat(keyboardSize?.height ?? 0)
+            let keyboardSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue.size
+            let keyboardHeight = CGFloat(keyboardSize?.height ?? 0)
             self.view.frame.origin.y -= keyboardHeight
             
         }
@@ -222,8 +232,8 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func keyboardWillHide(sender: NSNotification) {
         if let userInfo = sender.userInfo {
-            let keyboardSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size
-            var keyboardHeight = CGFloat(keyboardSize?.height ?? 0)
+            let keyboardSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue.size
+            let keyboardHeight = CGFloat(keyboardSize?.height ?? 0)
             self.view.frame.origin.y += keyboardHeight
             
         }
@@ -245,7 +255,7 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ImageCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ImageCell", forIndexPath: indexPath) 
 
         if tableView == feed {
             let data = datas[indexPath.row]
@@ -267,7 +277,7 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if let imageView = cell.viewWithTag(101) as? UIImageView {
                 if let urlString = data["profile_pic"].string{
                     let url = NSURL(string: urlString)
-                    println(url)
+                    print(url)
                     let imageSize = 65 as CGFloat
                     imageView.frame.size.height = imageSize
                     imageView.frame.size.width  = imageSize
@@ -295,47 +305,46 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     ///// Mentions
     
-    func getdata(query:String){
+    func getdata(var query:String){
         let prefs = NSUserDefaults.standardUserDefaults()
         
         let name = prefs.stringForKey("USERNAME")
         var usernamep = String(name!)
         
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/friendlist.php", parameters: ["username": usernamep, "query" : query]).responseJSON { (request, response, json, error) in
-            println(response)
-            if json != nil {
-                var jsonObj = JSON(json!)
-                if let data = jsonObj["predictions"].arrayValue as [JSON]?{
-                    self.datasMentions = data
-                    self.suggester.reloadData()
-                }
-            }
-        }
         
-    }
-    
+        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/friendlist.php", parameters: ["username": usernamep, "query" : query])
+            .response { request, response, json, error in
+                if json != nil {
+                    var jsonObj = JSON(json!)
+                    if let data = jsonObj["predictions"].arrayValue as [JSON]?{
+                        self.datasMentions = data
+                        self.suggester.reloadData()
+                    }
+                }
+        }
+
+        
+
     func textField(Description: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        let newLength = count(Description.text.utf16) + count(string.utf16) - range.length
+        let newLength = Description.text!.utf16.count + string.utf16.count - range.length
         return newLength <= 150 // Bool
     }
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         if tableView == feed {
-            println("nothing")
+            print("nothing")
         } else if tableView == suggester {
-            let currentCell = self.suggester.cellForRowAtIndexPath(indexPath) as UITableViewCell!;
             let row = indexPath.row
             self.mention = datasMentions[row]["username"].string!
             suggester.hidden = true
-            var gettext:String = textView!.text
+            let gettext:String = textView!.text!
             
-            var before = gettext as String
-            var ticker = arr[0]
-            var tickerend = arr[1]
-            var ender = count(before)-1
-            var fhalf = before[0...ticker] + self.mention
-            if (count(fhalf) < ender){
+            let before = gettext as String
+            let ticker = arr[0]
+            let ender = before.characters.count-1
+            let fhalf = before[0...ticker] + self.mention
+            if (fhalf.characters.count < ender){
                 suggester.hidden = true
                 
             } else {
@@ -345,13 +354,12 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     func textFieldDidChange(textView: UITextField) { //Handle the text changes here
-        println("hey hey")
-        var gettext:String = textView.text
-        if count(gettext) != 0 {
+        let gettext:String = textView.text!
+        if gettext.characters.count != 0 {
             suggester.hidden = false
-            ticker = count(gettext) - 1
-            println(ticker)
-            var idx = advance(gettext.startIndex,ticker)
+            ticker = gettext.characters.count - 1
+            print(ticker)
+            let idx = gettext.startIndex.advancedBy(ticker)
             
             if (gettext[idx] == "@" && flagger == ""){
                 arr.insert(ticker, atIndex: 0)
@@ -359,7 +367,7 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 flagger = "@"
                 getdata(query)
                 
-                println("entered mention")
+                print("entered mention")
             }
             else if flagger == "@" {
                 
@@ -378,7 +386,7 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         getdata(query)
                         suggester.hidden = true
                     }
-                    println(query)
+                    print(query)
                 } else if (gettext[idx] == " "){
                     arr.insert(ticker, atIndex: 1)
                     
@@ -420,7 +428,6 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
 
 }
-extension Comments : UITextViewDelegate {
     
     // increase the height of the textview as the user types
     func showHashTagAlert(tagType:String, payload:String){
@@ -433,25 +440,22 @@ extension Comments : UITextViewDelegate {
     }
     
     func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
-        
+        let scheme = URL.scheme
         // check for our fake URL scheme hash:helloWorld
-        if let scheme = URL.scheme {
             switch scheme {
             case "hash" :
-                payloader = URL.resourceSpecifier!
-                println(payloader)
+                payloader = URL.resourceSpecifier
+                print(payloader)
                 performSegueWithIdentifier("goto_hash", sender: self)
                 // showHashTagAlert("hash", payload: URL.resourceSpecifier!)
             case "mention" :
-                payloader = URL.resourceSpecifier!
+                payloader = URL.resourceSpecifier
                 performSegueWithIdentifier("goto_userprofilemention", sender: self)
             default:
-                println("just a regular url")
+                print("just a regular url")
             }
-        }
         
         return true
     }
     
 }
-

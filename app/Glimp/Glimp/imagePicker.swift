@@ -26,13 +26,12 @@ class ImagePicker: UIViewController,UIAlertViewDelegate,UIImagePickerControllerD
 
             let prefs = NSUserDefaults.standardUserDefaults()
             let name = prefs.stringForKey("USERNAME")
-            var usernamep = String(name!)
+            let usernamep = String(name!)
             // now lets get the directory contents (including folders)
-            var progress: NSProgress?
             
-            var imageData: NSMutableData = NSMutableData(data: UIImageJPEGRepresentation(imageView.image, 0.5));
+            let imageData: NSMutableData = NSMutableData(data: UIImageJPEGRepresentation(imageView.image!, 0.5)!);
             
-            var params = [
+            let params = [
                 "username": usernamep
             ]
             
@@ -41,18 +40,18 @@ class ImagePicker: UIViewController,UIAlertViewDelegate,UIImagePickerControllerD
             manager.responseSerializer = AFHTTPResponseSerializer()
             manager.POST( url, parameters: params,
                 constructingBodyWithBlock: { (data: AFMultipartFormData!) in
-                    println("")
-                    var res: Void = data.appendPartWithFileData(imageData, name: "fileToUpload", fileName: "randomimagename.jpg", mimeType: "image/jpeg")
-                    println("was file added properly to the body? \(res)")
+                    print("", terminator: "")
+                    let res: Void = data.appendPartWithFileData(imageData, name: "fileToUpload", fileName: "randomimagename.jpg", mimeType: "image/jpeg")
+                    print("was file added properly to the body? \(res)", terminator: "")
                     progressHUD.removeFromSuperview()
 
                 },
                 success: { (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
-                    println("Yes this was a success")
+                    print("Yes this was a success", terminator: "")
                     progressHUD.removeFromSuperview()
                 },
                 failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
-                    println("We got an error here.. \(error.localizedDescription)")
+                    print("We got an error here.. \(error.localizedDescription)", terminator: "")
                     progressHUD.removeFromSuperview()
             })
     }
@@ -68,21 +67,20 @@ class ImagePicker: UIViewController,UIAlertViewDelegate,UIImagePickerControllerD
         let name = prefs.stringForKey("USERNAME")
         
         let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profilepic.php?username="+name!)
-        let pointData = NSData(contentsOfURL: baseURL!, options: nil, error: nil)
-        let points = NSJSONSerialization.JSONObjectWithData(pointData!,
-            options: nil,
-            error: nil) as! NSDictionary
+        let pointData = try? NSData(contentsOfURL: baseURL!, options: [])
+        let points = (try! NSJSONSerialization.JSONObjectWithData(pointData!,
+            options: [])) as! NSDictionary
         for point in points["profilepic"] as! NSArray {
             profilepic = String(stringInterpolationSegment: (point as! NSDictionary)["profile_pic"]!)
         }
-        println("hello")
+        print("hello", terminator: "")
         if profilepic == "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profilepic.jpeg"{
             imageView.image = UIImage(named: "add_photo-1");
             progressHUD.removeFromSuperview()
         }
         else {
             let url = NSURL(string: profilepic)
-            println(url)
+            print(url, terminator: "")
             imageView.hnk_setImageFromURL(url!)
             progressHUD.removeFromSuperview()
 
@@ -104,20 +102,20 @@ class ImagePicker: UIViewController,UIAlertViewDelegate,UIImagePickerControllerD
     
     @IBAction func btnImagePickerClicked(sender: AnyObject)
     {
-        var alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+        let alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
         
-        var cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default)
+        let cameraAction = UIAlertAction(title: "Camera", style: UIAlertActionStyle.Default)
             {
                 UIAlertAction in
                 self.openCamera()
                 
         }
-        var gallaryAction = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.Default)
+        let gallaryAction = UIAlertAction(title: "Gallery", style: UIAlertActionStyle.Default)
             {
                 UIAlertAction in
                 self.openGallary()
         }
-        var cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel)
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel)
             {
                 UIAlertAction in
                 
@@ -164,7 +162,7 @@ class ImagePicker: UIViewController,UIAlertViewDelegate,UIImagePickerControllerD
             popover!.presentPopoverFromRect(btnClickMe.frame, inView: self.view, permittedArrowDirections: UIPopoverArrowDirection.Any, animated: true)
         }
     }
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [NSObject : AnyObject])
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject])
     {
         self.booler = "1"
         setp.enabled = true

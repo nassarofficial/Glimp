@@ -59,11 +59,10 @@ class Profile: UIViewController {
         let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profile.php?username="+name!)
         //println(baseURL)
         
-        let pointData = NSData(contentsOfURL: baseURL!, options: nil, error: nil)
+        let pointData = try? NSData(contentsOfURL: baseURL!, options: [])
         
-        let points = NSJSONSerialization.JSONObjectWithData(pointData!,
-            options: nil,
-            error: nil) as! NSDictionary
+        let points = (try! NSJSONSerialization.JSONObjectWithData(pointData!,
+            options: [])) as! NSDictionary
         
         
         for point in points["profile"] as! NSArray {
@@ -76,38 +75,45 @@ class Profile: UIViewController {
             self.followers.setTitle(f2, forState: UIControlState.Normal)
             self.glimps.setTitle(gl, forState: UIControlState.Normal)
             //self.location.text = (point as! NSDictionary)["location"] as? String
-            
         }
 
-            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/feed.php", parameters: ["userid": self.userid]).responseJSON { (request, response, json, error) in
-                if json != nil {
-                    var jsonObj = JSON(json!)
+        
+        
+        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/feed.php", parameters: ["userid": self.userid])
+            .responseJSON { response in
+                print(response.request)  // original URL request
+                print(response.response) // URL response
+                print(response.data)     // server data
+                print(response.result)   // result of response serialization
+                
+                if let json = response.result.value {
+                    var jsonObj = JSON(json)
                     if let data = jsonObj["glimps"].arrayValue as [JSON]?{
                         self.datas = data
                         self.tableView.reloadData()
                         self.tablespinner.hidden = true
                     }
-                    
                 }
-            }
+        }
 
+        
+    
         let baseURL1 = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profilepic.php?username="+name!)
-        let pointData1 = NSData(contentsOfURL: baseURL1!, options: nil, error: nil)
-        let points1 = NSJSONSerialization.JSONObjectWithData(pointData1!,
-            options: nil,
-            error: nil) as! NSDictionary
+        let pointData1 = try? NSData(contentsOfURL: baseURL1!, options: [])
+        let points1 = (try! NSJSONSerialization.JSONObjectWithData(pointData1!,
+            options: [])) as! NSDictionary
         for point1 in points1["profilepic"] as! NSArray {
             self.profilepic = String(stringInterpolationSegment: (point1 as! NSDictionary)["profile_pic"]!)
         }
-        println("hello")
+        print("hello")
         if profilepic == "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profilepic.jpeg"{
             imageView.image = UIImage(named: "add_photo-1");
         }
         else {
-            println(profilepic)
+            print(profilepic)
             let url = NSURL(string: profilepic)
-            println(url)
-            var imageSize = 86 as CGFloat
+            print(url)
+            let imageSize = 86 as CGFloat
             self.imageView.frame.size.height = imageSize
             self.imageView.frame.size.width  = imageSize
             self.imageView.layer.cornerRadius = imageSize / 2.05
@@ -145,7 +151,7 @@ class Profile: UIViewController {
                     self.profilescroll.stopPullToRefresh()
                 }
             }
-            }, withAnimator: PacmanAnimator())
+            }, withAnimator: BeatAnimator())
         
         let prefs = NSUserDefaults.standardUserDefaults()
         let name = prefs.stringForKey("USERNAME")
@@ -165,8 +171,9 @@ class Profile: UIViewController {
         return false
     }
     
-    override func supportedInterfaceOrientations() -> Int {
-        return UIInterfaceOrientation.Portrait.rawValue
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        let orientation: UIInterfaceOrientationMask = [UIInterfaceOrientationMask.Portrait, UIInterfaceOrientationMask.PortraitUpsideDown]
+        return orientation
     }
     
     
@@ -187,10 +194,7 @@ class Profile: UIViewController {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let prefs = NSUserDefaults.standardUserDefaults()
-        let name = prefs.stringForKey("USERNAME")
-
-        let cell = tableView.dequeueReusableCellWithIdentifier("feedcell", forIndexPath: indexPath) as! UITableViewCell //1
+        let cell = tableView.dequeueReusableCellWithIdentifier("feedcell", forIndexPath: indexPath) //1
         let data = datas[indexPath.row]
         let commentLabel = cell.viewWithTag(200) as? UILabel
         let timeLabel = cell.viewWithTag(250) as? UILabel
@@ -203,10 +207,10 @@ class Profile: UIViewController {
                 commentLabel!.text = comment
                 //println(comment)
                 
-                var dateFormatter = NSDateFormatter()
+                let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 
-                var date = dateFormatter.dateFromString(data["time"].string!)
+                let date = dateFormatter.dateFromString(data["time"].string!)
                 //println(date)
                 
                 //var date = NSDate(data["time"].string!)
@@ -221,7 +225,6 @@ class Profile: UIViewController {
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        let currentCell = self.tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!;
         let row = indexPath.row
         self.glimpsid = String(stringInterpolationSegment: datas[row]["id"])
         performSegueWithIdentifier("goto_video", sender: self)
@@ -232,11 +235,11 @@ class Profile: UIViewController {
     
     func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
         let calendar = NSCalendar.currentCalendar()
-        let unitFlags = NSCalendarUnit.CalendarUnitMinute | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitWeekOfYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitSecond
+        let unitFlags: NSCalendarUnit = [NSCalendarUnit.Minute, NSCalendarUnit.Hour, NSCalendarUnit.Day, NSCalendarUnit.WeekOfYear, NSCalendarUnit.Month, NSCalendarUnit.Year, NSCalendarUnit.Second]
         let now = NSDate()
         let earliest = now.earlierDate(date)
         let latest = (earliest == now) ? date : now
-        let components:NSDateComponents = calendar.components(unitFlags, fromDate: earliest, toDate: latest, options: nil)
+        let components:NSDateComponents = calendar.components(unitFlags, fromDate: earliest, toDate: latest, options: [])
         
         if (components.year >= 2) {
             return "\(components.year) years ago"

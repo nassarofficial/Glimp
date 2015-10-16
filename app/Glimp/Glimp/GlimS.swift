@@ -12,7 +12,7 @@ class GlimS: UIViewController {
     
     var val: Int = 0
     @IBAction func backFromModal(segue: UIStoryboardSegue) {
-        println("and we are back")
+        print("and we are back")
         // Switch to the second tab (tabs are numbered 0, 1, 2)
         self.tabBarController?.selectedIndex = 0
     }
@@ -34,7 +34,7 @@ class GlimS: UIViewController {
 
         let prefs = NSUserDefaults.standardUserDefaults()
         let booler = prefs.integerForKey("glimper")
-        println(booler)
+        print(booler)
         //prefs.setInteger(1, forKey: "glimper")
         //prefs.synchronize()
 

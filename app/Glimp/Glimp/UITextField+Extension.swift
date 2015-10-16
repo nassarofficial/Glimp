@@ -8,11 +8,61 @@
 
 import UIKit
 import Alamofire
-
-extension UITextView {
+extension String {
     
+    var lastPathComponent: String {
+        
+        get {
+            return (self as NSString).lastPathComponent
+        }
+    }
+    var pathExtension: String {
+        
+        get {
+            
+            return (self as NSString).pathExtension
+        }
+    }
+    var stringByDeletingLastPathComponent: String {
+        
+        get {
+            
+            return (self as NSString).stringByDeletingLastPathComponent
+        }
+    }
+    var stringByDeletingPathExtension: String {
+        
+        get {
+            
+            return (self as NSString).stringByDeletingPathExtension
+        }
+    }
+    var pathComponents: [String] {
+        
+        get {
+            
+            return (self as NSString).pathComponents
+        }
+    }
+    
+    func stringByAppendingPathComponent(path: String) -> String {
+        
+        let nsSt = self as NSString
+        
+        return nsSt.stringByAppendingPathComponent(path)
+    }
+    
+    func stringByAppendingPathExtension(ext: String) -> String? {
+        
+        let nsSt = self as NSString
+        
+        return nsSt.stringByAppendingPathExtension(ext)
+    }
+}
+extension UITextView {
+
     func chopOffNonAlphaNumericCharacters(text:String) -> String {
-        var nonAlphaNumericCharacters = NSCharacterSet.alphanumericCharacterSet().invertedSet
+        let nonAlphaNumericCharacters = NSCharacterSet.alphanumericCharacterSet().invertedSet
         let characterArray = text.componentsSeparatedByCharactersInSet(nonAlphaNumericCharacters)
         return characterArray[0]
     }
@@ -35,13 +85,18 @@ extension UITextView {
         var datasMentions: [JSON] = []
         
         let name = prefs.stringForKey("USERNAME")
-        var usernamep = String(name!)
+        let usernamep = String(name!)
         var userss = [String]()
         
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/flist.php", parameters: ["username": usernamep]).responseJSON { (request, response, json, error) in
-            println(response)
-            if json != nil {
-                var jsonObj = JSON(json!)
+        let attrString = NSMutableAttributedString(string: "")
+
+        
+        
+        
+        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/flist.php", parameters: ["username": usernamep])
+            .responseJSON { response in
+            if let json = response.result.value {
+                var jsonObj = JSON(json)
                 if let data = jsonObj["flist"].arrayValue as [JSON]?{
                     datasMentions = data
                     
@@ -62,19 +117,8 @@ extension UITextView {
                     // Whitespace is used as the word boundary.
                     // You might see word boundaries at special characters, like before a period.
                     // But we need to be careful to retain the # or @ characters.
-                    let words:[NSString] = nsText.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) as! [NSString]
-                    
-                    // Attributed text overrides anything set in the Storyboard.
-                    // So remember to set your font, color, and size here.
-                    var attrs = [
-                        //            NSFontAttributeName : UIFont(name: "Georgia", size: 20.0)!,
-                        //            NSForegroundColorAttributeName : UIColor.greenColor(),
-                        NSFontAttributeName : UIFont.systemFontOfSize(17.0)
-                    ]
-                    
-                    // Use an Attributed String to hold the text and fonts from above.
-                    // We'll also append to this object some hashtag URLs for specific word ranges.
-                    var attrString = NSMutableAttributedString(string: nsText as String, attributes:attrs)
+                    let words:[NSString] = nsText.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()) as [NSString]
+
 
                     for word in words {
                         
@@ -82,7 +126,7 @@ extension UITextView {
                         
                         if word.hasPrefix("#") {
                             scheme = schemeMap["#"]
-                        } else if word.hasPrefix("@") && contains(userss,word as String) {
+                        } else if word.hasPrefix("@") && userss.contains(word as String) {
                             scheme = schemeMap["@"]
                         }
                         
@@ -95,15 +139,13 @@ extension UITextView {
                             
                             // example: #123abc.go!
                             
-                            // drop the hashtag
-                            // example becomes: 123abc.go!
-                            stringifiedWord = dropFirst(stringifiedWord)
+                            stringifiedWord = String(stringifiedWord.characters.dropFirst())
                             
                             // Chop off special characters and anything after them.
                             // example becomes: 123abc
                             stringifiedWord = self.chopOffNonAlphaNumericCharacters(stringifiedWord)
                             
-                            if let stringIsNumeric = stringifiedWord.toInt() {
+                            if let stringIsNumeric = Int(stringifiedWord) {
                                 // don't convert to hashtag if the entire string is numeric.
                                 // example: 123abc is a hashtag
                                 // example: 123 is not
@@ -119,12 +161,14 @@ extension UITextView {
                                 // 2.) and lengthen the range by one character too.  example becomes:  #123abc
                                 matchRange.length++
                                 // URL syntax is http://123abc
-                                
                                 // Replace custom scheme with something like hash://123abc
                                 // URLs actually don't need the forward slashes, so it becomes hash:123abc
                                 // Custom scheme for @mentions looks like mention:123abc
                                 // As with any URL, the string will have a blue color and is clickable
+                                // attrString.addAttribute(NSLinkAttributeName as! String, value: "\(scheme):\(stringifiedWord)", range: matchRange as NSRange)
+
                                 attrString.addAttribute(NSLinkAttributeName, value: "\(scheme):\(stringifiedWord)", range: matchRange)
+                                //attrString.addAttribute(NSLinkAttributeName)
                             }
                         }
                         
@@ -138,5 +182,5 @@ extension UITextView {
 
         // Use textView.attributedText instead of textView.text
     }
-    
+
 }

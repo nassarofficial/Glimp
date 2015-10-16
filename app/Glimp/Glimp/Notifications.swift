@@ -29,24 +29,26 @@ class Notifications: UIViewController {
         let prefs = NSUserDefaults.standardUserDefaults()
         
         let name = prefs.stringForKey("USERNAME")
+        print(name)
         tableView.addPullToRefreshWithAction({
             NSOperationQueue().addOperationWithBlock {
                 dispatch_sync(dispatch_get_global_queue(
-                    Int(QOS_CLASS_USER_INTERACTIVE.value), 0)) {
+                    Int(QOS_CLASS_USER_INTERACTIVE.rawValue), 0)) {
                         
-        
-                Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/notifications.php", parameters: ["userid": name!]).responseJSON { (request, response, json, error) in
-                    println(response)
-                    if json != nil {
-                        self.notifications.hidden = true
-                        var jsonObj = JSON(json!)
-                        if let data = jsonObj["notifications"].arrayValue as [JSON]?{
-                            self.datas = data
-                            self.tableView.reloadData()
+                        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/notifications.php", parameters: ["userid": name!])
+                            .responseJSON { response in
+                                print(response.request)
+                                if let json = response.result.value {
+                                    self.notifications.hidden = true
+                                    var jsonObj = JSON(json)
+                                    if let data = jsonObj["notifications"].arrayValue as [JSON]?{
+                                        self.datas = data
+                                        self.tableView.reloadData()
+                                    } else {
+                                        self.notifications.hidden = false
+                                    }
                         }
-                    } else {
-                        self.notifications.hidden = false
-                    }
+
                 }
                 }
 
@@ -54,14 +56,14 @@ class Notifications: UIViewController {
                     self.tableView.stopPullToRefresh()
                 }
             }
-            }, withAnimator: PacmanAnimator())
+            }, withAnimator: BeatAnimator())
 
     }
 
     override func viewDidAppear(animated: Bool) {
         
         super.viewDidAppear(animated)
-        (tabBarController!.tabBar.items![3] as! UITabBarItem).badgeValue = nil
+        (tabBarController!.tabBar.items![3] ).badgeValue = nil
         tableView.startPullToRefresh()
     }
 
@@ -73,17 +75,17 @@ class Notifications: UIViewController {
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        println(segue.identifier)
+        print(segue.identifier)
         if (segue.identifier == "goto_comments") {
             let secondViewController = segue.destinationViewController as! CommentsNotif
-            println("before glimp:" + self.glimpid)
+            print("before glimp:" + self.glimpid)
             secondViewController.glimpid = self.glimpid
             
         }
         else if (segue.identifier == "goto_profile") {
             let secondViewController = segue.destinationViewController as! UserProfile
             let ider = user_id as String!
-            println("before glimp:" + user_id)
+            print("before glimp:" + user_id)
             let ider2 = username as String!
 
             //println(ider2)
@@ -114,7 +116,7 @@ class Notifications: UIViewController {
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ImageCell", forIndexPath: indexPath) as! UITableViewCell //1
+        let cell = tableView.dequeueReusableCellWithIdentifier("ImageCell", forIndexPath: indexPath) //1
         let data = datas[indexPath.row]
         let notification = cell.viewWithTag(150) as? UILabel
         let timeLabel = cell.viewWithTag(200) as? UILabel
@@ -123,7 +125,7 @@ class Notifications: UIViewController {
         if let captionLabel = cell.viewWithTag(100) as? UILabel {
             if let caption = data["username"].string{
                 captionLabel.text = caption
-                var type = data["type"]
+                let type = data["type"]
                 if type == 1 {
                     notification!.text = "is now following you."
                 }
@@ -141,11 +143,11 @@ class Notifications: UIViewController {
                 }
 
 
-                var dateFormatter = NSDateFormatter()
+                let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
                 
-                var date = dateFormatter.dateFromString(data["timestamp"].string!)
-                println(date)
+                let date = dateFormatter.dateFromString(data["timestamp"].string!)
+                print(date)
                                 
                 timeLabel!.text = timeAgoSinceDate(date!, numericDates: Bool(0))
 
@@ -154,7 +156,7 @@ class Notifications: UIViewController {
         if let imageView = cell.viewWithTag(250) as? UIImageView {
             if let urlString = data["profile_pic"].string{
                 let url = NSURL(string: urlString)
-                println(url)
+                print(url)
                 let imageSize = 65 as CGFloat
                 imageView.frame.size.height = imageSize
                 imageView.frame.size.width  = imageSize
@@ -168,9 +170,8 @@ class Notifications: UIViewController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        let currentCell = self.tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!;
         let row = indexPath.row
-        println(datas[row])
+        print(datas[row])
         self.glimpid = String(stringInterpolationSegment: datas[row]["g_id"])
         self.user_id = String(stringInterpolationSegment: datas[row]["f_id"])
         self.broadcast_id = String(stringInterpolationSegment: datas[row]["b_id"])
@@ -188,7 +189,7 @@ class Notifications: UIViewController {
         }
         else if datas[row]["type"] == 4{
             performSegueWithIdentifier("goto_glimp", sender: self)
-            println(self.glimpid)
+            print(self.glimpid)
         }
         else if datas[row]["type"] == 5{
             performSegueWithIdentifier("goto_comments", sender: self)
@@ -200,11 +201,11 @@ class Notifications: UIViewController {
 
     func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
         let calendar = NSCalendar.currentCalendar()
-        let unitFlags = NSCalendarUnit.CalendarUnitMinute | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitWeekOfYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitSecond
+        let unitFlags: NSCalendarUnit = [NSCalendarUnit.Minute, NSCalendarUnit.Hour, NSCalendarUnit.Day, NSCalendarUnit.WeekOfYear, NSCalendarUnit.Month, NSCalendarUnit.Year, NSCalendarUnit.Second]
         let now = NSDate()
         let earliest = now.earlierDate(date)
         let latest = (earliest == now) ? date : now
-        let components:NSDateComponents = calendar.components(unitFlags, fromDate: earliest, toDate: latest, options: nil)
+        let components:NSDateComponents = calendar.components(unitFlags, fromDate: earliest, toDate: latest, options: [])
         
         if (components.year >= 2) {
             return "\(components.year) years ago"

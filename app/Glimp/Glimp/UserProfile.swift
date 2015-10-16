@@ -19,7 +19,9 @@ class UserProfile: UIViewController {
     
     @IBOutlet weak var scroller: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
-    
+    @IBAction func unwindToprofile (segue : UIStoryboardSegue) {
+    }
+
     @IBAction func followersac(sender: AnyObject) {
         type = 1
         self.performSegueWithIdentifier("goto_follow", sender: self)
@@ -82,12 +84,11 @@ class UserProfile: UIViewController {
         let name = prefs.stringForKey("USERNAME")
 
         let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profileuser.php?username="+username+"&friend="+name!)
-        println(baseURL)
-        let pointData = NSData(contentsOfURL: baseURL!, options: nil, error: nil)
+        print(baseURL)
+        let pointData = try? NSData(contentsOfURL: baseURL!, options: [])
         
-        let points = NSJSONSerialization.JSONObjectWithData(pointData!,
-            options: nil,
-            error: nil) as! NSDictionary
+        let points = (try! NSJSONSerialization.JSONObjectWithData(pointData!,
+            options: [])) as! NSDictionary
         
         
         for point in points["profile"] as! NSArray {
@@ -105,8 +106,8 @@ class UserProfile: UIViewController {
                 let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
                 
                 self.following.setTitle(f1, forState: UIControlState.Normal)
-                println(f1)
-                println(f2)
+                print(f1)
+                print(f2)
 
                 self.followers.setTitle(f2, forState: UIControlState.Normal)
                 
@@ -120,8 +121,8 @@ class UserProfile: UIViewController {
                 let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
                 
                 self.following.setTitle(f1, forState: UIControlState.Normal)
-                println(f1)
-                println(f2)
+                print(f1)
+                print(f2)
 
                 
                 self.followers.setTitle(f2, forState: UIControlState.Normal)
@@ -155,89 +156,96 @@ class UserProfile: UIViewController {
                 dispatch_async(dispatch_get_main_queue()) { // 2
 
                 let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profileuser.php?username="+self.username+"&friend="+name!)
-                println(baseURL)
-                let pointData = NSData(contentsOfURL: baseURL!, options: nil, error: nil)
-                
-                let points = NSJSONSerialization.JSONObjectWithData(pointData!,
-                    options: nil,
-                    error: nil) as! NSDictionary
-                
-                
-                for point in points["profile"] as! NSArray {
-                    self.userid = String(stringInterpolationSegment: (point as! NSDictionary)["userider"]!)
-                    self.friendid = String(stringInterpolationSegment: (point as! NSDictionary)["useriderer"]!)
-                    self.user.text = String(stringInterpolationSegment: (point as! NSDictionary)["username"]!)
-                    
-                    let f1 = String(stringInterpolationSegment: (point as! NSDictionary)["friends"]!)
-                    let f2 = String(stringInterpolationSegment: (point as! NSDictionary)["followers"]!)
-                    self.f3 = String(stringInterpolationSegment: (point as! NSDictionary)["follow"]!)
-                    
-                    println("User Profile: "+self.userid)
-                    println("Visited Profile: "+self.friendid)
-                    println("Friend ID: "+self.f3)
-                    
-                    
-                    
-                    if self.f3 == "not found"{
-                        
-                        self.followbutton.setImage(UIImage(named:"followbutton.png"),forState:.Normal)
-                        let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
-                        
-                        self.following.setTitle(f1, forState: UIControlState.Normal)
-                        
-                        
-                        self.followers.setTitle(f2, forState: UIControlState.Normal)
-                        
-                        self.glimps.setTitle(gl, forState: UIControlState.Normal)
-                        
-                    }
-                    else{
-                        self.followbutton.setImage(UIImage(named:"unfollowbutton.png"),forState:UIControlState.Normal)
-                        let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
-                        
-                        self.following.setTitle(f1, forState: UIControlState.Normal)
-                        
-                        
-                        self.followers.setTitle(f2, forState: UIControlState.Normal)
-                        
-                        self.glimps.setTitle(gl, forState: UIControlState.Normal)
-                        
-                        
-                    }
-                    
-                    
-                    
-                    
-                    //self.location.text = (point as! NSDictionary)["location"] as? String
-                    let urlString = (point as! NSDictionary)["profilepic"] as? String
-                    let url = NSURL(string: urlString!)
-                    var imageSize = 86 as CGFloat
-                    self.imageView.frame.size.height = imageSize
-                    self.imageView.frame.size.width  = imageSize
-                    self.imageView.layer.cornerRadius = imageSize / 2.05
-                    self.imageView.clipsToBounds = true
+                //print(baseURL)
+                //    let pointData = NSData(contentsOfURL: baseURL!)
+                    let pointData = NSData(contentsOfURL: baseURL!)
 
-                    self.imageView.hnk_setImageFromURL(url!)
-                    
-                }
-                
-                Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/feeduser.php", parameters: ["userid": self.userid]).responseJSON { (request, response, json, error) in
-                    if json != nil {
-                        var jsonObj = JSON(json!)
-                        if let data = jsonObj["glimps"].arrayValue as [JSON]?{
-                            self.datas = data
-                            self.tableView.reloadData()
-                            self.tablespinner.hidden = true
+               // let points = NSJSONSerialization.JSONObjectWithData(pointData!) as! NSDictionary
+                //let points = NSJSONSerialization.JSONObjectWithData(pointData!, options: "")
+                    do {
+                        let points = try NSJSONSerialization.JSONObjectWithData(pointData!, options: []) as! [String:AnyObject]
+                        for point in points["profile"] as! NSArray {
+                            self.userid = String(stringInterpolationSegment: (point as! NSDictionary)["userider"]!)
+                            self.friendid = String(stringInterpolationSegment: (point as! NSDictionary)["useriderer"]!)
+                            self.user.text = String(stringInterpolationSegment: (point as! NSDictionary)["username"]!)
+                            
+                            let f1 = String(stringInterpolationSegment: (point as! NSDictionary)["friends"]!)
+                            let f2 = String(stringInterpolationSegment: (point as! NSDictionary)["followers"]!)
+                            self.f3 = String(stringInterpolationSegment: (point as! NSDictionary)["follow"]!)
+                            
+                            //  println("User Profile: "+self.userid)
+                            //   println("Visited Profile: "+self.friendid)
+                            //  println("Friend ID: "+self.f3)
+                            
+                            
+                            
+                            if self.f3 == "not found"{
+                                
+                                self.followbutton.setImage(UIImage(named:"followbutton.png"),forState:.Normal)
+                                let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
+                                
+                                self.following.setTitle(f1, forState: UIControlState.Normal)
+                                
+                                
+                                self.followers.setTitle(f2, forState: UIControlState.Normal)
+                                
+                                self.glimps.setTitle(gl, forState: UIControlState.Normal)
+                                
+                            }
+                            else{
+                                self.followbutton.setImage(UIImage(named:"unfollowbutton.png"),forState:UIControlState.Normal)
+                                let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
+                                
+                                self.following.setTitle(f1, forState: UIControlState.Normal)
+                                
+                                
+                                self.followers.setTitle(f2, forState: UIControlState.Normal)
+                                
+                                self.glimps.setTitle(gl, forState: UIControlState.Normal)
+                                
+                                
+                            }
+                            
+                            
+                            
+                            
+                            //self.location.text = (point as! NSDictionary)["location"] as? String
+                            let urlString = (point as! NSDictionary)["profilepic"] as? String
+                            let url = NSURL(string: urlString!)
+                            let imageSize = 86 as CGFloat
+                            self.imageView.frame.size.height = imageSize
+                            self.imageView.frame.size.width  = imageSize
+                            self.imageView.layer.cornerRadius = imageSize / 2.05
+                            self.imageView.clipsToBounds = true
+                            
+                            self.imageView.hnk_setImageFromURL(url!)
+                            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/feeduser.php", parameters: ["userid": self.userid])
+                                .response { request, response, json, error in
+                                    if json != nil {
+                                        var jsonObj = JSON(json!)
+                                        if let data = jsonObj["glimps"].arrayValue as [JSON]?{
+                                            self.datas = data
+                                            self.tableView.reloadData()
+                                            self.tablespinner.hidden = true
+                                        }
+                                    }
+                            }
+
                         }
+                    
+                    } catch {
+                        print("json error: \(error)")
                     }
-                }
+
+
+                
                 }
                 
                 NSOperationQueue.mainQueue().addOperationWithBlock {
                     self.scroller.stopPullToRefresh()
                 }
             }
-            }, withAnimator: PacmanAnimator())
+            }, withAnimator: BeatAnimator())
 
         
     }
@@ -271,10 +279,9 @@ class UserProfile: UIViewController {
         return false
     }
     
-    override func supportedInterfaceOrientations() -> Int {
-        return UIInterfaceOrientation.Portrait.rawValue
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return [UIInterfaceOrientationMask.Portrait, UIInterfaceOrientationMask.PortraitUpsideDown]
     }
-    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -293,10 +300,8 @@ class UserProfile: UIViewController {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let prefs = NSUserDefaults.standardUserDefaults()
-        let name = prefs.stringForKey("USERNAME")
         
-        let cell = tableView.dequeueReusableCellWithIdentifier("feedcell", forIndexPath: indexPath) as! UITableViewCell //1
+        let cell = tableView.dequeueReusableCellWithIdentifier("feedcell", forIndexPath: indexPath) //1
         let data = datas[indexPath.row]
         let commentLabel = cell.viewWithTag(200) as? UILabel
         let timeLabel = cell.viewWithTag(250) as? UILabel
@@ -307,10 +312,10 @@ class UserProfile: UIViewController {
                 captionLabel.text = caption
                 let comment = data["description"].string
                 commentLabel!.text = comment
-                var dateFormatter = NSDateFormatter()
+                let dateFormatter = NSDateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
 
-                var date = dateFormatter.dateFromString(data["time"].string!)
+                let date = dateFormatter.dateFromString(data["time"].string!)
                 timeLabel!.text = timeAgoSinceDate(date!, numericDates: Bool(0))
 
             }
@@ -319,7 +324,6 @@ class UserProfile: UIViewController {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-        let currentCell = self.tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!;
         let row = indexPath.row
         self.glimpsid = String(stringInterpolationSegment: datas[row]["id"])
         performSegueWithIdentifier("goto_video", sender: self)
@@ -329,11 +333,11 @@ class UserProfile: UIViewController {
     
     func timeAgoSinceDate(date:NSDate, numericDates:Bool) -> String {
         let calendar = NSCalendar.currentCalendar()
-        let unitFlags = NSCalendarUnit.CalendarUnitMinute | NSCalendarUnit.CalendarUnitHour | NSCalendarUnit.CalendarUnitDay | NSCalendarUnit.CalendarUnitWeekOfYear | NSCalendarUnit.CalendarUnitMonth | NSCalendarUnit.CalendarUnitYear | NSCalendarUnit.CalendarUnitSecond
+        let unitFlags: NSCalendarUnit = [NSCalendarUnit.Minute, NSCalendarUnit.Hour, NSCalendarUnit.Day, NSCalendarUnit.WeekOfYear, NSCalendarUnit.Month, NSCalendarUnit.Year, NSCalendarUnit.Second]
         let now = NSDate()
         let earliest = now.earlierDate(date)
         let latest = (earliest == now) ? date : now
-        let components:NSDateComponents = calendar.components(unitFlags, fromDate: earliest, toDate: latest, options: nil)
+        let components:NSDateComponents = calendar.components(unitFlags, fromDate: earliest, toDate: latest, options: [])
         
         if (components.year >= 2) {
             return "\(components.year) years ago"

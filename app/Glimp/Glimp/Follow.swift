@@ -17,34 +17,41 @@ class Follow: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func unwindToSegueG (segue : UIStoryboardSegue) {
     }
 
+    @IBOutlet var spinner: UIActivityIndicatorView!
     @IBOutlet var followbar: UINavigationBar!
     @IBOutlet var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        println(type)
+        print(type)
         if (type==1){
             followbar.topItem?.title = "Followers"
         }else if (type==2){
             followbar.topItem?.title = "Following"
 
         }
+        
+        
         let prefs = NSUserDefaults.standardUserDefaults()
         
         let name = prefs.stringForKey("USERNAME")
-        var usernamep = String(name!)
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/flister.php", parameters: ["username": usernamep, "type" : type]).responseJSON { (request, response, json, error) in
-            if json != nil {
-                println(request)
-                println(response)
-
-                var jsonObj = JSON(json!)
-                if let data = jsonObj["list"].arrayValue as [JSON]?{
-                    self.datas = data
-                    self.tableView.reloadData()
+        let usernamep = String(name!)
+        
+        
+        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/flister.php", parameters: ["username": usernamep, "type" : type])
+            .responseJSON { response in
+                print(response.request)
+                if let json = response.result.value {
+                    var jsonObj = JSON(json)
+                    if let data = jsonObj["list"].arrayValue as [JSON]?{
+                        self.datas = data
+                        self.spinner.hidden = true
+                        self.tableView.reloadData()
+                    }
                 }
-            }
         }
 
+        
+        
         // Do any additional setup after loading the view.
     }
 
@@ -64,7 +71,7 @@ class Follow: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ImageCell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("ImageCell", forIndexPath: indexPath) 
         
             let data = datas[indexPath.row]
             if let captionLabel = cell.viewWithTag(100) as? UILabel {
@@ -77,11 +84,11 @@ class Follow: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if let imageView = cell.viewWithTag(101) as? UIImageView {
                 if let urlString = data["profile_pic"].string{
                     let url = NSURL(string: urlString)
-                    println(url)
-                    let imageSize = 65 as CGFloat
+                    print(url)
+                    let imageSize = 55 as CGFloat
                     imageView.frame.size.height = imageSize
                     imageView.frame.size.width  = imageSize
-                    imageView.layer.cornerRadius = imageSize / 2.0
+                    imageView.layer.cornerRadius = imageSize / 2
                     imageView.clipsToBounds = true
                     
                     imageView.hnk_setImageFromURL(url!)
@@ -92,7 +99,7 @@ class Follow: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
-        println(segue.identifier)
+        print(segue.identifier)
         if (segue.identifier == "goto_profile") {
             let secondViewController = segue.destinationViewController as! UserProfile
             let ider2 = usernamep as String!
@@ -103,13 +110,12 @@ class Follow: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     
     func textField(Description: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        let newLength = count(Description.text.utf16) + count(string.utf16) - range.length
+        let newLength = Description.text!.utf16.count + string.utf16.count - range.length
         return newLength <= 150 // Bool
     }
     
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
-            let currentCell = self.tableView.cellForRowAtIndexPath(indexPath) as UITableViewCell!;
             let row = indexPath.row
             self.usernamep = datas[row]["username"].string!
             self.performSegueWithIdentifier("goto_profile", sender: self)

@@ -12,13 +12,13 @@ protocol ModalViewControllerDelegate
 extension String
 {
     subscript(integerIndex: Int) -> Character {
-        let index = advance(startIndex, integerIndex)
+        let index = startIndex.advancedBy(integerIndex)
         return self[index]
     }
     
     subscript(integerRange: Range<Int>) -> String {
-        let start = advance(startIndex, integerRange.startIndex)
-        let end = advance(startIndex, integerRange.endIndex)
+        let start = startIndex.advancedBy(integerRange.startIndex)
+        let end = startIndex.advancedBy(integerRange.endIndex)
         let range = start..<end
         return self[range]
         
@@ -66,7 +66,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     @IBOutlet var Description: UITextView!
     
     @IBAction func custloc(sender: AnyObject) {
-        locLabel = customlocation.text
+        locLabel = customlocation.text!
         getlocfs.setTitle(customlocation.text, forState: UIControlState.Normal)
         self.viewofloc.hidden = true
 
@@ -85,34 +85,36 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         let prefs = NSUserDefaults.standardUserDefaults()
         
         let name = prefs.stringForKey("USERNAME")
-        var usernamep = String(name!)
+        let usernamep = String(name!)
 
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/friendlist.php", parameters: ["username": usernamep, "query" : query]).responseJSON { (request, response, json, error) in
-            println(response)
-            if json != nil {
-                var jsonObj = JSON(json!)
-                if let data = jsonObj["predictions"].arrayValue as [JSON]?{
-                    self.datasMentions = data
-                    self.suggester.reloadData()
+        
+        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/friendlist.php", parameters: ["username": usernamep, "query" : query])
+            .responseJSON { response in
+                if let json = response.result.value {
+                    var jsonObj = JSON(json)
+                    if let data = jsonObj["predictions"].arrayValue as [JSON]?{
+                        self.datasMentions = data
+                        self.suggester.reloadData()
+                    }
                 }
-            }
         }
+        
         
     }
 
     @IBOutlet weak var uploading: UIVisualEffectView!
     @IBAction func posttoserver(sender: AnyObject) {
-        reachability.startNotifier()
+        reachability!.startNotifier()
         
         // Initial reachability check
-        if reachability.isReachable() {
+        if reachability!.isReachable() {
             if Description.text == "Enter Your Description" || Description.text.isEmpty{
                 let alertController = UIAlertController(title: "Glimp", message:
                     "Please enter a description", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
                 self.presentViewController(alertController, animated: true, completion: nil)
                 
-            } else if count(Description.text) < 20 {
+            } else if Description.text.characters.count < 20 {
                 let alertController = UIAlertController(title: "Glimp", message:
                     "Please enter more characters (Minimum 20, Maximum 150)", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
@@ -132,14 +134,12 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
                 let prefs = NSUserDefaults.standardUserDefaults()
                 
                 let name = prefs.stringForKey("USERNAME")
-                var usernamep = String(name!)
+                let usernamep = String(name!)
                 
-                // now lets get the directory contents (including folders)
-                var progress: NSProgress?
                 
-                var fileURL = NSURL.fileURLWithPath(self.ViewControllerVideoPath)!
+                let fileURL = NSURL.fileURLWithPath(self.ViewControllerVideoPath)
                 
-                var params = [
+                let params = [
                     "latitude": gllat!,
                     "longitude": gllong!,
                     "loc" : locLabel,
@@ -156,12 +156,13 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
                 manager.responseSerializer = AFHTTPResponseSerializer()
                 manager.POST( url, parameters: params,
                     constructingBodyWithBlock: { (data: AFMultipartFormData!) in
-                        println("")
-                        var res = data.appendPartWithFileURL(fileURL,name: "fileToUpload", error: nil)
-                        println("was file added properly to the body? \(res)")
+                        print("")
+                        //problem
+                        let res = try! data.appendPartWithFileURL(fileURL,name: "fileToUpload")
+                        print("was file added properly to the body? \(res)")
                     },
                     success: { (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
-                        println("Yes this was a success")
+                        print("Yes this was a success")
                         
                         prefs.setInteger(1, forKey: "glimper")
                         prefs.synchronize()
@@ -170,7 +171,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
                         
                     },
                     failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
-                        println("We got an error here.. \(error.localizedDescription)")
+                        print("We got an error here.. \(error.localizedDescription)")
                 })
                 
             } }else {
@@ -193,15 +194,15 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     }
     
     func textField(Description: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
-        let newLength = count(Description.text.utf16) + count(string.utf16) - range.length
+        let newLength = Description.text!.utf16.count + string.utf16.count - range.length
         return newLength <= 150 // Bool
     }
     
     @IBAction func getlocfs(sender: AnyObject) {
-        reachability.startNotifier()
+        reachability!.startNotifier()
         
         // Initial reachability check
-        if reachability.isReachable() {
+        if reachability!.isReachable() {
             self.viewofloc.hidden = false
         } else {
             let alertController = UIAlertController(title: "Glimp", message:
@@ -231,7 +232,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     //        super.init()
     //    }
     //
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
@@ -244,8 +245,8 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     
     func keyboardWillShow(sender: NSNotification) {
         if let userInfo = sender.userInfo {
-            let keyboardSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size
-            var keyboardHeight = CGFloat(keyboardSize?.height ?? 0)
+            let keyboardSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue.size
+            let keyboardHeight = CGFloat(keyboardSize?.height ?? 0)
             self.previewer.frame.origin.y -= keyboardHeight
 
         }
@@ -255,8 +256,8 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     
     func keyboardWillHide(sender: NSNotification) {
         if let userInfo = sender.userInfo {
-            let keyboardSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue().size
-            var keyboardHeight = CGFloat(keyboardSize?.height ?? 0)
+            let keyboardSize = userInfo[UIKeyboardFrameBeginUserInfoKey]?.CGRectValue.size
+            let keyboardHeight = CGFloat(keyboardSize?.height ?? 0)
             self.previewer.frame.origin.y += keyboardHeight
             
         }
@@ -285,20 +286,22 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         
         ////
         
-        Alamofire.request(.GET, "https://api.foursquare.com/v2/venues/search?ll=\(castlat),\(castlong)&client_id=DPUDNKBQKC12FJ0KBRLVU5BG4JREZV1YAIVRXIULPLFZHMAL&client_secret=PA0I5FS3JWPDMOL0H5XLQNDJYBJPGNOEP4QX1ML23YOFGZ3G&v=20140806").responseJSON { (request, response, json, error) in
-            if json != nil {
-                var jsonObj = JSON(json!)
-                if let data = jsonObj["response"]["venues"].arrayValue as [JSON]?{
-                    self.datas = data
-                    //println(self.datas)
-                    self.locationer.reloadData()
+        Alamofire.request(.GET, "https://api.foursquare.com/v2/venues/search?ll=\(castlat),\(castlong)&client_id=DPUDNKBQKC12FJ0KBRLVU5BG4JREZV1YAIVRXIULPLFZHMAL&client_secret=PA0I5FS3JWPDMOL0H5XLQNDJYBJPGNOEP4QX1ML23YOFGZ3G&v=20140806")
+            .responseJSON { response in
+                if let json = response.result.value {
+                    var jsonObj = JSON(json)
+                    if let data = jsonObj["response"]["venues"].arrayValue as [JSON]?{
+                        self.datas = data
+                        //println(self.datas)
+                        self.locationer.reloadData()
+                    }
                 }
-            }
         }
+
         
         self.tabBarController?.tabBar.hidden = true
         
-        self.view.autoresizingMask = (UIViewAutoresizing.FlexibleWidth | UIViewAutoresizing.FlexibleHeight)
+        self.view.autoresizingMask = ([UIViewAutoresizing.FlexibleWidth, UIViewAutoresizing.FlexibleHeight])
         
         self.player = Player()
         self.player.delegate = self
@@ -312,13 +315,13 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         self.view.sendSubviewToBack(self.player.view)
         self.player.playbackLoops = true
         
-        var tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleTapGestureRecognizer:")
+        let tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleTapGestureRecognizer:")
         tapGestureRecognizer.numberOfTapsRequired = 1
         self.player.view.addGestureRecognizer(tapGestureRecognizer)
         
         
         // tbc : foursquare
-        var tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "DismissKeyboard")
         view.addGestureRecognizer(tap)
         tap.cancelsTouchesInView = false
         if locLabel == ""{
@@ -348,10 +351,6 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
 
     override func viewWillAppear(animated: Bool) {
         getlocfs.setTitle(locLabel, forState: UIControlState.Normal)
-        
-        let castlat = NSString(format: "%.2f", gllat!)
-        let castlong = NSString(format: "%.2f", gllong!)
-        
         
         UIApplication.sharedApplication().statusBarHidden=true;
         self.tabBarController?.tabBar.hidden = true
@@ -458,7 +457,6 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath){
         if tableView == locationer {
-            let currentCell = self.locationer.cellForRowAtIndexPath(indexPath) as UITableViewCell!;
             let row = indexPath.row
             self.locLabel = datas[row]["name"].string!
             self.locID = datas[row]["id"].string!
@@ -469,18 +467,16 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
             // println(self.locID)
             // println(self.locLabel)
         } else if tableView == suggester {
-            let currentCell = self.suggester.cellForRowAtIndexPath(indexPath) as UITableViewCell!;
             let row = indexPath.row
             self.mention = datasMentions[row]["username"].string!
             suggester.hidden = true
-            var gettext:String = Description!.text
+            let gettext:String = Description!.text
             
-            var before = gettext as String
-            var ticker = arr[0]
-            var tickerend = arr[1]
-            var ender = count(before)-1
-            var fhalf = before[0...ticker] + self.mention
-            if (count(fhalf) < ender){
+            let before = gettext as String
+            let ticker = arr[0]
+            let ender = before.characters.count-1
+            let fhalf = before[0...ticker] + self.mention
+            if (fhalf.characters.count < ender){
                 suggester.hidden = true
                 
             } else {
@@ -491,12 +487,12 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     }
     
     func textViewDidChange(textview: UITextView) { //Handle the text changes here
-        var gettext:String = textview.text
-        if count(gettext) != 0 {
+        let gettext:String = textview.text
+        if gettext.characters.count != 0 {
             suggester.hidden = false
-            ticker = count(gettext) - 1
-            println(ticker)
-            var idx = advance(gettext.startIndex,ticker)
+            ticker = gettext.characters.count - 1
+            print(ticker)
+            let idx = gettext.startIndex.advancedBy(ticker)
             
             if (gettext[idx] == "@" && flagger == ""){
                 arr.insert(ticker, atIndex: 0)
@@ -504,7 +500,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
                 flagger = "@"
                 getdata(query)
                 
-                println("entered mention")
+                print("entered mention")
             }
             else if flagger == "@" {
                 
@@ -523,7 +519,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
                         getdata(query)
                         suggester.hidden = true
                     }
-                    println(query)
+                    print(query)
                 } else if (gettext[idx] == " "){
                     arr.insert(ticker, atIndex: 1)
                     

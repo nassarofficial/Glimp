@@ -33,27 +33,27 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     @IBAction func unwindToSegueHome (segue : UIStoryboardSegue) {}
     
     @IBAction func zoomOut(sender: AnyObject) {
-        var ladelta : CLLocationDegrees = 30
-        var lndelta : CLLocationDegrees = 30
-        let latitude = locManager.location.coordinate.latitude
-        let longitude = locManager.location.coordinate.longitude
+        let ladelta : CLLocationDegrees = 30
+        let lndelta : CLLocationDegrees = 30
+        let latitude = locManager.location!.coordinate.latitude
+        let longitude = locManager.location!.coordinate.longitude
         
-        var s:MKCoordinateSpan = MKCoordinateSpanMake(ladelta,lndelta)
-        var l:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-        var reg:MKCoordinateRegion = MKCoordinateRegionMake(l, s)
+        let s:MKCoordinateSpan = MKCoordinateSpanMake(ladelta,lndelta)
+        let l:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        let reg:MKCoordinateRegion = MKCoordinateRegionMake(l, s)
         mapView.setRegion(reg, animated: true)
         
     }
     
     @IBAction func findMePressed(sender: AnyObject) {
-        var ladelta : CLLocationDegrees = 0.01
-        var lndelta : CLLocationDegrees = 0.01
-        let latitude = locManager.location.coordinate.latitude
-        let longitude = locManager.location.coordinate.longitude
+        let ladelta : CLLocationDegrees = 0.01
+        let lndelta : CLLocationDegrees = 0.01
+        let latitude = locManager.location!.coordinate.latitude
+        let longitude = locManager.location!.coordinate.longitude
         
-        var s:MKCoordinateSpan = MKCoordinateSpanMake(ladelta,lndelta)
-        var l:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
-        var reg:MKCoordinateRegion = MKCoordinateRegionMake(l, s)
+        let s:MKCoordinateSpan = MKCoordinateSpanMake(ladelta,lndelta)
+        let l:CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)
+        let reg:MKCoordinateRegion = MKCoordinateRegionMake(l, s)
         mapView.setRegion(reg, animated: true)
     }
 
@@ -74,11 +74,12 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         return false
     }
     
-    override func supportedInterfaceOrientations() -> Int {
-        return UIInterfaceOrientation.Portrait.rawValue
+    override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        let orientation: UIInterfaceOrientationMask = [UIInterfaceOrientationMask.Portrait, UIInterfaceOrientationMask.PortraitUpsideDown]
+        return orientation
     }
     
-    func mapView(mapView: MKMapView!, didUpdateUserLocation userLocation: MKUserLocation!) {
+    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
@@ -95,20 +96,19 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         let prefs = NSUserDefaults.standardUserDefaults()
         let name = prefs.stringForKey("USERNAME")
         
-        let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/home.php?username="+name!)
-        let pointData = NSData(contentsOfURL: baseURL!, options: nil, error: nil)
+        let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/home.php?secid=hs/GVKudCdN>'9q_<+z^]ub3#hAgT:p(^jYEDDw%&username="+name!)
+        let pointData = try? NSData(contentsOfURL: baseURL!, options: [])
         
         
-        let points = NSJSONSerialization.JSONObjectWithData(pointData!,
-            options: nil,
-            error: nil) as! NSDictionary
+        let points = (try! NSJSONSerialization.JSONObjectWithData(pointData!,
+            options: [])) as! NSDictionary
         
 
         if points["glimps"] != nil{
 
             for point in points["glimps"] as! NSArray {
-                var a = JPSThumbnail()
-                var imageurl=String(stringInterpolationSegment: (point as! NSDictionary)["profile_pic"]!)
+                let a = JPSThumbnail()
+                let imageurl=String(stringInterpolationSegment: (point as! NSDictionary)["profile_pic"]!)
                 if let url = NSURL(string: imageurl) {
                     if let data = NSData(contentsOfURL: url){
                         a.image = UIImage(data: data)
@@ -128,8 +128,8 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
                 
                 a.title =  String(stringInterpolationSegment: (point as! NSDictionary)["username"]!)
                 a.subtitle =  String(stringInterpolationSegment: (point as! NSDictionary)["loc"]!)
-                var lat = (point as! NSDictionary)["latitude"] as! CLLocationDegrees
-                var lon = (point as! NSDictionary)["longitude"] as! CLLocationDegrees
+                let lat = (point as! NSDictionary)["latitude"] as! CLLocationDegrees
+                let lon = (point as! NSDictionary)["longitude"] as! CLLocationDegrees
                 
                 a.coordinate = CLLocationCoordinate2DMake(lat, lon)
                 
@@ -139,13 +139,13 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
                     self.performSegueWithIdentifier("goto_video", sender: self)
 
                 }
-                var a1: JPSThumbnailAnnotation = JPSThumbnailAnnotation(thumbnail: a)
+                let a1: JPSThumbnailAnnotation = JPSThumbnailAnnotation(thumbnail: a)
 
                     annotations.append(a1)
 
                 }
         } else {
-            println("No Glimps")
+            print("No Glimps")
 
         }
 
@@ -163,20 +163,15 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         imageView.image = image
         navigationItem.titleView = imageView
 
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         NSUserDefaults.standardUserDefaults().objectForKey("deviceToken")
         
         //////////////////////////////////////
-        reachability.startNotifier()
+        reachability!.startNotifier()
         
         // Initial reachability check
-        if reachability.isReachable() {
-            let location = CLLocationCoordinate2D(
-                latitude: 51.50007773,
-                longitude: -0.1246402
-            )
+        if reachability!.isReachable() {
             self.mapView = MKMapView(frame: view.bounds)
-            self.mapView.autoresizingMask = .FlexibleHeight | .FlexibleWidth
+            self.mapView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
             self.mapView.delegate = self
             view.addSubview(self.mapView)
             view.sendSubviewToBack(self.mapView)
@@ -239,18 +234,11 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
         dispatch_after(popTime, GlobalMainQueue) { // 2
 
         self.mapView.addAnnotations(self.annotations())
-        println("refreshed")
+        print("refreshed")
         }
     }
     
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
-        //1 grab current location
-        var currentLocation = locations.last as! CLLocation
-        //2 create location point for map based on current location
-        var location = CLLocationCoordinate2D(latitude: currentLocation.coordinate.latitude, longitude: currentLocation.coordinate.longitude)
-        //3 define layout for map
-        let span = MKCoordinateSpanMake(0.02, 0.02)
-        let userPoint = MKCoordinateRegion(center: location, span: span)
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         locManager.stopUpdatingLocation()
         
     }
@@ -284,19 +272,19 @@ class HomeVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
 
 
-    func mapView(mapView: MKMapView!, didSelectAnnotationView view: MKAnnotationView!) {
+    func mapView(mapView: MKMapView, didSelectAnnotationView view: MKAnnotationView) {
 
         (view as? JPSThumbnailAnnotationViewProtocol)?.didSelectAnnotationViewInMap(mapView)
 
     }
     
-    func mapView(mapView: MKMapView!, didDeselectAnnotationView view: MKAnnotationView!) {
+    func mapView(mapView: MKMapView, didDeselectAnnotationView view: MKAnnotationView) {
 
         (view as? JPSThumbnailAnnotationViewProtocol)?.didDeselectAnnotationViewInMap(mapView)
 
     }
     
-    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+    func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         return (annotation as? JPSThumbnailAnnotationProtocol)?.annotationViewInMap(mapView)
     }
     

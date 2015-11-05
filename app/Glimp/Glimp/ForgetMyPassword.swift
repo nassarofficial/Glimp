@@ -18,7 +18,7 @@ class ForgetMyPassword: UIViewController,UITextFieldDelegate {
     @IBAction func getpassword(sender: AnyObject) {
         let email = txtUsername.text
         sendbutton.enabled = false
-        Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/forgetpassword1.php", parameters: ["email": email!])
+        Alamofire.request(.POST, "http://glimpglobe.com/v2/forgetpassword.php", parameters: ["email": email!, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
             .responseJSON { response in
                 if let JSON = response.result.value {
                     if JSON as! String == "{\"success\"}"{

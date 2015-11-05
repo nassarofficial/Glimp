@@ -8,6 +8,7 @@
 
 import UIKit
 import Haneke
+import Alamofire
 
 class ImagePicker: UIViewController,UIAlertViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIPopoverControllerDelegate{
     @IBOutlet weak var btnClickMe: UIButton!
@@ -32,11 +33,12 @@ class ImagePicker: UIViewController,UIAlertViewDelegate,UIImagePickerControllerD
             let imageData: NSMutableData = NSMutableData(data: UIImageJPEGRepresentation(imageView.image!, 0.5)!);
             
             let params = [
-                "username": usernamep
+                "username": usernamep,
+                "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"
             ]
             
             let manager = AFHTTPRequestOperationManager()
-            let url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/picupload.php"
+            let url = "http://glimpglobe.com/v2/picupload.php"
             manager.responseSerializer = AFHTTPResponseSerializer()
             manager.POST( url, parameters: params,
                 constructingBodyWithBlock: { (data: AFMultipartFormData!) in
@@ -66,32 +68,36 @@ class ImagePicker: UIViewController,UIAlertViewDelegate,UIImagePickerControllerD
         let prefs = NSUserDefaults.standardUserDefaults()
         let name = prefs.stringForKey("USERNAME")
         
-        let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profilepic.php?username="+name!)
-        let pointData = try? NSData(contentsOfURL: baseURL!, options: [])
-        let points = (try! NSJSONSerialization.JSONObjectWithData(pointData!,
-            options: [])) as! NSDictionary
-        for point in points["profilepic"] as! NSArray {
-            profilepic = String(stringInterpolationSegment: (point as! NSDictionary)["profile_pic"]!)
-        }
-        print("hello", terminator: "")
-        if profilepic == "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profilepic.jpeg"{
-            imageView.image = UIImage(named: "add_photo-1");
-            progressHUD.removeFromSuperview()
-        }
-        else {
-            let url = NSURL(string: profilepic)
-            print(url, terminator: "")
-            imageView.hnk_setImageFromURL(url!)
-            progressHUD.removeFromSuperview()
+        
+        Alamofire.request(.POST, "http://glimpglobe.com/v2/profilepic.php", parameters: ["username": name!, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
+            .responseJSON { response in
+                if let points = response.result.value {
+                    
+                    for point in points["profilepic"] as! NSArray {
+                        self.profilepic = String(stringInterpolationSegment: (point as! NSDictionary)["profile_pic"]!)
+                    }
+                    if self.profilepic == "http://glimpglobe.com/profilepic.jpeg"{
+                        self.imageView.image = UIImage(named: "add_photo-1");
+                        progressHUD.removeFromSuperview()
+                    }
+                    else {
+                        let url = NSURL(string: self.profilepic)
+                        print(url, terminator: "")
+                        self.imageView.hnk_setImageFromURL(url!)
+                        progressHUD.removeFromSuperview()
+                        
+                    }
+                    if self.booler == "1" {
+                        self.setp.enabled = true
+                    }
+                    else{
+                        self.setp.enabled = false
+                    }
+                    self.picker!.delegate=self
 
+                }
         }
-        if booler == "1" {
-            setp.enabled = true
-        }
-        else{
-            setp.enabled = false
-        }
-        picker!.delegate=self
+
         // Do any additional setup after loading the view, typically from a nib.
     }
     

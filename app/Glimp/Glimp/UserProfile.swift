@@ -50,12 +50,13 @@ class UserProfile: UIViewController {
 
             let parameters = [
                 "user": friendid,
-                "friend": userid
+                "friend": userid,
+                "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"
             ]
             
             self.followbutton.setImage(UIImage(named: "unfollowbutton.png"), forState: UIControlState.Normal)
 
-            Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/addfriend.php", parameters: parameters)
+            Alamofire.request(.POST, "http://glimpglobe.com/v2/addfriend.php", parameters: parameters)
                 .response { (request, response, data, error) in
                     self.updater()
             }
@@ -66,10 +67,11 @@ class UserProfile: UIViewController {
 
             let parameters = [
                 "uid": f3,
+                "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"
             ]
             self.followbutton.setImage(UIImage(named: "followbutton.png"), forState: UIControlState.Normal)
 
-            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/removefriend.php", parameters: parameters)
+            Alamofire.request(.POST, "http://glimpglobe.com/v2/removefriend.php", parameters: parameters)
                 .response { (request, response, data, error) in
                     self.updater()
             }
@@ -83,56 +85,57 @@ class UserProfile: UIViewController {
         let prefs = NSUserDefaults.standardUserDefaults()
         let name = prefs.stringForKey("USERNAME")
 
-        let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profileuser.php?username="+username+"&friend="+name!)
-        print(baseURL)
-        let pointData = try? NSData(contentsOfURL: baseURL!, options: [])
         
-        let points = (try! NSJSONSerialization.JSONObjectWithData(pointData!,
-            options: [])) as! NSDictionary
-        
-        
-        for point in points["profile"] as! NSArray {
-            userid = String(stringInterpolationSegment: (point as! NSDictionary)["userider"]!)
-            friendid = String(stringInterpolationSegment: (point as! NSDictionary)["useriderer"]!)
-            user.text = String(stringInterpolationSegment: (point as! NSDictionary)["username"]!)
-            
-            let f1 = String(stringInterpolationSegment: (point as! NSDictionary)["friends"]!)
-            let f2 = String(stringInterpolationSegment: (point as! NSDictionary)["followers"]!)
-            f3 = String(stringInterpolationSegment: (point as! NSDictionary)["follow"]!)
-            
-            
-            if f3 == "not found"{
-                followbutton.setImage(UIImage(named:"followbutton.png"),forState:UIControlState.Normal)
-                let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
-                
-                self.following.setTitle(f1, forState: UIControlState.Normal)
-                print(f1)
-                print(f2)
-
-                self.followers.setTitle(f2, forState: UIControlState.Normal)
-                
-                self.glimps.setTitle(gl, forState: UIControlState.Normal)
-                
-                
-            
-            }
-            else{
-                followbutton.setImage(UIImage(named:"unfollowbutton.png"),forState:UIControlState.Normal)
-                let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
-                
-                self.following.setTitle(f1, forState: UIControlState.Normal)
-                print(f1)
-                print(f2)
-
-                
-                self.followers.setTitle(f2, forState: UIControlState.Normal)
-                
-                self.glimps.setTitle(gl, forState: UIControlState.Normal)
-                
-            }
-            
-            
+        Alamofire.request(.POST, "http://glimpglobe.com/v2/profileuser.php", parameters: ["username": username, "friend": name!, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
+            .responseJSON { response in
+                if let points = response.result.value {
+                    
+                    for point in points["profile"] as! NSArray {
+                        self.userid = String(stringInterpolationSegment: (point as! NSDictionary)["userider"]!)
+                        self.friendid = String(stringInterpolationSegment: (point as! NSDictionary)["useriderer"]!)
+                        self.user.text = String(stringInterpolationSegment: (point as! NSDictionary)["username"]!)
+                        
+                        let f1 = String(stringInterpolationSegment: (point as! NSDictionary)["friends"]!)
+                        let f2 = String(stringInterpolationSegment: (point as! NSDictionary)["followers"]!)
+                        self.f3 = String(stringInterpolationSegment: (point as! NSDictionary)["follow"]!)
+                        
+                        
+                        if self.f3 == "not found"{
+                            self.followbutton.setImage(UIImage(named:"followbutton.png"),forState:UIControlState.Normal)
+                            let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
+                            
+                            self.following.setTitle(f1, forState: UIControlState.Normal)
+                            print(f1)
+                            print(f2)
+                            
+                            self.followers.setTitle(f2, forState: UIControlState.Normal)
+                            
+                            self.glimps.setTitle(gl, forState: UIControlState.Normal)
+                            
+                            
+                            
+                        }
+                        else{
+                            self.followbutton.setImage(UIImage(named:"unfollowbutton.png"),forState:UIControlState.Normal)
+                            let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
+                            
+                            self.following.setTitle(f1, forState: UIControlState.Normal)
+                            print(f1)
+                            print(f2)
+                            
+                            
+                            self.followers.setTitle(f2, forState: UIControlState.Normal)
+                            
+                            self.glimps.setTitle(gl, forState: UIControlState.Normal)
+                            
+                        }
+                        
+                        
+                    }
+                }
         }
+
+
 
     }
     
@@ -154,89 +157,73 @@ class UserProfile: UIViewController {
         scroller.addPullToRefreshWithAction({
             NSOperationQueue().addOperationWithBlock {
                 dispatch_async(dispatch_get_main_queue()) { // 2
-
-                let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profileuser.php?username="+self.username+"&friend="+name!)
-                //print(baseURL)
-                //    let pointData = NSData(contentsOfURL: baseURL!)
-                    let pointData = NSData(contentsOfURL: baseURL!)
-
-               // let points = NSJSONSerialization.JSONObjectWithData(pointData!) as! NSDictionary
-                //let points = NSJSONSerialization.JSONObjectWithData(pointData!, options: "")
-                    do {
-                        let points = try NSJSONSerialization.JSONObjectWithData(pointData!, options: []) as! [String:AnyObject]
-                        for point in points["profile"] as! NSArray {
-                            self.userid = String(stringInterpolationSegment: (point as! NSDictionary)["userider"]!)
-                            self.friendid = String(stringInterpolationSegment: (point as! NSDictionary)["useriderer"]!)
-                            self.user.text = String(stringInterpolationSegment: (point as! NSDictionary)["username"]!)
-                            
-                            let f1 = String(stringInterpolationSegment: (point as! NSDictionary)["friends"]!)
-                            let f2 = String(stringInterpolationSegment: (point as! NSDictionary)["followers"]!)
-                            self.f3 = String(stringInterpolationSegment: (point as! NSDictionary)["follow"]!)
-                            
-                            //  println("User Profile: "+self.userid)
-                            //   println("Visited Profile: "+self.friendid)
-                            //  println("Friend ID: "+self.f3)
-                            
-                            
-                            
-                            if self.f3 == "not found"{
-                                
-                                self.followbutton.setImage(UIImage(named:"followbutton.png"),forState:.Normal)
-                                let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
-                                
-                                self.following.setTitle(f1, forState: UIControlState.Normal)
-                                
-                                
-                                self.followers.setTitle(f2, forState: UIControlState.Normal)
-                                
-                                self.glimps.setTitle(gl, forState: UIControlState.Normal)
-                                
-                            }
-                            else{
-                                self.followbutton.setImage(UIImage(named:"unfollowbutton.png"),forState:UIControlState.Normal)
-                                let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
-                                
-                                self.following.setTitle(f1, forState: UIControlState.Normal)
-                                
-                                
-                                self.followers.setTitle(f2, forState: UIControlState.Normal)
-                                
-                                self.glimps.setTitle(gl, forState: UIControlState.Normal)
-                                
-                                
-                            }
-                            
-                            
-                            
-                            
-                            //self.location.text = (point as! NSDictionary)["location"] as? String
-                            let urlString = (point as! NSDictionary)["profilepic"] as? String
-                            let url = NSURL(string: urlString!)
-                            let imageSize = 86 as CGFloat
-                            self.imageView.frame.size.height = imageSize
-                            self.imageView.frame.size.width  = imageSize
-                            self.imageView.layer.cornerRadius = imageSize / 2.05
-                            self.imageView.clipsToBounds = true
-                            
-                            self.imageView.hnk_setImageFromURL(url!)
-                            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/feeduser.php", parameters: ["userid": self.userid])
-                                .response { request, response, json, error in
-                                    if json != nil {
-                                        var jsonObj = JSON(json!)
-                                        if let data = jsonObj["glimps"].arrayValue as [JSON]?{
-                                            self.datas = data
-                                            self.tableView.reloadData()
-                                            self.tablespinner.hidden = true
-                                        }
+                    Alamofire.request(.POST, "http://glimpglobe.com/v2/profileuser.php", parameters: ["username": self.username, "friend": name!, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
+                        .responseJSON { response in
+                            print(response.request)
+                            if let points = response.result.value {
+                                print(response.result.value)
+                                for point in points["profile"] as! NSArray {
+                                    self.userid = String(stringInterpolationSegment: (point as! NSDictionary)["userider"]!)
+                                    self.friendid = String(stringInterpolationSegment: (point as! NSDictionary)["useriderer"]!)
+                                    self.user.text = String(stringInterpolationSegment: (point as! NSDictionary)["username"]!)
+                                    
+                                    let f1 = String(stringInterpolationSegment: (point as! NSDictionary)["friends"]!)
+                                    let f2 = String(stringInterpolationSegment: (point as! NSDictionary)["followers"]!)
+                                    self.f3 = String(stringInterpolationSegment: (point as! NSDictionary)["follow"]!)
+                                    
+                                    if self.f3 == "not found"{
+                                        
+                                        self.followbutton.setImage(UIImage(named:"followbutton.png"),forState:.Normal)
+                                        let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
+                                        
+                                        self.following.setTitle(f1, forState: UIControlState.Normal)
+                                        
+                                        
+                                        self.followers.setTitle(f2, forState: UIControlState.Normal)
+                                        
+                                        self.glimps.setTitle(gl, forState: UIControlState.Normal)
+                                        
+                                    } else{
+                                        self.followbutton.setImage(UIImage(named:"unfollowbutton.png"),forState:UIControlState.Normal)
+                                        let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
+                                        
+                                        self.following.setTitle(f1, forState: UIControlState.Normal)
+                                        
+                                        
+                                        self.followers.setTitle(f2, forState: UIControlState.Normal)
+                                        
+                                        self.glimps.setTitle(gl, forState: UIControlState.Normal)
+                                        
+                                        
                                     }
+                                    
+                                    let urlString = (point as! NSDictionary)["profilepic"] as? String
+                                    let url = NSURL(string: urlString!)
+                                    let imageSize = 86 as CGFloat
+                                    self.imageView.frame.size.height = imageSize
+                                    self.imageView.frame.size.width  = imageSize
+                                    self.imageView.layer.cornerRadius = imageSize / 2.05
+                                    self.imageView.clipsToBounds = true
+                                    self.imageView.hnk_setImageFromURL(url!)
+
+                                
+                            }
+                                print(self.userid)
+                                Alamofire.request(.POST, "http://glimpglobe.com/v2/feeduser.php", parameters: ["userid": self.userid, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
+                                    .responseJSON { response in
+                                        if let json = response.result.value {
+                                            var jsonObj = JSON(json)
+                                            if let data = jsonObj["glimps"].arrayValue as [JSON]?{
+                                                self.datas = data
+                                                self.tableView.reloadData()
+                                                self.tablespinner.hidden = true
+                                            }
+                                        }
+                                }
+    
                             }
 
-                        }
-                    
-                    } catch {
-                        print("json error: \(error)")
                     }
-
 
                 
                 }

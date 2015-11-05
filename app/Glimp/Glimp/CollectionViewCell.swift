@@ -22,7 +22,7 @@ class CollectionViewCell: UICollectionViewCell {
     func setupData(){
         
         if let urlString = self.data?["filename"]{
-            let url = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/thumbnail/"+urlString.stringValue+".png")
+            let url = NSURL(string: "http://glimpglobe.com/thumbnail/"+urlString.stringValue+".png")
             self.imageView.hnk_setImageFromURL(url!)
             print(url)
         }

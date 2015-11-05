@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.003</string>
+	<string>2.0046</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -23,6 +23,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
+				<string>glimp</string>
 				<string>fb1417939628510557</string>
 			</array>
 		</dict>
@@ -34,6 +35,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.glimp.app.Glimp</string>
+				<string>glimp</string>
 			</array>
 		</dict>
 	</array>
@@ -46,6 +48,18 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+		<string>fb-messenger-api</string>
+		<string>twitter</string>
+		<string>whatsapp</string>
+		<string>wechat</string>
+		<string>line</string>
+		<string>instagram</string>
+		<string>kakaotalk</string>
+		<string>mqq</string>
+		<string>vk</string>
+		<string>comgooglemaps</string>
 		<string>fbapi20130214</string>
 		<string>fbapi20130410</string>
 		<string>fbapi20130702</string>
@@ -55,9 +69,6 @@
 		<string>fbapi20140116</string>
 		<string>fbapi20150313</string>
 		<string>fbapi20150629</string>
-		<string>fbauth</string>
-		<string>fbauth2</string>
-		<string>fb-messenger-api20140430</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

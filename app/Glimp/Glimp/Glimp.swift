@@ -655,6 +655,7 @@ class Glimp: UIViewController, AVCaptureFileOutputRecordingDelegate, CLLocationM
                 
                 let documentsPath : AnyObject = NSSearchPathForDirectoriesInDomains(.DocumentDirectory,.UserDomainMask,true)[0]
                 self.outputFilePath = documentsPath.stringByAppendingPathComponent("glimp_1".stringByAppendingPathExtension("mov")!)
+                
                 self.movieFileOutput!.startRecordingToOutputFileURL(NSURL.fileURLWithPath(self.outputFilePath!), recordingDelegate: self)
             }else{
                 self.countDownLabel! == "30"

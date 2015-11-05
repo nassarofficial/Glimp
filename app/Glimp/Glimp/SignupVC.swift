@@ -221,11 +221,12 @@ class SignupVC: UIViewController, UITextFieldDelegate {
         }
 
         else {
-            let post:NSString = "username=\(username)&password=\(password)&c_password=\(confirm_password)&email=\(email)&phonenumber=\(phonenumber)"
+            let secid = "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"
+            let post:NSString = "username=\(username)&password=\(password)&c_password=\(confirm_password)&email=\(email)&phonenumber=\(phonenumber)&secid=\(secid)"
             
             NSLog("PostData: %@",post);
             
-            let url:NSURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/jsonsignup.php")!
+            let url:NSURL = NSURL(string: "http://glimpglobe.com/v2/jsonsignup.php")!
             
             let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
             
@@ -273,6 +274,14 @@ class SignupVC: UIViewController, UITextFieldDelegate {
                     
                     if(success == 1)
                     {
+                        let alertView:UIAlertView = UIAlertView()
+                        alertView.title = "Registered!"
+                        alertView.message = "Sign up was successful, Login Now!"
+                        alertView.delegate = self
+                        alertView.addButtonWithTitle("OK")
+                        alertView.show()
+
+                        
                         NSLog("Sign Up SUCCESS");
                         self.dismissViewControllerAnimated(true, completion: nil)
                     } else {

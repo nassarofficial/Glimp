@@ -25,7 +25,7 @@ class Reporter: UIViewController {
         spinner.hidden = false
         self.buttonrep.enabled = false
         
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/report.php", parameters: ["glimpid": self.glimpid, "reportid":self.reporttype,"description":textView.text])
+        Alamofire.request(.POST, "http://glimpglobe.com/v2/report.php", parameters: ["glimpid": self.glimpid, "reportid":self.reporttype,"description":textView.text, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
             .responseJSON { response in
                 
                     self.spinner.hidden = true

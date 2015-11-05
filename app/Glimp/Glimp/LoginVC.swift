@@ -16,7 +16,6 @@ class LoginVC: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
     
     @IBOutlet weak var te: UIView!
     @IBOutlet var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var gplus: UIView!
     var fbusername: String = ""
     var fbid: String = ""
     var emailer: NSString = ""
@@ -25,7 +24,6 @@ class LoginVC: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
     @IBOutlet var txtPassword : UITextField!
     var facebookProperty = FBSDKProfile()
     let kClientId = "166564040526-3g8glqoub2fp2f52vkr2ugcgj2dn8pgt.apps.googleusercontent.com"
-    var signInButton : GPPSignInButton!
     func hideKeyboard() {
         view.endEditing(true)
     }
@@ -104,14 +102,14 @@ class LoginVC: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
                 
                 print("User Email is: \(self.emailer)")
                 let id : NSString = result.valueForKey("id") as! NSString
-                
-                let post:NSString = "email=\(self.emailer)&id=\(id)"
+                let secid = "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"
+                let post:NSString = "email=\(self.emailer)&id=\(id)&secid=\(secid)"
                 
                 self.fbid = id as String
                 
                 NSLog("PostData: %@",post);
                 
-                let url:NSURL = NSURL(string:"http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/fblogin.php")!
+                let url:NSURL = NSURL(string:"http://glimpglobe.com/v2/fblogin.php")!
                 
                 let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
                 
@@ -187,7 +185,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
                         else {
                             self.spinner.hidden = true
                             
-                            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/fbdelete.php", parameters: ["fbid": self.fbid, "email": self.emailer])
+                            Alamofire.request(.POST, "http://glimpglobe.com/v2/fbdelete.php", parameters: ["fbid": self.fbid, "email": self.emailer, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
                                 
                                 .response { (request, response, data, error) in
                                     print(request)
@@ -209,7 +207,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
                     } else {
                         self.spinner.hidden = true
                         
-                        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/fbdelete.php", parameters: ["fbid": self.fbid, "email": self.emailer])
+                        Alamofire.request(.POST, "http://glimpglobe.com/v2/fbdelete.php", parameters: ["fbid": self.fbid, "email": self.emailer, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
                             
                             .response { (request, response, data, error) in
                                 print(request)
@@ -251,7 +249,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
             self.txtPassword.enabled = false
             print("TESTERRRR")
             print(self.fbid)
-            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/fbdelete.php", parameters: ["fbid": self.fbid, "email": self.emailer])
+            Alamofire.request(.POST, "http://glimpglobe.com/v2/fbdelete.php", parameters: ["fbid": self.fbid, "email": self.emailer, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
                 
                 .response { (request, response, data, error) in
                     print(request)
@@ -316,7 +314,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
                 self.fbregisteruser()
                 
             } else {
-                Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/fbuser.php", parameters: ["username": userName!, "fbid": self.fbid])
+                Alamofire.request(.POST, "http://glimpglobe.com/v2/fbuser.php", parameters: ["username": userName!, "fbid": self.fbid, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
                     .response { request, response, JSON, error in
                         if JSON == "{\"exists\"}"{
                             let alertView:UIAlertView = UIAlertView()
@@ -351,7 +349,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
                             alertView.delegate = self
                             alertView.addButtonWithTitle("OK")
                             alertView.show()
-                            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/fbdelete.php", parameters: ["fbid": self.fbid])
+                            Alamofire.request(.POST, "http://glimpglobe.com/v2/fbdelete.php", parameters: ["fbid": self.fbid, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
                                 
                                 .response { (request, response, data, error) in
                                     print(request)
@@ -414,12 +412,12 @@ class LoginVC: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
         } else {
             let progressHUD = ProgressHUD(text: "Signing In...")
             self.view.addSubview(progressHUD)
-            
-            let post:NSString = "username=\(username)&password=\(password)"
+            let secid = "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"
+            let post:NSString = "username=\(username)&password=\(password)&secid=\(secid)"
             
             NSLog("PostData: %@",post);
             
-            let url:NSURL = NSURL(string:"http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/jsonlogin2.php")!
+            let url:NSURL = NSURL(string:"http://glimpglobe.com/v2/jsonlogin2.php")!
             
             let postData:NSData = post.dataUsingEncoding(NSASCIIStringEncoding)!
             
@@ -480,7 +478,7 @@ class LoginVC: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
                         let deviceToken = String(delegate.deviceToken)
                         
                         
-                        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/devicetokenizer.php", parameters: ["username": username,"devicetoken": deviceToken,  "OS": "iOS"])
+                        Alamofire.request(.POST, "http://glimpglobe.com/v2/devicetokenizer.php", parameters: ["username": username,"devicetoken": deviceToken,  "OS": "iOS", "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
                             
                             .response { (request, response, data, error) in
                                 print(request)
@@ -575,8 +573,5 @@ class LoginVC: UIViewController, UITextFieldDelegate, FBSDKLoginButtonDelegate {
     }
     
     
-    func finishedWithAuth(auth: GTMOAuth2Authentication!, error: NSError!) {
-        print("Received error %@ and auth object %@",error, auth)
-    }
 }
 

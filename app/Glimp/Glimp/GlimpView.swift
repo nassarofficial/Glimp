@@ -9,6 +9,9 @@
 import UIKit
 import MediaPlayer
 import Alamofire
+import ActiveLabel
+import FBSDKShareKit
+import FBSDKCoreKit
 
 class GlimpView: UIViewController{
     var glimpsid:String!
@@ -33,7 +36,8 @@ class GlimpView: UIViewController{
     @IBOutlet weak var views: UILabel!
     @IBOutlet weak var backbutton: UIButton!
     
-    @IBOutlet var textView: UITextView!
+    @IBOutlet var textView: ActiveLabel?
+    
     @IBOutlet weak var descindicator: UIActivityIndicatorView!
     @IBOutlet weak var vidindicator: UIActivityIndicatorView!
     @IBOutlet var mainview: UIView!
@@ -43,14 +47,41 @@ class GlimpView: UIViewController{
     @IBOutlet weak var bacbutton: UIBarButtonItem!
     @IBOutlet weak var navigation: UINavigationBar!
     @IBAction func gotoglobe(sender: AnyObject) {
-        print("hello")
     }
-    @IBAction func unwindToprofile (segue : UIStoryboardSegue) {
-    }
-
     @IBAction func unwindToSegue (segue : UIStoryboardSegue) {}
+    @IBAction func unwindToSegueprofile (segue : UIStoryboardSegue) {}
+
     @IBAction func unwindToSeguer (segue : UIStoryboardSegue) {}
     @IBOutlet var vidreply: UIButton!
+
+    
+    @IBAction func share(sender: AnyObject) {
+        let firstActivityItem = "Check out whats happening at " + self.loc + " on Glimp. " + "http://www.glimpglobe.com/video.php?id="+glimpsid
+
+        weak var postImage: UIImageView!
+
+        var activityItems: [AnyObject]?
+        
+        let image = postImage.image
+        activityItems = [firstActivityItem, postImage.image!]
+
+        let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
+//        let activityViewController : UIActivityViewController = UIActivityViewController(activityItems: [firstActivityItem], applicationActivities: nil)
+
+        self.presentViewController(activityViewController, animated: true, completion: nil)
+//        let content: FBSDKShareLinkContent = FBSDKShareLinkContent()
+//
+//        let imagerURLer =  "http://www.glimpglobe.com/thumbnail/"+self.ViewControllerVideoPath
+//        let contentURLer: String = "http://www.glimpglobe.com/video.php?id="+glimpsid
+//        print(imagerURLer)
+//        print(contentURLer)
+//        content.contentURL = NSURL(string: contentURLer)
+//        content.contentTitle = self.loc
+//        content.contentDescription = self.textView!.text
+//        content.imageURL = NSURL(string: imagerURLer)
+//        FBSDKShareDialog.showFromViewController(self, withContent: content, delegate: nil)
+
+    }
 
     @IBOutlet var reportbut: UIButton!
     @IBOutlet var deletebut: UIButton!
@@ -60,7 +91,7 @@ class GlimpView: UIViewController{
             switch action.style{
             case .Default:
                 print("default")
-                Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/deleteGlimp.php", parameters: ["g_id": self.glimpsid]).responseJSON { response in
+                Alamofire.request(.POST, "http://glimpglobe.com/v2/deleteGlimp.php", parameters: ["g_id": self.glimpsid, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"]).responseJSON { response in
                     // println(response)
                 }
                 self.performSegueWithIdentifier("unwinder", sender: self)
@@ -162,115 +193,139 @@ class GlimpView: UIViewController{
 
     func getglimps(){
         setupView()
-        //println(self.glimpsid)
-        self.spinner.stopAnimating()
 
-        let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/glimp1.php?glimpid="+self.glimpsid!)
         
-        let pointData = try? NSData(contentsOfURL: baseURL!, options: [])
-        
-        let points = (try! NSJSONSerialization.JSONObjectWithData(pointData!,
-            options: [])) as! NSDictionary
-        
-        if let glimper = points["glimp"] as? NSArray {
-            for point in points["glimp"] as! NSArray {
-                self.ViewControllerVideoPath = (point as! NSDictionary)["filename"] as! String
-                self.username.setTitle((point as! NSDictionary)["username"] as? String, forState: UIControlState.Normal)
-                self.usernamep = String(stringInterpolationSegment: (point as! NSDictionary)["username"]!) as String
-                self.textView.text = (point as! NSDictionary)["description"] as? String
-                textView.resolveHashTags()
-
-                self.userid = String(stringInterpolationSegment: (point as! NSDictionary)["userid"]!) as String
+        Alamofire.request(.POST, "http://glimpglobe.com/v2/glimp.php", parameters: ["secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y", "glimpid" : self.glimpsid!])
+            .responseJSON { response in
                 
-                let com = String(stringInterpolationSegment: (point as! NSDictionary)["COMMENT"]!) as String
-                self.comments.setTitle(com, forState: UIControlState.Normal)
-                self.views.text = String(stringInterpolationSegment: (point as! NSDictionary)["views"]!) as String
-                self.locid = String(stringInterpolationSegment: (point as! NSDictionary)["locid"]!) as String
-                
-                self.loc = String(stringInterpolationSegment: (point as! NSDictionary)["loc"]!) as String
-                self.timestart = String(stringInterpolationSegment: (point as! NSDictionary)["time"]!) as String
-                self.timeend = String(stringInterpolationSegment: (point as! NSDictionary)["stoptime"]!) as String
-                self.broadcat_id = String(stringInterpolationSegment: (point as! NSDictionary)["b_id"]!) as String
+                //print(response.result.value as! String)
+                if let points = response.result.value {
+                    if (points["glimp"] == nil || points["glimp"]!!.count == 0){
+                        let alert = UIAlertController(title: "Glimp Not Found", message: "The Glimp requested is not available.", preferredStyle: UIAlertControllerStyle.Alert)
+                        self.presentViewController(alert, animated: true, completion: nil)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { action in
+                            switch action.style{
+                            case .Default:
+                                self.performSegueWithIdentifier("unwinder", sender: self)
+                                
+                            case .Cancel:
+                                self.performSegueWithIdentifier("unwinder", sender: self)
+                                
+                            case .Destructive:
+                                self.performSegueWithIdentifier("unwinder", sender: self)
+                            }
+                        }))
 
-                self.location.setTitle(loc, forState: UIControlState.Normal)
-                if (broadcat_id == "0"){
-                    vidreply.hidden = true
-                } else {
-                    vidreply.hidden = false
+                    } else {
+                        
+                    for point in points["glimp"] as! NSArray {
+                        self.ViewControllerVideoPath = (point as! NSDictionary)["filename"] as! String
+                        self.username.setTitle((point as! NSDictionary)["username"] as? String, forState: UIControlState.Normal)
+                        self.usernamep = String(stringInterpolationSegment: (point as!NSDictionary)["username"]!) as String
+                        print((point as! NSDictionary)["description"] as? String)
+                        self.textView!.text = (point as! NSDictionary)["description"] as? String
+                        self.textView!.hashtagColor = UIColor(red: 0.247, green: 0.933, blue: 1, alpha: 1)
+                        self.textView!.mentionColor = UIColor(red: 0.247, green: 0.933, blue: 1, alpha: 1)
+
+                        self.textView!.numberOfLines = 3
+                        self.textView!.handleHashtagTap { hashtag in
+                            print("Success. You just tapped the \(hashtag) hashtag")
+                            self.payloader = hashtag
+                            self.performSegueWithIdentifier("goto_hash", sender: self)
+                        }
+                        self.textView!.handleMentionTap { userHandle in
+                            print("Success. You just tapped the \(userHandle) hashtag")
+                            self.payloader = userHandle
+                            self.performSegueWithIdentifier("goto_userprofilemention", sender: self)
+                        }
+
+                       // self.textView.resolveHashTags()
+                        
+                        self.userid = String(stringInterpolationSegment: (point as! NSDictionary)["userid"]!) as String
+                        
+                        let com = String(stringInterpolationSegment: (point as! NSDictionary)["COMMENT"]!) as String
+                        self.comments.setTitle(com, forState: UIControlState.Normal)
+                        self.views.text = String(stringInterpolationSegment: (point as! NSDictionary)["views"]!) as String
+                        self.locid = String(stringInterpolationSegment: (point as! NSDictionary)["locid"]!) as String
+                        
+                        self.loc = String(stringInterpolationSegment: (point as! NSDictionary)["loc"]!) as String
+                        self.timestart = String(stringInterpolationSegment: (point as! NSDictionary)["time"]!) as String
+                        self.timeend = String(stringInterpolationSegment: (point as! NSDictionary)["stoptime"]!) as String
+                        self.broadcat_id = String(stringInterpolationSegment: (point as! NSDictionary)["b_id"]!) as String
+                        
+                        self.location.setTitle(self.loc, forState: UIControlState.Normal)
+                        if (self.broadcat_id == "0"){
+                            self.vidreply.hidden = true
+                        } else {
+                            self.vidreply.hidden = false
+                        }
+                        let startdate = NSDate()
+                        let calendar = NSCalendar.currentCalendar()
+                        
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                        dateFormatter.timeZone = NSTimeZone(abbreviation: "Cairo");
+                        
+                        let enddate = dateFormatter.dateFromString(self.timeend)
+                        let componentsss = calendar.components([.Hour, .Minute], fromDate: startdate, toDate: enddate!, options: [])
+                        
+                        if componentsss.hour == 0{
+                            print(String(componentsss.minute))
+                        }
+                        else {
+                            if componentsss.hour == 1{
+                                self.timeleft.text = (String(componentsss.hour) + " hr " + String(componentsss.minute) + " mins")
+                            }
+                            else {
+                                self.timeleft.text = (String(componentsss.hour) + " hrs " + String(componentsss.minute) + " mins")
+                            }
+                        }
+
+                    }
+                    }
+
+                    self.spinner.stopAnimating()
+
+                    let url = NSURL(string: "http://glimpglobe.com/"+self.ViewControllerVideoPath)
+                    
+                    //println(url)
+                    
+                    self.moviePlayer = MPMoviePlayerController(contentURL: url)
+                    
+                    
+                    if let player = self.moviePlayer {
+                        
+                        player.view.frame = CGRect(x: 0, y: 44, width: self.view.bounds.width, height: 275)
+                        player.prepareToPlay()
+                        player.scalingMode = .AspectFill
+                        self.mainview.addSubview(player.view)
+                        
+                    }
+                    
                 }
-
-            }
-            print(points["glimp"])
-            let url = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/"+self.ViewControllerVideoPath)
-            
-            //println(url)
-            
-            self.moviePlayer = MPMoviePlayerController(contentURL: url)
-            
-            
-            if let player = moviePlayer {
                 
-                player.view.frame = CGRect(x: 0, y: 44, width: self.view.bounds.width, height: 275)
-                player.prepareToPlay()
-                player.scalingMode = .AspectFill
-                self.mainview.addSubview(player.view)
-                
-                //            self.mainview.sendSubviewToBack(self.gplayer)
-                //            self.mainview.bringSubviewToFront(player.view)
-                //            self.mainview.bringSubviewToFront(self.navigation)
-                //            player.view.layer.zPosition = 1;
-                //            navigation.layer.zPosition = 9999;
-                
-            }
-
-        } else {
-            
-            
-            
-        }
+                }
         
         
     }
     
     
     override func viewDidLoad() {
-        vidindicator.hidden = false
-        descindicator.hidden = false
         super.viewDidLoad()
-        vidreply.hidden = false
+//        vidreply.hidden = false
+//        vidindicator.hidden = false
+//        descindicator.hidden = false
+
         dispatch_async(dispatch_get_main_queue()) { // 2
 
-        self.getglimps()
+            self.getglimps()
+
             self.vidindicator.hidden = true
 
-            self.getdate()
             self.descindicator.hidden = true
         }
     }
     
-    func getdate(){
-        let startdate = NSDate()
-        let calendar = NSCalendar.currentCalendar()
-        
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.timeZone = NSTimeZone(abbreviation: "Cairo");
-
-        let enddate = dateFormatter.dateFromString(self.timeend)
-        let componentsss = calendar.components([.Hour, .Minute], fromDate: startdate, toDate: enddate!, options: [])
-        
-        if componentsss.hour == 0{
-            print(String(componentsss.minute))
-        }
-        else {
-            if componentsss.hour == 1{
-                timeleft.text = (String(componentsss.hour) + " hr " + String(componentsss.minute) + " mins")
-            }
-            else {
-                timeleft.text = (String(componentsss.hour) + " hrs " + String(componentsss.minute) + " mins")
-            }
-        }
-    }
 
 
     override func viewWillAppear(animated: Bool) {
@@ -287,7 +342,7 @@ class GlimpView: UIViewController{
             reportbut.hidden = false
         }
         
-        Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/views.php", parameters: ["gid": glimpsid]).responseJSON { (request) in
+        Alamofire.request(.POST, "http://glimpglobe.com/v2/views.php", parameters: ["gid": glimpsid, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"]).responseJSON { (request) in
            // println(response)
         }
         
@@ -297,38 +352,6 @@ class GlimpView: UIViewController{
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-}
-extension GlimpView : UITextViewDelegate {
-    
-    // increase the height of the textview as the user types
-    func showHashTagAlert(tagType:String, payload:String){
-        let alertView = UIAlertView()
-        alertView.title = "\(tagType) tag detected"
-        // get a handle on the payload
-        alertView.message = "\(payload)"
-        alertView.addButtonWithTitle("Ok")
-        alertView.show()
-    }
-    
-    func textView(textView: UITextView, shouldInteractWithURL URL: NSURL, inRange characterRange: NSRange) -> Bool {
-        let scheme = URL.scheme
-        // check for our fake URL scheme hash:helloWorld
-            switch scheme {
-            case "hash" :
-                payloader = URL.resourceSpecifier
-                print(payloader)
-                performSegueWithIdentifier("goto_hash", sender: self)
-               // showHashTagAlert("hash", payload: URL.resourceSpecifier!)
-            case "mention" :
-                payloader = URL.resourceSpecifier
-                performSegueWithIdentifier("goto_userprofilemention", sender: self)
-            default:
-                print("just a regular url")
-            }
-        
-        return true
     }
     
 }

@@ -46,7 +46,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     private var selectedPointAnnotation:MKPointAnnotation?
     private var connection:NSURLConnection?
     
-    private let baseURLString = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/friendlist.php"
+    private let baseURLString = "http://glimpglobe.com/friendlist.php"
     var ticker : Int = 0
     var query : String = ""
     var ment : Int = 0
@@ -88,7 +88,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         let usernamep = String(name!)
 
         
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/friendlist.php", parameters: ["username": usernamep, "query" : query])
+        Alamofire.request(.POST, "http://glimpglobe.com/v2/friendlist.php", parameters: ["username": usernamep, "query" : query, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
             .responseJSON { response in
                 if let json = response.result.value {
                     var jsonObj = JSON(json)
@@ -138,41 +138,84 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
                 
                 
                 let fileURL = NSURL.fileURLWithPath(self.ViewControllerVideoPath)
+                print(fileURL)
+//                let params = [
+//                    "latitude": gllat!,
+//                    "longitude": gllong!,
+//                    "loc" : locLabel,
+//                    "locid": locID,
+//                    "desc" : Description.text,
+//                    "username": usernamep,
+//                    "b_id": broadcast_id,
+//                    "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"
+//                ]
+                let latter: String = gllat!.description
+                let longer: String = gllong!.description
+                print(latter)
+                print(longer)
+
+//                let manager = AFHTTPRequestOperationManager()
+//                //let url = "http://glimpglobe.com/upload.php"
+//                let url = "http://glimpglobe.com/uploader.php"
+//                
+//                manager.responseSerializer = AFHTTPResponseSerializer()
+//                manager.POST( url, parameters: params,
+//                    constructingBodyWithBlock: { (data: AFMultipartFormData!) -> Void in
+//                        print("")
+//                        //problem
+//                        let res = trdata.appendPartWithFileURL(fileURL,name: "fileToUpload")
+//                        print("was file added properly to the body? \(res)")
+//                    },
+//                    success: { (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
+//                        print("Yes this was a success")
+//                        
+//                        prefs.setInteger(1, forKey: "glimper")
+//                        prefs.synchronize()
+//                        self.performSegueWithIdentifier("backtocali", sender: self)
+//                        
+//                        
+//                    },
+//                    failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
+//                        print("We got an error here.. \(error.localizedDescription)")
+//                })
                 
-                let params = [
-                    "latitude": gllat!,
-                    "longitude": gllong!,
-                    "loc" : locLabel,
-                    "locid": locID,
-                    "desc" : Description.text,
-                    "username": usernamep,
-                    "b_id": broadcast_id
-                ]
-                
-                let manager = AFHTTPRequestOperationManager()
-                //let url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/upload.php"
-                let url = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/upload-beta.php"
-                
-                manager.responseSerializer = AFHTTPResponseSerializer()
-                manager.POST( url, parameters: params,
-                    constructingBodyWithBlock: { (data: AFMultipartFormData!) in
-                        print("")
-                        //problem
-                        let res = try! data.appendPartWithFileURL(fileURL,name: "fileToUpload")
-                        print("was file added properly to the body? \(res)")
+                Alamofire.upload(
+                    .POST,
+                    "http://glimpglobe.com/uploader.php",
+                    multipartFormData: { multipartFormData in
+                        multipartFormData.appendBodyPart(fileURL: fileURL, name: "fileToUpload")
+                        multipartFormData.appendBodyPart(data:latter.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name :"latitude")
+                        multipartFormData.appendBodyPart(data:longer.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name :"longitude")
+                        multipartFormData.appendBodyPart(data:self.locLabel.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name :"loc")
+                        multipartFormData.appendBodyPart(data:self.locID.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name :"locid")
+
+                        multipartFormData.appendBodyPart(data:self.Description.text.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name :"desc")
+                        multipartFormData.appendBodyPart(data:usernamep.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name :"username")
+                        multipartFormData.appendBodyPart(data:self.broadcast_id.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name :"b_id")
+                        multipartFormData.appendBodyPart(data:"yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)!, name :"secid")
+
                     },
-                    success: { (operation: AFHTTPRequestOperation!, responseObject: AnyObject!) in
-                        print("Yes this was a success")
-                        
-                        prefs.setInteger(1, forKey: "glimper")
-                        prefs.synchronize()
-                        self.performSegueWithIdentifier("backtocali", sender: self)
-                        
-                        
-                    },
-                    failure: { (operation: AFHTTPRequestOperation!, error: NSError!) in
-                        print("We got an error here.. \(error.localizedDescription)")
-                })
+                    encodingCompletion: { encodingResult in
+                        switch encodingResult {
+                        case .Success(let upload, _, _):
+                            upload.responseJSON { response in
+                                debugPrint(response)
+                                                        prefs.setInteger(1, forKey: "glimper")
+                                                        prefs.synchronize()
+                                                        self.performSegueWithIdentifier("backtocali", sender: self)
+
+                            }
+                        case .Failure( _):
+                            let alertController = UIAlertController(title: "Glimp", message:
+                                "Upload Failed", preferredStyle: UIAlertControllerStyle.Alert)
+                            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                            self.presentViewController(alertController, animated: true, completion: nil)
+                        }
+                    }
+                )
+
+                
+                
                 
             } }else {
             let alertController = UIAlertController(title: "Glimp", message:
@@ -264,7 +307,9 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
     }
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
+
         self.uploading.hidden = true
         ////
         self.suggester.hidden = true
@@ -285,7 +330,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("keyboardWillHide:"), name:UIKeyboardWillHideNotification, object: nil);
         
         ////
-        
+        print(ViewControllerVideoPath)
         Alamofire.request(.GET, "https://api.foursquare.com/v2/venues/search?ll=\(castlat),\(castlong)&client_id=DPUDNKBQKC12FJ0KBRLVU5BG4JREZV1YAIVRXIULPLFZHMAL&client_secret=PA0I5FS3JWPDMOL0H5XLQNDJYBJPGNOEP4QX1ML23YOFGZ3G&v=20140806")
             .responseJSON { response in
                 if let json = response.result.value {
@@ -311,7 +356,7 @@ class GlimpPreview: UIViewController,UITableViewDataSource, UITableViewDelegate,
         self.view.addSubview(self.player.view)
         self.player.didMoveToParentViewController(self)
         
-        self.player.path = self.ViewControllerVideoPath;
+        self.player.path = self.ViewControllerVideoPath
         self.view.sendSubviewToBack(self.player.view)
         self.player.playbackLoops = true
         

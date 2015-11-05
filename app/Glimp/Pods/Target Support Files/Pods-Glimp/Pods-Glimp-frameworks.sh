@@ -84,6 +84,7 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
+  install_framework "Pods-Glimp/ActiveLabel.framework"
   install_framework "Pods-Glimp/Alamofire.framework"
   install_framework "Pods-Glimp/Bolts.framework"
   install_framework "Pods-Glimp/FBSDKCoreKit.framework"
@@ -94,6 +95,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-Glimp/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
+  install_framework "Pods-Glimp/ActiveLabel.framework"
   install_framework "Pods-Glimp/Alamofire.framework"
   install_framework "Pods-Glimp/Bolts.framework"
   install_framework "Pods-Glimp/FBSDKCoreKit.framework"

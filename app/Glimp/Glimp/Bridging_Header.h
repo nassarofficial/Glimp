@@ -18,6 +18,4 @@
 #import "KPGridClusteringAlgorithm.h"
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
-#import <GoogleOpenSource/GoogleOpenSource.h>
-#import <GooglePlus/GooglePlus.h>
 #import <Instabug/Instabug.h>

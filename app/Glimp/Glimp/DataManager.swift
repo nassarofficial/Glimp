@@ -9,7 +9,7 @@
 
 import Foundation
 
-let URLD = "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profile.php"
+let URLD = "http://glimpglobe.com/profile.php"
 
 class DataManager {
     

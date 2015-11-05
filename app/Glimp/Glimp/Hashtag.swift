@@ -38,12 +38,12 @@ class Hashtag: UIViewController {
         //vidcolindicator.hidden = false
         hashtagger.text = "#"+loc
         
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/hashtag.php", parameters: [ "hashtag": loc])
+        Alamofire.request(.POST, "http://glimpglobe.com/v2/hashtag.php", parameters: [ "hashtag": loc, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
             .responseJSON { response in
-                print(response.request)  // original URL request
-                print(response.response) // URL response
-                print(response.data)     // server data
-                print(response.result)   // result of response serialization
+//                print(response.request)  // original URL request
+//                print(response.response) // URL response
+//                print(response.data)     // server data
+//                print(response.result)   // result of response serialization
                 
                 if let json = response.result.value {
                     var jsonObj = JSON(json)

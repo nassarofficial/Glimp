@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '3D1BCBD2FCAA0A130606B3AA'
+               BlueprintIdentifier = '0107CC3B9637DC15FD8899E0'
                BlueprintName = 'Pods-Glimp'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods_Glimp.framework'>

@@ -48,11 +48,9 @@ class ChangePassword: UIViewController, UITextFieldDelegate {
         }
         else {
             
-            Alamofire.request(.POST, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/changepassword.php", parameters: ["userid":name!,"currentpassword": self.current.text!,"newpassword": self.newpass.text!])
+            Alamofire.request(.POST, "http://glimpglobe.com/v2/changepassword.php", parameters: ["userid":name!,"currentpassword": self.current.text!,"newpassword": self.newpass.text!, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
                 .responseString { response in
                     if let JSON = response.result.value {
-                        print("JSON: \(JSON)")
-
                     if JSON == "{\"success\"}"{
                         let alertView:UIAlertView = UIAlertView()
                         alertView.title = "Password Changed"

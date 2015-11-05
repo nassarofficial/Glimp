@@ -54,12 +54,8 @@ class CommentsNotif: UIViewController, UITableViewDelegate, UITableViewDataSourc
             alert.addButtonWithTitle("Ok")
             alert.show()        }
         else{
-            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/postcomments.php", parameters: [ "userid": name!,"glimpid": glimpid!,"comment": textView.text!])
+            Alamofire.request(.POST, "http://glimpglobe.com/v2/postcomments.php", parameters: [ "userid": name!,"glimpid": glimpid!,"comment": textView.text!, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
                 .responseJSON { response in
-                    print(response.request)  // original URL request
-                    print(response.response) // URL response
-                    print(response.data)     // server data
-                    print(response.result)   // result of response serialization
                     self.getdata()
                     self.feed.reloadData()
                     self.textView.text=""
@@ -100,13 +96,8 @@ class CommentsNotif: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func getdata(){
         
         
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/comments.php", parameters: ["comment": glimpid])
+        Alamofire.request(.POST, "http://glimpglobe.com/v2/comments.php", parameters: ["comment": glimpid, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
             .responseJSON { response in
-                print(response.request)  // original URL request
-                print(response.response) // URL response
-                print(response.data)     // server data
-                print(response.result)   // result of response serialization
-                
                 if let json = response.result.value {
                     var jsonObj = JSON(json)
                     if let data = jsonObj["comments"].arrayValue as [JSON]?{
@@ -143,17 +134,15 @@ class CommentsNotif: UIViewController, UITableViewDelegate, UITableViewDataSourc
         automaticallyAdjustsScrollViewInsets = false
         feed.addPullToRefreshWithAction({
             NSOperationQueue().addOperationWithBlock {
-                //self.registerForKeyboardNotifications()
-                dispatch_sync(dispatch_get_global_queue(
-                    Int(QOS_CLASS_USER_INTERACTIVE.rawValue), 0)) {
-                        
+                dispatch_async(dispatch_get_main_queue()) { // 2
+                    
                         self.getdata()
                 }
                 NSOperationQueue.mainQueue().addOperationWithBlock {
                     self.feed.stopPullToRefresh()
                 }
             }
-            }, withAnimator: PacmanAnimator())
+            }, withAnimator: BeatAnimator())
         
         
         // prevents the scroll view from swallowing up the touch event of child buttons
@@ -309,7 +298,7 @@ class CommentsNotif: UIViewController, UITableViewDelegate, UITableViewDataSourc
         let name = prefs.stringForKey("USERNAME")
         let usernamep = String(name!)
         
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/friendlist.php", parameters: ["username": usernamep, "query" : query])
+        Alamofire.request(.POST, "http://glimpglobe.com/v2/friendlist.php", parameters: ["username": usernamep, "query" : query, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
             .responseJSON { response in
                 
                 if let json = response.result.value {
@@ -351,7 +340,6 @@ class CommentsNotif: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
     }
     func textFieldDidChange(textView: UITextField) { //Handle the text changes here
-        print("hey hey")
         let gettext:String = textView.text!
         if gettext.characters.count != 0 {
             suggester.hidden = false

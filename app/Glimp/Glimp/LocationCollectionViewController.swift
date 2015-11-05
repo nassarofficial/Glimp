@@ -44,16 +44,33 @@ class LocationCollectionViewController: UIViewController {
             locdescription.text = ""
             headindicator.hidden = true
             
-            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/loc.php", parameters: [ "locid": loc])
+            Alamofire.request(.POST, "http://glimpglobe.com/v2/loc.php", parameters: [ "locid": loc, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
                 .responseJSON { response in
                     if let json = response.result.value {
                         var jsonObj = JSON(json)
                         if let data = jsonObj["loc"].arrayValue as [JSON]?{
                             self.datas = data
-                            //println(self.datas)
                             self.collectionView.reloadData()
                             self.vidcolindicator.hidden = true
                             self.noglimps.hidden = true
+                        } else {
+                            
+                            let alert = UIAlertController(title: "Location Not Found", message: "The location requested is not available.", preferredStyle: UIAlertControllerStyle.Alert)
+                            self.presentViewController(alert, animated: true, completion: nil)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .Default, handler: { action in
+                                switch action.style{
+                                case .Default:
+                                    self.performSegueWithIdentifier("unwinder", sender: self)
+                                    
+                                case .Cancel:
+                                    self.performSegueWithIdentifier("unwinder", sender: self)
+                                    
+                                case .Destructive:
+                                    self.performSegueWithIdentifier("unwinder", sender: self)
+                                }
+                            }))
+
+                            
                         }
                     }
             }
@@ -99,7 +116,7 @@ class LocationCollectionViewController: UIViewController {
                     }
             }
 
-            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/locid.php", parameters: [ "locid": locid])
+            Alamofire.request(.GET, "http://glimpglobe.com/v2/locid.php", parameters: [ "locid": locid])
                 .responseJSON { response in
                     if let json = response.result.value {
                         var jsonObj = JSON(json)

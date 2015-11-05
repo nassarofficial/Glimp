@@ -37,8 +37,16 @@ class GlimS: UIViewController {
         print(booler)
         //prefs.setInteger(1, forKey: "glimper")
         //prefs.synchronize()
+        if booler == 1 {
+    
+            prefs.setInteger(0, forKey: "glimper")
+            prefs.synchronize()
+            performSegueWithIdentifier("unwindToSegue", sender: self)
 
-        performSegueWithIdentifier("glimpmodal", sender: self)
+        } else {
+            performSegueWithIdentifier("glimpmodal", sender: self)
+            
+        }
     
     }
 

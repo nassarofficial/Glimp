@@ -53,8 +53,8 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
             alert.addButtonWithTitle("Ok")
             alert.show()        }
         else{
-            Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/postcomments.php", parameters: ["userid": name!,"glimpid": glimpid!,
-"comment": textView.text!])
+            Alamofire.request(.POST, "http://glimpglobe.com/v2/postcomments.php", parameters: ["userid": name!,"glimpid": glimpid!,
+"comment": textView.text!, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
                 .responseJSON { response in
                     self.getdata()
                     self.feed.reloadData()
@@ -96,10 +96,10 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     func getdata(){
         
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/comments.php", parameters: ["comment": glimpid])
-            .response { request, response, json, error in
-                if json != nil {
-                    var jsonObj = JSON(json!)
+        Alamofire.request(.POST, "http://glimpglobe.com/v2/comments.php", parameters: ["comment": glimpid, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
+            .responseJSON { response in
+                if let json = response.result.value {
+                    var jsonObj = JSON(json)
                     if let data = jsonObj["comments"].arrayValue as [JSON]?{
                         self.datas = data
                         self.feed.reloadData()
@@ -107,16 +107,6 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
         }
 
-//        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/comments.php", parameters: ["comment": glimpid]).responseJSON { (request, response, json, error) in
-//            println(response)
-//            if json != nil {
-//                var jsonObj = JSON(json!)
-//                if let data = jsonObj["comments"].arrayValue as [JSON]?{
-//                    self.datas = data
-//                    self.feed.reloadData()
-//                }
-//            }
-//        }
 
     }
     
@@ -129,7 +119,6 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.suggester.dataSource = self
         feed.delegate = self
         self.feed.dataSource = self
-        textView.addTarget(self, action: "textFieldDidChange:", forControlEvents: UIControlEvents.EditingChanged)
 
         let tapGestureRecognizer: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "handleTapGestureRecognizer:")
         tapGestureRecognizer.numberOfTapsRequired = 1
@@ -146,9 +135,7 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
         automaticallyAdjustsScrollViewInsets = false
         feed.addPullToRefreshWithAction({
             NSOperationQueue().addOperationWithBlock {
-                //self.registerForKeyboardNotifications()
-                dispatch_sync(dispatch_get_global_queue(
-                    Int(QOS_CLASS_USER_INTERACTIVE.rawValue), 0)) {
+                dispatch_async(dispatch_get_main_queue()) { // 2
 
                 self.getdata()
                 }
@@ -156,7 +143,7 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     self.feed.stopPullToRefresh()
                 }
             }
-            }, withAnimator: PacmanAnimator())
+            }, withAnimator: BeatAnimator())
 
         
         // prevents the scroll view from swallowing up the touch event of child buttons
@@ -312,7 +299,7 @@ class Comments: UIViewController, UITableViewDelegate, UITableViewDataSource {
         var usernamep = String(name!)
         
         
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/friendlist.php", parameters: ["username": usernamep, "query" : query])
+        Alamofire.request(.POST, "http://glimpglobe.com/v2/friendlist.php", parameters: ["username": usernamep, "query" : query, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
             .response { request, response, json, error in
                 if json != nil {
                     var jsonObj = JSON(json!)

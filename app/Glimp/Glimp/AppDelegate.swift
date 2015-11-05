@@ -15,12 +15,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
     var window: UIWindow?
     var deviceToken: String=""
     var locationManager: CLLocationManager = CLLocationManager()
+    var loadedEnoughToDeepLink : Bool = false
+    var deepLink : RemoteNotificationDeepLink?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let types: UIUserNotificationType = [UIUserNotificationType.Badge, UIUserNotificationType.Alert, UIUserNotificationType.Sound]
-        
         let settings: UIUserNotificationSettings = UIUserNotificationSettings( forTypes: types, categories: nil )
-        
         application.registerUserNotificationSettings( settings )
         application.registerForRemoteNotifications()
         Instabug.startWithToken("8bf991235ff10a1897e63146cccca07b", captureSource:IBGCaptureSourceUIKit, invocationEvent:IBGInvocationEventShake)
@@ -81,17 +81,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CLLocationManagerDelegate
             UIApplication.sharedApplication().scheduleLocalNotification(notification)
         }
     }
-
+    
     func application(application: UIApplication,
         openURL url: NSURL,
         sourceApplication: String?,
-        annotation: AnyObject) -> Bool {        let urlString = url.scheme
+        annotation: AnyObject) -> Bool {
+            let urlString = url.scheme
+            //print(url)
             if urlString.rangeOfString("fb") != nil {
                 return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
-            } else {
-                return GPPURLHandler.handleURL(url, sourceApplication: sourceApplication, annotation: annotation)
+                
+            } else if url.host == "video" {
+                
+                let parameter = url.lastPathComponent
+                
+                
+                let storyboard = UIStoryboard(name: "Storyboard", bundle: nil)
+                let viewController: GlimpView = storyboard.instantiateViewControllerWithIdentifier("GlimpView") as! GlimpView
+                viewController.glimpsid = parameter
+                // Then push that view controller onto the navigation stack
+                let rootViewController = self.window!.rootViewController as! UINavigationController
+                rootViewController.pushViewController(viewController, animated: true)
+                
             }
+            
+            return true
+
     }
+    
+
 
     func applicationWillResignActive( application: UIApplication ) {
     }

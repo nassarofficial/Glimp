@@ -123,15 +123,16 @@ public class Player: UIViewController {
 
             filepath = newValue
             let remoteUrl: NSURL? = NSURL(string: newValue)
-            if remoteUrl != nil && remoteUrl?.scheme != nil {
+            if remoteUrl != nil && remoteUrl?.scheme != nil && remoteUrl!.scheme != "" {
                 let asset = AVURLAsset(URL: remoteUrl!, options: .None)
                 self.setupAsset(asset)
+                
                 
             } else {
                 let localURL: NSURL? = NSURL(fileURLWithPath: newValue)
                 let asset = AVURLAsset(URL: localURL!, options: .None)
                 self.setupAsset(asset)
-            
+                
             }
         }
     }

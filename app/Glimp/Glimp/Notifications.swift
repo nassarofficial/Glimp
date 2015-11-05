@@ -35,9 +35,8 @@ class Notifications: UIViewController {
                 dispatch_sync(dispatch_get_global_queue(
                     Int(QOS_CLASS_USER_INTERACTIVE.rawValue), 0)) {
                         
-                        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/notifications.php", parameters: ["userid": name!])
+                        Alamofire.request(.POST, "http://glimpglobe.com/v2/notifications.php", parameters: ["userid": name!, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
                             .responseJSON { response in
-                                print(response.request)
                                 if let json = response.result.value {
                                     self.notifications.hidden = true
                                     var jsonObj = JSON(json)

@@ -56,72 +56,71 @@ class Profile: UIViewController {
         let prefs = NSUserDefaults.standardUserDefaults()
         let name = prefs.stringForKey("USERNAME")
         self.tabBarController?.tabBar.hidden = false
-        let baseURL = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profile.php?username="+name!)
-        //println(baseURL)
         
-        let pointData = try? NSData(contentsOfURL: baseURL!, options: [])
-        
-        let points = (try! NSJSONSerialization.JSONObjectWithData(pointData!,
-            options: [])) as! NSDictionary
-        
-        
-        for point in points["profile"] as! NSArray {
-            self.userid = String(stringInterpolationSegment: (point as! NSDictionary)["userider"]!)
-            let f1 = String(stringInterpolationSegment: (point as! NSDictionary)["friends"]!)
-            let f2 = String(stringInterpolationSegment: (point as! NSDictionary)["followers"]!)
-            let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
-            
-            self.following.setTitle(f1, forState: UIControlState.Normal)
-            self.followers.setTitle(f2, forState: UIControlState.Normal)
-            self.glimps.setTitle(gl, forState: UIControlState.Normal)
-            //self.location.text = (point as! NSDictionary)["location"] as? String
-        }
-
-        
-        
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/feed.php", parameters: ["userid": self.userid])
+        Alamofire.request(.POST, "http://glimpglobe.com/v2/profile.php", parameters: ["username": name!, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
             .responseJSON { response in
-                print(response.request)  // original URL request
-                print(response.response) // URL response
-                print(response.data)     // server data
-                print(response.result)   // result of response serialization
-                
-                if let json = response.result.value {
-                    var jsonObj = JSON(json)
-                    if let data = jsonObj["glimps"].arrayValue as [JSON]?{
-                        self.datas = data
-                        self.tableView.reloadData()
-                        self.tablespinner.hidden = true
+                if let points = response.result.value {
+                    
+                    for point in points["profile"] as! NSArray {
+                        self.userid = String(stringInterpolationSegment: (point as! NSDictionary)["userider"]!)
+                        let f1 = String(stringInterpolationSegment: (point as! NSDictionary)["friends"]!)
+                        let f2 = String(stringInterpolationSegment: (point as! NSDictionary)["followers"]!)
+                        let gl = String(stringInterpolationSegment: (point as! NSDictionary)["glimpcount"]!)
+                        
+                        self.following.setTitle(f1, forState: UIControlState.Normal)
+                        self.followers.setTitle(f2, forState: UIControlState.Normal)
+                        self.glimps.setTitle(gl, forState: UIControlState.Normal)
+                        //self.location.text = (point as! NSDictionary)["location"] as? String
                     }
+                    
+                    Alamofire.request(.POST, "http://glimpglobe.com/v2/feed.php", parameters: ["userid": self.userid,"secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
+                        .responseJSON { response in
+                            
+                            if let json = response.result.value {
+                                var jsonObj = JSON(json)
+                                if let data = jsonObj["glimps"].arrayValue as [JSON]?{
+                                    self.datas = data
+                                    self.tableView.reloadData()
+                                    self.tablespinner.hidden = true
+                                }
+                            }
+                    }
+
                 }
         }
 
-        
-    
-        let baseURL1 = NSURL(string: "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profilepic.php?username="+name!)
-        let pointData1 = try? NSData(contentsOfURL: baseURL1!, options: [])
-        let points1 = (try! NSJSONSerialization.JSONObjectWithData(pointData1!,
-            options: [])) as! NSDictionary
-        for point1 in points1["profilepic"] as! NSArray {
-            self.profilepic = String(stringInterpolationSegment: (point1 as! NSDictionary)["profile_pic"]!)
-        }
-        print("hello")
-        if profilepic == "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/profilepic.jpeg"{
-            imageView.image = UIImage(named: "add_photo-1");
-        }
-        else {
-            print(profilepic)
-            let url = NSURL(string: profilepic)
-            print(url)
-            let imageSize = 86 as CGFloat
-            self.imageView.frame.size.height = imageSize
-            self.imageView.frame.size.width  = imageSize
-            self.imageView.layer.cornerRadius = imageSize / 2.05
-            self.imageView.clipsToBounds = true
 
-            imageView.hnk_setImageFromURL(url!)
-            
+        
+
+        
+        Alamofire.request(.POST, "http://glimpglobe.com/v2/profilepic.php", parameters: ["username": name!, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
+            .responseJSON { response in
+                if let points1 = response.result.value {
+                    
+                    for point1 in points1["profilepic"] as! NSArray {
+                        self.profilepic = String(stringInterpolationSegment: (point1 as! NSDictionary)["profile_pic"]!)
+                    }
+                    print("hello")
+                    if self.profilepic == "http://glimpglobe.com/profilepic.jpeg"{
+                        self.imageView.image = UIImage(named: "add_photo-1");
+                    }
+                    else {
+                        print(self.profilepic)
+                        let url = NSURL(string: self.profilepic)
+                        print(url)
+                        let imageSize = 86 as CGFloat
+                        self.imageView.frame.size.height = imageSize
+                        self.imageView.frame.size.width  = imageSize
+                        self.imageView.layer.cornerRadius = imageSize / 2.05
+                        self.imageView.clipsToBounds = true
+                        
+                        self.imageView.hnk_setImageFromURL(url!)
+                        
+                    }
+                    
+                }
         }
+
         
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {

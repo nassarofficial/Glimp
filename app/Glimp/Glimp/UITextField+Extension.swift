@@ -93,7 +93,7 @@ extension UITextView {
         
         
         
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/flist.php", parameters: ["username": usernamep])
+        Alamofire.request(.POST, "http://glimpglobe.com/v2/flist.php", parameters: ["username": usernamep, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
             .responseJSON { response in
             if let json = response.result.value {
                 var jsonObj = JSON(json)

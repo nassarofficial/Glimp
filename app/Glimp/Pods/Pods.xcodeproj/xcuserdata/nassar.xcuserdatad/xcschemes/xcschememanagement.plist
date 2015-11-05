@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>ActiveLabel.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Alamofire.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,7 +57,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>13EF97F1339B7E3A52B326847A0DB6BC</key>
+		<key>00CBAB35987B955335E4F2350F6B69B8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -63,11 +68,6 @@
 			<true/>
 		</dict>
 		<key>432ECC54282C84882B482CCB4CF227FC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>470459C1DC39342822EFAA430C421B60</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,12 +87,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F5ACF367AE3BD7A7F2AF2D430901DF7B</key>
+		<key>C3FA0DC436CBA6DCDE3D5A8A433DA7B6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FEA5D9841F48FF04D0290B79BEFDEA7E</key>
+		<key>D3CC35AFD073DBC3661E079345315AAB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F12B7DBAC6017B8E2862BA92058BF591</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F5ACF367AE3BD7A7F2AF2D430901DF7B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

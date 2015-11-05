@@ -37,7 +37,7 @@ class Follow: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let usernamep = String(name!)
         
         
-        Alamofire.request(.GET, "http://ec2-54-148-130-55.us-west-2.compute.amazonaws.com/flister.php", parameters: ["username": usernamep, "type" : type])
+        Alamofire.request(.POST, "http://glimpglobe.com/v2/flister.php", parameters: ["username": usernamep, "type" : type, "secid": "yMPxQSTXpUC7gB8uK4h9v9fUeYNsPjnPzw4dcR3y"])
             .responseJSON { response in
                 print(response.request)
                 if let json = response.result.value {
